@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2c9da20523d23488f2dc15e77323be, type: 3}
+  m_Name: Poisoning Touch[1]
+  m_EditorClassIdentifier: 
+  id: c9f452db53e872641ae1b1c178309e9b
+  SkillName: Poisoning touch
+  SkillLevel: 1
+  SkillIcon: {fileID: -1272773282, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  Description: With a chance poisons the enemy for 4 turns while using basic attacks
+  maxLevel: 3
+  increaseStat: 0
+  decreaseStat: 0
+  applyStatusEffects:
+  - effect: {fileID: 11400000, guid: 2e3740da40e40fa41a196ddb14cec5aa, type: 2}
+    applicationChance: 100
+    duration: 3
+  onlyOnHit: 0
+  removeStatusEffects: []
+  trigger: 0
+  nextLevelSkill: {fileID: 11400000, guid: 51a408d84aa3dfe46a5b1ab244382063, type: 2}

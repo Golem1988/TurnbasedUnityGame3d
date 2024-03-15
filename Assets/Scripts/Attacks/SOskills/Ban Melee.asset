@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec99d2835041e0446b4eaccf4c6eee99, type: 3}
+  m_Name: Ban Melee
+  m_EditorClassIdentifier: 
+  id: d3d69f4dec816c04c931336afe9779d7
+  SkillName: Ban Melee
+  SkillLevel: 0
+  SkillIcon: {fileID: 21300000, guid: 764bde2131a7d2445825d74050cfeafe, type: 3}
+  Description: Seal that targets 1 target and bans the use of magic attacks.
+  attackVFX: {fileID: 4000014147679906, guid: eb2aeefeb108836408e91ec6984025f9, type: 3}
+  isMassVFX: 0
+  selfVFX: {fileID: 0}
+  isAttack: 1
+  skillType: 2
+  costType: 1
+  costValue: 5
+  selectionMode: 0
+  canCrit: 0
+  targetCount: 1
+  strikeCount: 1
+  targetType: 2
+  targetStat: 0
+  damageAffectedByStat: 2
+  FixedDamageAmount: 0
+  PercentDamageAmount: 100
+  sortBy: 0
+  sortType: 0
+  applyStatusEffects:
+  - effect: {fileID: 11400000, guid: 5ec42008e1affd44599bbe65b30ff297, type: 2}
+    applicationChance: 100
+    duration: 3
+  onlyOnHit: 0
+  removeStatusEffects: []
+  isDodgeable: 0
+  ignoreDefense: 0
+  Test:
+    trueDamage: 0
+    skillType: 0
+    endTargetList: []
+    strikeCount: 0
+    canCrit: 0
+    isDodgeable: 0
+    ignoreDefense: 0
+    targetStat: 0
+    isHeal: 0
+    applyStatusEffects: []

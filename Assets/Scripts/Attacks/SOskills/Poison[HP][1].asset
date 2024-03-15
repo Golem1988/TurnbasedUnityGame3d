@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549770181a643594d8c27d9f45e90305, type: 3}
+  m_Name: Poison[HP][1]
+  m_EditorClassIdentifier: 
+  id: 2e3740da40e40fa41a196ddb14cec5aa
+  SkillName: Poison[HP]
+  SkillLevel: 1
+  SkillIcon: {fileID: -1272773282, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  Description: 
+  durableEffectVfx: {fileID: 4000014050693726, guid: c9b44f54421558a4393730c2417ba63b, type: 3}
+  isStackable: 0
+  isRefillable: 1
+  isBuff: 0
+  stat: 1
+  modType: 100
+  value: 75
+  expirePoint: 1
+  triggerEachTurn: 1

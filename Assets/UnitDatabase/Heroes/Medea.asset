@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a7c1da7e42392438bfe00808fd0d22, type: 3}
+  m_Name: Medea
+  m_EditorClassIdentifier: 
+  id: unit_f784ca5cb61e87f47aa1bcfc6f6d773a
+  ModelId: 1220
+  DisplayName: Medea
+  ModelPrefab: {fileID: 1000013817089792, guid: a88498a160e99fb43bcc57fe5063f73f, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 65528d387547b9f47aed7f7e2409824d, type: 3}
+  HeroSchool: 0
+  HeroWeapons:
+  - {fileID: 1000013938593436, guid: 8edfc248084908f4b9fd85df7a4a4d82, type: 3}
+  - {fileID: 1000011339030282, guid: 0a23e511c7247d444a5fd77febce62ce, type: 3}
+  - {fileID: 1000014100896926, guid: 5685c06f193c96c42a75e61679b6caaf, type: 3}
+  - {fileID: 1000013539426476, guid: 3b291cdc14a40114ca8bc0d616df4393, type: 3}
+  - {fileID: 1000010277941320, guid: 647e336a7c74e1d4d98ec61fb646db9a, type: 3}
+  - {fileID: 1000010640090494, guid: 749c2d56779b14b48a14c5fdc72fb0e9, type: 3}
+  - {fileID: 1000010792289696, guid: dcf23f0ea92317d4d83213958b757e18, type: 3}
+  - {fileID: 1000011882539544, guid: 36aef03436717db48b1b624784b18f17, type: 3}
+  - {fileID: 1000013371315516, guid: 6f35090a0ecbaaa4c91a6306d2203638, type: 3}

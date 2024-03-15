@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff381434565bb4e9c72a051382b22e, type: 3}
+  m_Name: Ivy
+  m_EditorClassIdentifier: 
+  characterName: Ivy
+  characterID: 1120
+  ID: unit_1e4400347b0a87147bb2c393f14d8f51
+  schoolButton: {fileID: 3239483307980890734, guid: d179948238d77df49bc1f8a3d13b2db1, type: 3}
+  characterDescription: 'Here goes description of character Ivy. Here goes description
+    of character Ivy. Here goes description of character Ivy. Here goes description
+    of character Ivy. Here goes description of character Ivy. '
+  strengths: 0100000003000000040000000500000003000000
+  skillIcons:
+  - {fileID: -1084971290, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 484914634, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 597464223, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 427527061, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  characterModel: {fileID: 1000012306649880, guid: c9dc183c4f3f31747a3b50acf15c8ba5, type: 3}
+  characterWeapon: {fileID: 1000013765064230, guid: bb5c467000abd934ebdb65a1601e7dd1, type: 3}
+  weaponAnimator: {fileID: 22100000, guid: 3fa89a5a03187d046ad7ac1ca5c2b4b0, type: 2}
+  characterWings: {fileID: 1000012308346362, guid: 630166386a974b940a683d5123ce0011, type: 3}
+  characterVFX1: {fileID: 1000013085539564, guid: 06c8480ec41f27b4a8b1a3de06075425, type: 3}
+  characterVFX3: {fileID: 1000013085539564, guid: 51014c012d31e214c97369a2190ffa16, type: 3}
+  characterAnimator: {fileID: 22100000, guid: 80299c58c383c854290e5edfb128fc39, type: 2}
+  characterAvatar: {fileID: 21300000, guid: 005041cdc373ca94885d06c3d6c981bc, type: 3}

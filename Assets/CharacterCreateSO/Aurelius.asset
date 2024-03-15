@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff381434565bb4e9c72a051382b22e, type: 3}
+  m_Name: Aurelius
+  m_EditorClassIdentifier: 
+  characterName: Aurelius
+  characterID: 1210
+  ID: unit_8f5420fb9f3b6624fbc1be1f996b5b26
+  schoolButton: {fileID: 4733219919722372076, guid: 90490932642dd69409f028685ecf7488, type: 3}
+  characterDescription: 'Here goes description of character Aurelius. Here goes description
+    of character Aurelius. Here goes description of character Aurelius. Here goes
+    description of character Aurelius. Here goes description of character Aurelius. '
+  strengths: 0200000004000000030000000400000003000000
+  skillIcons:
+  - {fileID: 114156583, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 1860482358, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 1148322292, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: -191798750, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  characterModel: {fileID: 1000011445732054, guid: d2c7fd8f9d5a63d488c304d5565712fc, type: 3}
+  characterWeapon: {fileID: 1000013264566960, guid: 3e999f9718fe3184a8a9d68353069f6c, type: 3}
+  weaponAnimator: {fileID: 22100000, guid: fbd6a185c7bd024429afa3eb6cab6cd4, type: 2}
+  characterWings: {fileID: 1000012998267126, guid: 324faf7eb5ef9f641aa39ddcda2c1da4, type: 3}
+  characterVFX1: {fileID: 1000012207596182, guid: 2fbcfc856ea65a24080753a28518dc13, type: 3}
+  characterVFX3: {fileID: 1000012207596182, guid: 5834ed91c365c1e4583dbd3768e84861, type: 3}
+  characterAnimator: {fileID: 22100000, guid: db5c73a6d8c6817458d446a120db408c, type: 2}
+  characterAvatar: {fileID: 21300000, guid: 8569dfdf1a4860b4c92a7c6256f41136, type: 3}

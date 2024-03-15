@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7e5a44b38fe5641bd36dfbde7676ac, type: 3}
+  m_Name: Heal Over Time
+  m_EditorClassIdentifier: 
+  id: 947bae94dad8bae469048011b3d251c2
+  SkillName: Heal
+  SkillLevel: 0
+  SkillIcon: {fileID: 1148322292, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  Description: heals 500hp at the turn start each turn for 5 turns.
+  durableEffectVfx: {fileID: 4000014101406242, guid: 2bcfb1fde11704345a1c09b41d6421a4, type: 3}
+  isStackable: 0
+  isRefillable: 1
+  isBuff: 1
+  stat: 1
+  modType: 100
+  value: 500
+  expirePoint: 1
+  triggerEachTurn: 1

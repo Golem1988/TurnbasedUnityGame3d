@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1280a0e29bf1f0a4ba5c198220ad60b4, type: 3}
+  m_Name: Ban Melee Seal
+  m_EditorClassIdentifier: 
+  id: 5ec42008e1affd44599bbe65b30ff297
+  SkillName: Ban Melee Status
+  SkillLevel: 0
+  SkillIcon: {fileID: 21300000, guid: 764bde2131a7d2445825d74050cfeafe, type: 3}
+  Description: Bans the use of melee attacks
+  durableEffectVfx: {fileID: 4000013362704624, guid: 69be0254d8c01fc41b5c8aef6f99f0cb, type: 3}
+  isStackable: 0
+  isRefillable: 1
+  stat: 0
+  modType: 0
+  value: 0
+  expirePoint: 1
+  triggerEachTurn: 0
+  BanMelee: 1
+  BanMagic: 0
+  BanItemUse: 0
+  BanFlee: 0
+  BanEverything: 0

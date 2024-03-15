@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Doggo
+  m_EditorClassIdentifier: 
+  id: unit_59b486befa953f54286e01e697e95fa5
+  ModelId: 5101
+  DisplayName: Doggo
+  ModelPrefab: {fileID: 1000012581553476, guid: 2a6b16d349d756e4cb3f5601c9f81eb3, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 3e418421a2aa86b4f8709aa5ea682b32, type: 3}
+  ActiveSkills:
+  - possibleSkill: {fileID: 11400000, guid: cbbb2aa0247088b45aa1af775b61f0ea, type: 2}
+    skillSpawnChance: 5
+  - possibleSkill: {fileID: 11400000, guid: 65f372b96d6ee3641a523120754153e9, type: 2}
+    skillSpawnChance: 5
+  - possibleSkill: {fileID: 11400000, guid: 0fb38bbbde0fb324e82a79be56db3681, type: 2}
+    skillSpawnChance: 5
+  - possibleSkill: {fileID: 11400000, guid: f1d3d7374904e1c49b6419b0f33198aa, type: 2}
+    skillSpawnChance: 5
+  - possibleSkill: {fileID: 11400000, guid: d3d69f4dec816c04c931336afe9779d7, type: 2}
+    skillSpawnChance: 5
+  PassiveSkills: []
+  canBeBaby: 1
+  canBeMutant: 1

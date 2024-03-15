@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff381434565bb4e9c72a051382b22e, type: 3}
+  m_Name: Aygar
+  m_EditorClassIdentifier: 
+  characterName: Aygar
+  characterID: 1110
+  ID: unit_51a1f3fc8ec9bf24296da5809383009b
+  schoolButton: {fileID: 8394234810862071602, guid: 4a396ccf862818849849aab470959da3, type: 3}
+  characterDescription: 'Here goes description of character Aygar. Here goes description
+    of character Aygar. Here goes description of character Aygar. Here goes description
+    of character Aygar. Here goes description of character Aygar. '
+  strengths: 0200000002000000040000000200000005000000
+  skillIcons:
+  - {fileID: -429462882, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 1635515087, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 978310628, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: -468397026, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  characterModel: {fileID: 1000012131937294, guid: d7f89b00ae4ff5444bcf1f59be9aae67, type: 3}
+  characterWeapon: {fileID: 1000012429248868, guid: d72b602b1766fa842993b2333531a9b5, type: 3}
+  weaponAnimator: {fileID: 22100000, guid: 84f0f52951779704888a5c9c6f4aa628, type: 2}
+  characterWings: {fileID: 1000010899140736, guid: 23146740b34aec445a91af4efe238447, type: 3}
+  characterVFX1: {fileID: 1000010977251742, guid: 0796da7fde0d37442aa5b55e2d821c33, type: 3}
+  characterVFX3: {fileID: 1000010977251742, guid: 76fbe25806f40f448bc00094c12fceff, type: 3}
+  characterAnimator: {fileID: 22100000, guid: f3534a1d2165b2846b249644e632e7d0, type: 2}
+  characterAvatar: {fileID: 21300000, guid: 2d31c96f09cc6a44088955b117555261, type: 3}

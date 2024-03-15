@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff381434565bb4e9c72a051382b22e, type: 3}
+  m_Name: Medea
+  m_EditorClassIdentifier: 
+  characterName: Medea
+  characterID: 1220
+  ID: unit_f784ca5cb61e87f47aa1bcfc6f6d773a
+  schoolButton: {fileID: 4781539648583806845, guid: 7cbf31e8710f7ca438f880e291161065, type: 3}
+  characterDescription: 'Here goes description of character Medea. Here goes description
+    of character Medea. Here goes description of character Medea. Here goes description
+    of character Medea. Here goes description of character Medea. '
+  strengths: 0200000003000000030000000300000003000000
+  skillIcons:
+  - {fileID: -1818134426, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 1544774357, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: -1197216469, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 754827752, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  characterModel: {fileID: 1000013817089792, guid: a88498a160e99fb43bcc57fe5063f73f, type: 3}
+  characterWeapon: {fileID: 1000013371315516, guid: 6f35090a0ecbaaa4c91a6306d2203638, type: 3}
+  weaponAnimator: {fileID: 22100000, guid: ecde611349eab614697623452102c267, type: 2}
+  characterWings: {fileID: 1000012377642696, guid: 5689691c645a05f4ea6e9bd45ce40914, type: 3}
+  characterVFX1: {fileID: 1000011681907458, guid: 9d9a4e737fa19e34392cb22d3ce68f4d, type: 3}
+  characterVFX3: {fileID: 1000011681907458, guid: 0a1a37c73def70c4584fb38613268faf, type: 3}
+  characterAnimator: {fileID: 22100000, guid: 2b415341c711e9249affbc4ca45821c0, type: 2}
+  characterAvatar: {fileID: 21300000, guid: 65528d387547b9f47aed7f7e2409824d, type: 3}

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36be9f4ec3d6dd64c9c670378b5bf525, type: 3}
+  m_Name: Ring1
+  m_EditorClassIdentifier: 
+  id: 64e68b0dc4f0af546ac7c0c2607d4814
+  ItemName: Ring1
+  Icon: {fileID: 21300000, guid: 88a1d5322bb455d428e18e95ad26d28e, type: 3}
+  MaximumStacks: 1
+  RequiredLevel: 0
+  StrengthBonus: 0
+  IntellectBonus: 0
+  AgilityBonus: 0
+  DexterityBonus: 0
+  StaminaBonus: 0
+  StrengthPercentBonus: 0
+  IntellectPercentBonus: 0
+  AgilityPercentBonus: 0
+  DexterityPercentBonus: 0
+  StaminaPercentBonus: 0
+  HPBonus: 0
+  MPBonus: 0
+  SpeedBonus: 0
+  ATKBonus: 0
+  MATKBonus: 0
+  DEFBonus: 0
+  HitBonus: 0
+  DodgeBonus: 0
+  HPPercentBonus: 0
+  MPPercentBonus: 0
+  SpeedPercentBonus: 0
+  ATKPercentBonus: 0
+  MATKPercentBonus: 0
+  DEFPercentBonus: 0
+  HitPercentBonus: 0
+  DodgePercentBonus: 0
+  EquipmentType: 4

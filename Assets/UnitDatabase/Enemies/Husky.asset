@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Husky
+  m_EditorClassIdentifier: 
+  id: unit_64207f11ed399ed4abaa2a35693c7022
+  ModelId: 5144
+  DisplayName: Husky
+  ModelPrefab: {fileID: 1000011150001402, guid: b6b1541ff260dd24db64e9d1a9caf611, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: d3648ff571fc3f840a5aca8c594d21c1, type: 3}
+  ActiveSkills:
+  - possibleSkill: {fileID: 11400000, guid: c573284c328f02a4ab1da018892d6bf9, type: 2}
+    skillSpawnChance: 100
+  - possibleSkill: {fileID: 11400000, guid: 0fb38bbbde0fb324e82a79be56db3681, type: 2}
+    skillSpawnChance: 100
+  PassiveSkills: []
+  canBeBaby: 1
+  canBeMutant: 1

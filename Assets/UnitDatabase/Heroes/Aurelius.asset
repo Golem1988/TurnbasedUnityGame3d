@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a7c1da7e42392438bfe00808fd0d22, type: 3}
+  m_Name: Aurelius
+  m_EditorClassIdentifier: 
+  id: unit_8f5420fb9f3b6624fbc1be1f996b5b26
+  ModelId: 1210
+  DisplayName: Aurelius
+  ModelPrefab: {fileID: 1000011445732054, guid: d2c7fd8f9d5a63d488c304d5565712fc, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 8569dfdf1a4860b4c92a7c6256f41136, type: 3}
+  HeroSchool: 1
+  HeroWeapons:
+  - {fileID: 1000011196629116, guid: d7c3c2824af036e4895f211e329ab1b1, type: 3}
+  - {fileID: 1000011139266608, guid: 5a7d861b50de57c4ea5808eed02b9aa6, type: 3}
+  - {fileID: 1000012047889814, guid: ec50f481dcedce24ab2102c45b60c8b5, type: 3}
+  - {fileID: 1000012744692730, guid: 9690338b0a7f2154da6bf1ed10c946f0, type: 3}
+  - {fileID: 1000011673067742, guid: 8b5fe63b4516ecf4490ceb31b19782f9, type: 3}
+  - {fileID: 1000011746580916, guid: 186ee228ba7fa90419c3312fc4f72ebe, type: 3}
+  - {fileID: 1000011117430026, guid: 70ddb441d2b02c848a02b18d10a99985, type: 3}
+  - {fileID: 1000013264566960, guid: 3e999f9718fe3184a8a9d68353069f6c, type: 3}
+  - {fileID: 1000010077327378, guid: c1d121dee1e736e4f921143a815ff68e, type: 3}

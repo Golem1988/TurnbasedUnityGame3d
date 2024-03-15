@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec99d2835041e0446b4eaccf4c6eee99, type: 3}
+  m_Name: Cataclism
+  m_EditorClassIdentifier: 
+  id: c573284c328f02a4ab1da018892d6bf9
+  SkillName: Cataclism
+  SkillLevel: 0
+  SkillIcon: {fileID: 21300000, guid: 2772f252fa9d9ce488b0bf59290a11b4, type: 3}
+  Description: Magic attack that strikes 5 target(s) 1 times. It hits targets based
+    on their Random and deals damage to their HP. Damage amount is affected by users
+    Matk and also deals additional 0 fixed damage.
+  attackVFX: {fileID: 4000011406051818, guid: 127b84b6e02935e4a9cba6a169be19fd, type: 3}
+  isMassVFX: 1
+  selfVFX: {fileID: 0}
+  isAttack: 1
+  skillType: 2
+  costType: 1
+  costValue: 20
+  selectionMode: 0
+  canCrit: 1
+  targetCount: 5
+  strikeCount: 1
+  targetType: 2
+  targetStat: 0
+  damageAffectedByStat: 1
+  FixedDamageAmount: 0
+  PercentDamageAmount: 100
+  sortBy: 0
+  sortType: 0
+  applyStatusEffects: []
+  onlyOnHit: 0
+  removeStatusEffects: []
+  isDodgeable: 0
+  ignoreDefense: 0
+  Test:
+    TrueDamage: 980
+    skillType: 2
+    endTargetList:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    strikeCount: 1
+    canCrit: 1
+    isDodgeable: 0
+    ignoreDefense: 0
+    targetStat: 0
+    isHeal: 0
+    applyStatusEffects: []

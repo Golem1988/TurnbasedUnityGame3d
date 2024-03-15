@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73ff381434565bb4e9c72a051382b22e, type: 3}
+  m_Name: Thorne
+  m_EditorClassIdentifier: 
+  characterName: Thorne
+  characterID: 1310
+  ID: unit_d9714667baf19e6498a3499cfc1d89c3
+  schoolButton: {fileID: 7511803008905359247, guid: 24862a0423b746f4eb821df6de7a4095, type: 3}
+  characterDescription: 'Here goes description of character Thorne. Here goes description
+    of character Thorne. Here goes description of character Thorne. Here goes description
+    of character Thorne. Here goes description of character Thorne. '
+  strengths: 0500000001000000040000000100000003000000
+  skillIcons:
+  - {fileID: 918117420, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 1737726101, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: -579708407, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  - {fileID: 2046397451, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  characterModel: {fileID: 1000011838333448, guid: acd852f302db8f747b2a73577deec22e, type: 3}
+  characterWeapon: {fileID: 1000011278047990, guid: 6ac23c00f0018d34587b0dbee8c86739, type: 3}
+  weaponAnimator: {fileID: 0}
+  characterWings: {fileID: 1000011031798950, guid: a56e18a91b5782c44bf8bd72ab41ab67, type: 3}
+  characterVFX1: {fileID: 1000010131400046, guid: 2a697fa14e8bcf04fb77e93bccc2cac3, type: 3}
+  characterVFX3: {fileID: 1000010131400046, guid: 86eaccc823687564cb59362b8e05c5c3, type: 3}
+  characterAnimator: {fileID: 22100000, guid: d9f0e14c9915e4d409bd5bd28578db60, type: 2}
+  characterAvatar: {fileID: 21300000, guid: b81b125e8059b3841aebc12b5cecb85a, type: 3}

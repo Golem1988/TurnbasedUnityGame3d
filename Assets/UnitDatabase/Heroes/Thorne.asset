@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a7c1da7e42392438bfe00808fd0d22, type: 3}
+  m_Name: Thorne
+  m_EditorClassIdentifier: 
+  id: unit_d9714667baf19e6498a3499cfc1d89c3
+  ModelId: 1310
+  DisplayName: Thorne
+  ModelPrefab: {fileID: 1000011838333448, guid: acd852f302db8f747b2a73577deec22e, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: b81b125e8059b3841aebc12b5cecb85a, type: 3}
+  HeroSchool: 5
+  HeroWeapons:
+  - {fileID: 1000010480077148, guid: 375d639ad090f794d956f34b80ef4f7a, type: 3}
+  - {fileID: 1000011372874128, guid: 8e258299db838f641b138c6e58183b25, type: 3}
+  - {fileID: 1000010395482494, guid: 437914d48d3dd9f48a7dbdbe7a740291, type: 3}
+  - {fileID: 1000013143263594, guid: 72370a197209de748bf850cbf8cee57b, type: 3}
+  - {fileID: 1000010894188948, guid: 0eadaa5b985c1c84eb80383eab07adfb, type: 3}
+  - {fileID: 1000012389667154, guid: 0c914ebfb8572764f9369035bf70865c, type: 3}
+  - {fileID: 1000011278047990, guid: 6ac23c00f0018d34587b0dbee8c86739, type: 3}
+  - {fileID: 1000012742754714, guid: 891bfd2375fd8bf4d8ca1397080ca434, type: 3}
+  - {fileID: 1000011153892646, guid: 2f22b7c3ba37b664dad5e4f9b03cc9ca, type: 3}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1280a0e29bf1f0a4ba5c198220ad60b4, type: 3}
+  m_Name: DefenseModeEffect
+  m_EditorClassIdentifier: 
+  id: ef6eef29b9bc77e408589b388cb887d0
+  SkillName: Defense Mode
+  SkillLevel: 0
+  SkillIcon: {fileID: 1157279333, guid: 4be2b2d44d250ee42b80cd311728b13a, type: 3}
+  Description: Can't act
+  durableEffectVfx: {fileID: 4000012414906776, guid: 3811858ac820a34468c14d20ae840b05, type: 3}
+  isStackable: 0
+  isRefillable: 0
+  stat: 0
+  modType: 0
+  value: 0
+  expirePoint: 1
+  triggerEachTurn: 0
+  BanMelee: 0
+  BanMagic: 0
+  BanItemUse: 0
+  BanFlee: 0
+  BanEverything: 1
+  isRemovable: 0
+  allowNewSealsIfApplied: 1

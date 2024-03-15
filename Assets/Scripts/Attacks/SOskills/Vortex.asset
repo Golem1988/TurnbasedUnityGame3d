@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec99d2835041e0446b4eaccf4c6eee99, type: 3}
+  m_Name: Vortex
+  m_EditorClassIdentifier: 
+  id: cbbb2aa0247088b45aa1af775b61f0ea
+  SkillName: Vortex
+  SkillLevel: 0
+  SkillIcon: {fileID: 1016853374, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  Description: Magic attack that strikes 3 target(s) 1 times. It hits targets based
+    on their Speed and deals damage to their HP. Damage amount is affected by users
+    Matk and also deals additional 0 fixed damage.
+  attackVFX: {fileID: 4000011232496466, guid: 6ccd46594f5e6c5489e54c5a1761e758, type: 3}
+  isMassVFX: 0
+  selfVFX: {fileID: 0}
+  isAttack: 1
+  skillType: 2
+  costType: 1
+  costValue: 20
+  selectionMode: 0
+  canCrit: 1
+  targetCount: 3
+  strikeCount: 1
+  targetType: 2
+  targetStat: 0
+  damageAffectedByStat: 1
+  FixedDamageAmount: 0
+  PercentDamageAmount: 100
+  sortBy: 2
+  sortType: 2
+  applyStatusEffects: []
+  onlyOnHit: 0
+  removeStatusEffects: []
+  isDodgeable: 0
+  ignoreDefense: 0
+  Test:
+    TrueDamage: 0
+    skillType: 2
+    endTargetList: []
+    strikeCount: 1
+    canCrit: 1
+    isDodgeable: 0
+    ignoreDefense: 0
+    targetStat: 0
+    isHeal: 0
+    applyStatusEffects: []
