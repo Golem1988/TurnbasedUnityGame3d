@@ -71,4 +71,8 @@ public class BaseClass
 
     [Header("Statpoints")]
     public int unspentStatPoints;
+
+    [Header("Secondary Attributes")]
+    public float maxRage = 150f;
+    public float curRage = 0f;
 }

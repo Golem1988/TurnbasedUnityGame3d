@@ -30,7 +30,7 @@ MonoBehaviour:
   canCrit: 1
   targetCount: 1
   strikeCount: 1
-  targetType: 6
+  targetType: 2
   targetStat: 0
   damageAffectedByStat: 0
   FixedDamageAmount: 0
@@ -43,12 +43,13 @@ MonoBehaviour:
   isDodgeable: 1
   ignoreDefense: 0
   Test:
-    TrueDamage: 0
+    TrueDamage: 300
     skillType: 0
-    endTargetList: []
-    strikeCount: 0
-    canCrit: 0
-    isDodgeable: 0
+    endTargetList:
+    - {fileID: 0}
+    strikeCount: 1
+    canCrit: 1
+    isDodgeable: 1
     ignoreDefense: 0
     targetStat: 0
     isHeal: 0

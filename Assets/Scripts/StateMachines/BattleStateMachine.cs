@@ -341,7 +341,7 @@ public class BattleStateMachine : MonoBehaviour
             case (HeroGUI.ACTIVATE):
                 if (HeroesToManage.Count >= 1 && ChoicesMade < HeroesInBattle.Count)
                 {
-                    HeroesToManage[0].transform.Find("NameCanvasNew").transform.Find("Selector").gameObject.SetActive(true);
+                    HeroesToManage[0].GetComponent<UnitUI>().Selector.SetActive(true);
                     HeroChoice = new HandleTurn();
 
                     HeroInput = HeroGUI.WAITING;
@@ -375,7 +375,6 @@ public class BattleStateMachine : MonoBehaviour
             Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         }
 
-
     }
 
     void SpawnActors()
@@ -390,7 +389,7 @@ public class BattleStateMachine : MonoBehaviour
             GameObject enemyModel = Extensions.FindModelPrefab(enemyUnit.ID, false);
             var model = Instantiate(enemyModel, NewEnemy.GetComponent<ModelLoader>().ModelHolder.position, Quaternion.Euler(0, 135, 0), NewEnemy.GetComponent<ModelLoader>().ModelHolder);
             NewEnemy.GetComponent<ModelLoader>().Model = model;
-            NewEnemy.GetComponent<UnitUI>().heroAvatar = Extensions.FindSprite(enemyUnit.ID, false);
+            NewEnemy.GetComponent<UnitUI>().Avatar = Extensions.FindSprite(enemyUnit.ID, false);
             NewEnemy.GetComponent<UnitAttributes>().Stats.theName = enemyUnit.DisplayName;
             //NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = enemyUnit.DisplayName;
             NewEnemy.GetComponent<UnitStateMachine>().BSM = this;
@@ -416,7 +415,8 @@ public class BattleStateMachine : MonoBehaviour
                 spawnIndex++;
                 GameObject heroModel = Extensions.FindModelPrefab(CharacterInfo[i].BaseID, true);
                 GameObject NewHero = Instantiate(HeroDataManager.instance.UnitDatabase.HeroPrefab, heroSpawnPoints[spawnIndex].position, Quaternion.Euler(0, -45, 0));
-                NewHero.GetComponent<UnitLevel>().level = CharacterInfo[i].Level;
+                //NewHero.GetComponent<Character>().SetLevel();
+                //NewHero.GetComponent<UnitLevel>().level = CharacterInfo[i].Level;
                 NewHero.GetComponent<UnitAttributes>().Stats = CharacterInfo[i].Stats;
                 NewHero.GetComponent<UnitStateMachine>().BSM = this;
                 //NewHero.GetComponent<UnitAttributes>().Stats.displayName = CharacterInfo[i].Stats.displayName;
@@ -439,9 +439,10 @@ public class BattleStateMachine : MonoBehaviour
                     }
                 }
                 NewHero.name = CharacterInfo[i].Stats.theName;
-                NewHero.GetComponent<UnitUI>().heroAvatar = Extensions.FindSprite(CharacterInfo[i].BaseID, true);
-                NewHero.GetComponent<UnitUI>().healthBar.SetSize(NewHero.GetComponent<UnitAttributes>().Stats.curHP * 100 / NewHero.GetComponent<UnitAttributes>().Stats.baseHP / 100);
-                NewHero.GetComponent<UnitUI>().manaBar.SetSize(NewHero.GetComponent<UnitAttributes>().Stats.curMP * 100 / NewHero.GetComponent<UnitAttributes>().Stats.baseMP / 100);
+                NewHero.GetComponent<UnitUI>().Avatar = Extensions.FindSprite(CharacterInfo[i].BaseID, true);
+                var Stats = NewHero.GetComponent<UnitAttributes>().Stats;
+                NewHero.GetComponent<UnitUI>().healthBar.SetSize(Stats.curHP / Stats.baseHP);
+                NewHero.GetComponent<UnitUI>().manaBar.SetSize(Stats.curMP / Stats.baseMP);
                 //NewHero.GetComponent<UnitUI>().InventoryEquipmentCanvas.gameObject.SetActive(false);
                 var holder = NewHero.GetComponent<ModelLoader>();
                 var model = Instantiate(heroModel, holder.ModelHolder.position, Quaternion.Euler(0, -45, 0), holder.ModelHolder);
@@ -463,7 +464,6 @@ public class BattleStateMachine : MonoBehaviour
                         gameObject.GetComponent<BattleActions>().SpawnSummonX(owner, spawnIndex, summonIndex);
                 }
             }
-
         }
     }
 
@@ -603,7 +603,7 @@ public class BattleStateMachine : MonoBehaviour
             SpawnSummonButton.GetComponent<Button>().onClick.AddListener(() => Input9(PlayerOrSummon));
             SpawnSummonButton.transform.SetParent(actionSpacer, false);
             atkBtns.Add(SpawnSummonButton);
-            if (PlayerOrSummon.GetComponent<SummonHandler>().SummonList.Count == 0)
+            if (PlayerOrSummon.GetComponent<SummonHandler>().SummonList.Count == 0 || !PlayerOrSummon.GetComponent<SummonHandler>().SummonList.Any(summon => summon.isDeployable))
                 SpawnSummonButton.GetComponent<Button>().interactable = false;
 
             //Autobattle enable button
@@ -613,28 +613,31 @@ public class BattleStateMachine : MonoBehaviour
             AutoSelectButton.GetComponent<Button>().onClick.AddListener(() => ToggleAutoBattle(true));
             AutoSelectButton.transform.SetParent(actionSpacer, false);
             atkBtns.Add(AutoSelectButton);
+        }
 
-            if (HeroesToManage[0].GetComponent<Abilities>().MagicAttacks.Count > 0)
+        if (HeroesToManage[0].GetComponent<Abilities>().MagicAttacks.Count > 0)
+        {
+            var skillList = HeroesToManage[0].GetComponent<Abilities>().MagicAttacks;
+            var skillSlots = MagicPanelGrid.GetComponent<MagicPanel>().attackButtons;
+            for (int i = 0; i < skillSlots.Length; i++)
             {
-                var skillList = HeroesToManage[0].GetComponent<Abilities>().MagicAttacks;
-                var skillSlots = MagicPanelGrid.GetComponent<MagicPanel>().attackButtons;
-                for (int i = 0; i < skillSlots.Length; i++)
-                {
-                    skillSlots[i].GetComponent<Button>().interactable = false;
-                }
-                for (int i = 0; i < skillList.Count; i++)
-                {
-                    skillSlots[i].skillIconObject.sprite = skillList[i].SkillIcon;
-                    skillSlots[i].magicAttackToPerform = skillList[i];
-                    skillSlots[i].isAssigned = true;
-                    skillSlots[i].skillIconObject.gameObject.SetActive(true);
-                    skillSlots[i].GetComponent<Button>().interactable = true;
-                }
+                skillSlots[i].GetComponent<Button>().interactable = false;
+                skillSlots[i].skillIconObject.gameObject.SetActive(false);
+                skillSlots[i].magicAttackToPerform = null;
+                skillSlots[i].isAssigned = false;
             }
-            else
+            for (int i = 0; i < skillList.Count; i++)
             {
-                MagicAttackButton.GetComponent<Button>().interactable = false;
+                skillSlots[i].skillIconObject.sprite = skillList[i].SkillIcon;
+                skillSlots[i].magicAttackToPerform = skillList[i];
+                skillSlots[i].isAssigned = true;
+                skillSlots[i].skillIconObject.gameObject.SetActive(true);
+                skillSlots[i].GetComponent<Button>().interactable = true;
             }
+        }
+        else
+        {
+            MagicAttackButton.GetComponent<Button>().interactable = false;
         }
         //else if (PlayerOrSummon.CompareTag("Summon"))
         //{
@@ -661,7 +664,7 @@ public class BattleStateMachine : MonoBehaviour
         for (int i = 0; i < EnemySpots.Count; i++)
         {
             targetPanel.enemyButtons[EnemySpots[i].Spot].EnemyPrefab = EnemySpots[i].UnitOnSpot;
-            targetPanel.enemyButtons[EnemySpots[i].Spot].enemyIconObject.sprite = EnemySpots[i].UnitOnSpot.GetComponent<UnitUI>().heroAvatar;
+            targetPanel.enemyButtons[EnemySpots[i].Spot].enemyIconObject.sprite = EnemySpots[i].UnitOnSpot.GetComponent<UnitUI>().Avatar;
             targetPanel.enemyButtons[EnemySpots[i].Spot].isAssigned = true;
             targetPanel.enemyButtons[EnemySpots[i].Spot].enemyIconObject.gameObject.SetActive(true);
             //if (EnemySpots[i].UnitOnSpot.GetComponent<Enemy>().enemyType != EnemyType.ELITE)
@@ -688,7 +691,7 @@ public class BattleStateMachine : MonoBehaviour
         for (int i = 0; i < AllySpots.Count; i++)
         {
             targetPanel.allyButtons[AllySpots[i].Spot].AllyPrefab = AllySpots[i].UnitOnSpot;
-            targetPanel.allyButtons[AllySpots[i].Spot].allyIconObject.sprite = AllySpots[i].UnitOnSpot.GetComponent<UnitUI>().heroAvatar;
+            targetPanel.allyButtons[AllySpots[i].Spot].allyIconObject.sprite = AllySpots[i].UnitOnSpot.GetComponent<UnitUI>().Avatar;
             targetPanel.allyButtons[AllySpots[i].Spot].isAssigned = true;
             targetPanel.allyButtons[AllySpots[i].Spot].allyIconObject.gameObject.SetActive(true);
             targetPanel.allyButtons[AllySpots[i].Spot].GetComponent<Button>().interactable = true;
@@ -1108,17 +1111,37 @@ public class BattleStateMachine : MonoBehaviour
             Debug.Log("You won the battle");
             for (int i = 0; i < HeroesInBattle.Count; i++)
             {
-                var unitLevel = HeroesInBattle[i].GetComponent<UnitLevel>().level;
-                CalculateExp(unitLevel.currentlevel);
-                
-                unitLevel.AddExp(getExp);
-                //if (unitLevel.experience > unitLevel.requiredExp)
-                //{
-                //    unitLevel.AddExp(0);
-                //}
-                //SaveSystem.SaveCharacter(HeroesInBattle[i].GetComponent<Character>());
+                UnitLevel unitLevel = HeroesInBattle[i].GetComponent<UnitLevel>();
+                CalculateExp(unitLevel.level.currentlevel);
+                var unitAttributes = HeroesInBattle[i].GetComponent<UnitAttributes>();
+                Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
+                unitLevel.level.AddExp(getExp, unitAttributes);
                 Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
                 GameManager.instance.Chat.AddToChatOutput(HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
+
+                //yield return new WaitForSeconds(0.5f);
+                ////unitLevel.level.thisExp = unitLevel.THIS_EXP;
+                ////unitLevel.level.expNow = unitLevel.expNow;
+                ////unitLevel.level.displayExp = unitLevel.displayExp;
+                //yield return new WaitForSeconds(0.5f);
+
+                if (HeroesInBattle[i].CompareTag("Hero"))
+                {
+                    var name = HeroesInBattle[i].name;
+                    int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == name);
+                    HeroDataManager.instance.CharacterInfo[index].Level = unitLevel.level;
+                }
+                else if (HeroesInBattle[i].CompareTag("Summon"))
+                {
+                    var ownerName = HeroesInBattle[i].GetComponent<Summon>().OwnerName;
+                    Debug.Log("ownerName = " + ownerName);
+                    int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == ownerName);
+                    Debug.Log("ownerindex = " + index.ToString());
+                    int summonIndex = HeroDataManager.instance.CharacterInfo[index].SummonList.FindIndex(summon => summon.UniqueID == HeroesInBattle[i].GetComponent<Summon>().UniqueID);
+                    Debug.Log("summonIndex = " + summonIndex.ToString());
+                    HeroDataManager.instance.CharacterInfo[index].SummonList[summonIndex].Level = unitLevel.level;
+                }
+
                 HeroesInBattle[i].GetComponent<UnitStateMachine>().currentState = UnitStateMachine.TurnState.WAITING;
             }
         }
@@ -1134,16 +1157,20 @@ public class BattleStateMachine : MonoBehaviour
         //Here goes saving
 
         yield return new WaitForSeconds(GameManager.instance.postFightCooldown);
-
+        for (int i = 0; i < HeroesInBattle.Count; i++)
+        {
+            HeroesInBattle[i].SetActive(false);
+        }
         Time.timeScale = 1;
         Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         BattleActions.MakeSummonsDeploayable(BattlerHeroes);
-        HeroDataManager.instance.SaveCharData();
+        //HeroDataManager.instance.SaveCharData();
+        //yield return new WaitForSeconds(0.25f);
         GameManager.instance.LoadSceneAfterBattle();
         GameManager.instance.gameState = GameStates.WORLD_STATE;
         GameManager.instance.enemysToBattle.Clear();
 
-        postbattleStarted = false;
+        //postbattleStarted = false;
     }
 
     public void SpeedUpTime(float modifier)

@@ -8,9 +8,8 @@ public class Summon : MonoBehaviour
     public SummonInfoInterface statPanel;
     public UnitAttributes unit;
     public UnitLevel UnitLevel;
-    //[SerializeField]
-    //private Abilities abilities;
-    private int curLvl;
+    public int curLvl;
+
     public string OwnerName;
     public string UniqueID;
     public string BaseID;
@@ -30,8 +29,18 @@ public class Summon : MonoBehaviour
     void Start()
     {
         statPanel = gameManager.summonInfoInterface;
+        int ownerid = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == OwnerName);
+        CapturedPets thisSummon = Extensions.FindSummonEntry(unit.Stats.theName, ownerid);
+        var unitLevel = thisSummon.Level;
+
+        UnitLevel.level = unitLevel;
+
         curLvl = UnitLevel.level.currentlevel;
-        UnitLevel.level = new Level(curLvl, OnLevelUp);
+
+        UnitLevel.level = new Level(curLvl);
+
+        UnitLevel.level.experience = unitLevel.totalExperience;
+        UnitLevel.level.totalExperience = unitLevel.totalExperience;
 
         if (summonType == EnemyType.NORMAL)
         {
@@ -49,33 +58,33 @@ public class Summon : MonoBehaviour
         }
     }
 
-    public void OnLevelUp()
-    {
-        gameManager.Chat.AddToChatOutput("Summon " + unit.Stats.displayName + " leveled up from level " + curLvl + " to level " + UnitLevel.level.currentlevel + "!");
-        int levelsUpped = UnitLevel.level.currentlevel - curLvl;
-        int ownerid = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == OwnerName);
-        CapturedPets thisSummon = Extensions.FindSummonEntry(unit.Stats.theName, ownerid);
-        for (int i = 0; i < levelsUpped; i++)
-        {
-            unit.Stats.unspentStatPoints += HeroDataManager.instance.UnitDatabase.statpointsPerLevel;
-            statPanel.CalculateBonus(this);
-            //implement skill learning mechanics here
-            if (summonType == EnemyType.BABY || summonType == EnemyType.MUTANT)
-                LearnSkills(thisSummon);
-        }
-        curLvl = UnitLevel.level.currentlevel;
+    //public void OnLevelUp()
+    //{
+    //    gameManager.Chat.AddToChatOutput("Summon " + unit.Stats.displayName + " leveled up from level " + curLvl + " to level " + UnitLevel.level.currentlevel + "!");
+    //    int levelsUpped = UnitLevel.level.currentlevel - curLvl;
+    //    int ownerid = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == OwnerName);
+    //    CapturedPets thisSummon = Extensions.FindSummonEntry(unit.Stats.theName, ownerid);
+    //    for (int i = 0; i < levelsUpped; i++)
+    //    {
+    //        unit.Stats.unspentStatPoints += HeroDataManager.instance.UnitDatabase.statpointsPerLevel;
+    //        statPanel.CalculateBonus(this);
+    //        //implement skill learning mechanics here
+    //        if (summonType == EnemyType.BABY || summonType == EnemyType.MUTANT)
+    //            LearnSkills(thisSummon);
+    //    }
+    //    curLvl = UnitLevel.level.currentlevel;
 
-        //here we will write the data about pet to the HeroData manager so all the changes will be saved and data will be persistent
+    //    //here we will write the data about pet to the HeroData manager so all the changes will be saved and data will be persistent
 
-        thisSummon.Stats = unit.Stats;
-        thisSummon.Level = UnitLevel.level;
-        //if (HeroDataManager.instance.CharacterInfo[ownerid].isMainCharacter)
-        //{
-        //    Actions.OnMainHeroSummonChange(HeroDataManager.instance.CharacterInfo[ownerid], summon);
-        //}
-    }
+    //    thisSummon.Stats = unit.Stats;
+    //    thisSummon.Level = UnitLevel.level;
+    //    //if (HeroDataManager.instance.CharacterInfo[ownerid].isMainCharacter)
+    //    //{
+    //    //    Actions.OnMainHeroSummonChange(HeroDataManager.instance.CharacterInfo[ownerid], summon);
+    //    //}
+    //}
 
-    void LearnSkills(CapturedPets thisSummon)
+    public void LearnSkills(CapturedPets thisSummon)
     {
         if (Random.Range(0, 100) <= HeroDataManager.instance.UnitDatabase.SkillLearnChance)
         {
@@ -133,6 +142,32 @@ public class Summon : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        //if (HeroDataManager.instance)
+        //{
+        //    Debug.Log("OnDisable fired");
+        //    int ownerid = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == OwnerName);
+        //    CapturedPets thisSummon = Extensions.FindSummonEntry(unit.Stats.theName, ownerid);
+        //    //UnitLevel.Start();
+        //    thisSummon.Stats = unit.Stats;
+        //    thisSummon.Level = UnitLevel.level;
+        //}
+    }
+
+    private void OnDestroy()
+    {
+        //if (HeroDataManager.instance)
+        //{
+        //    Debug.Log("OnDestroy fired");
+        //    int ownerid = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == OwnerName);
+        //    CapturedPets thisSummon = Extensions.FindSummonEntry(unit.Stats.theName, ownerid);
+        //    UnitLevel.UpdateExp();
+        //    thisSummon.Stats = unit.Stats;
+        //    thisSummon.Level = UnitLevel.level;
+        //}
     }
 
 }

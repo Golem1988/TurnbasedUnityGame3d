@@ -528,18 +528,18 @@ public class UnitStateMachine : MonoBehaviour
         actionStarted = false;
     }
 
-    public void ExecutePassiveSkill(Trigger trigger, ActionSettings actionSettings)
-    {
-        var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
+    //public void ExecutePassiveSkill(Trigger trigger, ActionSettings actionSettings)
+    //{
+    //    var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
 
-        for (int i = 0; i < PassiveSkills.Count; i++)
-        {
-            if (PassiveSkills[i].trigger == trigger)
-            {
-                PassiveSkills[i].Activate(this, actionSettings);
-            }
-        }
-    }
+    //    for (int i = 0; i < PassiveSkills.Count; i++)
+    //    {
+    //        if (PassiveSkills[i].trigger == trigger)
+    //        {
+    //            PassiveSkills[i].Activate(this, actionSettings);
+    //        }
+    //    }
+    //}
 
     private IEnumerator TimeForActionTESTING2()
     {
@@ -551,7 +551,7 @@ public class UnitStateMachine : MonoBehaviour
         actionStarted = true;
 
         var choosenAttack = BSM.PerformList[0].choosenAttack;
-        if (BSM.PerformList[0].choosenAttack.ID == "a0b4d18cb0e8c8f4791153f816e5336a")
+        if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == "a0b4d18cb0e8c8f4791153f816e5336a")
         {
             var effect = BSM.PerformList[0].choosenAttack.ApplyStatusEffects[0].effect;
             BSM.BuffManager.ApplyStatus(this, effect, 1);
@@ -560,134 +560,148 @@ public class UnitStateMachine : MonoBehaviour
 
         if (AllowedActions.canAct && BSM.PerformList[0].choosenAttack)
         {
-            ActionSettings actionSettings = choosenAttack.CalculateSkill(this, BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>());
-            List<StatusEffectList> statusEffects = new (actionSettings.applyStatusEffects);
-            List<UnitStateMachine> endTargets = new (actionSettings.endTargetList);
-            if (actionSettings.skillType == SkillType.Melee && AllowedActions.canUseMelee)
+            if (choosenAttack.CheckCost(this) == true)
             {
-                //check for the passive skills that have anything to do with melee attacks
-                //ExecutePassiveSkill(Trigger.DEAL_MELEE_DAMAGE, actionSettings);
-                var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
-                
-                for (int i = 0; i < PassiveSkills.Count; i++)
+                ActionSettings actionSettings = new ActionSettings();
+                actionSettings = choosenAttack.CalculateSkill(this, BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>());
+                List<StatusEffectList> statusEffects = new(actionSettings.applyStatusEffects);
+                List<UnitStateMachine> endTargets = new(actionSettings.endTargetList);
+                if (actionSettings.skillType == SkillType.Melee && AllowedActions.canUseMelee)
                 {
-                    if (PassiveSkills[i].trigger == Trigger.DEAL_MELEE_DAMAGE)
+                    //check for the passive skills that have anything to do with melee attacks
+                    //ExecutePassiveSkill(Trigger.DEAL_MELEE_DAMAGE, actionSettings);
+                    //for example double attack passive would probably want to check if our chosen attack is basic attack and if so, apply strikeCount + 1;
+                    //another example would be attack that has a chance of applying seal effect OR poison effect on hit, so we would go like: actionSettings.applyStatusEffects.Add(anotherEffect);
+                    //we probably also want to add some additional variable to ActionSettings which would determine a list of things that happen if we actually hit the target
+                    //for instance we would want to use that for vampirism passive ability that would return hp
+                    var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
+
+                    for (int i = 0; i < PassiveSkills.Count; i++)
                     {
-                       statusEffects = PassiveSkills[i].ApplyEffect(statusEffects);
-                    }
-                }
-                
-                //for example double attack passive would probably want to check if our chosen attack is basic attack and if so, apply strikeCount + 1;
-                //another example would be attack that has a chance of applying seal effect OR poison effect on hit, so we would go like: actionSettings.applyStatusEffects.Add(anotherEffect);
-                //we probably also want to add some additional variable to ActionSettings which would determine a list of things that happen if we actually hit the target
-                //for instance we would want to use that for vampirism passive ability that would return hp
-                //
-                ui.scream.SetActive(true);
-                ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
-                yield return new WaitForSeconds(0.25f);
-
-                Vector3 targetPosition;
-                if (gameObject.CompareTag("Enemy"))
-                    targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
-                else
-                    targetPosition = new Vector3(ChosenAttackTarget.transform.position.x + 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z - 0.5f);
-                while (MoveToPosition(targetPosition))
-                {
-                    yield return null;
-                }
-                yield return new WaitForSeconds(0.25f);
-                ui.scream.SetActive(false);
-
-                Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
-                for (int i = 0; i < endTargets.Count; i++)
-                {
-                    Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
-                    for (int j = 0; j < actionSettings.strikeCount; j++)
-                    {
-                        ui.animator.Play("Attack");
-                        ui.audioSource.Play();
-                        yield return new WaitForSeconds(0.7f);
-                        choosenAttack.PlaySkillVFX(this, endTargets);
-
-                        if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                        if (PassiveSkills[i].trigger == Trigger.DEAL_MELEE_DAMAGE && PassiveSkills[i].ApplyStatusEffects.Count > 0)
                         {
-                            isCritical = true;
-                            actionSettings.TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            statusEffects = PassiveSkills[i].ApplyEffect(statusEffects);
                         }
-                        //stop striking the target if it's already dead
-                        if (endTargets[i].currentState != TurnState.DEAD)
-                            endTargets[i].TakeDamage(this, actionSettings.TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, statusEffects);
-                        //check for the passive skills that have anything to do with targets death whiel attacking it
-                        //for example the chase mechanic passive skill, however I am not so sure if we could use that, since it needs to run in coroutine
-                        yield return new WaitForSeconds(0.7f);
                     }
-                }
 
-                if (unit.Stats.curHP > 0)
-                {
-                    while (MoveToPosition(startposition))
+                    ui.scream.SetActive(true);
+                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
+                    choosenAttack.PayTheCost(this);
+                    yield return new WaitForSeconds(0.25f);
+
+                    Vector3 targetPosition;
+                    if (gameObject.CompareTag("Enemy"))
+                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
+                    else
+                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x + 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z - 0.5f);
+                    Debug.Log("ChosenAttackTarget name = " + ChosenAttackTarget.name);
+                    while (MoveToPosition(targetPosition))
                     {
                         yield return null;
                     }
-                }
-            }
-            else
-            {
-                Debug.Log("Unit " + unit.Stats.displayName + " could not use their melee attack due to restriction!");
-            }
-                
+                    yield return new WaitForSeconds(0.25f);
+                    ui.scream.SetActive(false);
 
-            if (actionSettings.skillType == SkillType.Magic && AllowedActions.canUseMagic)
-            {
-                ui.scream.SetActive(true);
-                ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
-                yield return new WaitForSeconds(0.7f);
-                ui.scream.SetActive(false);
-
-                ui.animator.Play("Attack");
-                ui.audioSource.Play();
-                yield return new WaitForSeconds(0.7f);
-                choosenAttack.PlaySkillVFX(this, endTargets);
-
-
-                for (int i = 0; i < endTargets.Count; i++)
-                {
-                    for (int j = 0; j < actionSettings.strikeCount; j++)
+                    Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
+                    for (int i = 0; i < endTargets.Count; i++)
                     {
-                        //yield return new WaitForSeconds(0.7f);
-
-                        if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                        Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
+                        for (int j = 0; j < actionSettings.strikeCount; j++)
                         {
-                            isCritical = true;
-                            actionSettings.TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            ui.animator.Play("Attack");
+                            ui.audioSource.Play();
+                            yield return new WaitForSeconds(0.7f);
+                            choosenAttack.PlaySkillVFX(this, endTargets);
+
+                            float TrueDamage;
+                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                            {
+                                isCritical = true;
+                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            }
+                            else
+                            {
+                                TrueDamage = actionSettings.TrueDamage;
+                            }
+                            //stop striking the target if it's already dead
+                            if (endTargets[i].currentState != TurnState.DEAD)
+                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, statusEffects);
+                            //check for the passive skills that have anything to do with targets death whiel attacking it
+                            //for example the chase mechanic passive skill, however I am not so sure if we could use that, since it needs to run in coroutine
+                            isCritical = false;
+                            yield return new WaitForSeconds(0.7f);
                         }
-                        //stop striking the target if it's already dead
-                        if (endTargets[i].currentState != TurnState.DEAD)
-                            endTargets[i].TakeDamage(this, actionSettings.TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, actionSettings.applyStatusEffects);
+                    }
+
+                    if (unit.Stats.curHP > 0)
+                    {
+                        while (MoveToPosition(startposition))
+                        {
+                            yield return null;
+                        }
                     }
                 }
-                yield return new WaitForSeconds(0.7f);
-            }
-            else
-            {
-                Debug.Log("Unit " + unit.Stats.displayName + " could not use their magic attack due to restriction!");
-            }
-                
+                else if (!AllowedActions.canUseMelee)
+                {
+                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their melee attack due to restriction!");
+                }
 
-            if (BSM.PerformList[0].choosenAction)
-            {
-                yield return new WaitForSeconds(1f);
-                BSM.PerformList[0].choosenAction.Act(this, null, BSM.PerformList[0].index);
-                yield return new WaitForSeconds(0.7f);
+                if (actionSettings.skillType == SkillType.Magic && AllowedActions.canUseMagic)
+                {
+                    ui.scream.SetActive(true);
+                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
+                    choosenAttack.PayTheCost(this);
+                    yield return new WaitForSeconds(0.7f);
+                    ui.scream.SetActive(false);
+
+                    ui.animator.Play("Attack");
+                    ui.audioSource.Play();
+                    yield return new WaitForSeconds(0.7f);
+                    choosenAttack.PlaySkillVFX(this, endTargets);
+
+
+                    for (int i = 0; i < endTargets.Count; i++)
+                    {
+                        for (int j = 0; j < actionSettings.strikeCount; j++)
+                        {
+                            //yield return new WaitForSeconds(0.7f);
+                            float TrueDamage;
+                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                            {
+                                isCritical = true;
+                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            }
+                            else
+                            {
+                                TrueDamage = actionSettings.TrueDamage;
+                            }
+                            //stop striking the target if it's already dead
+                            if (endTargets[i].currentState != TurnState.DEAD)
+                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, actionSettings.applyStatusEffects);
+                            isCritical = false;
+                        }
+                    }
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else if (!AllowedActions.canUseMagic)
+                {
+                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their magic attack due to restriction!");
+                }
+
             }
+
+        }
+        else if (AllowedActions.canAct && BSM.PerformList[0].choosenAction)
+        {
+            yield return new WaitForSeconds(1f);
+            BSM.PerformList[0].choosenAction.Act(this, null, BSM.PerformList[0].index);
+            yield return new WaitForSeconds(0.7f);
         }
         else
         {
             Debug.Log("Unit " + unit.Stats.displayName + " could not act due to restriction!");
         }
             
-
-
         //remove this performer from the list in BSM
         BSM.PerformList.RemoveAt(0);
 
@@ -697,14 +711,12 @@ public class UnitStateMachine : MonoBehaviour
         if (gameObject.CompareTag("Enemy"))
         {
             BSM.battleStates = PerformAction.START;
-
             if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
             {
                 //reset this unit state
                 currentState = TurnState.PROCESSING;
             }
         }
-
         else
         {
             if (BSM.battleStates != PerformAction.WIN && BSM.battleStates != PerformAction.LOSE)

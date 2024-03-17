@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
         GameManager.instance.Chat.AddToChatOutput("<#de0404>You can't decrease your stat any lower!</color>");
         int curRegions = GameManager.instance.curRegions;
         enemyLevel = GameManager.instance.Regions[curRegions].EnemyLevel;
-        UnitLevel.level = new Level(enemyLevel, SetParams);
+        UnitLevel.level = new Level(enemyLevel);
         SetParams();
         Debug.Log("SetEnemyLevel triggered");
     }
@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     public void SetEnemyLevelX(int newEnemyLevel)
     {
         enemyLevel = newEnemyLevel;
-        UnitLevel.level = new Level(newEnemyLevel, SetParams);
+        UnitLevel.level = new Level(newEnemyLevel);
         SetParams();
         gameObject.GetComponent<UnitUI>().levelText.GetComponent<TextMeshProUGUI>().text = enemyLevel.ToString();
         //Debug.Log("SetEnemyLevelX triggered");

@@ -23,7 +23,7 @@ public class EnemySelectButton : MonoBehaviour
         {
             enemyIconObject.gameObject.SetActive(true);
             if (enemyIcon != null)
-                enemyIcon = EnemyPrefab.GetComponent<UnitUI>().heroAvatar;
+                enemyIcon = EnemyPrefab.GetComponent<UnitUI>().Avatar;
         }
     }
 

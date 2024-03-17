@@ -21,22 +21,6 @@ public class AttackButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().Input4(magicAttackToPerform);
     }
 
-    private void OnValidate()
-    {
-        if (!isAssigned)
-        {
-            GetComponent<Image>().sprite = emptySlot;
-            if (skillIconObject != null)
-            skillIconObject.gameObject.SetActive(false);
-        }
-        else
-        {
-            skillIconObject.gameObject.SetActive(true);
-            if (skillIcon != null)
-                skillIcon = magicAttackToPerform.SkillIcon;
-        }
-    }
-
     public void ShowTooltip()
     {
         tooltip.ShowTooltip(this);

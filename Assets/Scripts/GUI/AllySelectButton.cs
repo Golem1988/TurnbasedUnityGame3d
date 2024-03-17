@@ -23,7 +23,7 @@ public class AllySelectButton : MonoBehaviour
         {
             allyIconObject.gameObject.SetActive(true);
             if (allyIcon != null)
-                allyIcon = AllyPrefab.GetComponent<UnitUI>().heroAvatar;
+                allyIcon = AllyPrefab.GetComponent<UnitUI>().Avatar;
         }
     }
     public void SelectAlly()

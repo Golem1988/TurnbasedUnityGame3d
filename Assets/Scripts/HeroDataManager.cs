@@ -192,6 +192,7 @@ public class HeroDataManager : MonoBehaviour
 
     public void CreateSaveFile()
     {
+        filePath = Application.persistentDataPath + "/CharData.json";
         string jsonString = BlankData.text;
         WriteToFile(filePath, jsonString);
         Debug.Log("New save file created!");

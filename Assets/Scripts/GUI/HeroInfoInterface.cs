@@ -145,7 +145,7 @@ public class HeroInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -179,7 +179,7 @@ public class HeroInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -212,7 +212,7 @@ public class HeroInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -244,7 +244,7 @@ public class HeroInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -276,7 +276,7 @@ public class HeroInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -326,7 +326,7 @@ public class HeroInfoInterface : MonoBehaviour
 
             heroStatpts.text = HeroPrefab.Stats.unspentStatPoints.ToString();
 
-            heroExp.text = HeroPrefab.Level.experience.ToString() + "/" + HeroPrefab.Level.requiredExp.ToString();
+            //heroExp.text = HeroPrefab.Level.expNow.ToString() + "/" + HeroPrefab.Level.displayExp.ToString();
         }
     }
 
@@ -454,37 +454,53 @@ public class HeroInfoInterface : MonoBehaviour
         }
     }
 
-    void ExecuteStatIncrease(Character hero)
+    void ExecuteStatIncrease(UnitAttributes hero)
     {
         if (hero != null)
         {
-            hero.unit.Stats.strength.BaseValue += AddedStr;
-            hero.unit.Stats.intellect.BaseValue += AddedInt;
-            hero.unit.Stats.dexterity.BaseValue += AddedDex;
-            hero.unit.Stats.agility.BaseValue += AddedAgi;
-            hero.unit.Stats.stamina.BaseValue += AddedSta;
-            hero.unit.Stats.baseHP += addedHP;
-            hero.unit.Stats.curHP = hero.unit.Stats.baseHP;
-            hero.unit.Stats.baseMP += addedMP;
-            hero.unit.Stats.curMP = hero.unit.Stats.baseMP;
-            hero.unit.Stats.baseATK += addedAtk;
-            hero.unit.Stats.curATK = hero.unit.Stats.baseATK;
-            hero.unit.Stats.baseMATK += addedMatk;
-            hero.unit.Stats.curMATK = hero.unit.Stats.baseMATK;
-            hero.unit.Stats.baseDEF += addedDef;
-            hero.unit.Stats.curDEF = hero.unit.Stats.baseDEF;
-            hero.unit.Stats.baseCRIT += addedCrit;
-            hero.unit.Stats.curCRIT = hero.unit.Stats.baseCRIT;
-            hero.unit.Stats.baseDodge += addedDodge;
-            hero.unit.Stats.curDodge = hero.unit.Stats.baseDodge;
-            hero.unit.Stats.baseHit += addedHit;
-            hero.unit.Stats.curHit = hero.unit.Stats.baseHit;
-            hero.unit.Stats.baseSpeed += addedSpeed;
-            hero.unit.Stats.curSpeed = hero.unit.Stats.baseSpeed;
-            hero.unit.Stats.minATK = hero.unit.Stats.curATK;
-            hero.unit.Stats.maxATK = Mathf.Round((hero.unit.Stats.minATK / 100) * 120);
+            hero.Stats.strength.BaseValue += AddedStr;
+            hero.Stats.intellect.BaseValue += AddedInt;
+            hero.Stats.dexterity.BaseValue += AddedDex;
+            hero.Stats.agility.BaseValue += AddedAgi;
+            hero.Stats.stamina.BaseValue += AddedSta;
+            hero.Stats.baseHP += addedHP;
+            hero.Stats.curHP = hero.Stats.baseHP;
+            hero.Stats.baseMP += addedMP;
+            hero.Stats.curMP = hero.Stats.baseMP;
+            hero.Stats.baseATK += addedAtk;
+            hero.Stats.curATK = hero.Stats.baseATK;
+            hero.Stats.baseMATK += addedMatk;
+            hero.Stats.curMATK = hero.Stats.baseMATK;
+            hero.Stats.baseDEF += addedDef;
+            hero.Stats.curDEF = hero.Stats.baseDEF;
+            hero.Stats.baseCRIT += addedCrit;
+            hero.Stats.curCRIT = hero.Stats.baseCRIT;
+            hero.Stats.baseDodge += addedDodge;
+            hero.Stats.curDodge = hero.Stats.baseDodge;
+            hero.Stats.baseHit += addedHit;
+            hero.Stats.curHit = hero.Stats.baseHit;
+            hero.Stats.baseSpeed += addedSpeed;
+            hero.Stats.curSpeed = hero.Stats.baseSpeed;
+            hero.Stats.minATK = hero.Stats.curATK;
+            hero.Stats.maxATK = Mathf.Round((hero.Stats.minATK / 100) * 120);
 
-            Clean();
+
+            AddedStr = 0;
+            AddedInt = 0;
+            AddedDex = 0;
+            AddedAgi = 0;
+            AddedSta = 0;
+
+            addedStatpts = 0;
+            addedHP = 0;
+            addedMP = 0;
+            addedAtk = 0;
+            addedMatk = 0;
+            addedDef = 0;
+            addedCrit = 0;
+            addedDodge = 0;
+            addedHit = 0;
+            addedSpeed = 0;
         }
     }
 
@@ -534,7 +550,7 @@ public class HeroInfoInterface : MonoBehaviour
         addedSpeed = Mathf.Round(AddedAgi * HeroDataManager.instance.UnitDatabase.spdPerAgi);
     }
 
-    public void CalculateBonus(Character hero)
+    public void CalculateBonus(UnitAttributes hero)
     {
         var Str = 1;
         var Int = 1;

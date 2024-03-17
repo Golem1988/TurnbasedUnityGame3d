@@ -7,4 +7,6 @@ public class AvatarHolder : MonoBehaviour
 {
     public Image avatar;
     public string baseID;
+    public HealthBar healthBar;
+    public HealthBar manaBar;
 }

@@ -6,7 +6,8 @@ using UnityEngine;
 public class UnitUI : MonoBehaviour
 {
     public TMP_Text displayNameText;
-    public GameObject levelText;
+    public TMP_Text levelText;
+    public GameObject levelFrame;
     public TextMeshProUGUI screamText;
     public GameObject Selector;
     public GameObject FloatingText;
@@ -17,13 +18,8 @@ public class UnitUI : MonoBehaviour
     public RageBar rageBar;
     public Animator animator;
     public AudioSource audioSource;
-    //public GameObject ObjectParent;
-    //public GameObject ModelHolder;
-    public Sprite heroAvatar;
-    //public GameObject InventoryEquipmentCanvas;
+    public Sprite Avatar;
     public Canvas NameCanvas;
-
-    private string type;
 
     private void OnEnable()
     {
@@ -31,7 +27,7 @@ public class UnitUI : MonoBehaviour
         //InventoryEquipmentCanvas = GameManager.instance.InventoryEquipmentCanvas;
     }
 
-private void OnDisable()
+    private void OnDisable()
     {
         Actions.OnUnitDeath -= HideUI;
     }
@@ -41,20 +37,15 @@ private void OnDisable()
     //    LoadUI();
     //}
 
-    private void Awake()
-    {
-        
-    }
-
-
     void Start()
     {
         //LoadUI();
+        var Stats = gameObject.GetComponent<UnitAttributes>().Stats;
         if (GetComponent<ModelLoader>().Model)
             animator = GetComponent<ModelLoader>().Model.GetComponent<Animator>();
         if (gameObject.CompareTag("Hero"))
-            rageBar.SetSize(gameObject.GetComponent<Character>().curRage * 100 / gameObject.GetComponent<Character>().maxRage / 100);
-        displayNameText.text = gameObject.GetComponent<UnitAttributes>().Stats.displayName;
+            rageBar.SetSize(Stats.curRage / Stats.maxRage);
+        displayNameText.text = Stats.displayName;
     }
 
     public void LoadUI()
@@ -87,8 +78,8 @@ private void OnDisable()
             BuffPanel.gameObject.SetActive(false);
             if (rageBar)
                 rageBar.gameObject.SetActive(false);
-            if (levelText)
-                levelText.gameObject.SetActive(false);
+            if (levelFrame)
+                levelFrame.SetActive(false);
         }
     }
 }

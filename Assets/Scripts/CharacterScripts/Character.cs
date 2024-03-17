@@ -30,12 +30,11 @@ public class Character : MonoBehaviour
     public float maxRage = 150f;
     public float curRage = 0f;
 
-    private int curLvl;
+    public int curLvl;
    
     private void Awake()
     {
         gameManager = GameManager.instance;
-        
 
         //sPanel.SetStats(unit.Stats.strength, unit.Stats.agility, unit.Stats.intellect, unit.Stats.dexterity, unit.Stats.stamina);
         //sPanel.UpdateStatValues();
@@ -82,8 +81,22 @@ public class Character : MonoBehaviour
         summonHandler = gameObject.GetComponent<SummonHandler>();
         statPanel = gameManager.heroInfoInterface;
         //var leveltest = UnitLevel.level.currentlevel;
+
+        //testing level adjustments
+        int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == unit.Stats.theName);
+        var unitLevel = HeroDataManager.instance.CharacterInfo[index].Level;
+
+        UnitLevel.level = unitLevel;
+
         curLvl = UnitLevel.level.currentlevel;
-        UnitLevel.level = new Level(curLvl, OnLevelUp);
+        Debug.Log("curLvl = " + curLvl.ToString());
+        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
+        UnitLevel.level = new Level(curLvl);
+        Debug.Log("curLvl = " + curLvl.ToString());
+        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
+        UnitLevel.level.experience = unitLevel.totalExperience;
+        UnitLevel.level.totalExperience = unitLevel.totalExperience;
+        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         //hero.Stats.displayNameText.text = hero.Stats.theName.ToString();
     }
 
@@ -140,12 +153,7 @@ public class Character : MonoBehaviour
         for (int i = 0; i < levelsUpped; i++)
         {
             unit.Stats.unspentStatPoints += HeroDataManager.instance.UnitDatabase.statpointsPerLevel;
-            //unit.Stats.strength.BaseValue += unit.Stats.statIncreasePerLevel;
-            //unit.Stats.intellect.BaseValue += unit.Stats.statIncreasePerLevel;
-            //unit.Stats.dexterity.BaseValue += unit.Stats.statIncreasePerLevel;
-            //unit.Stats.agility.BaseValue += unit.Stats.statIncreasePerLevel;
-            //unit.Stats.stamina.BaseValue += unit.Stats.statIncreasePerLevel;
-            statPanel.CalculateBonus(this);
+            statPanel.CalculateBonus(unit);
         }
         curLvl = UnitLevel.level.currentlevel;
         //writing data to HeroData

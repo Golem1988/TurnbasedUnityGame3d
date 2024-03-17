@@ -970,6 +970,8 @@ MonoBehaviour:
     stamina:
       BaseValue: 0
     unspentStatPoints: 0
+    maxRage: 150
+    curRage: 0
 --- !u!114 &-9110761892144046591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,12 +985,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level:
-    experience: 0
     currentlevel: 0
-    requiredExp: 0
-    MAX_EXP: 0
-    NEXT_EXP: 0
-    MAX_LEVEL: 0
+    totalExperience: 0
+    previousLevelsExperience: 0
+    nextLevelsExperience: 0
+    start: 0
+    end: 0
+  experienceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &69261077976619044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,6 +1029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayNameText: {fileID: 5392588634384280065}
   levelText: {fileID: 0}
+  levelFrame: {fileID: 0}
   screamText: {fileID: 1429196953959642769}
   Selector: {fileID: 9045976034209094586}
   FloatingText: {fileID: 328232039236370507, guid: 7483396cd386c4d4bb462c3e5fd5908c, type: 3}
@@ -1013,7 +1040,7 @@ MonoBehaviour:
   rageBar: {fileID: 0}
   animator: {fileID: 0}
   audioSource: {fileID: 5858414077603201514}
-  heroAvatar: {fileID: 0}
+  Avatar: {fileID: 0}
   NameCanvas: {fileID: 9085510457568203628}
 --- !u!82 &5858414077603201514
 AudioSource:
@@ -1126,13 +1153,12 @@ MonoBehaviour:
   statPanel: {fileID: 0}
   unit: {fileID: -8162712379617339208}
   UnitLevel: {fileID: -9110761892144046591}
-  curLvl: 0
-  ownerName: 
-  uniqueID: 
+  OwnerName: 
+  UniqueID: 
+  BaseID: 
   summonType: 2
   summonRarity: 1
   SummonLoyalty: 99
-  unspentStatPoints: 0
 --- !u!114 &-1742455764904012963
 MonoBehaviour:
   m_ObjectHideFlags: 0

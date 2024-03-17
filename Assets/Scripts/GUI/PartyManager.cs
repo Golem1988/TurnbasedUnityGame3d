@@ -147,6 +147,9 @@ public class PartyManager : MonoBehaviour
         var holder = go.GetComponent<AvatarHolder>();
         holder.avatar.sprite = avatar;
         holder.baseID = BaseID;
+        var Stats = HeroDataManager.instance.CharacterInfo.FirstOrDefault(unit => unit.BaseID == BaseID).Stats;
+        holder.manaBar.SetSize(Stats.curMP / Stats.baseMP);
+        holder.healthBar.SetSize(Stats.curHP / Stats.baseHP);
         avatarHolders.Add(holder);
     }
 

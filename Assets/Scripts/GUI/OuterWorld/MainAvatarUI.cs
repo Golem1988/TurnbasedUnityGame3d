@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MainAvatarUI : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class MainAvatarUI : MonoBehaviour
     public HealthBar heroExpBar;
     public HealthBar summonHealthBar;
     public HealthBar summonManaBar;
-
+    private Scene currentScene;
     private void Start()
     {
         Debug.Log("Started looking for info");
@@ -55,28 +56,35 @@ public class MainAvatarUI : MonoBehaviour
             SummonAvatarObj.SetActive(false);
             SummonBarObj.SetActive(false);
         }
-        HeroHpText.text = hero.Stats.curHP.ToString() + "/" + hero.Stats.baseHP.ToString();
-        HeroMpText.text = hero.Stats.curMP.ToString() + "/" + hero.Stats.baseMP.ToString();
-
-        HeroExpText.text = hero.Level.experience.ToString() + "/" + hero.Level.requiredExp.ToString();
-        HeroLevelText.text = hero.Level.currentlevel.ToString();
-
-        heroHealthBar.SetSize(hero.Stats.curHP / hero.Stats.baseHP);
-        heroManaBar.SetSize(hero.Stats.curMP / hero.Stats.baseMP);
-        float curExp = hero.Level.experience;
-        float reqExp = hero.Level.requiredExp;
-        heroExpBar.SetSize(curExp / reqExp);
+        ChangeHeroBars(hero);
     }
 
 
     private void OnEnable()
     {
         Actions.OnMainHeroSummonChange += ChangeSummonAvatar;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         Actions.OnMainHeroSummonChange -= ChangeSummonAvatar;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void ChangeHeroBars(CharacterInformation hero)
+    {
+        HeroHpText.text = hero.Stats.curHP.ToString() + "/" + hero.Stats.baseHP.ToString();
+        HeroMpText.text = hero.Stats.curMP.ToString() + "/" + hero.Stats.baseMP.ToString();
+
+        //HeroExpText.text = hero.Level.expNow.ToString() + "/" + hero.Level.displayExp.ToString();
+        HeroLevelText.text = hero.Level.currentlevel.ToString();
+
+        heroHealthBar.SetSize(hero.Stats.curHP / hero.Stats.baseHP);
+        heroManaBar.SetSize(hero.Stats.curMP / hero.Stats.baseMP);
+        //float curExp = hero.Level.expNow;
+        //float reqExp = hero.Level.displayExp;
+        //heroExpBar.SetSize(curExp / reqExp);
     }
 
     private void ChangeSummonAvatar(CharacterInformation hero, CapturedPets summon)
@@ -102,6 +110,19 @@ public class MainAvatarUI : MonoBehaviour
                 SummonAvatarObj.SetActive(false);
                 SummonBarObj.SetActive(false);
             }
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentScene = SceneManager.GetActiveScene();
+        int mainHeroIndex = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.isMainCharacter);
+        var hero = HeroDataManager.instance.CharacterInfo[mainHeroIndex];
+        var summon = hero.SummonList.FirstOrDefault(summon => summon.active);
+        if (currentScene.name == "Village")
+        {
+            ChangeSummonAvatar(hero, summon);
+            ChangeHeroBars(hero);
         }
     }
 

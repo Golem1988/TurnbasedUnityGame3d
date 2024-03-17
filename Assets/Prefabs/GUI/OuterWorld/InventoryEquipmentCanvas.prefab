@@ -2025,6 +2025,8 @@ MonoBehaviour:
       stamina:
         BaseValue: 0
       unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
     Level:
       experience: 0
       currentlevel: 0
@@ -2084,6 +2086,8 @@ MonoBehaviour:
       stamina:
         BaseValue: 0
       unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
     Level:
       experience: 0
       currentlevel: 0
@@ -19034,6 +19038,8 @@ MonoBehaviour:
       stamina:
         BaseValue: 0
       unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
     Level:
       experience: 0
       currentlevel: 0

@@ -1,0 +1,652 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7283204593879023772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4934755724294057872}
+  - component: {fileID: 8300056448419820612}
+  m_Layer: 0
+  m_Name: HeroDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: e6fe7bda78bd09a46bb7f4a684a91927, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4934755724294057872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283204593879023772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8300056448419820612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7283204593879023772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf2c352b48e103418d5f073ebe54ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterInfo:
+  - Name: Medea
+    BaseID: unit_f784ca5cb61e87f47aa1bcfc6f6d773a
+    isUnlocked: 1
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: Medea
+      displayName: Medea
+      baseHP: 175
+      curHP: 175
+      baseMP: 50
+      curMP: 50
+      baseATK: 75
+      curATK: 75
+      baseMATK: 65
+      curMATK: 65
+      maxATK: 90
+      minATK: 75
+      baseDEF: 25
+      curDEF: 25
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 10
+      curSpeed: 10
+      curDodge: 15
+      baseDodge: 15
+      baseHit: 10
+      curHit: 10
+      strength:
+        BaseValue: 5
+      intellect:
+        BaseValue: 5
+      dexterity:
+        BaseValue: 5
+      agility:
+        BaseValue: 5
+      stamina:
+        BaseValue: 5
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      currentlevel: 1
+      requiredExp: 83
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks:
+    - cbbb2aa0247088b45aa1af775b61f0ea
+    - c573284c328f02a4ab1da018892d6bf9
+    - ffc0af466636e704895b36336a728fb5
+    - 0fb38bbbde0fb324e82a79be56db3681
+    - b0d5a4e9c8d743a4b90ffea4c1b7ef6a
+    - 65f372b96d6ee3641a523120754153e9
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 20
+  - Name: Aurelius
+    BaseID: unit_8f5420fb9f3b6624fbc1be1f996b5b26
+    isUnlocked: 1
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: Aurelius
+      displayName: Aurelius
+      baseHP: 175
+      curHP: 175
+      baseMP: 50
+      curMP: 50
+      baseATK: 75
+      curATK: 75
+      baseMATK: 65
+      curMATK: 65
+      maxATK: 90
+      minATK: 75
+      baseDEF: 25
+      curDEF: 25
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 10
+      curSpeed: 10
+      curDodge: 15
+      baseDodge: 15
+      baseHit: 10
+      curHit: 10
+      strength:
+        BaseValue: 5
+      intellect:
+        BaseValue: 5
+      dexterity:
+        BaseValue: 5
+      agility:
+        BaseValue: 5
+      stamina:
+        BaseValue: 5
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      currentlevel: 1
+      requiredExp: 83
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks:
+    - c573284c328f02a4ab1da018892d6bf9
+    - cbbb2aa0247088b45aa1af775b61f0ea
+    - 0fb38bbbde0fb324e82a79be56db3681
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 20
+  - Name: Aygar
+    BaseID: unit_51a1f3fc8ec9bf24296da5809383009b
+    isUnlocked: 1
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: Aygar
+      displayName: Aygar
+      baseHP: 175
+      curHP: 175
+      baseMP: 50
+      curMP: 50
+      baseATK: 75
+      curATK: 75
+      baseMATK: 65
+      curMATK: 65
+      maxATK: 90
+      minATK: 75
+      baseDEF: 25
+      curDEF: 25
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 10
+      curSpeed: 10
+      curDodge: 15
+      baseDodge: 15
+      baseHit: 10
+      curHit: 10
+      strength:
+        BaseValue: 5
+      intellect:
+        BaseValue: 5
+      dexterity:
+        BaseValue: 5
+      agility:
+        BaseValue: 5
+      stamina:
+        BaseValue: 5
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      currentlevel: 1
+      requiredExp: 83
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 10
+  - Name: Ivy
+    BaseID: unit_1e4400347b0a87147bb2c393f14d8f51
+    isUnlocked: 1
+    isActive: 1
+    isMainCharacter: 1
+    Stats:
+      theName: Ivy
+      displayName: Ivy
+      baseHP: 1995
+      curHP: 1995
+      baseMP: 120
+      curMP: 120
+      baseATK: 166
+      curATK: 166
+      baseMATK: 741
+      curMATK: 741
+      maxATK: 199
+      minATK: 166
+      baseDEF: 60
+      curDEF: 60
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 114
+      curSpeed: 114
+      curDodge: 36
+      baseDodge: 36
+      baseHit: 24
+      curHit: 24
+      strength:
+        BaseValue: 12
+      intellect:
+        BaseValue: 12
+      dexterity:
+        BaseValue: 12
+      agility:
+        BaseValue: 12
+      stamina:
+        BaseValue: 12
+      unspentStatPoints: 35
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 850
+      currentlevel: 8
+      requiredExp: 1154
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks:
+    - cbbb2aa0247088b45aa1af775b61f0ea
+    - c573284c328f02a4ab1da018892d6bf9
+    - ffc0af466636e704895b36336a728fb5
+    - 0fb38bbbde0fb324e82a79be56db3681
+    - f1d3d7374904e1c49b6419b0f33198aa
+    - d3d69f4dec816c04c931336afe9779d7
+    PassiveSkills: []
+    SummonList:
+    - BaseID: unit_430b796bdabd91c4f922b5c9a90dcef3
+      UniqueID: c94e3972-c8c4-4aba-b43f-8749ec27331e
+      isDeployable: 1
+      active: 0
+      Stats:
+        theName: c94e3972-c8c4-4aba-b43f-8749ec27331e
+        displayName: Baby Bunny
+        baseHP: 220
+        curHP: 220
+        baseMP: 60
+        curMP: 60
+        baseATK: 88
+        curATK: 88
+        baseMATK: 0
+        curMATK: 0
+        maxATK: 105
+        minATK: 88
+        baseDEF: 30
+        curDEF: 30
+        baseCRIT: 0.25
+        curCRIT: 0.25
+        critDamage: 1.5
+        baseSpeed: 12
+        curSpeed: 12
+        curDodge: 18
+        baseDodge: 18
+        baseHit: 12
+        curHit: 12
+        strength:
+          BaseValue: 7
+        intellect:
+          BaseValue: 6
+        dexterity:
+          BaseValue: 6
+        agility:
+          BaseValue: 6
+        stamina:
+          BaseValue: 6
+        unspentStatPoints: 0
+        maxRage: 150
+        curRage: 0
+      Level:
+        experience: 0
+        currentlevel: 1
+        requiredExp: 83
+        MAX_EXP: 13034431
+        NEXT_EXP: 0
+        MAX_LEVEL: 99
+      Type: 6
+      Rarity: 0
+      MagicAttacks:
+      - cbbb2aa0247088b45aa1af775b61f0ea
+      - c573284c328f02a4ab1da018892d6bf9
+      - 65f372b96d6ee3641a523120754153e9
+      PassiveSkills: []
+    - BaseID: unit_430b796bdabd91c4f922b5c9a90dcef3
+      UniqueID: 11a0a3e8-6ce2-4e06-b67a-44ebb7336e2b
+      isDeployable: 1
+      active: 0
+      Stats:
+        theName: 11a0a3e8-6ce2-4e06-b67a-44ebb7336e2b
+        displayName: Baby Bunny
+        baseHP: 230
+        curHP: 230
+        baseMP: 80
+        curMP: 80
+        baseATK: 104
+        curATK: 104
+        baseMATK: 0
+        curMATK: 0
+        maxATK: 145
+        minATK: 104
+        baseDEF: 30
+        curDEF: 30
+        baseCRIT: 0.25
+        curCRIT: 0.25
+        critDamage: 1.5
+        baseSpeed: 14
+        curSpeed: 14
+        curDodge: 21
+        baseDodge: 21
+        baseHit: 16
+        curHit: 16
+        strength:
+          BaseValue: 8
+        intellect:
+          BaseValue: 8
+        dexterity:
+          BaseValue: 8
+        agility:
+          BaseValue: 7
+        stamina:
+          BaseValue: 6
+        unspentStatPoints: 0
+        maxRage: 150
+        curRage: 0
+      Level:
+        experience: 0
+        currentlevel: 1
+        requiredExp: 83
+        MAX_EXP: 13034431
+        NEXT_EXP: 0
+        MAX_LEVEL: 99
+      Type: 6
+      Rarity: 0
+      MagicAttacks:
+      - cbbb2aa0247088b45aa1af775b61f0ea
+      - c573284c328f02a4ab1da018892d6bf9
+      - 65f372b96d6ee3641a523120754153e9
+      PassiveSkills: []
+    - BaseID: unit_430b796bdabd91c4f922b5c9a90dcef3
+      UniqueID: 8a0d8199-1227-4af6-a29f-0eb1f153f60d
+      isDeployable: 0
+      active: 1
+      Stats:
+        theName: 8a0d8199-1227-4af6-a29f-0eb1f153f60d
+        displayName: Baby Bunny
+        baseHP: 420
+        curHP: 420
+        baseMP: 110
+        curMP: 110
+        baseATK: 153
+        curATK: 153
+        baseMATK: 65
+        curMATK: 65
+        maxATK: 184
+        minATK: 153
+        baseDEF: 60
+        curDEF: 60
+        baseCRIT: 0.25
+        curCRIT: 0.25
+        critDamage: 1.5
+        baseSpeed: 22
+        curSpeed: 22
+        curDodge: 33
+        baseDodge: 33
+        baseHit: 22
+        curHit: 22
+        strength:
+          BaseValue: 12
+        intellect:
+          BaseValue: 11
+        dexterity:
+          BaseValue: 11
+        agility:
+          BaseValue: 11
+        stamina:
+          BaseValue: 12
+        unspentStatPoints: 25
+        maxRage: 150
+        curRage: 0
+      Level:
+        experience: 0
+        currentlevel: 1
+        requiredExp: 83
+        MAX_EXP: 13034431
+        NEXT_EXP: 0
+        MAX_LEVEL: 99
+      Type: 5
+      Rarity: 0
+      MagicAttacks:
+      - cbbb2aa0247088b45aa1af775b61f0ea
+      - c573284c328f02a4ab1da018892d6bf9
+      - 65f372b96d6ee3641a523120754153e9
+      PassiveSkills: []
+    - BaseID: unit_430b796bdabd91c4f922b5c9a90dcef3
+      UniqueID: fea8c171-8551-4a1f-adc4-b39dc5b0dd79
+      isDeployable: 1
+      active: 0
+      Stats:
+        theName: fea8c171-8551-4a1f-adc4-b39dc5b0dd79
+        displayName: Baby Bunny
+        baseHP: 270
+        curHP: 270
+        baseMP: 90
+        curMP: 90
+        baseATK: 97
+        curATK: 97
+        baseMATK: 13
+        curMATK: 13
+        maxATK: 116
+        minATK: 97
+        baseDEF: 40
+        curDEF: 40
+        baseCRIT: 0.25
+        curCRIT: 0.25
+        critDamage: 1.5
+        baseSpeed: 14
+        curSpeed: 14
+        curDodge: 21
+        baseDodge: 21
+        baseHit: 14
+        curHit: 14
+        strength:
+          BaseValue: 7
+        intellect:
+          BaseValue: 9
+        dexterity:
+          BaseValue: 7
+        agility:
+          BaseValue: 7
+        stamina:
+          BaseValue: 8
+        unspentStatPoints: 5
+        maxRage: 150
+        curRage: 0
+      Level:
+        experience: 0
+        currentlevel: 1
+        requiredExp: 83
+        MAX_EXP: 13034431
+        NEXT_EXP: 0
+        MAX_LEVEL: 99
+      Type: 5
+      Rarity: 0
+      MagicAttacks:
+      - cbbb2aa0247088b45aa1af775b61f0ea
+      - c573284c328f02a4ab1da018892d6bf9
+      - 65f372b96d6ee3641a523120754153e9
+      PassiveSkills: []
+    MaxSummonSlots: 10
+  - Name: Nami
+    BaseID: unit_914f81b0163b2c74d9e0029eab75051a
+    isUnlocked: 1
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: Nami
+      displayName: Nami
+      baseHP: 175
+      curHP: 175
+      baseMP: 50
+      curMP: 50
+      baseATK: 75
+      curATK: 75
+      baseMATK: 65
+      curMATK: 65
+      maxATK: 90
+      minATK: 75
+      baseDEF: 25
+      curDEF: 25
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 10
+      curSpeed: 10
+      curDodge: 15
+      baseDodge: 15
+      baseHit: 10
+      curHit: 10
+      strength:
+        BaseValue: 5
+      intellect:
+        BaseValue: 5
+      dexterity:
+        BaseValue: 5
+      agility:
+        BaseValue: 5
+      stamina:
+        BaseValue: 5
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      currentlevel: 1
+      requiredExp: 83
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 10
+  - Name: Thorne
+    BaseID: unit_d9714667baf19e6498a3499cfc1d89c3
+    isUnlocked: 1
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: Thorne
+      displayName: Thorne
+      baseHP: 175
+      curHP: 175
+      baseMP: 50
+      curMP: 50
+      baseATK: 75
+      curATK: 75
+      baseMATK: 65
+      curMATK: 65
+      maxATK: 90
+      minATK: 75
+      baseDEF: 25
+      curDEF: 25
+      baseCRIT: 0
+      curCRIT: 0
+      critDamage: 1.5
+      baseSpeed: 10
+      curSpeed: 10
+      curDodge: 15
+      baseDodge: 15
+      baseHit: 10
+      curHit: 10
+      strength:
+        BaseValue: 5
+      intellect:
+        BaseValue: 5
+      dexterity:
+        BaseValue: 5
+      agility:
+        BaseValue: 5
+      stamina:
+        BaseValue: 5
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      currentlevel: 1
+      requiredExp: 83
+      MAX_EXP: 13034431
+      NEXT_EXP: 0
+      MAX_LEVEL: 99
+    MagicAttacks:
+    - cbbb2aa0247088b45aa1af775b61f0ea
+    - c573284c328f02a4ab1da018892d6bf9
+    - ffc0af466636e704895b36336a728fb5
+    - 0fb38bbbde0fb324e82a79be56db3681
+    - b0d5a4e9c8d743a4b90ffea4c1b7ef6a
+    - 65f372b96d6ee3641a523120754153e9
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 20
+  UnitDatabase:
+    HeroPrefab: {fileID: 4288890165549320804, guid: 050232cb095f3b548994da313c043933, type: 3}
+    EnemyPrefab: {fileID: 4381166770328033262, guid: b42c762d178623244afed973815cc531, type: 3}
+    SummonPrefab: {fileID: 4288890165549320804, guid: 390196298f463e64cb2351364b33b8f8, type: 3}
+    EnemyList:
+    - {fileID: 11400000, guid: 430b796bdabd91c4f922b5c9a90dcef3, type: 2}
+    - {fileID: 11400000, guid: 59b486befa953f54286e01e697e95fa5, type: 2}
+    - {fileID: 11400000, guid: 0f13a6148d0f8204b9df100a96ccbfe9, type: 2}
+    - {fileID: 11400000, guid: d10b116129b268a42b8f402dfc86d6ce, type: 2}
+    - {fileID: 11400000, guid: ba283f7db484b084cac4862e26e0e090, type: 2}
+    - {fileID: 11400000, guid: 64207f11ed399ed4abaa2a35693c7022, type: 2}
+    - {fileID: 11400000, guid: 30b472b837c200e488969939f2a8a598, type: 2}
+    - {fileID: 11400000, guid: 3fbb00f0bce7b9c4ab8c5c007fbf54c1, type: 2}
+    - {fileID: 11400000, guid: 40db4f890b0fd6a4e83a3151b25e3a2e, type: 2}
+    - {fileID: 11400000, guid: 8f206b02093a5804690390958156820d, type: 2}
+    - {fileID: 11400000, guid: 1d35d4b4ae951a3478defa3508922e2d, type: 2}
+    HeroList:
+    - {fileID: 11400000, guid: f784ca5cb61e87f47aa1bcfc6f6d773a, type: 2}
+    - {fileID: 11400000, guid: 8f5420fb9f3b6624fbc1be1f996b5b26, type: 2}
+    - {fileID: 11400000, guid: 51a1f3fc8ec9bf24296da5809383009b, type: 2}
+    - {fileID: 11400000, guid: 1e4400347b0a87147bb2c393f14d8f51, type: 2}
+    - {fileID: 11400000, guid: 914f81b0163b2c74d9e0029eab75051a, type: 2}
+    - {fileID: 11400000, guid: d9714667baf19e6498a3499cfc1d89c3, type: 2}
+    statpointsPerLevel: 5
+    statIncreasePerLevel: 1
+    hpPerStr: 10
+    atkPerStr: 10
+    mpPerInt: 10
+    atkPerInt: 3
+    spdPerAgi: 2
+    dodgePerAgi: 3
+    hitPerDex: 2
+    atkPerDex: 2
+    hpPerSta: 25
+    defPerSta: 5
+    matkPerInt: 10
+    matkPerStr: 3
+    NormalSummonStatMultiplier: 1
+    BabySummonStatMultiplier: 1
+    MutantSummonStatMultiplier: 1.5
+    StrongEnemyStatMultiplier: 1.5
+    EliteEnemyStatMultiplier: 2
+    SkillLearnChance: 50
+  saveID: 
+  BlankData: {fileID: 4900000, guid: 713089706fc177645b111df87780b508, type: 3}
+  newGame: 0

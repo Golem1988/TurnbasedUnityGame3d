@@ -271,7 +271,7 @@ public class SummonInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -305,7 +305,7 @@ public class SummonInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -338,7 +338,7 @@ public class SummonInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -370,7 +370,7 @@ public class SummonInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -402,7 +402,7 @@ public class SummonInfoInterface : MonoBehaviour
         }
         else
         {
-            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to destribute!</color>");
+            GameManager.instance.Chat.AddToChatOutput("<#de0404>You don't have enough statpoints to distribute!</color>");
         }
     }
 
@@ -466,8 +466,8 @@ public class SummonInfoInterface : MonoBehaviour
             summonSta.text = EditableSummon.Stats.stamina.BaseValue.ToString();
 
             summonStatpts.text = EditableSummon.Stats.unspentStatPoints.ToString();
-
-            summonExp.text = EditableSummon.Level.experience.ToString() + "/" + EditableSummon.Level.requiredExp.ToString();
+            
+            //summonExp.text = EditableSummon.Level.expNow.ToString() + "/" + EditableSummon.Level.displayExp.ToString();
             UpdateAvatar();
         }
         else

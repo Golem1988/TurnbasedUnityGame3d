@@ -31,7 +31,7 @@ public class BattleActions : MonoBehaviour
         Actions.OnDodge += DodgePopup;
         //Actions.OnEnemySpawn += PopulateSkilllist;
         Actions.OnRessurect += ResPopup;
-        Actions.OnDoDamage += DoDamage;
+        //Actions.OnDoDamage += DoDamage;
         Actions.OnBarChange += SetBarSize;
         Actions.OnSummonCapture += CaptureNew;
         Actions.OnSummonSpawn += SpawnSummon;
@@ -48,7 +48,7 @@ public class BattleActions : MonoBehaviour
         Actions.OnDodge -= DodgePopup;
         //Actions.OnEnemySpawn -= PopulateSkilllist;
         Actions.OnRessurect -= ResPopup;
-        Actions.OnDoDamage -= DoDamage;
+        //Actions.OnDoDamage -= DoDamage;
         Actions.OnBarChange -= SetBarSize;
         Actions.OnSummonCapture -= CaptureNew;
         Actions.OnSummonSpawn -= SpawnSummon;
@@ -71,7 +71,8 @@ public class BattleActions : MonoBehaviour
 
         if (isHeal)
         {
-            go.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            if (!isCritical)
+                go.GetComponentInChildren<SpriteRenderer>().enabled = false;
             if (affectedStat == AffectedStat.HP)
                 go.GetComponentInChildren<TextMeshPro>().color = Color.green;
             if (affectedStat == AffectedStat.MP)
@@ -82,7 +83,8 @@ public class BattleActions : MonoBehaviour
 
         else
         {
-            go.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            if (!isCritical)
+                go.GetComponentInChildren<SpriteRenderer>().enabled = false;
             if (affectedStat == AffectedStat.HP)
             {
                 go.GetComponentInChildren<TextMeshPro>().color = new Color32(197, 164, 0, 255);
@@ -193,152 +195,107 @@ public class BattleActions : MonoBehaviour
         go2.GetComponentInChildren<TextMeshPro>().text = ResHP.ToString();
     }
 
-    public void DoDamage(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
-    {
-        bool isCritical = false;
-        for (int i = 0; i < targetList.Count; i++)
-        {
-            for (int j = 0; j < strikeCount; j++)
-            {
-                if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-                {
-                    isCritical = true;
-                    trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-                }
-                //stop striking the target if it's already dead
-                if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-                    targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-
-                //if (targetList[0].dodgedAtt == false)
-                //{
-                //    float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
-                //    Actions.OnRestoreHP(actor.transform, HealAmount);
-                //}
-            }
-        }
-        //StartCoroutine(DoDamageCo(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal));
-        //if (targetList.Count > 1)
-        //{
-        //    CalcDamageForEachTarget(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal);
-        //}
-
-        //else //if we only have 1 target
-        //{
-        //    if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-        //    {
-        //        isCritical = true;
-        //        trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-        //    }
-        //    for (int i = 0; i < strikeCount; i++)
-        //    {
-        //        targetList[0].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal);
-        //    }
-
-
-        //}
-
-        //ui.manaBar.SetSize(((unit.curMP * 100) / unit.baseMP) / 100);
-
-    }
-
-    public IEnumerator DoDamageCo(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
-    {
-        Debug.Log("Coroutine running");
-        //bool isCritical = false;
-        //var ui = actor.GetComponent<UnitUI>();
-        ////actor.isAttacking = true;
-        //for (int i = 0; i < targetList.Count; i++)
-        //{
-        //    for (int j = 0; j < strikeCount; j++)
-        //    {
-        //        if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-        //        {
-        //            isCritical = true;
-        //            trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-        //        }
-        //        //stop striking the target if it's already dead
-        //        if (targetList[i].currentState == UnitStateMachine.TurnState.DEAD)
-        //            break;
-        //        ui.animator.Play("Attack");
-        //        yield return new WaitForSeconds(0.5f);
-        //        targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-        //        yield return new WaitForSeconds(0.5f);
-        //    }
-        //}
-        bool isCritical = false;
-        var ui = actor.GetComponent<UnitUI>();
-        for (int i = 0; i < targetList.Count; i++)
-        {
-            for (int j = 0; j < strikeCount; j++)
-            {
-                ui.animator.Play("Attack");
-                while (ui.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
-                {
-                    yield return null;
-                }
-                if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-                {
-                    isCritical = true;
-                    trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-                }
-                //stop striking the target if it's already dead
-                if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-                    targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-                else
-                    break;
-                //if (targetList[0].dodgedAtt == false)
-                //{
-                //    float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
-                //    Actions.OnRestoreHP(actor.transform, HealAmount);
-                //}
-            }
-        }
-        //actor.isAttacking = false;
-    }
-
-    //public void CalcDamageForEachTarget(UnitStateMachine actor, float trueDamage, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal)
+    //public void DoDamage(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
     //{
+    //    bool isCritical = false;
     //    for (int i = 0; i < targetList.Count; i++)
     //    {
     //        for (int j = 0; j < strikeCount; j++)
     //        {
-    //            bool isCritical = false;
     //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
     //            {
     //                isCritical = true;
     //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
     //            }
-    //            //stop striking the target if it's already dead
+    //            stop striking the target if it's already dead
     //            if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal);
+    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
+
+    //            if (targetList[0].dodgedAtt == false)
+    //            {
+    //                float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
+    //                Actions.OnRestoreHP(actor.transform, HealAmount);
+    //            }
     //        }
     //    }
+    //    StartCoroutine(DoDamageCo(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal));
+    //    if (targetList.Count > 1)
+    //    {
+    //        CalcDamageForEachTarget(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal);
+    //    }
+
+    //    else //if we only have 1 target
+    //    {
+    //        if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
+    //        {
+    //            isCritical = true;
+    //            trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
+    //        }
+    //        for (int i = 0; i < strikeCount; i++)
+    //        {
+    //            targetList[0].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal);
+    //        }
+
+
+    //    }
+
+    //    ui.manaBar.SetSize(((unit.curMP * 100) / unit.baseMP) / 100);
+
     //}
 
-    //public IEnumerator CalcDamageToEachTarget(UnitStateMachine actor, float trueDamage, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal)
+    //public IEnumerator DoDamageCo(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
     //{
-    //    if (actionStarted)
-    //    {
-    //        yield break;
-    //    }
-    //    actionStarted = true;
+    //    Debug.Log("Coroutine running");
+    //    bool isCritical = false;
+    //    var ui = actor.GetComponent<UnitUI>();
+    //    //actor.isAttacking = true;
     //    for (int i = 0; i < targetList.Count; i++)
     //    {
     //        for (int j = 0; j < strikeCount; j++)
     //        {
-    //            bool isCritical = false;
     //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
     //            {
     //                isCritical = true;
     //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
     //            }
     //            //stop striking the target if it's already dead
-    //            if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal);
+    //            if (targetList[i].currentState == UnitStateMachine.TurnState.DEAD)
+    //                break;
+    //            ui.animator.Play("Attack");
+    //            yield return new WaitForSeconds(0.5f);
+    //            targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
     //            yield return new WaitForSeconds(0.5f);
     //        }
     //    }
-    //    actionStarted = false;
+    //    bool isCritical = false;
+    //    var ui = actor.GetComponent<UnitUI>();
+    //    for (int i = 0; i < targetList.Count; i++)
+    //    {
+    //        for (int j = 0; j < strikeCount; j++)
+    //        {
+    //            ui.animator.Play("Attack");
+    //            while (ui.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+    //            {
+    //                yield return null;
+    //            }
+    //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
+    //            {
+    //                isCritical = true;
+    //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
+    //            }
+    //            stop striking the target if it's already dead
+    //            if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
+    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
+    //            else
+    //                break;
+    //            if (targetList[0].dodgedAtt == false)
+    //            {
+    //                float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
+    //                Actions.OnRestoreHP(actor.transform, HealAmount);
+    //            }
+    //        }
+    //    }
+    //    actor.isAttacking = false;
     //}
 
     public void ZeroHP(UnitStateMachine target)
@@ -365,13 +322,12 @@ public class BattleActions : MonoBehaviour
     public void SetBarSize(UnitStateMachine target, AffectedStat theBar)
     {
         if (theBar == AffectedStat.HP)
-            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.curHP * 100 / target.unit.Stats.baseHP / 100);
+            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.curHP / target.unit.Stats.baseHP);
         if (theBar == AffectedStat.MP)
-            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.curMP * 100 / target.unit.Stats.baseMP / 100);
+            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.curMP / target.unit.Stats.baseMP);
         if (target.gameObject.CompareTag("Hero") && theBar == AffectedStat.RP)
         {
-            var hero = target.GetComponent<Character>();
-            target.GetComponent<UnitUI>().rageBar.SetSize(hero.curRage * 100 / hero.maxRage / 100);
+            target.GetComponent<UnitUI>().rageBar.SetSize(target.unit.Stats.curRage / target.unit.Stats.maxRage);
         }
     }
 
@@ -403,14 +359,10 @@ public class BattleActions : MonoBehaviour
             AddInfo.active = false;
             var SummonList = catcher.GetComponent<SummonHandler>().SummonList;
             SummonList.Add(AddInfo);
-            //if (SummonList.Count == 1)
-            //{
-            //    SummonList[0].isDeployable = false;
-            //    SummonList[0].active = true;
-            //}
-                
-            RemoveFromLists(target);
-            target.gameObject.SetActive(false);
+
+            //RemoveFromLists(target);
+            target.currentState = UnitStateMachine.TurnState.DEAD;
+            //target.gameObject.SetActive(false);
         }
         else
         {
@@ -536,7 +488,7 @@ public class BattleActions : MonoBehaviour
         var model = Instantiate(summonModel, NewSummon.GetComponent<ModelLoader>().ModelHolder.position, Quaternion.Euler(0, -45, 0), NewSummon.GetComponent<ModelLoader>().ModelHolder);
         NewSummon.GetComponent<ModelLoader>().Model = model;
         //specify the avatar sprite
-        NewSummon.GetComponent<UnitUI>().heroAvatar = Extensions.FindSprite(info[summonIndex].BaseID, false);
+        NewSummon.GetComponent<UnitUI>().Avatar = Extensions.FindSprite(info[summonIndex].BaseID, false);
         //fill in the information
         NewSummon.name = info[summonIndex].UniqueID;
         NewSummon.GetComponent<UnitAttributes>().Stats = info[summonIndex].Stats;
@@ -597,35 +549,44 @@ public class BattleActions : MonoBehaviour
 
         //BSM.HeroesInBattle;
         //BSM.EnemiesInBattle;
-        
-
         //BSM.PerformList
         if (inBattle.Count > 0)
         {
+            BSM.PerformList.RemoveAll(index => index.Attacker == unit);
+            inBattle.Remove(unit);
             for (int i = 0; i < BSM.PerformList.Count; i++)
             {
-                if (BSM.PerformList[i].Attacker == unit)
-                {
-                    BSM.PerformList.Remove(BSM.PerformList[i]);
-                }
-                else if (BSM.PerformList[i].AttackersTarget == unit)
+                if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1)
                 {
                     BSM.PerformList[i].AttackersTarget = inBattle[Random.Range(0, inBattle.Count)];
+                    Debug.Log("New target = " + BSM.PerformList[i].AttackersTarget.name);
                     BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
+                    Debug.Log("New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
+                    if (BSM.PerformList[i].choosenAttack.ID == "e2a08119519b2ec48bbe851df8d319d9")
+                    {
+                        BSM.PerformList[i].choosenAttack = Extensions.FindActiveSkillID("010efba02612ef34db18caadaceb37dd");
+                    }
+                }
+
+                else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1)
+                {
+                    BSM.PerformList[i].AttackersTarget = inBattle[0];
+                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = inBattle[0];
                 }
             }
         }
 
         //BSM.Spots
-        for (int i = 0; i < onSpots.Count; i++)
-        {
-            if (onSpots[i].UnitOnSpot == unit)
-            {
-                onSpots.Remove(onSpots[i]);
-            }
-        }
+        onSpots.RemoveAll(index => index.UnitOnSpot == unit);
+        //for (int i = 0; i < onSpots.Count; i++)
+        //{
+        //    if (onSpots[i].UnitOnSpot == unit)
+        //    {
+        //        onSpots.Remove(onSpots[i]);
+        //    }
+        //}
 
-        inBattle.Remove(unit);
+        //inBattle.Remove(unit);
 
         //refresh button list in UI accordingly
         if (unit.CompareTag("Hero"))

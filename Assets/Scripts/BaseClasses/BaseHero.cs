@@ -10,9 +10,9 @@ public class BaseHero : BaseClass
     //[Header("Statpoints")]
     //public int unspentStatPoints;
 
-    [Header("Secondary Attributes")]
-    public float maxRage = 150f;
-    public float curRage = 0f;
+    //[Header("Secondary Attributes")]
+    //public float maxRage = 150f;
+    //public float curRage = 0f;
 
     //[Header("Statpoint growth")]
     //public int statpointsPerLevel = 5;

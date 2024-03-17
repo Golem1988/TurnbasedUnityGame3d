@@ -43,13 +43,9 @@ MonoBehaviour:
   isDodgeable: 0
   ignoreDefense: 0
   Test:
-    TrueDamage: 980
+    TrueDamage: 453
     skillType: 2
     endTargetList:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
     - {fileID: 0}
     strikeCount: 1
     canCrit: 1
