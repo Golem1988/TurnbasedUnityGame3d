@@ -147,44 +147,511 @@ public class UnitStateMachine : MonoBehaviour
         }
     }
 
+    //void EnemyActionChoice()
+    //{
+    //    HandleTurn enemyChoice = new HandleTurn();
+    //    enemyChoice.AttackersName = unit.Stats.theName;
+    //    enemyChoice.attackersSpeed = unit.Stats.curSpeed;
+    //    enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
+    //    enemyChoice.Attacker = gameObject;
+    //    //Target choice: Randomly choose the target from list. Editable for later.
+    //    enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+
+    //    //determine which skills does enemy have:
+    //    if (abilities.MagicAttacks.Count > 0)
+    //    {
+    //        //we have magic attacks
+    //        //can we use them? check the manacost
+    //        for (int i = 0; i < abilities.MagicAttacks.Count; i++)
+    //        {
+    //            if (abilities.MagicAttacks[i].CostValue <= unit.Stats.curMP) //edit this part, because of variations
+    //            {
+    //                int num = Random.Range(0, abilities.MagicAttacks.Count - 1);
+    //                enemyChoice.choosenAttack = abilities.MagicAttacks[num];
+    //            }
+    //        }
+    //        //if we have not enough mana for any of magic attacks
+    //        if (enemyChoice.choosenAttack == null)
+    //        {
+    //            enemyChoice.choosenAttack = abilities.BasicActions[0];
+    //        }
+    //    }
+    //    else
+    //    {
+    //        //choose basic attack
+    //        enemyChoice.choosenAttack = abilities.BasicActions[0];
+    //    }
+
+    //    BSM.CollectActions(enemyChoice);
+    //}
+
     void EnemyActionChoice()
     {
-        HandleTurn myAttack = new HandleTurn();
-        myAttack.AttackersName = unit.Stats.theName;
-        myAttack.attackersSpeed = unit.Stats.curSpeed;
-        myAttack.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
-        myAttack.Attacker = gameObject;
-        //Target choice: Randomly choose the target from list. Editable for later.
-        myAttack.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+        HandleTurn enemyChoice = new HandleTurn();
+        enemyChoice.AttackersName = unit.Stats.theName;
+        enemyChoice.attackersSpeed = unit.Stats.curSpeed;
+        enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
+        enemyChoice.Attacker = gameObject;
+        BaseClass enemie = gameObject.GetComponent<UnitAttributes>().Stats;
 
         //determine which skills does enemy have:
-        if (abilities.MagicAttacks.Count > 0)
+        if (enemie.curMP > 0 && abilities.MagicAttacks.Count > 0)
         {
             //we have magic attacks
+            List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
             //can we use them? check the manacost
-            for (int i = 0; i < abilities.MagicAttacks.Count; i++)
+            //remove all we can't use
+            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.curMP);
+            if (magicAttacks.Count > 1)
             {
-                if (abilities.MagicAttacks[i].CostValue <= unit.Stats.curMP) //edit this part, because of variations
-                {
-                    int num = Random.Range(0, abilities.MagicAttacks.Count - 1);
-                    myAttack.choosenAttack = abilities.MagicAttacks[num];
-                }
+                int num = Random.Range(0, magicAttacks.Count);
+                enemyChoice.choosenAttack = magicAttacks[num];
             }
-            //if we have not enough mana for any of magic attacks
-            if (myAttack.choosenAttack == null)
+            else if (magicAttacks.Count == 1)
             {
-                myAttack.choosenAttack = abilities.BasicActions[0];
+                enemyChoice.choosenAttack = magicAttacks[0];
+                Debug.Log("Enemy chose " + enemyChoice.choosenAttack.SkillName);
+            }
+
+            if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Ally)
+            {
+                Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                Debug.Log("Enemy chose ally ");
+                enemyChoice.AttackersTarget = BSM.EnemiesInBattle[Random.Range(0, BSM.EnemiesInBattle.Count)];
+            }
+            else if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Foe)
+            {
+                Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                Debug.Log("Enemy chose hero ");
+                enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+            }
+        }
+        else if (abilities.MagicAttacks.Count <= 0)
+        {
+            enemyChoice.choosenAttack = abilities.BasicActions[0];
+            enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+        }
+        else// (enemyChoice.choosenAttack == null)
+        {
+            enemyChoice.choosenAttack = abilities.BasicActions[0];
+            enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+        }
+
+        BSM.CollectActions(enemyChoice);
+    }
+
+    private IEnumerator TimeForActionTESTING2()
+    {
+        if (actionStarted)
+        {
+            yield break;
+        }
+
+        actionStarted = true;
+
+        var choosenAttack = BSM.PerformList[0].choosenAttack;
+        if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == "a0b4d18cb0e8c8f4791153f816e5336a")
+        {
+            Debug.Log("if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == a0b4d18cb0e8c8f4791153f816e5336a triggered");
+            var effect = BSM.PerformList[0].choosenAttack.ApplyStatusEffects[0].effect;
+            BSM.BuffManager.ApplyStatus(this, effect, 1);
+        }
+        bool isCritical = false;
+
+        if (AllowedActions.canAct && BSM.PerformList[0].choosenAttack != null)
+        {
+            if (choosenAttack.CheckCost(this) == true)
+            {
+                Debug.Log("BSM.PerformList[0].AttackersTarget = " + BSM.PerformList[0].AttackersTarget.name);
+                ActionSettings actionSettings = choosenAttack.CalculateSkill(this, BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>());
+                List<StatusEffectList> statusEffects = new(actionSettings.applyStatusEffects);
+                List<UnitStateMachine> endTargets = new(actionSettings.endTargetList);
+                if (actionSettings.skillType == SkillType.Melee && AllowedActions.canUseMelee)
+                {
+                    //check for the passive skills that have anything to do with melee attacks
+                    //ExecutePassiveSkill(Trigger.DEAL_MELEE_DAMAGE, actionSettings);
+                    //for example double attack passive would probably want to check if our chosen attack is basic attack and if so, apply strikeCount + 1;
+                    //another example would be attack that has a chance of applying seal effect OR poison effect on hit, so we would go like: actionSettings.applyStatusEffects.Add(anotherEffect);
+                    //we probably also want to add some additional variable to ActionSettings which would determine a list of things that happen if we actually hit the target
+                    //for instance we would want to use that for vampirism passive ability that would return hp
+                    var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
+
+                    for (int i = 0; i < PassiveSkills.Count; i++)
+                    {
+                        if (PassiveSkills[i].trigger == Trigger.DEAL_MELEE_DAMAGE && PassiveSkills[i].ApplyStatusEffects.Count > 0)
+                        {
+                            statusEffects = PassiveSkills[i].ApplyEffect(statusEffects);
+                        }
+                    }
+
+                    ui.scream.SetActive(true);
+                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
+                    choosenAttack.PayTheCost(this);
+                    yield return new WaitForSeconds(0.25f);
+
+                    Vector3 targetPosition;
+                    if (gameObject.CompareTag("Enemy"))
+                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
+                    else
+                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x + 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z - 0.5f);
+                    Debug.Log("ChosenAttackTarget name = " + ChosenAttackTarget.name);
+                    while (MoveToPosition(targetPosition))
+                    {
+                        yield return null;
+                    }
+                    yield return new WaitForSeconds(0.25f);
+                    ui.scream.SetActive(false);
+
+                    Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
+                    for (int i = 0; i < endTargets.Count; i++)
+                    {
+                        Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
+                        for (int j = 0; j < actionSettings.strikeCount; j++)
+                        {
+                            ui.animator.Play("Attack");
+                            ui.audioSource.Play();
+                            yield return new WaitForSeconds(0.7f);
+                            choosenAttack.PlaySkillVFX(this, endTargets);
+
+                            float TrueDamage;
+                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                            {
+                                isCritical = true;
+                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            }
+                            else
+                            {
+                                TrueDamage = actionSettings.TrueDamage;
+                            }
+                            //stop striking the target if it's already dead
+                            if (endTargets[i].currentState != TurnState.DEAD)
+                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, statusEffects);
+                            //check for the passive skills that have anything to do with targets death whiel attacking it
+                            //for example the chase mechanic passive skill, however I am not so sure if we could use that, since it needs to run in coroutine
+                            isCritical = false;
+                            yield return new WaitForSeconds(0.7f);
+                        }
+                    }
+
+                    if (unit.Stats.curHP > 0)
+                    {
+                        while (MoveToPosition(startposition))
+                        {
+                            yield return null;
+                        }
+                    }
+                }
+                else if (!AllowedActions.canUseMelee)
+                {
+                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their melee attack due to restriction!");
+                }
+
+                if (actionSettings.skillType == SkillType.Magic && AllowedActions.canUseMagic)
+                {
+                    ui.scream.SetActive(true);
+                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
+                    choosenAttack.PayTheCost(this);
+                    yield return new WaitForSeconds(0.7f);
+                    ui.scream.SetActive(false);
+
+                    ui.animator.Play("Attack");
+                    ui.audioSource.Play();
+                    yield return new WaitForSeconds(0.7f);
+                    choosenAttack.PlaySkillVFX(this, endTargets);
+
+                    for (int i = 0; i < endTargets.Count; i++)
+                    {
+                        for (int j = 0; j < actionSettings.strikeCount; j++)
+                        {
+                            //yield return new WaitForSeconds(0.7f);
+                            float TrueDamage;
+                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
+                            {
+                                isCritical = true;
+                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
+                            }
+                            else
+                            {
+                                TrueDamage = actionSettings.TrueDamage;
+                            }
+                            //stop striking the target if it's already dead
+                            if (endTargets[i].currentState != TurnState.DEAD)
+                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, statusEffects);
+                            isCritical = false;
+                        }
+                    }
+                    yield return new WaitForSeconds(0.7f);
+                }
+                else if (!AllowedActions.canUseMagic)
+                {
+                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their magic attack due to restriction!");
+                }
+
+            }
+
+        }
+        else if (AllowedActions.canAct && BSM.PerformList[0].choosenAction)
+        {
+            yield return new WaitForSeconds(1f);
+            BSM.PerformList[0].choosenAction.Act(this, null, BSM.PerformList[0].index);
+            yield return new WaitForSeconds(0.7f);
+        }
+        else
+        {
+            Debug.Log("Unit " + unit.Stats.displayName + " could not act due to restriction!");
+        }
+
+        //remove this performer from the list in BSM
+        Debug.Log("BSM.PerformList [0] name = " + BSM.PerformList[0].AttackersName);
+        BSM.PerformList.RemoveAt(0);
+
+        //end coroutine
+        //reset the battle state machine -> set to wait
+        //reset this enemy state
+        if (gameObject.CompareTag("Enemy"))
+        {
+            BSM.battleStates = PerformAction.START;
+            if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
+            {
+                //reset this unit state
+                currentState = TurnState.PROCESSING;
             }
         }
         else
         {
-            //choose basic attack
-            myAttack.choosenAttack = abilities.BasicActions[0];
+            if (BSM.battleStates != PerformAction.WIN && BSM.battleStates != PerformAction.LOSE)
+            {
+                BSM.battleStates = PerformAction.START;
+                //reset this unit state
+                currentState = TurnState.PROCESSING;
+            }
+            else
+            {
+                currentState = TurnState.WAITING;
+            }
         }
 
-        BSM.CollectActions(myAttack);
+        actionStarted = false;
     }
 
+    //Move sprite towards target
+    private bool MoveToPosition(Vector3 target)
+    {
+        return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
+    }
+
+    public void TakeDamage(UnitStateMachine actor, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists)
+    {
+        float damageAmount = 0;
+        //Calculate if the attack hits
+        if (!isHeal)
+        {
+            hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+            if (isDodgeable == false)
+            {
+                hitChance = 100;
+            }
+            if (Random.Range(0, 100) <= hitChance)
+            {
+                if (statusEffectLists.Count > 0)
+                {
+                    Actions.OnRequestStatusApply(this, statusEffectLists);
+                }
+                if (!ignoresDef)
+                {
+                    damageAmount = incomingTrueDamage - unit.Stats.curDEF;
+                    if (damageAmount < 0)
+                    {
+                        damageAmount = 0;
+                    }
+                }
+                if (affectedStat == AffectedStat.HP)
+                {
+                    ui.animator.Play("Hurt");
+                    unit.Stats.curHP -= damageAmount;
+                    //Actions.OnBarChange(this, AffectedStat.HP);
+                    if (unit.Stats.curHP <= 0)
+                    {
+                        unit.Stats.curHP = 0;
+                        Actions.OnZeroHealth(this);
+                    }
+                    ui.healthBar.SetSize(unit.Stats.curHP / unit.Stats.baseHP);
+                }
+
+                if (affectedStat == AffectedStat.MP)
+                {
+                    ui.animator.Play("Hurt");
+                    unit.Stats.curMP -= damageAmount;
+                    //Actions.OnBarChange(this, AffectedStat.MP);
+                    if (unit.Stats.curMP <= 0)
+                    {
+                        unit.Stats.curMP = 0;
+                    }
+                    ui.manaBar.SetSize(unit.Stats.curMP / unit.Stats.baseMP);
+                }
+
+                //show popup damage
+                Actions.OnDamageReceived(transform, isCritical, damageAmount, false, affectedStat);
+
+                //
+                var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
+
+                for (int i = 0; i < PassiveSkills.Count; i++)
+                {
+                    if (PassiveSkills[i].trigger == Trigger.TAKE_MAGIC_DAMAGE)
+                    {
+                        //PassiveSkills[i].Activate(this);
+                    }
+                }
+            }
+            else
+            {
+                Actions.OnDodge(gameObject.transform);
+                dodgedAtt = true;
+            }
+        }
+
+        else //if it's healing
+        {
+            if (statusEffectLists.Count > 0)
+            {
+                Actions.OnRequestStatusApply(this, statusEffectLists);
+            }
+            damageAmount = incomingTrueDamage;
+            Actions.OnRestore(transform, damageAmount, affectedStat);
+        }
+
+
+        //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
+        //{
+        //    StartCoroutine(CounterAttack());
+        //}
+    }
+
+    public void Captured()
+    {
+        currentState = TurnState.DEAD;
+        gameObject.SetActive(false);
+    }
+
+    //public IEnumerator TakeTheDamage(UnitStateMachine actor, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat)
+    //{
+    //    if (takingDamage)
+    //    {
+    //        yield break;
+    //    }
+    //    takingDamage = true;
+    //    float damageAmount = 0;
+    //    //Calculate if the attack hits
+    //    hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+    //    if (isDodgeable == false)
+    //    {
+    //        hitChance = 100;
+    //    }
+    //    if (Random.Range(0, 100) <= hitChance)
+    //    {
+    //        if (!ignoresDef)
+    //        {
+    //            damageAmount = incomingTrueDamage - unit.Stats.curDEF;
+    //            if (damageAmount < 0)
+    //            {
+    //                damageAmount = 0;
+    //            }
+    //        }
+    //        if (affectedStat == AffectedStat.HP)
+    //        {
+    //            ui.animator.Play("Hurt");
+    //            unit.Stats.curHP -= damageAmount;
+    //            Actions.OnBarChange(this, AffectedStat.HP);
+    //            if (unit.Stats.curHP <= 0)
+    //            {
+    //                unit.Stats.curHP = 0;
+    //                Actions.OnZeroHealth(this);
+    //            }
+    //        }
+    //        ui.healthBar.SetSize(unit.Stats.curHP * 100 / unit.Stats.baseHP / 100);
+    //        //show popup damage
+    //        Actions.OnDamageReceived(transform, isCritical, damageAmount, false);
+    //    }
+    //    else
+    //    {
+    //        Actions.OnDodge(gameObject.transform);
+    //        dodgedAtt = true;
+    //    }
+
+    //    takingDamage = false;
+    //    //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
+    //    //{
+    //    //    StartCoroutine(CounterAttack());
+    //    //}
+    //}
+
+
+    private IEnumerator CounterAttack()
+    {
+        if (counterAttack)
+        {
+            yield break;
+        }
+
+        counterAttack = true;
+
+        yield return new WaitForSeconds(0.5f);
+        ui.animator.Play("Attack");
+        ui.audioSource.Play();
+        yield return new WaitForSeconds(0.25f);
+        float minMaxAtk = Mathf.Round(Random.Range(unit.Stats.minATK, unit.Stats.maxATK));
+
+        if (Random.Range(0, 100) <= unit.Stats.curCRIT)
+        {
+            //isCritical = true;
+            minMaxAtk = Mathf.Round(minMaxAtk * unit.Stats.critDamage);
+        }
+        //BSM.PerformList[0].AttackersGameObject.GetComponent<UnitStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.curHit, true, counterAttack);
+        yield return new WaitForSeconds(0.5f);
+        counterAttack = false;
+    }
+
+    //Undead mechanic
+    //Perk1: While enemy with undead dies, it will rise after X turns with X HP;
+    //Drawback: Undead takes 2x damage from holy property / Exorcism passive skill and if killed by holy/exorcism, can't rise
+    //Drawback / perk2: Can't be buffed or debuffed / healed neither by enemies or allies unless the skill level isn't maximal
+    //If undead: after death remove from PerformList, but don't remove from enemies in Battle so it can be targeted by players
+    //If is targeted by player, but hasn't risen at the start of the turn, then switch targets.
+    //At this point adding the rise method
+    //All those skill related methods with later be moved to corresponding places, at this point it all is for testing purposes.
+
+    //TODO LIST OF SOME SORT
+    // 1) Hide mechanic
+    //    hidden heroes can't be hit or targeted unless enemy has vision passive skill
+    // 2) Exorcism / holy mechanic to counter undead
+    // 3) Heal over time (buff that heals ally(allies) at the end or in the beginning of the turn)
+    // 4) Mana restoration skill
+    // 5) Poison over time. Same as heal over time, but drains %% HP / %% MP at the end of the turn.
+    // 6) Ressurect skill. Similar to what RiseUndead method in Enemy state machine does. Cleric / healer skill.
+    //
+
+    //public void UndeadRise()
+    //{
+    //    alive = true;
+    //    gameObject.tag = "Enemy";
+    //    ui.Selector.SetActive(true);
+    //    EnemyActionChoice();
+    //}
+
+
+
+    //void ExecutePassiveSkills(BattleStateMachine BSM)
+    //{
+    //    var PassiveSkills = abilities.PassiveSkills;
+    //    if (PassiveSkills.Count > 0)
+    //    {
+    //        for (int i = 0; i < PassiveSkills.Count; i++)
+    //        {
+    //            //PassiveSkills[i].Activate(this);
+    //        }
+    //    }
+    //}
 
     private IEnumerator TimeForAction()
     {
@@ -230,7 +697,7 @@ public class UnitStateMachine : MonoBehaviour
             //wait a bit till animation of attack plays. Might wanna change later on based on animation.
             yield return new WaitForSeconds(0.25f);
             ui.scream.SetActive(false);
-            
+
             ui.animator.Play("Attack");
             ui.audioSource.Play();
 
@@ -311,9 +778,9 @@ public class UnitStateMachine : MonoBehaviour
         //remove this performer from the list in BSM
         BSM.PerformList.RemoveAt(0);
         //reset the battle state machine -> set to wait
-        
+
         //end coroutine
-        
+
         //reset this enemy state
         if (gameObject.CompareTag("Enemy"))
         {
@@ -541,199 +1008,6 @@ public class UnitStateMachine : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator TimeForActionTESTING2()
-    {
-        if (actionStarted)
-        {
-            yield break;
-        }
-
-        actionStarted = true;
-
-        var choosenAttack = BSM.PerformList[0].choosenAttack;
-        if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == "a0b4d18cb0e8c8f4791153f816e5336a")
-        {
-            var effect = BSM.PerformList[0].choosenAttack.ApplyStatusEffects[0].effect;
-            BSM.BuffManager.ApplyStatus(this, effect, 1);
-        }
-        bool isCritical = false;
-
-        if (AllowedActions.canAct && BSM.PerformList[0].choosenAttack)
-        {
-            if (choosenAttack.CheckCost(this) == true)
-            {
-                ActionSettings actionSettings = new ActionSettings();
-                actionSettings = choosenAttack.CalculateSkill(this, BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>());
-                List<StatusEffectList> statusEffects = new(actionSettings.applyStatusEffects);
-                List<UnitStateMachine> endTargets = new(actionSettings.endTargetList);
-                if (actionSettings.skillType == SkillType.Melee && AllowedActions.canUseMelee)
-                {
-                    //check for the passive skills that have anything to do with melee attacks
-                    //ExecutePassiveSkill(Trigger.DEAL_MELEE_DAMAGE, actionSettings);
-                    //for example double attack passive would probably want to check if our chosen attack is basic attack and if so, apply strikeCount + 1;
-                    //another example would be attack that has a chance of applying seal effect OR poison effect on hit, so we would go like: actionSettings.applyStatusEffects.Add(anotherEffect);
-                    //we probably also want to add some additional variable to ActionSettings which would determine a list of things that happen if we actually hit the target
-                    //for instance we would want to use that for vampirism passive ability that would return hp
-                    var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
-
-                    for (int i = 0; i < PassiveSkills.Count; i++)
-                    {
-                        if (PassiveSkills[i].trigger == Trigger.DEAL_MELEE_DAMAGE && PassiveSkills[i].ApplyStatusEffects.Count > 0)
-                        {
-                            statusEffects = PassiveSkills[i].ApplyEffect(statusEffects);
-                        }
-                    }
-
-                    ui.scream.SetActive(true);
-                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
-                    choosenAttack.PayTheCost(this);
-                    yield return new WaitForSeconds(0.25f);
-
-                    Vector3 targetPosition;
-                    if (gameObject.CompareTag("Enemy"))
-                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
-                    else
-                        targetPosition = new Vector3(ChosenAttackTarget.transform.position.x + 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z - 0.5f);
-                    Debug.Log("ChosenAttackTarget name = " + ChosenAttackTarget.name);
-                    while (MoveToPosition(targetPosition))
-                    {
-                        yield return null;
-                    }
-                    yield return new WaitForSeconds(0.25f);
-                    ui.scream.SetActive(false);
-
-                    Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
-                    for (int i = 0; i < endTargets.Count; i++)
-                    {
-                        Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
-                        for (int j = 0; j < actionSettings.strikeCount; j++)
-                        {
-                            ui.animator.Play("Attack");
-                            ui.audioSource.Play();
-                            yield return new WaitForSeconds(0.7f);
-                            choosenAttack.PlaySkillVFX(this, endTargets);
-
-                            float TrueDamage;
-                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
-                            {
-                                isCritical = true;
-                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
-                            }
-                            else
-                            {
-                                TrueDamage = actionSettings.TrueDamage;
-                            }
-                            //stop striking the target if it's already dead
-                            if (endTargets[i].currentState != TurnState.DEAD)
-                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, statusEffects);
-                            //check for the passive skills that have anything to do with targets death whiel attacking it
-                            //for example the chase mechanic passive skill, however I am not so sure if we could use that, since it needs to run in coroutine
-                            isCritical = false;
-                            yield return new WaitForSeconds(0.7f);
-                        }
-                    }
-
-                    if (unit.Stats.curHP > 0)
-                    {
-                        while (MoveToPosition(startposition))
-                        {
-                            yield return null;
-                        }
-                    }
-                }
-                else if (!AllowedActions.canUseMelee)
-                {
-                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their melee attack due to restriction!");
-                }
-
-                if (actionSettings.skillType == SkillType.Magic && AllowedActions.canUseMagic)
-                {
-                    ui.scream.SetActive(true);
-                    ui.screamText.text = choosenAttack.SkillName.ToString() + "!";
-                    choosenAttack.PayTheCost(this);
-                    yield return new WaitForSeconds(0.7f);
-                    ui.scream.SetActive(false);
-
-                    ui.animator.Play("Attack");
-                    ui.audioSource.Play();
-                    yield return new WaitForSeconds(0.7f);
-                    choosenAttack.PlaySkillVFX(this, endTargets);
-
-
-                    for (int i = 0; i < endTargets.Count; i++)
-                    {
-                        for (int j = 0; j < actionSettings.strikeCount; j++)
-                        {
-                            //yield return new WaitForSeconds(0.7f);
-                            float TrueDamage;
-                            if (actionSettings.canCrit && Random.Range(0, 100) <= unit.Stats.curCRIT)
-                            {
-                                isCritical = true;
-                                TrueDamage = Mathf.Round(actionSettings.TrueDamage * unit.Stats.critDamage);
-                            }
-                            else
-                            {
-                                TrueDamage = actionSettings.TrueDamage;
-                            }
-                            //stop striking the target if it's already dead
-                            if (endTargets[i].currentState != TurnState.DEAD)
-                                endTargets[i].TakeDamage(this, TrueDamage, actionSettings.isDodgeable, isCritical, actionSettings.ignoreDefense, actionSettings.targetStat, actionSettings.isHeal, actionSettings.applyStatusEffects);
-                            isCritical = false;
-                        }
-                    }
-                    yield return new WaitForSeconds(0.7f);
-                }
-                else if (!AllowedActions.canUseMagic)
-                {
-                    Debug.Log("Unit " + unit.Stats.displayName + " could not use their magic attack due to restriction!");
-                }
-
-            }
-
-        }
-        else if (AllowedActions.canAct && BSM.PerformList[0].choosenAction)
-        {
-            yield return new WaitForSeconds(1f);
-            BSM.PerformList[0].choosenAction.Act(this, null, BSM.PerformList[0].index);
-            yield return new WaitForSeconds(0.7f);
-        }
-        else
-        {
-            Debug.Log("Unit " + unit.Stats.displayName + " could not act due to restriction!");
-        }
-            
-        //remove this performer from the list in BSM
-        BSM.PerformList.RemoveAt(0);
-
-        //end coroutine
-        //reset the battle state machine -> set to wait
-        //reset this enemy state
-        if (gameObject.CompareTag("Enemy"))
-        {
-            BSM.battleStates = PerformAction.START;
-            if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
-            {
-                //reset this unit state
-                currentState = TurnState.PROCESSING;
-            }
-        }
-        else
-        {
-            if (BSM.battleStates != PerformAction.WIN && BSM.battleStates != PerformAction.LOSE)
-            {
-                BSM.battleStates = PerformAction.START;
-                //reset this unit state
-                currentState = TurnState.PROCESSING;
-            }
-            else
-            {
-                currentState = TurnState.WAITING;
-            }
-        }
-
-        actionStarted = false;
-    }
-
     //private IEnumerator TimeForActionOld()
     //{
     //    if (actionStarted)
@@ -833,221 +1107,6 @@ public class UnitStateMachine : MonoBehaviour
     //    if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
     //    {
     //        currentState = TurnState.PROCESSING;
-    //    }
-    //}
-
-    //Move sprite towards target
-    private bool MoveToPosition(Vector3 target)
-    {
-        return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
-    }
-
-    public void TakeDamage(UnitStateMachine actor, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists)
-    {
-        float damageAmount = 0;
-        //Calculate if the attack hits
-        if (!isHeal)
-        {
-            hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
-            if (isDodgeable == false)
-            {
-                hitChance = 100;
-            }
-            if (Random.Range(0, 100) <= hitChance)
-            {
-                if (statusEffectLists.Count > 0)
-                {
-                    Actions.OnRequestStatusApply(this, statusEffectLists);
-                }
-                if (!ignoresDef)
-                {
-                    damageAmount = incomingTrueDamage - unit.Stats.curDEF;
-                    if (damageAmount < 0)
-                    {
-                        damageAmount = 0;
-                    }
-                }
-                if (affectedStat == AffectedStat.HP)
-                {
-                    ui.animator.Play("Hurt");
-                    unit.Stats.curHP -= damageAmount;
-                    //Actions.OnBarChange(this, AffectedStat.HP);
-                    if (unit.Stats.curHP <= 0)
-                    {
-                        unit.Stats.curHP = 0;
-                        Actions.OnZeroHealth(this);
-                    }
-                    ui.healthBar.SetSize(unit.Stats.curHP / unit.Stats.baseHP);
-                }
-
-                if (affectedStat == AffectedStat.MP)
-                {
-                    ui.animator.Play("Hurt");
-                    unit.Stats.curMP -= damageAmount;
-                    //Actions.OnBarChange(this, AffectedStat.MP);
-                    if (unit.Stats.curMP <= 0)
-                    {
-                        unit.Stats.curMP = 0;
-                    }
-                    ui.manaBar.SetSize(unit.Stats.curMP / unit.Stats.baseMP);
-                }
-
-                //show popup damage
-                Actions.OnDamageReceived(transform, isCritical, damageAmount, false, affectedStat);
-
-                //
-                var PassiveSkills = GetComponent<Abilities>().PassiveSkills;
-
-                for (int i = 0; i < PassiveSkills.Count; i++)
-                {
-                    if (PassiveSkills[i].trigger == Trigger.TAKE_MAGIC_DAMAGE)
-                    {
-                        //PassiveSkills[i].Activate(this);
-                    }
-                }
-            }
-            else
-            {
-                Actions.OnDodge(gameObject.transform);
-                dodgedAtt = true;
-            }
-        }
-
-        else //if it's healing
-        {
-            damageAmount = incomingTrueDamage;
-            Actions.OnRestore(transform, damageAmount, affectedStat);
-        }
-
-
-        //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
-        //{
-        //    StartCoroutine(CounterAttack());
-        //}
-    }
-
-
-
-    //public IEnumerator TakeTheDamage(UnitStateMachine actor, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat)
-    //{
-    //    if (takingDamage)
-    //    {
-    //        yield break;
-    //    }
-    //    takingDamage = true;
-    //    float damageAmount = 0;
-    //    //Calculate if the attack hits
-    //    hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
-    //    if (isDodgeable == false)
-    //    {
-    //        hitChance = 100;
-    //    }
-    //    if (Random.Range(0, 100) <= hitChance)
-    //    {
-    //        if (!ignoresDef)
-    //        {
-    //            damageAmount = incomingTrueDamage - unit.Stats.curDEF;
-    //            if (damageAmount < 0)
-    //            {
-    //                damageAmount = 0;
-    //            }
-    //        }
-    //        if (affectedStat == AffectedStat.HP)
-    //        {
-    //            ui.animator.Play("Hurt");
-    //            unit.Stats.curHP -= damageAmount;
-    //            Actions.OnBarChange(this, AffectedStat.HP);
-    //            if (unit.Stats.curHP <= 0)
-    //            {
-    //                unit.Stats.curHP = 0;
-    //                Actions.OnZeroHealth(this);
-    //            }
-    //        }
-    //        ui.healthBar.SetSize(unit.Stats.curHP * 100 / unit.Stats.baseHP / 100);
-    //        //show popup damage
-    //        Actions.OnDamageReceived(transform, isCritical, damageAmount, false);
-    //    }
-    //    else
-    //    {
-    //        Actions.OnDodge(gameObject.transform);
-    //        dodgedAtt = true;
-    //    }
-
-    //    takingDamage = false;
-    //    //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
-    //    //{
-    //    //    StartCoroutine(CounterAttack());
-    //    //}
-    //}
-
-
-    private IEnumerator CounterAttack()
-    {
-        if (counterAttack)
-        {
-            yield break;
-        }
-
-        counterAttack = true;
-
-        yield return new WaitForSeconds(0.5f);
-        ui.animator.Play("Attack");
-        ui.audioSource.Play();
-        yield return new WaitForSeconds(0.25f);
-        float minMaxAtk = Mathf.Round(Random.Range(unit.Stats.minATK, unit.Stats.maxATK));
-
-        if (Random.Range(0, 100) <= unit.Stats.curCRIT)
-        {
-            //isCritical = true;
-            minMaxAtk = Mathf.Round(minMaxAtk * unit.Stats.critDamage);
-        }
-        //BSM.PerformList[0].AttackersGameObject.GetComponent<UnitStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.curHit, true, counterAttack);
-        yield return new WaitForSeconds(0.5f);
-        counterAttack = false;
-    }
-
-    //Undead mechanic
-    //Perk1: While enemy with undead dies, it will rise after X turns with X HP;
-    //Drawback: Undead takes 2x damage from holy property / Exorcism passive skill and if killed by holy/exorcism, can't rise
-    //Drawback / perk2: Can't be buffed or debuffed / healed neither by enemies or allies unless the skill level isn't maximal
-    //If undead: after death remove from PerformList, but don't remove from enemies in Battle so it can be targeted by players
-    //If is targeted by player, but hasn't risen at the start of the turn, then switch targets.
-    //At this point adding the rise method
-    //All those skill related methods with later be moved to corresponding places, at this point it all is for testing purposes.
-
-    //TODO LIST OF SOME SORT
-    // 1) Hide mechanic
-    //    hidden heroes can't be hit or targeted unless enemy has vision passive skill
-    // 2) Exorcism / holy mechanic to counter undead
-    // 3) Heal over time (buff that heals ally(allies) at the end or in the beginning of the turn)
-    // 4) Mana restoration skill
-    // 5) Poison over time. Same as heal over time, but drains %% HP / %% MP at the end of the turn.
-    // 6) Ressurect skill. Similar to what RiseUndead method in Enemy state machine does. Cleric / healer skill.
-    //
-
-    //public void UndeadRise()
-    //{
-    //    alive = true;
-    //    gameObject.tag = "Enemy";
-    //    ui.Selector.SetActive(true);
-    //    EnemyActionChoice();
-    //}
-
-    public void Captured()
-    {
-        currentState = TurnState.DEAD;
-        gameObject.SetActive(false);
-    }
-
-    //void ExecutePassiveSkills(BattleStateMachine BSM)
-    //{
-    //    var PassiveSkills = abilities.PassiveSkills;
-    //    if (PassiveSkills.Count > 0)
-    //    {
-    //        for (int i = 0; i < PassiveSkills.Count; i++)
-    //        {
-    //            //PassiveSkills[i].Activate(this);
-    //        }
     //    }
     //}
 }

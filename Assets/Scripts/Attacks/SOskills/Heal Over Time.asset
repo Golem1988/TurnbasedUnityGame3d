@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Heal Over Time
   m_EditorClassIdentifier: 
   id: 947bae94dad8bae469048011b3d251c2
-  SkillName: Heal
-  SkillLevel: 0
+  SkillName: Heal over time
+  SkillLevel: 1
   SkillIcon: {fileID: 1148322292, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
   Description: heals 500hp at the turn start each turn for 5 turns.
   durableEffectVfx: {fileID: 4000014101406242, guid: 2bcfb1fde11704345a1c09b41d6421a4, type: 3}

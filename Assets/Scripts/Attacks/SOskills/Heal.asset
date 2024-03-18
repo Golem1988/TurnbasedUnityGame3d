@@ -30,7 +30,7 @@ MonoBehaviour:
   canCrit: 1
   targetCount: 1
   strikeCount: 1
-  targetType: 4
+  targetType: 3
   targetStat: 0
   damageAffectedByStat: 1
   FixedDamageAmount: 0
@@ -42,14 +42,3 @@ MonoBehaviour:
   removeStatusEffects: []
   isDodgeable: 0
   ignoreDefense: 0
-  Test:
-    TrueDamage: 0
-    skillType: 0
-    endTargetList: []
-    strikeCount: 0
-    canCrit: 0
-    isDodgeable: 0
-    ignoreDefense: 0
-    targetStat: 0
-    isHeal: 0
-    applyStatusEffects: []

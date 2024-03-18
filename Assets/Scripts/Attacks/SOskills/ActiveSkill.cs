@@ -58,7 +58,7 @@ public class ActiveSkill : BaseAttack
     [SerializeField]
     protected bool ignoreDefense;
 
-    public ActionSettings Test;
+    //public ActionSettings Test;
 
     //private int targets;
     private UnitStateMachine source;
@@ -69,6 +69,7 @@ public class ActiveSkill : BaseAttack
     public bool IsAttack { get => isAttack; protected set => isAttack = value; }
     public SkillType SkillType { get => skillType; protected set => skillType = value; }
     public CostType CostType { get => costType; protected set => costType = value; }
+    public TargetType TargetType { get => targetType; protected set => targetType = value; }
     public int CostValue { get => costValue; protected set => costValue = value; }
     public int TargetCount { get => targetCount; private set => targetCount = value; }
     public bool OnlyOnHit { get => onlyOnHit; protected set => onlyOnHit = value; }
@@ -81,14 +82,15 @@ public class ActiveSkill : BaseAttack
 
     public virtual ActionSettings CalculateSkill(UnitStateMachine actorSource, UnitStateMachine theTarget)
     {
+        Debug.Log("actorSource name: " + actorSource.gameObject.name + "theTarget =" + theTarget.gameObject.name);
         source = actorSource;
-        //target = theTarget;
+        var target = theTarget;
         var gameManager = GameManager.instance;
         var BSM = source.BSM;
         var StatusList = source.BSM.BuffManager.StatusList;
         var unit = source.unit;
-        var heroUnit = source.GetComponent<Character>();
-        var targets = TargetCount;
+        //var heroUnit = source.GetComponent<Character>();
+        var targetCountX = TargetCount;
 
         if (skillType == SkillType.Magic)
             isDodgeable = false;
@@ -98,9 +100,10 @@ public class ActiveSkill : BaseAttack
         List<UnitStateMachine> potentialTargets = new();
 
         //determine if the actor is enemy or player/summon
-        if (source.CompareTag("Enemy"))
+        if (source.gameObject.CompareTag("Enemy"))
         {
             isEnemy = true;
+            Debug.Log("Enemy name: " + source.gameObject.name);
         }
 
         //calculate the damage
@@ -121,11 +124,30 @@ public class ActiveSkill : BaseAttack
         }
 
         //sortby
-        if (TargetCount > 1)
-        {
+
+        //if(TargetCount > 1)
+        //{
             //we want to determine what list do we take the targets from (From EnemiesInBattle or from Heroesinbattle)
             //and create a list of all potential targets based on Enemy / Hero tags
-            if (isEnemy || targetType == TargetType.Ally)
+            if (isEnemy && targetType == TargetType.Ally)
+            {
+                for (int i = 0; i < BSM.EnemiesInBattle.Count; i++)
+                {
+                    potentialTargets.Add(BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
+                    Debug.Log("potentialTargets Added allies: " + BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
+                }
+                Debug.Log("potentialTargets Added allies: " + potentialTargets.Count);
+            }
+            else if (isEnemy && targetType == TargetType.Foe)
+            {
+                for (int i = 0; i < BSM.HeroesInBattle.Count; i++)
+                {
+                    potentialTargets.Add(BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
+                    Debug.Log("potentialTargets Added foes: " + BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
+                }
+                Debug.Log("potentialTargets Added foes: " + potentialTargets.Count);
+            }
+            else if (!isEnemy && targetType == TargetType.Ally)
             {
                 for (int i = 0; i < BSM.HeroesInBattle.Count; i++)
                 {
@@ -143,20 +165,24 @@ public class ActiveSkill : BaseAttack
                 }
                 Debug.Log("potentialTargets Added enemies: " + potentialTargets.Count);
             }
+        //}
 
-            //if target count is let's say 5 and we only have 1-2-3-4 potentialTargets, then make them equal
-            //targets = targetCount;
-            Debug.Log("targets = " + targets);
-            if (targets > potentialTargets.Count)
-            {
-                targets = potentialTargets.Count;
-                Debug.Log("targets changed = " + targets);
-            }
 
-            //remove enemy that were chosen to be the target
-            potentialTargets.Remove(theTarget);
-            Debug.Log("potentialTargets removed: " + theTarget);
-            Debug.Log("potentialTargets after removing initial target: " + potentialTargets.Count);
+        //if target count is let's say 5 and we only have 1-2-3-4 potentialTargets, then make them equal
+        //targets = targetCount;
+        Debug.Log("targets = " + targetCountX);
+        if (targetCountX > potentialTargets.Count)
+        {
+            targetCountX = potentialTargets.Count;
+            Debug.Log("targets changed = " + targetCountX);
+        }
+
+        //remove enemy that were chosen to be the target
+        potentialTargets.Remove(theTarget);
+        Debug.Log("potentialTargets removed: " + theTarget);
+        Debug.Log("potentialTargets after removing initial target: " + potentialTargets.Count);
+        if (targetCountX > 1)
+        {
             for (int i = 0; i < potentialTargets.Count; i++)
             {
                 Debug.Log("Potential target [" + i + "] = " + potentialTargets[i]);
@@ -164,7 +190,7 @@ public class ActiveSkill : BaseAttack
             if (sortBy == SortBy.Random && potentialTargets.Count > 1)
             {
                 sortType = SortType.None; //we won't use any ascension / descension order since it's not relevant and will simply add random targets from the list
-                for (int i = 0; i < targets - 1; i++)
+                for (int i = 0; i < targetCountX - 1; i++)
                 {
                     int index = Random.Range(0, potentialTargets.Count - 1);
                     endTargetList.Add(potentialTargets[index]);
@@ -173,8 +199,8 @@ public class ActiveSkill : BaseAttack
                     //    break;
                     //if (potentialTargets.Count == 1)
                     //{
-                        //endTargetList.Add(potentialTargets[0]);
-                        //break;
+                    //endTargetList.Add(potentialTargets[0]);
+                    //break;
                     //}
                 }
                 Debug.Log("endTargetList has targets: " + endTargetList.Count);
@@ -211,9 +237,9 @@ public class ActiveSkill : BaseAttack
                     sortList.Reverse();
                 }
 
-                if (targets > 1)
+                if (targetCountX > 1)
                 {
-                    for (int i = 0; i < targets - 1; i++)
+                    for (int i = 0; i < targetCountX - 1; i++)
                     {
                         endTargetList.Add(sortList[i]);
                         Debug.Log("end target list Added " + sortList[i]);
@@ -233,12 +259,12 @@ public class ActiveSkill : BaseAttack
             }
 
         }
-        else if (TargetCount == 1) //if there's only 1 target, just add it to the list and that's it, no sorting or anything
+        else if (targetCountX == 1) //if there's only 1 target, just add it to the list and that's it, no sorting or anything
         {
             endTargetList.Add(theTarget);
         }
 
-        Test = new ActionSettings { TrueDamage = trueDamage, skillType = SkillType, endTargetList = endTargetList, strikeCount = strikeCount, canCrit = canCrit, isDodgeable = isDodgeable, ignoreDefense = ignoreDefense, targetStat = targetStat, isHeal = !isAttack, applyStatusEffects = ApplyStatusEffects };
+        var Test = new ActionSettings { TrueDamage = trueDamage, skillType = SkillType, endTargetList = endTargetList, strikeCount = strikeCount, canCrit = canCrit, isDodgeable = isDodgeable, ignoreDefense = ignoreDefense, targetStat = targetStat, isHeal = !isAttack, applyStatusEffects = ApplyStatusEffects };
         return Test;
     }
 

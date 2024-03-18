@@ -79,9 +79,6 @@ public class BattleStateMachine : MonoBehaviour
     //enemy buttons
     public TargetSelectPanel enemyPanel;
     public TargetSelectPanel allyPanel;
-    //private List<GameObject> enemyBtns = new List<GameObject>();
-    //ally buttons
-    //private List<GameObject> allyBtns = new List<GameObject>();
 
     //spawnpoints
     public List<Transform> spawnPoints = new List<Transform>();
@@ -105,8 +102,6 @@ public class BattleStateMachine : MonoBehaviour
 
     public HandleTurn HeroChoice;
 
-    //public GameObject enemyButton;
-    //public GameObject allyButton;
     public Transform Spacer;
     public Transform allySpacer;
     public Transform summonSpacer;
@@ -116,7 +111,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject AttackPanel;
     public GameObject EnemySelectPanel;
     public GameObject AllySelectPanel;
-    //public GameObject MagicPanel;
+
     public GameObject MagicPanelGrid;
     public GameObject AutoBattlePanel;
     public GameObject SummonSelectPanel;
@@ -144,12 +139,12 @@ public class BattleStateMachine : MonoBehaviour
 
     //timescale
     private float fixedDeltaTime;
-    private float timeModifier = 1f;
+    private float timeModifier;
 
     void Awake()
     {
         timeModifier = GameManager.instance.fightSpeed;
-        DisableSpeedButton(GameManager.instance.fightSpeed);
+        DisableSpeedButton(timeModifier);
         SpawnActors();
         AutobattleSetup();
         fixedDeltaTime = Time.fixedDeltaTime;
@@ -170,12 +165,10 @@ public class BattleStateMachine : MonoBehaviour
 
         AttackPanel.SetActive(false);
         EnemySelectPanel.SetActive(false);
-        //MagicPanel.SetActive(false);
         MagicPanelGrid.SetActive(false);
 
         EnemyButtons();
         AllyButtons();
-        //SummonButtons();
     }
 
     // Update is called once per frame
@@ -247,55 +240,11 @@ public class BattleStateMachine : MonoBehaviour
             case (PerformAction.TAKEACTION):
                 GameObject performer = GameObject.Find(PerformList[0].AttackersName);
                 UnitStateMachine USM = performer.GetComponent<UnitStateMachine>();
-                if (PerformList[0].Type == "Enemy")
+                if (PerformList[0].Attacker != null)
                 {
-                    for (int i = 0; i < HeroesInBattle.Count; i++)
-                    {
-                        if (PerformList[0].AttackersTarget == HeroesInBattle[i])
-                        {
-                            USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                            USM.currentState = UnitStateMachine.TurnState.ACTION;
-                            break;
-                        }
-                        else
-                        {
-                            PerformList[0].AttackersTarget = HeroesInBattle[UnityEngine.Random.Range(0, HeroesInBattle.Count)];
-                            USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                            USM.currentState = UnitStateMachine.TurnState.ACTION;
-                        }
-                    }
-
+                    USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
+                    USM.currentState = UnitStateMachine.TurnState.ACTION;
                 }
-
-                else
-                {
-                    //for (int i = 0; i < EnemiesInBattle.Count; i++)
-                    //{
-                    //    if (PerformList[0].AttackersTarget == EnemiesInBattle[i])
-                    //    {
-                            USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                            USM.currentState = UnitStateMachine.TurnState.ACTION;
-                    //    }
-                    //    else
-                    //    {
-                    //        PerformList[0].AttackersTarget = EnemiesInBattle[UnityEngine.Random.Range(0, EnemiesInBattle.Count)];
-                    //        USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                    //        USM.currentState = UnitStateMachine.TurnState.ACTION;
-                    //    }
-                    //}
-                }
-
-                //else
-                //{
-                //    USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                //    USM.currentState = UnitStateMachine.TurnState.ACTION;
-                //}
-
-                //if (PerformList[0].Type == "Summon")
-                //{
-                //    USM.ChosenAttackTarget = PerformList[0].AttackersTarget;
-                //    USM.currentState = UnitStateMachine.TurnState.ACTION;
-                //}
 
                 battleStates = PerformAction.PERFORMACTION;
                 break;
@@ -369,10 +318,17 @@ public class BattleStateMachine : MonoBehaviour
                 break;
         }
 
-        if (battlePhases == BattlePhases.PLAYERINPUT && battleStates == PerformAction.WIN && battleStates == PerformAction.LOSE)
+        if (battlePhases == BattlePhases.PREBATTLE || battlePhases == BattlePhases.PLAYERINPUT || battleStates == PerformAction.WIN || battleStates == PerformAction.LOSE)
         {
+            DisableSpeedButtons(true);
             Time.timeScale = 1f;
-            Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+            Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
+        }
+        else
+        {
+            DisableSpeedButtons(false);
+            Time.timeScale = timeModifier;
+            Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         }
 
     }
@@ -585,7 +541,6 @@ public class BattleStateMachine : MonoBehaviour
         DefendButton.GetComponent<Button>().onClick.AddListener(() => Input7());
         DefendButton.transform.SetParent(actionSpacer, false);
         atkBtns.Add(DefendButton);
-        //DefendButton.GetComponent<Button>().interactable = false;
 
         if (PlayerOrSummon.CompareTag("Hero"))
         {
@@ -595,7 +550,6 @@ public class BattleStateMachine : MonoBehaviour
             CaptureButton.GetComponent<Button>().onClick.AddListener(() => Input8());
             CaptureButton.transform.SetParent(actionSpacer, false);
             atkBtns.Add(CaptureButton);
-            //CaptureButton.GetComponent<Button>().interactable = false;
 
             GameObject SpawnSummonButton = Instantiate(actionButton) as GameObject;
             Text SpawnSummonButtonText = SpawnSummonButton.transform.Find("Text").gameObject.GetComponent<Text>();
@@ -639,11 +593,6 @@ public class BattleStateMachine : MonoBehaviour
         {
             MagicAttackButton.GetComponent<Button>().interactable = false;
         }
-        //else if (PlayerOrSummon.CompareTag("Summon"))
-        //{
-        //        MagicAttackButton.GetComponent<Button>().interactable = false;
-        //}
-
     }
 
     public void EnemyButtons()
@@ -717,7 +666,7 @@ public class BattleStateMachine : MonoBehaviour
                 if (SummonList[i].Type == EnemyType.BABY)
                     sButton.typeText.color = Color.magenta;
                 if (SummonList[i].Type == EnemyType.MUTANT)
-                    sButton.typeText.color = Color.red;
+                    sButton.typeText.color = new Color32(124, 0, 124, 255);
                 sButton.hpText.text = (SummonList[i].Stats.curHP.ToString() + "/" + SummonList[i].Stats.baseHP.ToString());
                 sButton.index = i;
                 button.GetComponent<Button>().onClick.AddListener(() => Input10(sButton.index));
@@ -753,7 +702,6 @@ public class BattleStateMachine : MonoBehaviour
     {
         AttackPanel.SetActive(false);
         MagicPanelGrid.SetActive(true);
-        //MagicPanel.SetActive(true);
     }
 
     public void Input4(ActiveSkill choosenMagic) //chosen magic attack
@@ -862,7 +810,6 @@ public class BattleStateMachine : MonoBehaviour
         EnemySelectPanel.SetActive(false);
         AllySelectPanel.SetActive(false);
         AttackPanel.SetActive(false);
-        //MagicPanel.SetActive(false);
         MagicPanelGrid.SetActive(false);
         SummonSelectPanel.SetActive(false);
 
@@ -884,38 +831,44 @@ public class BattleStateMachine : MonoBehaviour
         HeroChoice.Type = "Hero";
         if (countdownTrigger == true)
         {
-            //int num = UnityEngine.Random.Range(0, heroe.attacks.Count);
             HeroChoice.choosenAttack = abilities.BasicActions[0]; //0 is assigned to basic attack 1 is assigned to capture at this point
         }
 
-        if (countdownTrigger == false && heroe.curMP > 0)
+        if (countdownTrigger == false && heroe.curMP > 0 && abilities.MagicAttacks.Count > 0)
         {
-            for (int i = 0; i < abilities.MagicAttacks.Count; i++)
+            List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
+            //remove all we can't use
+            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > heroe.curMP);
+            //now select either attacking skill or healing skill based on information
+            if (magicAttacks.Count > 1)
             {
-                if (abilities.MagicAttacks[i].CostValue <= heroe.curMP)
-                {
-                    int num = UnityEngine.Random.Range(0, abilities.MagicAttacks.Count - 1);
-                    HeroChoice.choosenAttack = abilities.MagicAttacks[num];
-                }
+                int num = UnityEngine.Random.Range(0, magicAttacks.Count);
+                HeroChoice.choosenAttack = magicAttacks[num];
+            }
+            else if (magicAttacks.Count == 1)
+            {
+                HeroChoice.choosenAttack = magicAttacks[0];
             }
 
-            if (HeroChoice.choosenAttack != null && HeroChoice.choosenAttack.IsAttack == false)
+            if (HeroChoice.choosenAttack != null && HeroChoice.choosenAttack.TargetType == TargetType.Ally)
             {
                 HeroChoice.AttackersTarget = HeroesInBattle[UnityEngine.Random.Range(0, HeroesInBattle.Count)];
             }
-
+            else if (HeroChoice.choosenAttack != null && HeroChoice.choosenAttack.TargetType == TargetType.Foe)
+            {
+                HeroChoice.AttackersTarget = EnemiesInBattle[UnityEngine.Random.Range(0, EnemiesInBattle.Count)];
+            }
         }
         else
         {
-            //int num = UnityEngine.Random.Range(0, heroe.attacks.Count);
             HeroChoice.choosenAttack = abilities.BasicActions[0];
+            HeroChoice.AttackersTarget = EnemiesInBattle[UnityEngine.Random.Range(0, EnemiesInBattle.Count)];
         }
         if (HeroChoice.choosenAttack == null)
         {
-            //int num = UnityEngine.Random.Range(0, heroe.attacks.Count);
             HeroChoice.choosenAttack = abilities.BasicActions[0];
+            HeroChoice.AttackersTarget = EnemiesInBattle[UnityEngine.Random.Range(0, EnemiesInBattle.Count)];
         }
-        HeroChoice.AttackersTarget = EnemiesInBattle[UnityEngine.Random.Range(0, EnemiesInBattle.Count)];
         HeroInput = HeroGUI.DONE;
     }
 
@@ -1029,7 +982,7 @@ public class BattleStateMachine : MonoBehaviour
         preFightStarted = true;
         Actions.OnTurnStart(this); //invoke preturn actions, in this case buffs trigger etc
         Time.timeScale = timeModifier;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+        Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         InstantiateFightText();
         //Order actors in performlist based on their speed 
         UpdatePerformList();
@@ -1078,7 +1031,7 @@ public class BattleStateMachine : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //And start a new turn actions
         Time.timeScale = 1;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+        Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
 
         if (EnemiesInBattle.Count > 0)
             battlePhases = BattlePhases.PLAYERINPUT;
@@ -1111,37 +1064,7 @@ public class BattleStateMachine : MonoBehaviour
             Debug.Log("You won the battle");
             for (int i = 0; i < HeroesInBattle.Count; i++)
             {
-                UnitLevel unitLevel = HeroesInBattle[i].GetComponent<UnitLevel>();
-                CalculateExp(unitLevel.level.currentlevel);
-                var unitAttributes = HeroesInBattle[i].GetComponent<UnitAttributes>();
-                Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
-                unitLevel.level.AddExp(getExp, unitAttributes);
-                Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
-                GameManager.instance.Chat.AddToChatOutput(HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
-
-                //yield return new WaitForSeconds(0.5f);
-                ////unitLevel.level.thisExp = unitLevel.THIS_EXP;
-                ////unitLevel.level.expNow = unitLevel.expNow;
-                ////unitLevel.level.displayExp = unitLevel.displayExp;
-                //yield return new WaitForSeconds(0.5f);
-
-                if (HeroesInBattle[i].CompareTag("Hero"))
-                {
-                    var name = HeroesInBattle[i].name;
-                    int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == name);
-                    HeroDataManager.instance.CharacterInfo[index].Level = unitLevel.level;
-                }
-                else if (HeroesInBattle[i].CompareTag("Summon"))
-                {
-                    var ownerName = HeroesInBattle[i].GetComponent<Summon>().OwnerName;
-                    Debug.Log("ownerName = " + ownerName);
-                    int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == ownerName);
-                    Debug.Log("ownerindex = " + index.ToString());
-                    int summonIndex = HeroDataManager.instance.CharacterInfo[index].SummonList.FindIndex(summon => summon.UniqueID == HeroesInBattle[i].GetComponent<Summon>().UniqueID);
-                    Debug.Log("summonIndex = " + summonIndex.ToString());
-                    HeroDataManager.instance.CharacterInfo[index].SummonList[summonIndex].Level = unitLevel.level;
-                }
-
+                GetExperience(i);
                 HeroesInBattle[i].GetComponent<UnitStateMachine>().currentState = UnitStateMachine.TurnState.WAITING;
             }
         }
@@ -1171,6 +1094,34 @@ public class BattleStateMachine : MonoBehaviour
         GameManager.instance.enemysToBattle.Clear();
 
         //postbattleStarted = false;
+    }
+
+    private void GetExperience(int i)
+    {
+        UnitLevel unitLevel = HeroesInBattle[i].GetComponent<UnitLevel>();
+        CalculateExp(unitLevel.level.currentlevel);
+        var unitAttributes = HeroesInBattle[i].GetComponent<UnitAttributes>();
+        Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
+        unitLevel.level.AddExp(getExp, unitAttributes);
+        Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
+        GameManager.instance.Chat.AddToChatOutput(HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
+
+        if (HeroesInBattle[i].CompareTag("Hero"))
+        {
+            var name = HeroesInBattle[i].name;
+            int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == name);
+            HeroDataManager.instance.CharacterInfo[index].Level = unitLevel.level;
+        }
+        else if (HeroesInBattle[i].CompareTag("Summon"))
+        {
+            var ownerName = HeroesInBattle[i].GetComponent<Summon>().OwnerName;
+            Debug.Log("ownerName = " + ownerName);
+            int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == ownerName);
+            Debug.Log("ownerindex = " + index.ToString());
+            int summonIndex = HeroDataManager.instance.CharacterInfo[index].SummonList.FindIndex(summon => summon.UniqueID == HeroesInBattle[i].GetComponent<Summon>().UniqueID);
+            Debug.Log("summonIndex = " + summonIndex.ToString());
+            HeroDataManager.instance.CharacterInfo[index].SummonList[summonIndex].Level = unitLevel.level;
+        }
     }
 
     public void SpeedUpTime(float modifier)
@@ -1212,6 +1163,13 @@ public class BattleStateMachine : MonoBehaviour
         {
             BattleSpeedButtons[2].interactable = false;
         }
+    }
+
+    void DisableSpeedButtons(bool yesno)
+    {
+         BattleSpeedButtons[0].interactable = yesno;
+         BattleSpeedButtons[1].interactable = yesno;
+         BattleSpeedButtons[2].interactable = yesno;
     }
 
 }

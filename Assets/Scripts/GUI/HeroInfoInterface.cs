@@ -326,7 +326,7 @@ public class HeroInfoInterface : MonoBehaviour
 
             heroStatpts.text = HeroPrefab.Stats.unspentStatPoints.ToString();
 
-            //heroExp.text = HeroPrefab.Level.expNow.ToString() + "/" + HeroPrefab.Level.displayExp.ToString();
+            heroExp.text = HeroPrefab.Level.CUR_EXP.ToString() + "/" + HeroPrefab.Level.NEXT_EXP.ToString();
         }
     }
 

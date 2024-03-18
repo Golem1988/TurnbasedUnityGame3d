@@ -96,6 +96,8 @@ public class Character : MonoBehaviour
         Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         UnitLevel.level.experience = unitLevel.totalExperience;
         UnitLevel.level.totalExperience = unitLevel.totalExperience;
+        UnitLevel.level.CUR_EXP = unitLevel.CUR_EXP;
+        UnitLevel.level.NEXT_EXP = unitLevel.NEXT_EXP;
         Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         //hero.Stats.displayNameText.text = hero.Stats.theName.ToString();
     }

@@ -14,7 +14,12 @@ public class Level
 
     public int MAX_EXP;
     public int NEXT_EXP;
+    //public int START_EXP;
+    public int CUR_EXP;
     public int MAX_LEVEL = 99;
+
+    public int lastLevExp;
+
     public Level(int level)
     {
         MAX_EXP = GetXPForLevel(MAX_LEVEL);
@@ -24,6 +29,7 @@ public class Level
             experience = totalExperience;
         //OnLevelUp = OnLevUp;
         requiredExp = CalculateRequiredExp(level);
+        lastLevExp = CalculateRequiredExp(level - 1);
     }
 
     public int GetXPForLevel(int level)
@@ -57,15 +63,15 @@ public class Level
         return solveForRequiredExp / 4;
     }
 
-    public int CalculateNext(int level)
-    {
-        int solveForRequiredExp = 0;
-        for (int levelCycle = 1; levelCycle <= level; levelCycle++)
-        {
-            solveForRequiredExp += (int)Math.Floor(levelCycle + (300.0f * Math.Pow(2.0f, levelCycle / 7.0f)));
-        }
-        return solveForRequiredExp / 4;
-    }
+    //public int CalculateNext(int level)
+    //{
+    //    int solveForRequiredExp = 0;
+    //    for (int levelCycle = 1; levelCycle <= level; levelCycle++)
+    //    {
+    //        solveForRequiredExp += (int)Math.Floor(levelCycle + (300.0f * Math.Pow(2.0f, levelCycle / 7.0f)));
+    //    }
+    //    return solveForRequiredExp / 4;
+    //}
 
     public int GetLevelForXP(int exp)
     {
@@ -130,8 +136,12 @@ public class Level
             {
                 currentlevel = GetLevelForXP(experience);
                 requiredExp = CalculateRequiredExp(currentlevel);
+                lastLevExp = CalculateRequiredExp(currentlevel - 1);
             }
         }
+        //lastLevExp = CalculateRequiredExp(currentlevel - 1);
+        CUR_EXP = experience - lastLevExp;
+        NEXT_EXP = requiredExp - lastLevExp;
         IncreaseStats(unit);
     }
 

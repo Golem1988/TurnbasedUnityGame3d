@@ -77,14 +77,14 @@ public class MainAvatarUI : MonoBehaviour
         HeroHpText.text = hero.Stats.curHP.ToString() + "/" + hero.Stats.baseHP.ToString();
         HeroMpText.text = hero.Stats.curMP.ToString() + "/" + hero.Stats.baseMP.ToString();
 
-        //HeroExpText.text = hero.Level.expNow.ToString() + "/" + hero.Level.displayExp.ToString();
+        HeroExpText.text = hero.Level.CUR_EXP.ToString() + "/" + hero.Level.NEXT_EXP.ToString();
         HeroLevelText.text = hero.Level.currentlevel.ToString();
 
         heroHealthBar.SetSize(hero.Stats.curHP / hero.Stats.baseHP);
         heroManaBar.SetSize(hero.Stats.curMP / hero.Stats.baseMP);
-        //float curExp = hero.Level.expNow;
-        //float reqExp = hero.Level.displayExp;
-        //heroExpBar.SetSize(curExp / reqExp);
+        float curExp = hero.Level.CUR_EXP;
+        float reqExp = hero.Level.NEXT_EXP;
+        heroExpBar.SetSize(curExp / reqExp);
     }
 
     private void ChangeSummonAvatar(CharacterInformation hero, CapturedPets summon)

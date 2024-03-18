@@ -30,7 +30,7 @@ MonoBehaviour:
   canCrit: 1
   targetCount: 2
   strikeCount: 1
-  targetType: 4
+  targetType: 3
   targetStat: 0
   damageAffectedByStat: 1
   FixedDamageAmount: 0
@@ -38,21 +38,10 @@ MonoBehaviour:
   sortBy: 1
   sortType: 1
   applyStatusEffects:
-  - effect: {fileID: 11400000, guid: 2e3740da40e40fa41a196ddb14cec5aa, type: 2}
+  - effect: {fileID: 11400000, guid: 947bae94dad8bae469048011b3d251c2, type: 2}
     applicationChance: 100
-    duration: 3
+    duration: 4
   onlyOnHit: 0
   removeStatusEffects: []
   isDodgeable: 0
   ignoreDefense: 1
-  Test:
-    TrueDamage: 0
-    skillType: 0
-    endTargetList: []
-    strikeCount: 0
-    canCrit: 0
-    isDodgeable: 0
-    ignoreDefense: 0
-    targetStat: 0
-    isHeal: 0
-    applyStatusEffects: []

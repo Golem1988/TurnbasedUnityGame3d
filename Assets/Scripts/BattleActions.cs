@@ -556,22 +556,51 @@ public class BattleActions : MonoBehaviour
             inBattle.Remove(unit);
             for (int i = 0; i < BSM.PerformList.Count; i++)
             {
-                if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1)
+                if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Foe)
                 {
                     BSM.PerformList[i].AttackersTarget = inBattle[Random.Range(0, inBattle.Count)];
-                    Debug.Log("New target = " + BSM.PerformList[i].AttackersTarget.name);
+                    Debug.Log("RemoveFromLists New target = " + BSM.PerformList[i].AttackersTarget.name);
                     BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
-                    Debug.Log("New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
+                    Debug.Log("RemoveFromLists New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
                     if (BSM.PerformList[i].choosenAttack.ID == "e2a08119519b2ec48bbe851df8d319d9")
                     {
                         BSM.PerformList[i].choosenAttack = Extensions.FindActiveSkillID("010efba02612ef34db18caadaceb37dd");
                     }
                 }
 
-                else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1)
+                else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Foe)
                 {
                     BSM.PerformList[i].AttackersTarget = inBattle[0];
                     BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = inBattle[0];
+                }
+
+                else
+                {
+                    if (inBattle == BSM.HeroesInBattle)
+                    {
+                        inBattle = BSM.EnemiesInBattle;
+                    }
+                    else
+                    {
+                        inBattle = BSM.HeroesInBattle;
+                    }
+
+                    if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Ally)
+                    {
+                        BSM.PerformList[i].AttackersTarget = inBattle[Random.Range(0, inBattle.Count)];
+                        Debug.Log("New target = " + BSM.PerformList[i].AttackersTarget.name);
+                        BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
+                        Debug.Log("New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
+                        //if (BSM.PerformList[i].choosenAttack.ID == "e2a08119519b2ec48bbe851df8d319d9")
+                        //{
+                        //    BSM.PerformList[i].choosenAttack = Extensions.FindActiveSkillID("010efba02612ef34db18caadaceb37dd");
+                        //}
+                    }
+                    else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Ally)
+                    {
+                        BSM.PerformList[i].AttackersTarget = inBattle[0];
+                        BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = inBattle[0];
+                    }
                 }
             }
         }

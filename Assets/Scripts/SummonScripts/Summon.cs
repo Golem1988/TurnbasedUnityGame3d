@@ -41,6 +41,8 @@ public class Summon : MonoBehaviour
 
         UnitLevel.level.experience = unitLevel.totalExperience;
         UnitLevel.level.totalExperience = unitLevel.totalExperience;
+        UnitLevel.level.CUR_EXP = unitLevel.CUR_EXP;
+        UnitLevel.level.NEXT_EXP = unitLevel.NEXT_EXP;
 
         if (summonType == EnemyType.NORMAL)
         {

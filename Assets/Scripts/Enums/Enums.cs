@@ -26,12 +26,11 @@ public enum SelectionMode
     All = 1
 }
 
-[System.Flags]
 public enum TargetType
 {
     Self = 1,
     Foe = 2,
-    Ally = 4
+    Ally = 3
 }
 
 public enum StatusCalcType

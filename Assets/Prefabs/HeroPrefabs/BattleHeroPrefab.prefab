@@ -19590,7 +19590,9 @@ MonoBehaviour:
     requiredExp: 0
     MAX_EXP: 0
     NEXT_EXP: 0
+    CUR_EXP: 0
     MAX_LEVEL: 0
+    lastLevExp: 0
 --- !u!114 &8360724521666663758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34544,7 +34546,9 @@ MonoBehaviour:
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []

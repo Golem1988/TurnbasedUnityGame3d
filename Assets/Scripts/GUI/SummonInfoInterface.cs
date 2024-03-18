@@ -467,7 +467,7 @@ public class SummonInfoInterface : MonoBehaviour
 
             summonStatpts.text = EditableSummon.Stats.unspentStatPoints.ToString();
             
-            //summonExp.text = EditableSummon.Level.expNow.ToString() + "/" + EditableSummon.Level.displayExp.ToString();
+            summonExp.text = EditableSummon.Level.CUR_EXP.ToString() + "/" + EditableSummon.Level.NEXT_EXP.ToString();
             UpdateAvatar();
         }
         else
