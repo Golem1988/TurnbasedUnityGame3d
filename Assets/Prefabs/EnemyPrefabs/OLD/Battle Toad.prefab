@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ebfcb8b57053841b13112473ed2f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bar: {fileID: 0}
 --- !u!1 &927607402793620632
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayNameText: {fileID: 1988089285556612847}
-  levelText: {fileID: 3133942905311717373}
+  levelText: {fileID: 439189485265649091}
+  levelFrame: {fileID: 0}
   screamText: {fileID: 3794635172721514491}
   Selector: {fileID: 6401507086195271306}
   FloatingText: {fileID: 328232039236370507, guid: 7483396cd386c4d4bb462c3e5fd5908c, type: 3}
@@ -280,7 +282,8 @@ MonoBehaviour:
   rageBar: {fileID: 0}
   animator: {fileID: 338826894110205767}
   audioSource: {fileID: 4155760140763167217}
-  heroAvatar: {fileID: 21300000, guid: 4205b6ed43014a94ea3911f50a10e788, type: 3}
+  Avatar: {fileID: 0}
+  NameCanvas: {fileID: 0}
 --- !u!114 &2757645962045504985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,15 +412,17 @@ MonoBehaviour:
   BSM: {fileID: 0}
   abilities: {fileID: 3340712224274951332}
   currentState: 0
+  AllowedActions:
+    canUseMelee: 1
+    canUseMagic: 1
+    canAct: 1
+    canFlee: 1
+    canUseItems: 1
   ChosenAttackTarget: {fileID: 0}
   secondAttackRunning: 0
   counterAttack: 0
   doubleHit: 0
   dodgedAtt: 0
-  canUseMelee: 1
-  canUseMagic: 1
-  canAct: 1
-  canFlee: 1
 --- !u!114 &-5670626240327289526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,20 +469,9 @@ MonoBehaviour:
       BaseValue: 0
     stamina:
       BaseValue: 0
-    statpointsPerLevel: 5
-    statIncreasePerLevel: 1
-    hpPerStr: 10
-    atkPerStr: 10
-    mpPerInt: 10
-    atkPerInt: 3
-    spdPerAgi: 2
-    dodgePerAgi: 3
-    hitPerDex: 2
-    atkPerDex: 2
-    hpPerSta: 25
-    defPerSta: 5
-    matkPerInt: 10
-    matkPerStr: 3
+    unspentStatPoints: 0
+    maxRage: 150
+    curRage: 0
 --- !u!114 &588404677150933611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,11 +486,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level:
     experience: 0
+    totalExperience: 0
     currentlevel: 0
     requiredExp: 0
     MAX_EXP: 0
     NEXT_EXP: 0
+    CUR_EXP: 0
     MAX_LEVEL: 0
+    lastLevExp: 0
 --- !u!114 &376970937077928228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,12 +511,7 @@ MonoBehaviour:
   enemyType: 0
   enemyRarity: 0
   expAmount: 0
-  enemyPrefabX: {fileID: 2335824204540127733}
-  abilities: {fileID: 0}
-  PossibleSkills:
-  - possibleSkill: {fileID: 11400000, guid: cbbb2aa0247088b45aa1af775b61f0ea, type: 2}
-    skillSpawnChance: 100
-  PossiblePassives: []
+  BaseID: 
 --- !u!114 &3340712224274951332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,6 +1133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90e3e61595a36b4789771757862926e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bar: {fileID: 0}
 --- !u!1 &7627246913299221957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,11 +1707,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d45fa5de4d7375f478d1cbe4a90fb11b, type: 3}
---- !u!1 &3133942905311717373 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4171411086759423663, guid: d45fa5de4d7375f478d1cbe4a90fb11b, type: 3}
+--- !u!114 &439189485265649091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1478734000435917969, guid: d45fa5de4d7375f478d1cbe4a90fb11b, type: 3}
   m_PrefabInstance: {fileID: 1341461633609632082}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7442910356564835927 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8491347669703292677, guid: d45fa5de4d7375f478d1cbe4a90fb11b, type: 3}

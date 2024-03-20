@@ -30,8 +30,8 @@ public class BaseClass
     public float baseDEF;
     public float curDEF;
 
-    public float baseCRIT = 0.25f;
-    public float curCRIT = 0.25f;
+    public float baseCRIT = 25f;
+    public float curCRIT = 25f;
 
     public float critDamage = 1.5f;
 

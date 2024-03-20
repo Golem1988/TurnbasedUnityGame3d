@@ -320,13 +320,13 @@ public class BattleStateMachine : MonoBehaviour
 
         if (battlePhases == BattlePhases.PREBATTLE || battlePhases == BattlePhases.PLAYERINPUT || battleStates == PerformAction.WIN || battleStates == PerformAction.LOSE)
         {
-            DisableSpeedButtons(true);
+            ShowSpeedButtons(false);
             Time.timeScale = 1f;
             Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         }
         else
         {
-            DisableSpeedButtons(false);
+            ShowSpeedButtons(true);
             Time.timeScale = timeModifier;
             Time.fixedDeltaTime = fixedDeltaTime * Time.timeScale;
         }
@@ -510,15 +510,15 @@ public class BattleStateMachine : MonoBehaviour
     void CreateActionButtons(GameObject PlayerOrSummon)
     {
 
-        GameObject AttackButton = Instantiate(actionButton) as GameObject;
-        Text AttackButtonText = AttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        GameObject AttackButton = Instantiate(actionButton);
+        TextMeshProUGUI AttackButtonText = AttackButton.GetComponent<ActionButton>().ActionText;
         AttackButtonText.text = "Attack";
         AttackButton.GetComponent<Button>().onClick.AddListener(() => Input1());
         AttackButton.transform.SetParent(actionSpacer, false);
         atkBtns.Add(AttackButton);
 
-        GameObject MagicAttackButton = Instantiate(actionButton) as GameObject;
-        Text MagicAttackButtonText = MagicAttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        GameObject MagicAttackButton = Instantiate(actionButton);
+        TextMeshProUGUI MagicAttackButtonText = MagicAttackButton.GetComponent<ActionButton>().ActionText;
         MagicAttackButtonText.text = "Magic";
         MagicAttackButton.GetComponent<Button>().onClick.AddListener(() => Input3());
         MagicAttackButton.transform.SetParent(actionSpacer, false);
@@ -526,8 +526,8 @@ public class BattleStateMachine : MonoBehaviour
 
 
         //Flee button allowing to flee the battle
-        GameObject FleeButton = Instantiate(actionButton) as GameObject;
-        Text FleeButtonText = FleeButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        GameObject FleeButton = Instantiate(actionButton);
+        TextMeshProUGUI FleeButtonText = FleeButton.GetComponent<ActionButton>().ActionText;
         FleeButtonText.text = "Flee";
         FleeButton.GetComponent<Button>().onClick.AddListener(() => Input5());
         FleeButton.transform.SetParent(actionSpacer, false);
@@ -535,8 +535,8 @@ public class BattleStateMachine : MonoBehaviour
 
         //Defense button
         //Defense system: If in defence stance, take only XX % damage. Attack noone.
-        GameObject DefendButton = Instantiate(actionButton) as GameObject;
-        Text DefendButtonText = DefendButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        GameObject DefendButton = Instantiate(actionButton);
+        TextMeshProUGUI DefendButtonText = DefendButton.GetComponent<ActionButton>().ActionText;
         DefendButtonText.text = "Defend";
         DefendButton.GetComponent<Button>().onClick.AddListener(() => Input7());
         DefendButton.transform.SetParent(actionSpacer, false);
@@ -544,15 +544,15 @@ public class BattleStateMachine : MonoBehaviour
 
         if (PlayerOrSummon.CompareTag("Hero"))
         {
-            GameObject CaptureButton = Instantiate(actionButton) as GameObject;
-            Text CaptureButtonText = CaptureButton.transform.Find("Text").gameObject.GetComponent<Text>();
+            GameObject CaptureButton = Instantiate(actionButton);
+            TextMeshProUGUI CaptureButtonText = CaptureButton.GetComponent<ActionButton>().ActionText;
             CaptureButtonText.text = "Capture";
             CaptureButton.GetComponent<Button>().onClick.AddListener(() => Input8());
             CaptureButton.transform.SetParent(actionSpacer, false);
             atkBtns.Add(CaptureButton);
 
-            GameObject SpawnSummonButton = Instantiate(actionButton) as GameObject;
-            Text SpawnSummonButtonText = SpawnSummonButton.transform.Find("Text").gameObject.GetComponent<Text>();
+            GameObject SpawnSummonButton = Instantiate(actionButton);
+            TextMeshProUGUI SpawnSummonButtonText = SpawnSummonButton.GetComponent<ActionButton>().ActionText;
             SpawnSummonButtonText.text = "Spawn";
             SpawnSummonButton.GetComponent<Button>().onClick.AddListener(() => Input9(PlayerOrSummon));
             SpawnSummonButton.transform.SetParent(actionSpacer, false);
@@ -561,8 +561,8 @@ public class BattleStateMachine : MonoBehaviour
                 SpawnSummonButton.GetComponent<Button>().interactable = false;
 
             //Autobattle enable button
-            GameObject AutoSelectButton = Instantiate(actionButton) as GameObject;
-            Text AutoSelectButtonText = AutoSelectButton.transform.Find("Text").gameObject.GetComponent<Text>();
+            GameObject AutoSelectButton = Instantiate(actionButton);
+            TextMeshProUGUI AutoSelectButtonText = AutoSelectButton.GetComponent<ActionButton>().ActionText;
             AutoSelectButtonText.text = "Auto";
             AutoSelectButton.GetComponent<Button>().onClick.AddListener(() => ToggleAutoBattle(true));
             AutoSelectButton.transform.SetParent(actionSpacer, false);
@@ -1165,7 +1165,7 @@ public class BattleStateMachine : MonoBehaviour
         }
     }
 
-    void DisableSpeedButtons(bool yesno)
+    void ShowSpeedButtons(bool yesno)
     {
          BattleSpeedButtons[0].interactable = yesno;
          BattleSpeedButtons[1].interactable = yesno;

@@ -1,0 +1,882 @@
+{
+    "_type": 1,
+    "_name": "HexagonalGrid",
+    "_size_cell": 2.0,
+    "_gap": 1.2000000476837159,
+    "_map": [
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 3.6000001430511476
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -1,
+                "y": 0,
+                "z": 1
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 3.6000001430511476
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 2
+            },
+            "_localposition": {
+                "x": 4.156921863555908,
+                "y": 0.0,
+                "z": 7.200000286102295
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -2,
+                "y": 0,
+                "z": 2
+            },
+            "_localposition": {
+                "x": -4.156921863555908,
+                "y": 0.0,
+                "z": 7.200000286102295
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 3
+            },
+            "_localposition": {
+                "x": 6.235383033752441,
+                "y": 0.0,
+                "z": 10.800000190734864
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -1,
+                "y": 0,
+                "z": 3
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 10.800000190734864
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -2,
+                "y": 0,
+                "z": 3
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 10.800000190734864
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -3,
+                "y": 0,
+                "z": 3
+            },
+            "_localposition": {
+                "x": -6.235383033752441,
+                "y": 0.0,
+                "z": 10.800000190734864
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -2,
+                "y": 0,
+                "z": 4
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 14.40000057220459
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 4
+            },
+            "_localposition": {
+                "x": 8.313843727111817,
+                "y": 0.0,
+                "z": 14.40000057220459
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -4,
+                "y": 0,
+                "z": 4
+            },
+            "_localposition": {
+                "x": -8.313843727111817,
+                "y": 0.0,
+                "z": 14.40000057220459
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": 0,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": 10.392304420471192,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -1,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": 6.235383033752441,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -2,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -3,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -4,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": -6.235383033752441,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 5
+            },
+            "_localposition": {
+                "x": -10.392304420471192,
+                "y": 0.0,
+                "z": 18.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -1,
+                "y": 0,
+                "z": 6
+            },
+            "_localposition": {
+                "x": 8.313843727111817,
+                "y": 0.0,
+                "z": 21.600000381469728
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -3,
+                "y": 0,
+                "z": 6
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 21.600000381469728
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 6
+            },
+            "_localposition": {
+                "x": -8.313843727111817,
+                "y": 0.0,
+                "z": 21.600000381469728
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -2,
+                "y": 0,
+                "z": 7
+            },
+            "_localposition": {
+                "x": 6.235383033752441,
+                "y": 0.0,
+                "z": 25.200000762939454
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -3,
+                "y": 0,
+                "z": 7
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 25.200000762939454
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -4,
+                "y": 0,
+                "z": 7
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 25.200000762939454
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 7
+            },
+            "_localposition": {
+                "x": -6.235383033752441,
+                "y": 0.0,
+                "z": 25.200000762939454
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -3,
+                "y": 0,
+                "z": 8
+            },
+            "_localposition": {
+                "x": 4.156921863555908,
+                "y": 0.0,
+                "z": 28.80000114440918
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 8
+            },
+            "_localposition": {
+                "x": -4.156921863555908,
+                "y": 0.0,
+                "z": 28.80000114440918
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -4,
+                "y": 0,
+                "z": 9
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 32.400001525878909
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 9
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 32.400001525878909
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -4,
+                "y": 0,
+                "z": 10
+            },
+            "_localposition": {
+                "x": 4.156921863555908,
+                "y": 0.0,
+                "z": 36.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 10
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 36.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -6,
+                "y": 0,
+                "z": 10
+            },
+            "_localposition": {
+                "x": -4.156921863555908,
+                "y": 0.0,
+                "z": 36.0
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -6,
+                "y": 0,
+                "z": 11
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 39.60000228881836
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -5,
+                "y": 0,
+                "z": 11
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 39.60000228881836
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -6,
+                "y": 0,
+                "z": 12
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 43.20000076293945
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -6,
+                "y": 0,
+                "z": 13
+            },
+            "_localposition": {
+                "x": 2.078460931777954,
+                "y": 0.0,
+                "z": 46.80000305175781
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -7,
+                "y": 0,
+                "z": 13
+            },
+            "_localposition": {
+                "x": -2.078460931777954,
+                "y": 0.0,
+                "z": 46.80000305175781
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        },
+        {
+            "_pathPrefab": "Assets/MapTileGridCreator/Pallets/Hexagonal/Default.prefab",
+            "_index": {
+                "x": -7,
+                "y": 0,
+                "z": 14
+            },
+            "_localposition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 50.400001525878909
+            },
+            "_localrotation": {
+                "x": 0.0,
+                "y": 30.000001907348634,
+                "z": 0.0
+            },
+            "_localscale": {
+                "x": 2.0,
+                "y": 1.0,
+                "z": 2.0
+            }
+        }
+    ]
+}

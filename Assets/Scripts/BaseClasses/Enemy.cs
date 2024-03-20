@@ -81,6 +81,10 @@ public class Enemy : MonoBehaviour
         unit.Stats.baseATK = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
         unit.Stats.curATK = unit.Stats.baseATK;
 
+        //Calculate magic Attack based on stats
+        //unit.Stats.baseMATK = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
+        //unit.Stats.curMATK = unit.Stats.baseMATK;
+
         unit.Stats.maxATK = unit.Stats.baseATK + Random.Range(10, 50);
         unit.Stats.minATK = unit.Stats.baseATK;
 
@@ -97,7 +101,8 @@ public class Enemy : MonoBehaviour
         unit.Stats.curDEF = unit.Stats.baseDEF;
 
         //calculate critrate based on stats
-        //unit.Stats.curCRIT = unit.Stats.baseCRIT;
+        unit.Stats.baseCRIT = 25f;
+        unit.Stats.curCRIT = unit.Stats.baseCRIT;
 
         //calculate speed based on stats
         unit.Stats.baseSpeed = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.spdPerAgi);

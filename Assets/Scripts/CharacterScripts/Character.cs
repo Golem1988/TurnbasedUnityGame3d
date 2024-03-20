@@ -9,7 +9,6 @@ using UnityEngine.EventSystems;
 public class Character : MonoBehaviour
 {
     private GameManager gameManager;
-    //public UnitStateMachine USM;
     public UnitAttributes unit;
     public Inventory Inventory;
     public EquipmentPanel EquipmentPanel;
@@ -19,16 +18,15 @@ public class Character : MonoBehaviour
     [SerializeField] Image draggableItem;
     public SummonHandler summonHandler;
     public UnitLevel UnitLevel;
-    private string charName;
 
     [SerializeField] ItemSaveManager itemSaveManager;
 
     private BaseItemSlot dragItemSlot;
 
 
-    [Header("Secondary Attributes")]
-    public float maxRage = 150f;
-    public float curRage = 0f;
+    //[Header("Secondary Attributes")]
+    //public float maxRage = 150f;
+    //public float curRage = 0f;
 
     public int curLvl;
    
@@ -72,12 +70,8 @@ public class Character : MonoBehaviour
     private void Start()
     {
         itemSaveManager = gameManager.ItemSaveManager;
-        charName = GetComponent<UnitAttributes>().Stats.displayName;
-        if (itemSaveManager != null)
-        {
-            LoadCharacter();
-            //gameManager.Chat.AddToChatOutput("Character items loaded...");
-        }
+        //charName = GetComponent<UnitAttributes>().Stats.displayName;
+
         summonHandler = gameObject.GetComponent<SummonHandler>();
         statPanel = gameManager.heroInfoInterface;
         //var leveltest = UnitLevel.level.currentlevel;
@@ -423,61 +417,4 @@ public class Character : MonoBehaviour
         sPanel.UpdateStatValuesX();
     }
     
-    public void LoadCharacter()
-    {
-        //CharacterData data = SaveSystem.LoadCharacter(this);
-
-        //UnitLevel.level.currentlevel = data.level;
-
-        ////testing the loop error causes
-        //curLvl = UnitLevel.level.currentlevel;
-        //Debug.Log("Current level: " + curLvl);
-
-        //UnitLevel.level.experience = data.currentExp;
-        //UnitLevel.level.requiredExp = data.requiredExp;
-
-        //unit.Stats.unspentStatPoints = data.statPoints;
-        //unit.Stats.strength.BaseValue = data.strength;
-        //unit.Stats.intellect.BaseValue = data.intellect;
-        //unit.Stats.dexterity.BaseValue = data.dexterity;
-        //unit.Stats.agility.BaseValue = data.agility;
-        //unit.Stats.stamina.BaseValue = data.stamina;
-
-        //statPanel.CalculateBonus(gameObject, data.strength, data.intellect, data.dexterity, data.agility, data.stamina);
-
-        itemSaveManager.LoadEquipment(this);
-        itemSaveManager.LoadInventory(this);
-        //summonHandler.LoadPetData(charName);
-        //Debug.Log("Character data loaded");
-    }
-
-    /*
-    public void LoadCharacterX()
-    {
-        CharacterData data = SaveSystem.LoadCharacter(this);
-
-        UnitLevel.level.currentlevel = data.level;
-
-        //testing the loop error causes
-        curLvl = UnitLevel.level.currentlevel;
-        Debug.Log("Current level: " + curLvl);
-
-        UnitLevel.level.experience = data.currentExp;
-        UnitLevel.level.requiredExp = data.requiredExp;
-
-        unit.Stats.unspentStatPoints = data.statPoints;
-        unit.Stats.strength.BaseValue = data.strength;
-        unit.Stats.intellect.BaseValue = data.intellect;
-        unit.Stats.dexterity.BaseValue = data.dexterity;
-        unit.Stats.agility.BaseValue = data.agility;
-        unit.Stats.stamina.BaseValue = data.stamina;
-
-        statPanel.CalculateBonus(gameObject, data.strength, data.intellect, data.dexterity, data.agility, data.stamina);
-
-        itemSaveManager.LoadEquipment(this);
-        itemSaveManager.LoadInventory(this);
-        summonHandler.LoadPetData(charName);
-        Debug.Log("Character data loaded");
-    }
-    */
 }

@@ -102,8 +102,8 @@ public class CharacterInformation
     [Header("SummonList")]
     public List<CapturedPets> SummonList = new();
     public int MaxSummonSlots;
-    //[Header("Object")]
-    //public HeroUnit HeroUnit;
+    [Header("Equipment")]
+    public List<string> Equipment = new();
 }
 
 //[System.Serializable]

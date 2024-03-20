@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Agility
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -1934,7 +1934,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Stamina
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -3076,8 +3076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 403362195389305945}
-  ValueText: {fileID: 1957632689356386142}
+  NameText: {fileID: 1957632689356386142}
+  ValueText: {fileID: 403362195389305945}
 --- !u!1 &930588832004717153
 GameObject:
   m_ObjectHideFlags: 0
@@ -6584,7 +6584,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Strength
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -12673,8 +12673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 4128637591739757063}
-  ValueText: {fileID: 6966150923292529152}
+  NameText: {fileID: 6966150923292529152}
+  ValueText: {fileID: 4128637591739757063}
 --- !u!1 &2863243692193796679
 GameObject:
   m_ObjectHideFlags: 0
@@ -19519,8 +19519,6 @@ MonoBehaviour:
   summonHandler: {fileID: 6326273922337472133}
   UnitLevel: {fileID: -9110761892144046591}
   itemSaveManager: {fileID: 0}
-  maxRage: 150
-  curRage: 0
   curLvl: 0
 --- !u!114 &-8162712379617339208
 MonoBehaviour:
@@ -21064,8 +21062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 8221973088769189047}
-  ValueText: {fileID: 7489472224301176639}
+  NameText: {fileID: 7489472224301176639}
+  ValueText: {fileID: 8221973088769189047}
 --- !u!1 &4682711145826506361
 GameObject:
   m_ObjectHideFlags: 0
@@ -31620,8 +31618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 854952578329810967}
-  ValueText: {fileID: 3387079837782062114}
+  NameText: {fileID: 3387079837782062114}
+  ValueText: {fileID: 854952578329810967}
 --- !u!1 &7102463675161346370
 GameObject:
   m_ObjectHideFlags: 0
@@ -32306,7 +32304,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Intellect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -34553,6 +34551,7 @@ MonoBehaviour:
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
+    Equipment: []
   curStatpts: 0
   heroName: {fileID: 8867666425370540270}
   heroLevel: {fileID: 1674634285891966694}
@@ -36031,7 +36030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Dexterity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -36360,8 +36359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 4629084779563945143}
-  ValueText: {fileID: 6665914877348383825}
+  NameText: {fileID: 6665914877348383825}
+  ValueText: {fileID: 4629084779563945143}
 --- !u!1 &8124920125420265363
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,11 +89,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 1
       requiredExp: 83
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks:
     - cbbb2aa0247088b45aa1af775b61f0ea
     - c573284c328f02a4ab1da018892d6bf9
@@ -148,11 +151,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 1
       requiredExp: 83
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks:
     - c573284c328f02a4ab1da018892d6bf9
     - cbbb2aa0247088b45aa1af775b61f0ea
@@ -204,11 +210,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 1
       requiredExp: 83
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
@@ -257,11 +266,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 850
+      totalExperience: 0
       currentlevel: 8
       requiredExp: 1154
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks:
     - cbbb2aa0247088b45aa1af775b61f0ea
     - c573284c328f02a4ab1da018892d6bf9
@@ -314,11 +326,14 @@ MonoBehaviour:
         curRage: 0
       Level:
         experience: 0
+        totalExperience: 0
         currentlevel: 1
         requiredExp: 83
         MAX_EXP: 13034431
         NEXT_EXP: 0
+        CUR_EXP: 0
         MAX_LEVEL: 99
+        lastLevExp: 0
       Type: 6
       Rarity: 0
       MagicAttacks:
@@ -369,11 +384,14 @@ MonoBehaviour:
         curRage: 0
       Level:
         experience: 0
+        totalExperience: 0
         currentlevel: 1
         requiredExp: 83
         MAX_EXP: 13034431
         NEXT_EXP: 0
+        CUR_EXP: 0
         MAX_LEVEL: 99
+        lastLevExp: 0
       Type: 6
       Rarity: 0
       MagicAttacks:
@@ -424,11 +442,14 @@ MonoBehaviour:
         curRage: 0
       Level:
         experience: 0
+        totalExperience: 0
         currentlevel: 1
         requiredExp: 83
         MAX_EXP: 13034431
         NEXT_EXP: 0
+        CUR_EXP: 0
         MAX_LEVEL: 99
+        lastLevExp: 0
       Type: 5
       Rarity: 0
       MagicAttacks:
@@ -479,11 +500,14 @@ MonoBehaviour:
         curRage: 0
       Level:
         experience: 0
+        totalExperience: 0
         currentlevel: 1
         requiredExp: 83
         MAX_EXP: 13034431
         NEXT_EXP: 0
+        CUR_EXP: 0
         MAX_LEVEL: 99
+        lastLevExp: 0
       Type: 5
       Rarity: 0
       MagicAttacks:
@@ -536,11 +560,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 1
       requiredExp: 83
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
@@ -589,11 +616,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 1
       requiredExp: 83
       MAX_EXP: 13034431
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 99
+      lastLevExp: 0
     MagicAttacks:
     - cbbb2aa0247088b45aa1af775b61f0ea
     - c573284c328f02a4ab1da018892d6bf9
@@ -648,5 +678,5 @@ MonoBehaviour:
     EliteEnemyStatMultiplier: 2
     SkillLearnChance: 50
   saveID: 
-  BlankData: {fileID: 4900000, guid: 713089706fc177645b111df87780b508, type: 3}
+  BlankData: {fileID: 4900000, guid: 8f4887b9f19c60542b45212922bc092b, type: 3}
   newGame: 0

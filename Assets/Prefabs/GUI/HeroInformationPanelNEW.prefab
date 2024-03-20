@@ -2113,6 +2113,7 @@ MonoBehaviour:
   listOrder: 3
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &654324100510458945
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2805,7 @@ MonoBehaviour:
   listOrder: 5
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &881271441895370955
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,15 +6812,19 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 0
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
+    Equipment: []
   curStatpts: 0
   heroName: {fileID: 738571283241952201}
   heroLevel: {fileID: 6117478827409102035}
@@ -9875,6 +9881,7 @@ MonoBehaviour:
   listOrder: 0
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &2681108182511042319
 GameObject:
   m_ObjectHideFlags: 0
@@ -17928,15 +17935,19 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 0
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
+    Equipment: []
   curStatpts: 0
   heroName: {fileID: 738571283241952201}
   heroLevel: {fileID: 6117478827409102035}
@@ -23537,6 +23548,7 @@ MonoBehaviour:
   listOrder: 1
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &6840696513942852367
 GameObject:
   m_ObjectHideFlags: 0
@@ -30323,6 +30335,7 @@ MonoBehaviour:
   listOrder: 2
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &8432447303055512988
 GameObject:
   m_ObjectHideFlags: 0
@@ -32248,6 +32261,7 @@ MonoBehaviour:
   listOrder: 4
   infoPanel: {fileID: 0}
   avatarImage: {fileID: 0}
+  glowEffect: {fileID: 0}
 --- !u!1 &9179673642419522061
 GameObject:
   m_ObjectHideFlags: 0

@@ -2029,15 +2029,19 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 0
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
+    Equipment: []
   MaxSummonSlots: 0
   SummonList: []
   buttonObject: []
@@ -2090,11 +2094,14 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 0
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     Type: 0
     Rarity: 0
     MagicAttacks: []
@@ -2340,7 +2347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Dexterity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -12026,7 +12033,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Stamina
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -16037,8 +16044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 2752315249966647986}
-  ValueText: {fileID: 4109146112969571947}
+  NameText: {fileID: 4109146112969571947}
+  ValueText: {fileID: 2752315249966647986}
 --- !u!1 &2593632992557114344
 GameObject:
   m_ObjectHideFlags: 0
@@ -19042,15 +19049,19 @@ MonoBehaviour:
       curRage: 0
     Level:
       experience: 0
+      totalExperience: 0
       currentlevel: 0
       requiredExp: 0
       MAX_EXP: 0
       NEXT_EXP: 0
+      CUR_EXP: 0
       MAX_LEVEL: 0
+      lastLevExp: 0
     MagicAttacks: []
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
+    Equipment: []
   curStatpts: 0
   heroName: {fileID: 2506590669104723643}
   heroLevel: {fileID: 1253698862961479794}
@@ -27357,8 +27368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 7473760618129484448}
-  ValueText: {fileID: 1558355043391953963}
+  NameText: {fileID: 1558355043391953963}
+  ValueText: {fileID: 7473760618129484448}
 --- !u!1 &4503192449934463242
 GameObject:
   m_ObjectHideFlags: 0
@@ -30300,8 +30311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 5571513978666360091}
-  ValueText: {fileID: 8688932060239196444}
+  NameText: {fileID: 8688932060239196444}
+  ValueText: {fileID: 5571513978666360091}
 --- !u!1 &4987082278782823299
 GameObject:
   m_ObjectHideFlags: 0
@@ -35555,8 +35566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 8680654735246098883}
-  ValueText: {fileID: 7088545656211549203}
+  NameText: {fileID: 7088545656211549203}
+  ValueText: {fileID: 8680654735246098883}
 --- !u!1 &5658704419698963503
 GameObject:
   m_ObjectHideFlags: 0
@@ -36832,8 +36843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 9048752993387751699}
-  ValueText: {fileID: 4451555102671474886}
+  NameText: {fileID: 4451555102671474886}
+  ValueText: {fileID: 9048752993387751699}
 --- !u!1 &5851942669103150489
 GameObject:
   m_ObjectHideFlags: 0
@@ -39827,7 +39838,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Agility
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -40695,8 +40706,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroStats: {fileID: 1103152604243672543}
   summonInterface: {fileID: 6247266335803208159}
-  heroEquip: {fileID: 5711722533803557802}
-  inventory: {fileID: 6100239284266480557}
+  EquipmentPanel: {fileID: 0}
+  Inventory: {fileID: 0}
   heroSkillPanel: {fileID: 2938165487679212021}
   avatarButtons:
   - {fileID: 4547068153747083334}
@@ -40708,6 +40719,10 @@ MonoBehaviour:
   modelPlaceholder: {fileID: 5953867700449686758}
   ShowSummonButton: {fileID: 0}
   HideSummonButton: {fileID: 0}
+  sPanel: {fileID: 0}
+  itemTooltip: {fileID: 0}
+  draggableItem: {fileID: 0}
+  itemSaveManager: {fileID: 0}
 --- !u!1 &6504853239252577870
 GameObject:
   m_ObjectHideFlags: 0
@@ -47086,7 +47101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Intellect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -55335,7 +55350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99
+  m_text: Strength
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
   m_sharedMaterial: {fileID: 5212584634677495469, guid: d88f109da6b20544c83d9933925c83fa, type: 2}
@@ -60276,17 +60291,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5280962768266444367, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
   m_PrefabInstance: {fileID: 2011381187929180841}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6100239284266480557 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5711052263204206852, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
-  m_PrefabInstance: {fileID: 2011381187929180841}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09d1785e8ca40dc4092012d6f6933751, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7291377938328538492 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9140601978863044565, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}

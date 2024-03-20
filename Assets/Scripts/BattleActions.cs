@@ -341,7 +341,10 @@ public class BattleActions : MonoBehaviour
             AddInfo.Type = target.GetComponent<Enemy>().enemyType;
             AddInfo.Rarity = target.GetComponent<Enemy>().enemyRarity;
             AddInfo.Stats = target.GetComponent<UnitAttributes>().Stats;
+            AddInfo.Stats.curHP = target.GetComponent<UnitAttributes>().Stats.baseHP;
+            AddInfo.Stats.curMP = target.GetComponent<UnitAttributes>().Stats.baseMP;
             AddInfo.Level = target.GetComponent<UnitLevel>().level;
+            AddInfo.Level.NEXT_EXP = target.GetComponent<UnitLevel>().level.requiredExp;
 
             var ma = target.GetComponent<Abilities>().MagicAttacks;
             foreach (ActiveSkill skill in ma)
@@ -398,27 +401,7 @@ public class BattleActions : MonoBehaviour
             //bsm.allyspots
             var findOldSummon = AllySpots.FirstOrDefault(item => item.Spot == ownerSpot + 5);
             GameObject oldSummon = findOldSummon.UnitOnSpot;
-            BSM.HeroesInBattle.Remove(oldSummon);
-            for (int i = 0; i < BSM.PerformList.Count; i++)
-            {
-                if (BSM.PerformList[i].Attacker == oldSummon)
-                {
-                    BSM.PerformList.Remove(BSM.PerformList[i]);
-                }
-                else if (BSM.PerformList[i].AttackersTarget == oldSummon)
-                {
-                    BSM.PerformList[i].AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
-                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
-                }
-
-            }
-            for (int i = 0; i < BSM.AllySpots.Count; i++)
-            {
-                if (BSM.AllySpots[i].UnitOnSpot == oldSummon)
-                {
-                    BSM.AllySpots.Remove(BSM.AllySpots[i]);
-                }
-            }
+            RemoveFromLists(oldSummon.GetComponent<UnitStateMachine>());
             string oldSummonID = oldSummon.name;
             var SummonList = owner.GetComponent<SummonHandler>().SummonList;
             int oldSummonIndex = SummonList.FindIndex(summons => summons.UniqueID == oldSummonID);
@@ -429,47 +412,7 @@ public class BattleActions : MonoBehaviour
             //to remove it from Performlist we actually run the DEAD state of that unit so he can replace himself in enemy choosen targets but I guess we have to run it here or it will otherwise cause some troubles
             Destroy(oldSummon);
         }
-
-        //then we want to instantiate this summon and fill all the info about it in that game object to ownerSpawnPoint mirrored to SummonSpawn point
-        //var go = Instantiate(Summon[name], BSM.summonSpawnPoints[index].position, Quaternion.Euler(0, -45, 0), BSM.summonSpawnPoints[index]);
-        //then we want to add the new summon to the BSM.AllySpots.Spot[BSM.AllySpots.owner.Spot.ID+5]
-
-        ////add it to heroes in battle list
-        //var info = owner.GetComponent<SummonHandler>().SummonList[summonIndex];
-        ////instantiate the empty prefab
-        //var thePrefab = HeroData.instance.UnitDatabase.SummonPrefab;
-        //GameObject NewSummon = Instantiate(thePrefab, BSM.summonSpawnPoints[index].position, Quaternion.Euler(0, -45, 0), BSM.summonSpawnPoints[index]);
-        ////add the unit model
-        //GameObject summonModel = Extensions.FindModel(info.BaseID, false);
-        //var model = Instantiate(summonModel, NewSummon.GetComponent<ModelLoader>().ModelHolder.position, Quaternion.Euler(0, -45, 0), NewSummon.GetComponent<ModelLoader>().ModelHolder);
-        //NewSummon.GetComponent<ModelLoader>().Model = model;
-        ////specify the avatar sprite
-        //NewSummon.GetComponent<UnitUI>().heroAvatar = Extensions.FindSprite(info.BaseID, false);
-        ////fill in the information
-        //NewSummon.name = info.UniqueID;
-        //NewSummon.GetComponent<UnitAttributes>().Stats = info.Stats;
-        //NewSummon.GetComponent<UnitAttributes>().Stats.theName = NewSummon.name;
-        //NewSummon.tag = "Summon";
-        //NewSummon.GetComponent<UnitLevel>().level = info.Level;
-        ////fill in information about skills
-        //foreach (string maId in info.MagicAttacks)
-        //{
-        //    ActiveSkill magicAttack = Extensions.FindActiveSkill(maId);
-        //    if (magicAttack != null)
-        //        NewSummon.GetComponent<Abilities>().MagicAttacks.Add(magicAttack);
-        //}
-
-        ////add to lists
-        //BSM.HeroesInBattle.Add(NewSummon);
-        //BattlePosition SummonInfo = new();
-        //SummonInfo.UnitOnSpot = NewSummon;
-        //SummonInfo.Spot = ownerSpot + 5;
-        //AllySpots.Add(SummonInfo);
-        //info.isDeployable = false;
-        //info.active = true;
-        //BSM.AllyButtons();
-        SpawnSummonX(owner, index, summonIndex);
-
+        SpawnSummonX(owner, ownerSpot, summonIndex);
     }
 
     public void SpawnSummonX(UnitStateMachine owner, int spotIndex, int summonIndex) //SummonList[index];
@@ -528,103 +471,63 @@ public class BattleActions : MonoBehaviour
         BSM.AllySpots.Add(SummonInfo);
         BSM.HeroesInBattle.Add(NewSummon);
         //BSM.AllyButtons();
-
     }
 
     public void RemoveFromLists(UnitStateMachine target)
     {
-        GameObject unit = target.gameObject;
-        List<GameObject> inBattle; //enemies or heroes in battle
+        GameObject unitToRemove = target.gameObject;
         List<BattlePosition> onSpots;
-        if (unit.CompareTag("Hero") || unit.CompareTag("Summon"))
-        {
-            inBattle = BSM.HeroesInBattle;
-            onSpots = BSM.AllySpots;
-        }
-        else
-        {
-            inBattle = BSM.EnemiesInBattle;
-            onSpots = BSM.EnemySpots;
-        }
 
-        //BSM.HeroesInBattle;
-        //BSM.EnemiesInBattle;
-        //BSM.PerformList
-        if (inBattle.Count > 0)
+        //target won't perform himself
+        BSM.PerformList.RemoveAll(index => index.Attacker == unitToRemove);
+
+        //if target = ally and there are more than him left
+        if ((target.CompareTag("Hero") || target.CompareTag("Summon")) && BSM.HeroesInBattle.Count > 0)
         {
-            BSM.PerformList.RemoveAll(index => index.Attacker == unit);
-            inBattle.Remove(unit);
+            onSpots = BSM.AllySpots;
+            BSM.HeroesInBattle.Remove(unitToRemove);
             for (int i = 0; i < BSM.PerformList.Count; i++)
             {
-                if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Foe)
+                if (BSM.PerformList[i].AttackersTarget == unitToRemove && BSM.HeroesInBattle.Count > 1)
                 {
-                    BSM.PerformList[i].AttackersTarget = inBattle[Random.Range(0, inBattle.Count)];
-                    Debug.Log("RemoveFromLists New target = " + BSM.PerformList[i].AttackersTarget.name);
+                    BSM.PerformList[i].AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
                     BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
-                    Debug.Log("RemoveFromLists New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
+                }
+                else if (BSM.PerformList[i].AttackersTarget == unitToRemove && BSM.HeroesInBattle.Count == 1)
+                {
+                    BSM.PerformList[i].AttackersTarget = BSM.HeroesInBattle[0];
+                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
+                }
+            }
+            onSpots.RemoveAll(index => index.UnitOnSpot == unitToRemove);
+            if (unitToRemove.CompareTag("Hero"))
+                BSM.AllyButtons();
+        }
+        
+        else if (target.CompareTag("Enemy") && BSM.EnemiesInBattle.Count > 0)
+        {
+            onSpots = BSM.EnemySpots;
+            BSM.EnemiesInBattle.Remove(unitToRemove);
+            for (int i = 0; i < BSM.PerformList.Count; i++)
+            {
+                if (BSM.PerformList[i].AttackersTarget == unitToRemove && BSM.EnemiesInBattle.Count > 1)
+                {
+                    BSM.PerformList[i].AttackersTarget = BSM.EnemiesInBattle[Random.Range(0, BSM.EnemiesInBattle.Count)];
+                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
                     if (BSM.PerformList[i].choosenAttack.ID == "e2a08119519b2ec48bbe851df8d319d9")
                     {
                         BSM.PerformList[i].choosenAttack = Extensions.FindActiveSkillID("010efba02612ef34db18caadaceb37dd");
                     }
                 }
-
-                else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Foe)
+                else if (BSM.PerformList[i].AttackersTarget == unitToRemove && BSM.EnemiesInBattle.Count == 1)
                 {
-                    BSM.PerformList[i].AttackersTarget = inBattle[0];
-                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = inBattle[0];
-                }
-
-                else
-                {
-                    if (inBattle == BSM.HeroesInBattle)
-                    {
-                        inBattle = BSM.EnemiesInBattle;
-                    }
-                    else
-                    {
-                        inBattle = BSM.HeroesInBattle;
-                    }
-
-                    if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count > 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Ally)
-                    {
-                        BSM.PerformList[i].AttackersTarget = inBattle[Random.Range(0, inBattle.Count)];
-                        Debug.Log("New target = " + BSM.PerformList[i].AttackersTarget.name);
-                        BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
-                        Debug.Log("New chosen attack target = " + BSM.PerformList[i].AttackersTarget.name);
-                        //if (BSM.PerformList[i].choosenAttack.ID == "e2a08119519b2ec48bbe851df8d319d9")
-                        //{
-                        //    BSM.PerformList[i].choosenAttack = Extensions.FindActiveSkillID("010efba02612ef34db18caadaceb37dd");
-                        //}
-                    }
-                    else if (BSM.PerformList[i].AttackersTarget == unit && inBattle.Count == 1 && BSM.PerformList[i].choosenAttack.TargetType == TargetType.Ally)
-                    {
-                        BSM.PerformList[i].AttackersTarget = inBattle[0];
-                        BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = inBattle[0];
-                    }
+                    BSM.PerformList[i].AttackersTarget = BSM.EnemiesInBattle[0];
+                    BSM.PerformList[i].Attacker.GetComponent<UnitStateMachine>().ChosenAttackTarget = BSM.PerformList[i].AttackersTarget;
                 }
             }
+            onSpots.RemoveAll(index => index.UnitOnSpot == unitToRemove);
+            BSM.EnemyButtons();
         }
 
-        //BSM.Spots
-        onSpots.RemoveAll(index => index.UnitOnSpot == unit);
-        //for (int i = 0; i < onSpots.Count; i++)
-        //{
-        //    if (onSpots[i].UnitOnSpot == unit)
-        //    {
-        //        onSpots.Remove(onSpots[i]);
-        //    }
-        //}
-
-        //inBattle.Remove(unit);
-
-        //refresh button list in UI accordingly
-        if (unit.CompareTag("Hero"))
-            BSM.AllyButtons();
-
-        //if (unit.CompareTag("Summon"))
-        //   BSM.SummonButtons(unit);
-
-        if (unit.CompareTag("Enemy"))
-            BSM.EnemyButtons();
     }
 }

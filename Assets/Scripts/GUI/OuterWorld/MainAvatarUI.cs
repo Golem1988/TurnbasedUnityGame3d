@@ -30,13 +30,9 @@ public class MainAvatarUI : MonoBehaviour
     private void Start()
     {
         Debug.Log("Started looking for info");
-        //string mainHeroId = Extensions.FindMainCharacterID();
         string mainHeroId = HeroDataManager.instance.CharacterInfo.FirstOrDefault(name => name.isMainCharacter)?.BaseID;
-        //string mainHeroName = Extensions.FindMainCharacterName();
-        //string mainHeroName = HeroData.instance.CharacterInfo.FirstOrDefault(name => name.isMainCharacter)?.Name;
         int mainHeroIndex = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.isMainCharacter);
-        //int mainHeroIndex = Extensions.FindHeroIndex(mainHeroName);
-        Debug.Log("Hero index = " + mainHeroIndex.ToString());
+        //Debug.Log("Hero index = " + mainHeroIndex.ToString());
         var SummonList = HeroDataManager.instance.CharacterInfo[mainHeroIndex].SummonList;
         var hero = HeroDataManager.instance.CharacterInfo[mainHeroIndex];
         HeroAvatar.sprite = Extensions.FindSprite(mainHeroId, true);
@@ -83,6 +79,8 @@ public class MainAvatarUI : MonoBehaviour
         heroHealthBar.SetSize(hero.Stats.curHP / hero.Stats.baseHP);
         heroManaBar.SetSize(hero.Stats.curMP / hero.Stats.baseMP);
         float curExp = hero.Level.CUR_EXP;
+        if (curExp == 0)
+            curExp = 0.01f;
         float reqExp = hero.Level.NEXT_EXP;
         heroExpBar.SetSize(curExp / reqExp);
     }

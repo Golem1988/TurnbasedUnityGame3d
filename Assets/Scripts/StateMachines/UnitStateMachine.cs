@@ -74,7 +74,6 @@ public class UnitStateMachine : MonoBehaviour
     {
         currentState = TurnState.PROCESSING;
         ui.Selector.SetActive(false);
-        //BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         startposition = transform.position;
         unit = GetComponent<UnitAttributes>();
         ui.audioSource = GetComponent<AudioSource>();
@@ -109,7 +108,6 @@ public class UnitStateMachine : MonoBehaviour
                 break;
 
             case (TurnState.ACTION):
-                //StartCoroutine(TimeForAction());
                 StartCoroutine(TimeForActionTESTING2());
                 break;
 
@@ -146,44 +144,6 @@ public class UnitStateMachine : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
-    //void EnemyActionChoice()
-    //{
-    //    HandleTurn enemyChoice = new HandleTurn();
-    //    enemyChoice.AttackersName = unit.Stats.theName;
-    //    enemyChoice.attackersSpeed = unit.Stats.curSpeed;
-    //    enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
-    //    enemyChoice.Attacker = gameObject;
-    //    //Target choice: Randomly choose the target from list. Editable for later.
-    //    enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
-
-    //    //determine which skills does enemy have:
-    //    if (abilities.MagicAttacks.Count > 0)
-    //    {
-    //        //we have magic attacks
-    //        //can we use them? check the manacost
-    //        for (int i = 0; i < abilities.MagicAttacks.Count; i++)
-    //        {
-    //            if (abilities.MagicAttacks[i].CostValue <= unit.Stats.curMP) //edit this part, because of variations
-    //            {
-    //                int num = Random.Range(0, abilities.MagicAttacks.Count - 1);
-    //                enemyChoice.choosenAttack = abilities.MagicAttacks[num];
-    //            }
-    //        }
-    //        //if we have not enough mana for any of magic attacks
-    //        if (enemyChoice.choosenAttack == null)
-    //        {
-    //            enemyChoice.choosenAttack = abilities.BasicActions[0];
-    //        }
-    //    }
-    //    else
-    //    {
-    //        //choose basic attack
-    //        enemyChoice.choosenAttack = abilities.BasicActions[0];
-    //    }
-
-    //    BSM.CollectActions(enemyChoice);
-    //}
 
     void EnemyActionChoice()
     {
@@ -1008,105 +968,4 @@ public class UnitStateMachine : MonoBehaviour
     //    }
     //}
 
-    //private IEnumerator TimeForActionOld()
-    //{
-    //    if (actionStarted)
-    //    {
-    //        yield break;
-    //    }
-
-    //    actionStarted = true;
-
-    //    if (AllowedActions.canAct)
-    //    {
-    //        //Actions.SetBools or something to determine which passive actions and so on can unit use here.
-    //        //Like double attack, and so on
-
-    //        attackTwice = false;
-    //        secondAttackRunning = false;
-
-    //        ui.scream.SetActive(true);
-    //        ui.screamText.text = BSM.PerformList[0].choosenAttack.name.ToString() + "!";
-    //        yield return new WaitForSeconds(0.25f);
-
-    //        if (isMelee == true)
-    //        {
-    //            Vector3 targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
-    //            while (MoveToPosition(targetPosition))
-    //            {
-    //                yield return null;
-    //            }
-    //        }
-    //        //wait a bit till animation of attack plays. Might wanna change later on based on animation.
-    //        yield return new WaitForSeconds(0.25f);
-    //        ui.scream.SetActive(false);
-
-    //        ui.animator.Play("Attack");
-    //        ui.audioSource.Play();
-
-    //        yield return new WaitForSeconds(0.7f);
-    //        //DoDamage();
-    //        //BSM.PerformList[0].choosenAttack.Activate(this, )
-    //        yield return new WaitForSeconds(0.25f);
-    //        //check for counterattack
-    //        if (BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>().counterAttack == true)
-    //        {
-    //            yield return new WaitForSeconds(1.0f);
-    //        }
-
-    //        if (isMelee == false)
-    //        {
-    //            yield return new WaitForSeconds(1f);
-    //        }
-
-    //        //Double Hit mechanic testing
-    //        //If target died from first attack, do not attack for the second time
-    //        //If we intend to attack, it has 35% chance to do so
-    //        if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.curHP > 0)
-    //        {
-    //            attackTwice = true;
-    //        }
-
-    //        if (isMelee && doubleHit && ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP > 0 && attackTwice)
-    //        {
-    //            if (ChosenAttackTarget.GetComponent<UnitStateMachine>().dodgedAtt == false)
-    //            {
-    //                secondAttackRunning = true;
-    //                ui.animator.Play("Attack");
-    //                ui.audioSource.Play();
-    //                //DoDamage();
-    //                yield return new WaitForSeconds(0.7f);
-    //            }
-    //        }
-
-    //        //testing kill streak mechanics
-    //        //after killing one target the killer should choose next one and attack it and do it untill he can't kill the next target
-    //        if (ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP <= 0)
-    //        {
-    //            killStreak++;
-    //            Debug.Log("Kill Streak = " + killStreak);
-    //        }
-
-    //        if (isMelee && unit.Stats.curHP > 0)
-    //        {
-    //            while (MoveToPosition(startposition))
-    //            {
-    //                yield return null;
-    //            }
-    //        }
-    //    }
-
-    //    //remove this performer from the list in BSM
-    //    BSM.PerformList.RemoveAt(0);
-    //    //reset the battle state machine -> set to wait
-    //    BSM.battleStates = PerformAction.START;
-    //    //end coroutine
-    //    actionStarted = false;
-    //    //reset this enemy state
-
-    //    if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
-    //    {
-    //        currentState = TurnState.PROCESSING;
-    //    }
-    //}
 }
