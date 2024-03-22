@@ -154,6 +154,20 @@ public class RegionData
 }
 
 [System.Serializable]
+public class EncounterTeam
+{
+    public EnemyUnit EnemyUnit;
+    public int EnemyLevel;
+}
+
+[System.Serializable]
+public class DungeonLootChest
+{
+    public Item Item;
+    public int DropChance;
+}
+
+[System.Serializable]
 public class ItemDrops
 {
     public Item item;

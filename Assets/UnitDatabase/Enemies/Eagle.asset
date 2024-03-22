@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Eagle
+  m_EditorClassIdentifier: 
+  id: unit_a62ddf4c234c31042a15ba63c6790d72
+  ModelId: 5123
+  DisplayName: Desert Eagle
+  ModelPrefab: {fileID: 1000012498865246, guid: 18acbaca1280fd5479e7b0f66a8755f1, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: a844f580dd75a2340b2da54f1930ce5f, type: 3}
+  ActiveSkills: []
+  PassiveSkills: []
+  canBeBaby: 0
+  canBeMutant: 0

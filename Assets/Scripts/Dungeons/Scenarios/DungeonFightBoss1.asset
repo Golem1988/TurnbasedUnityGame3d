@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c623143e0d97b34bba38cb17777236c, type: 3}
+  m_Name: DungeonFightBoss1
+  m_EditorClassIdentifier: 
+  id: scenario6e8b2cc1-bef0-46d0-8783-dcf6a89b879d
+  isFight: 1
+  isChest: 0
+  isHeal: 0
+  enemyModel: {fileID: 1000013276017034, guid: 08559dd42efbf7c4784c44d50d0b0e06, type: 3}
+  chestModel: {fileID: 0}
+  healModel: {fileID: 0}
+  battleTeam:
+  - EnemyUnit: {fileID: 11400000, guid: 89acbb76af29e974d9fd80c019f9f67d, type: 2}
+    EnemyLevel: 15
+  loot: []

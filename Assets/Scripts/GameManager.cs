@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(lastScene);
         //Hero.SetActive(true);
-        OuterWorldUI.SetActive(true);
+        //OuterWorldUI.SetActive(true);
     }
 
     void RandomEncounter() //will be that switch to get into battle

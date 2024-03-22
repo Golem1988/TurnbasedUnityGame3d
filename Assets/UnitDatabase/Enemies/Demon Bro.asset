@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Demon Bro
+  m_EditorClassIdentifier: 
+  id: unit_e0cc59b72ab649742a70d22e26ee9231
+  ModelId: 812
+  DisplayName: Demon Bro
+  ModelPrefab: {fileID: 1000013448006886, guid: fea1acde16883dd4dacd8c0a82d72d95, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 49dc8caaa572eb54485463119df60b8e, type: 3}
+  ActiveSkills: []
+  PassiveSkills: []
+  canBeBaby: 0
+  canBeMutant: 0
