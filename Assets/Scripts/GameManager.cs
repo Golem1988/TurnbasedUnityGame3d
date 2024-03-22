@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
         if (scene.name != "CharacterCreation" && scene.name != "MainScreen")
         {
-            if (!GameObject.Find("Player") && scene.name != "BattleScene")
+            if (!GameObject.Find("Player") && scene.name != "BattleScene" && scene.name != "DungeonNew")
             {
                 var Hero = Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
                 Hero.name = "Player";

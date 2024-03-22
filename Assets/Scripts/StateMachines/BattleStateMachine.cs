@@ -800,7 +800,7 @@ public class BattleStateMachine : MonoBehaviour
         //cleanup attack panel
         ClearAttackPanel();
 
-        HeroesToManage[0].transform.Find("NameCanvasNew").transform.Find("Selector").gameObject.SetActive(false);
+        HeroesToManage[0].GetComponent<UnitUI>().Selector.SetActive(false);
         HeroesToManage.RemoveAt(0);
         HeroInput = HeroGUI.ACTIVATE;
     }

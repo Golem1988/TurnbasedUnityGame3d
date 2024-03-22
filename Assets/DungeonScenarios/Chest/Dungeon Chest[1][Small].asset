@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47b6a304a66d1046824341e1a4e99c1, type: 3}
+  m_Name: Dungeon Chest[1][Small]
+  m_EditorClassIdentifier: 
+  id: scenario125d8829-6c6b-42b9-a982-3ffbadb963a6
+  loot: []
+  chestModel: {fileID: 1000010361731368, guid: d452d6d4b44d84d44a425aab096ed79f, type: 3}

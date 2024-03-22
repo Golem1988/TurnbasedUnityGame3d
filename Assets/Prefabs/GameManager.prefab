@@ -1870,7 +1870,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1888,10 +1888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -12192,6 +12192,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3186796852439787821, guid: f438ab77a4448484fa3240ca26a3b9c4, type: 3}
+      propertyPath: m_Lens.NearClipPlane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 5530363380979433494, guid: f438ab77a4448484fa3240ca26a3b9c4, type: 3}
       propertyPath: m_Name
       value: PlayerFollowCamera
@@ -12969,11 +12973,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6553749659228101694, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 127.5715
+      value: 73.8389
       objectReference: {fileID: 0}
     - target: {fileID: 6553749659228101694, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 149.6865
+      value: 191.4785
       objectReference: {fileID: 0}
     - target: {fileID: 7448863762068559440, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_Value
@@ -12989,11 +12993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8808519580207879509, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_fontSize
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8808519580207879509, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_fontSizeBase
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8858348504835143761, guid: b3a2980888217694483fc92de391aa4a, type: 3}
       propertyPath: m_Color.g

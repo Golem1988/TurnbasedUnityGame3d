@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c623143e0d97b34bba38cb17777236c, type: 3}
-  m_Name: DungeonFight3
+  m_Script: {fileID: 11500000, guid: ce15a89346366d7479f0657426e9056c, type: 3}
+  m_Name: Battle Scenario[Demon Bro]
   m_EditorClassIdentifier: 
-  id: scenarioe21e77d4-8d97-44d1-87bf-2ef06afec6d1
-  isFight: 1
-  isChest: 0
-  isHeal: 0
-  enemyModel: {fileID: 1000013448006886, guid: fea1acde16883dd4dacd8c0a82d72d95, type: 3}
-  chestModel: {fileID: 0}
-  healModel: {fileID: 0}
+  id: scenario08a07611-441c-487a-b6df-13dad2a690cd
   battleTeam:
   - EnemyUnit: {fileID: 11400000, guid: e0cc59b72ab649742a70d22e26ee9231, type: 2}
     EnemyLevel: 12
-  loot: []
+  enemyModel: {fileID: 1000013448006886, guid: fea1acde16883dd4dacd8c0a82d72d95, type: 3}

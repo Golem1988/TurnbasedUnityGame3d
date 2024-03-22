@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c623143e0d97b34bba38cb17777236c, type: 3}
-  m_Name: DungeonFight4
+  m_Script: {fileID: 11500000, guid: ce15a89346366d7479f0657426e9056c, type: 3}
+  m_Name: Battle Scenario[Demon Sis]
   m_EditorClassIdentifier: 
-  id: scenarioafc58adb-d6ce-44b6-a590-2a263ae853bf
-  isFight: 1
-  isChest: 0
-  isHeal: 0
-  enemyModel: {fileID: 1000011994880008, guid: 805e6669cef7f4c459cc8431e415de06, type: 3}
-  chestModel: {fileID: 0}
-  healModel: {fileID: 0}
+  id: scenarioe569afc0-ea76-472d-ae16-6ff49e3d772f
   battleTeam:
   - EnemyUnit: {fileID: 11400000, guid: 8d918a46c34e291458a196ab66690a0e, type: 2}
     EnemyLevel: 12
-  loot: []
+  enemyModel: {fileID: 1000011994880008, guid: 805e6669cef7f4c459cc8431e415de06, type: 3}

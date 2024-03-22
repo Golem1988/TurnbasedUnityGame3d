@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MapTileGridCreator.Core;
-using MapTileGridCreator.Utilities;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private GameObject rightLight;
     [SerializeField]
-    private Transform modelHolder;
+    public Transform modelHolder;
     [SerializeField]
     private Animator animator;
     private Cell leftCell;
@@ -35,7 +34,6 @@ public class PlayerControls : MonoBehaviour
     private bool canLeft = false;
     private bool canRight = false;
 
-    public bool actionDone = false;
     private bool is_moving;
 
     public float animSpeed = 5f;
@@ -48,8 +46,6 @@ public class PlayerControls : MonoBehaviour
     }
     public PlayerStates PlayerState;
 
-    //private Cell prevCell;
-    // Start is called before the first frame update
     void Start()
     {
         rBody = GetComponent<Rigidbody>();
@@ -136,16 +132,6 @@ public class PlayerControls : MonoBehaviour
         PlayerState = PlayerStates.WALKING;
     }
 
-    public void SetPosition()
-    {
-
-    }
-
-    public void MoveToNext()
-    {
-        
-    }
-
     void OnTriggerEnter(Collider other)
     {
         canLeft = false;
@@ -154,6 +140,15 @@ public class PlayerControls : MonoBehaviour
         location = other.gameObject.GetComponent<Cell>().GetIndex();
 
         //then we want to trigger the event this cell provides, encounter, chest or something else.
+        var scenario = other.gameObject.GetComponent<DungeonCell>();
+
+        if(scenario.Model)
+            Destroy(scenario.Model);
+        scenario.isCleared = true;
+        if(scenario.Scenario)
+            scenario.Scenario.StepOn();
+        //trigger saving of this data:
+
 
         //and we want to set the position
 

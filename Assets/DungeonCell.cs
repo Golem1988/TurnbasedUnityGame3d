@@ -9,8 +9,7 @@ public class DungeonCell : MonoBehaviour
 {
     public bool isCleared;
     public string ScenarioId;
-    [SerializeField]
-    private DungeonScenario Scenario;
+    public DungeonScenario Scenario;
     private Cell cell;
     public GameObject Model;
 

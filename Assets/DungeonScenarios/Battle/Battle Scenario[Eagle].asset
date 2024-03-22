@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c623143e0d97b34bba38cb17777236c, type: 3}
-  m_Name: DungeonFight1
+  m_Script: {fileID: 11500000, guid: ce15a89346366d7479f0657426e9056c, type: 3}
+  m_Name: Battle Scenario[Eagle]
   m_EditorClassIdentifier: 
-  id: scenario8593053b-1fc8-4eeb-b93f-e4ae5f148a5e
-  isFight: 1
-  isChest: 0
-  isHeal: 0
-  enemyModel: {fileID: 1000012498865246, guid: 18acbaca1280fd5479e7b0f66a8755f1, type: 3}
-  chestModel: {fileID: 0}
-  healModel: {fileID: 0}
+  id: scenario8a075afc-bf56-47db-8486-a582a3805071
   battleTeam:
   - EnemyUnit: {fileID: 11400000, guid: a62ddf4c234c31042a15ba63c6790d72, type: 2}
-    EnemyLevel: 10
-  loot: []
+    EnemyLevel: 12
+  enemyModel: {fileID: 1000012498865246, guid: 18acbaca1280fd5479e7b0f66a8755f1, type: 3}
