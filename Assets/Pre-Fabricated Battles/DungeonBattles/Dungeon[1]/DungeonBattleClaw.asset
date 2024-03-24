@@ -9,11 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce15a89346366d7479f0657426e9056c, type: 3}
-  m_Name: Battle Scenario [Claw]
+  m_Script: {fileID: 11500000, guid: e9b26faf39cfbc448860d43fee976185, type: 3}
+  m_Name: DungeonBattleClaw
   m_EditorClassIdentifier: 
-  id: scenario6d256358-a296-4f00-abce-d552e11fdd95
-  battleTeam:
+  enemyUnits:
   - EnemyUnit: {fileID: 11400000, guid: e02e977bbc9b83f4f8646339a4037b05, type: 2}
     EnemyLevel: 15
-  enemyModel: {fileID: 1000014121297680, guid: dca08a056cd5db0489ebee9cb4fcb207, type: 3}
+  - EnemyUnit: {fileID: 11400000, guid: e02e977bbc9b83f4f8646339a4037b05, type: 2}
+    EnemyLevel: 15
+  - EnemyUnit: {fileID: 11400000, guid: e02e977bbc9b83f4f8646339a4037b05, type: 2}
+    EnemyLevel: 15
+  possibleLoot: []
+  experience: 100

@@ -20,7 +20,7 @@ public class DungeonScenario : ScriptableObject
     //    }
     //}
 
-    public virtual void Activate(Cell cell)
+    public virtual void Activate(DungeonCell cell)
     {
         //
     }

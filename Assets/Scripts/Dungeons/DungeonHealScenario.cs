@@ -18,7 +18,7 @@ public class DungeonHealScenario : DungeonScenario
         }
     }
 
-    public override void Activate(Cell cell)
+    public override void Activate(DungeonCell cell)
     {
         var spot = cell.transform;
         Spawn(healModel, spot);
@@ -35,6 +35,20 @@ public class DungeonHealScenario : DungeonScenario
 
     public override void StepOn()
     {
+        var heroList = HeroDataManager.instance.CharacterInfo;
+        foreach (var hero in heroList)
+        {
+            if (hero.isActive)
+            {
+                hero.Stats.curHP = hero.Stats.baseHP;
+                hero.Stats.curMP = hero.Stats.baseMP;
+                foreach (var summon in hero.SummonList)
+                {
+                    summon.Stats.curHP = summon.Stats.baseHP;
+                    summon.Stats.curMP = summon.Stats.baseMP;
+                }
+            }
+        }
         GameManager.instance.Chat.AddToChatOutput("Triggered heal encounter!");
     }
 }

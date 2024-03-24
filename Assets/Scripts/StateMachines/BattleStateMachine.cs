@@ -136,6 +136,7 @@ public class BattleStateMachine : MonoBehaviour
     private int getExp; //how much exp will each character get
     private int xLevel; //sum of enemy levels in battle
     private int averageEnemyLvl;
+    public bool isDungeonBattle;
 
     //timescale
     private float fixedDeltaTime;
@@ -144,6 +145,7 @@ public class BattleStateMachine : MonoBehaviour
     void Awake()
     {
         timeModifier = GameManager.instance.fightSpeed;
+        isDungeonBattle = GameManager.instance.isDungeonBattle;
         DisableSpeedButton(timeModifier);
         SpawnActors();
         AutobattleSetup();
@@ -155,7 +157,10 @@ public class BattleStateMachine : MonoBehaviour
     {
         test = false;
         getExp = 0;
-        CollectExp(); //make a sum of exp enemies will be giving in case of victory
+        if (!isDungeonBattle)
+            CollectExp(); //make a sum of exp enemies will be giving in case of victory
+        else
+            getExp = GameManager.instance.battleExp;
         //Set starting enums to idle etc
         HeroInput = HeroGUI.NOTACTIVE;
         battleStates = PerformAction.IDLE;
@@ -350,6 +355,7 @@ public class BattleStateMachine : MonoBehaviour
             //NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = enemyUnit.DisplayName;
             NewEnemy.GetComponent<UnitStateMachine>().BSM = this;
             NewEnemy.name = NewEnemy.GetComponent<UnitAttributes>().Stats.theName + " " + (i + 1);
+            NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = enemyUnit.DisplayName;
             EnemyTypeSet(NewEnemy);
             PopulateSkilllist(enemyUnit, NewEnemy);
             NewEnemy.GetComponent<Enemy>().BaseID = enemyUnit.ID;
@@ -425,42 +431,50 @@ public class BattleStateMachine : MonoBehaviour
 
     public void EnemyTypeSet(GameObject NewEnemy)
     {
-        float rate = UnityEngine.Random.Range(0f, 100f);
-        string typeTxt = "";
         EnemyType typeType = EnemyType.NORMAL;
-        int eLvl = 1;
-        int curRegions = GameManager.instance.curRegions;
-        if (rate <= GameManager.instance.babyChance)
+        int eLvl = 10;
+        
+        if (!isDungeonBattle)
         {
-            float mutantRate = UnityEngine.Random.Range(0f, 100f);
-            if (mutantRate <= GameManager.instance.mutantChance)
+            float rate = UnityEngine.Random.Range(0f, 100f);
+            string typeTxt = "";
+            
+            eLvl = 1;
+            int curRegions = GameManager.instance.curRegions;
+            if (rate <= GameManager.instance.babyChance)
             {
-                //typeTxt = "Mutant";
-                typeType = EnemyType.MUTANT;
-                NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(155, 0, 155, 255); // purple
+                float mutantRate = UnityEngine.Random.Range(0f, 100f);
+                if (mutantRate <= GameManager.instance.mutantChance)
+                {
+                    //typeTxt = "Mutant";
+                    typeType = EnemyType.MUTANT;
+                    NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(155, 0, 155, 255); // purple
+                }
+                else
+                {
+                    //typeTxt = "Baby";
+                    typeType = EnemyType.BABY;
+                    NewEnemy.GetComponent<UnitUI>().displayNameText.color = Color.magenta;
+                }
+                typeTxt = "Baby";
+            }
+            else if (rate <= GameManager.instance.eliteChance)
+            {
+                typeTxt = "Elite";
+                typeType = EnemyType.ELITE;
+                NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(255, 90, 0, 255); // orange
+                eLvl = GameManager.instance.Regions[curRegions].EnemyLevel + 5;
             }
             else
-            {
-                //typeTxt = "Baby";
-                typeType = EnemyType.BABY;
-                NewEnemy.GetComponent<UnitUI>().displayNameText.color = Color.magenta;
-            }
-            typeTxt = "Baby";
+                eLvl = GameManager.instance.Regions[curRegions].EnemyLevel;
+
+            if (typeTxt != "")
+                NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = typeTxt + " " + NewEnemy.GetComponent<UnitAttributes>().Stats.theName;
+            else
+                NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = NewEnemy.GetComponent<UnitAttributes>().Stats.theName;
+            NewEnemy.GetComponent<Enemy>().SetEnemyLevelX(eLvl);
         }
-        else if (rate <= GameManager.instance.eliteChance)
-        {
-            typeTxt = "Elite";
-            typeType = EnemyType.ELITE;
-            NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(255, 90, 0, 255); // orange
-            eLvl = GameManager.instance.Regions[curRegions].EnemyLevel + 5;
-        }
-        else
-            eLvl = GameManager.instance.Regions[curRegions].EnemyLevel;
         
-        if (typeTxt != "")
-            NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = typeTxt + " " + NewEnemy.GetComponent<UnitAttributes>().Stats.theName;
-        else
-            NewEnemy.GetComponent<UnitAttributes>().Stats.displayName = NewEnemy.GetComponent<UnitAttributes>().Stats.theName;
         NewEnemy.GetComponent<UnitAttributes>().Stats.theName = NewEnemy.name;
         NewEnemy.GetComponent<Enemy>().enemyType = typeType;
         NewEnemy.GetComponent<Enemy>().SetEnemyLevelX(eLvl);
@@ -1089,6 +1103,7 @@ public class BattleStateMachine : MonoBehaviour
         BattleActions.MakeSummonsDeploayable(BattlerHeroes);
         //HeroDataManager.instance.SaveCharData();
         //yield return new WaitForSeconds(0.25f);
+        GameManager.instance.isDungeonBattle = false;
         GameManager.instance.LoadSceneAfterBattle();
         GameManager.instance.gameState = GameStates.WORLD_STATE;
         GameManager.instance.enemysToBattle.Clear();
@@ -1099,9 +1114,10 @@ public class BattleStateMachine : MonoBehaviour
     private void GetExperience(int i)
     {
         UnitLevel unitLevel = HeroesInBattle[i].GetComponent<UnitLevel>();
-        CalculateExp(unitLevel.level.currentlevel);
+        if (!isDungeonBattle)
+            CalculateExp(unitLevel.level.currentlevel);
         var unitAttributes = HeroesInBattle[i].GetComponent<UnitAttributes>();
-        Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
+        //Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
         unitLevel.level.AddExp(getExp, unitAttributes);
         Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
         GameManager.instance.Chat.AddToChatOutput(HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
@@ -1135,7 +1151,6 @@ public class BattleStateMachine : MonoBehaviour
     {
         Debug.Log("Average level: " + averageEnemyLvl + "expTotal: " + expTotal);
         getExp = (int)Mathf.Round((expTotal * averageEnemyLvl) / (HeroesInBattle.Count * yLevel) * expMultiplier);
-
     }
 
     void CollectExp()

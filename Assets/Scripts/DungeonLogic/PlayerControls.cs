@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour
     private Cell leftCell;
     private Cell rightCell;
 
-    private Vector3 dest;
+    public Vector3 dest;
 
     private List<Cell> NeighbourCells = new();
     public List<Cell> FilteredOut = new();
@@ -51,6 +51,12 @@ public class PlayerControls : MonoBehaviour
         rBody = GetComponent<Rigidbody>();
         Vector3 dest = _grid.GetPositionCell(location) + new Vector3 (0, 0.5f, 0);
         rBody.MovePosition(dest);
+        Vector3 zero = new (0f, 0f, 0f);
+        if (GameManager.instance.nextHeroPosition != zero)
+        {
+            dest = GameManager.instance.nextHeroPosition;
+            rBody.MovePosition(dest);
+        }
         is_moving = false;
         //Moving();
         animator = modelHolder.GetComponentInChildren<Animator>();
@@ -142,20 +148,28 @@ public class PlayerControls : MonoBehaviour
         //then we want to trigger the event this cell provides, encounter, chest or something else.
         var scenario = other.gameObject.GetComponent<DungeonCell>();
 
-        if(scenario.Model)
-            Destroy(scenario.Model);
-        scenario.isCleared = true;
-        if(scenario.Scenario)
+        if (scenario.isBoss && scenario.Data.CellData.isCleared)
+        {
+            Debug.Log("Dungeon cleared, we need to implement something...");
+        }
+
+        if (scenario.Scenario && !scenario.Data.CellData.isCleared)
+        {
+            if (scenario.Model)
+                Destroy(scenario.Model);
+            scenario.Data.CellData.isCleared = true;
+            DungeonManager.instance.UpdateData(scenario.Data.CellData);
             scenario.Scenario.StepOn();
-        //trigger saving of this data:
+        }
 
+            //trigger saving of this data:
 
-        //and we want to set the position
+            //and we want to set the position
 
-        //and we want gamemanager to remember this position so after let's say battle we will be spawned back where we need to be
+            //and we want gamemanager to remember this position so after let's say battle we will be spawned back where we need to be
 
-        //detect neighbours to the left and to the right
-        NeighbourCells = new(_grid.GetNeighboursCell(ref location)); //checks for all neighbour cells
+            //detect neighbours to the left and to the right
+            NeighbourCells = new(_grid.GetNeighboursCell(ref location)); //checks for all neighbour cells
         FilteredOut = new();
 
         //filter out the ones in front

@@ -7,34 +7,47 @@ using MapTileGridCreator.Core;
 [System.Serializable]
 public class DungeonCell : MonoBehaviour
 {
-    public bool isCleared;
-    public string ScenarioId;
+    //public bool isCleared;
+    //public string ScenarioId;
     public DungeonScenario Scenario;
+    [SerializeField]
     private Cell cell;
     public GameObject Model;
-
+    //public Vector3Int index;
+    public CellDataData Data;
+    public bool isBoss = false;
 
     private void OnValidate()
     {
+        Data = GetComponent<CellDataData>();
         if (Scenario)
         {
-            ScenarioId = Scenario.ID;
+            Data.CellData.ScenarioID = Scenario.ID;
+        }
+        if (cell == null)
+        {
+            cell = GetComponent<Cell>();
+            Data.CellData.Index = cell.GetIndex();
+        }
+        if (cell != null)
+        {
+            Data.CellData.Index = cell.GetIndex();
         }
     }
 
     private void Awake()
     {
-        cell = gameObject.GetComponent<Cell>();
+        //cell = gameObject.GetComponent<Cell>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Run()
     {
-        if (!isCleared && Scenario)
+        Debug.Log("DungeonCell loaded");
+        if (!Data.CellData.isCleared && Scenario)
         {
-
-            Scenario.Activate(cell);
+            Scenario.Activate(this);
         }
+        Debug.Log("DungeonCell isCleared = " + Data.CellData.isCleared.ToString());
     }
 
 }

@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Battle Scenario[Vampire Boss]
   m_EditorClassIdentifier: 
   id: scenario665928a1-dbfc-4c2b-bdc3-b7e8952b249e
-  battleTeam:
-  - EnemyUnit: {fileID: 11400000, guid: 89acbb76af29e974d9fd80c019f9f67d, type: 2}
-    EnemyLevel: 15
+  battleTeam: {fileID: 11400000, guid: 89a680081a3471143a509931477c0b54, type: 2}
   enemyModel: {fileID: 1000013276017034, guid: 08559dd42efbf7c4784c44d50d0b0e06, type: 3}

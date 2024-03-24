@@ -177,7 +177,8 @@ public enum GameStates
     WORLD_STATE,
     TOWN_STATE,
     BATTLE_STATE,
-    IDLE
+    IDLE,
+    DUNGEON_STATE,
 }
 
 public enum ChatMessageType

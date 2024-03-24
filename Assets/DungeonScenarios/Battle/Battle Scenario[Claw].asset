@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce15a89346366d7479f0657426e9056c, type: 3}
-  m_Name: Battle Scenario[Eagle]
+  m_Name: Battle Scenario[Claw]
   m_EditorClassIdentifier: 
-  id: scenario8a075afc-bf56-47db-8486-a582a3805071
-  battleTeam: {fileID: 11400000, guid: 8da8728b06de4b348998c304be92fdad, type: 2}
-  enemyModel: {fileID: 1000012498865246, guid: 18acbaca1280fd5479e7b0f66a8755f1, type: 3}
+  id: scenario6d256358-a296-4f00-abce-d552e11fdd95
+  battleTeam: {fileID: 11400000, guid: 7a148439f0154bf46825e7f285d09a9a, type: 2}
+  enemyModel: {fileID: 1000014121297680, guid: dca08a056cd5db0489ebee9cb4fcb207, type: 3}

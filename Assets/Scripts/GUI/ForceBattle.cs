@@ -25,7 +25,7 @@ public class ForceBattle : MonoBehaviour
 
     public void EnterDungeon()
     {
-        SceneManager.LoadScene("Dungeon1");
+        SceneManager.LoadScene("DungeonNew");
     }
 
     public void ExitDungeon()

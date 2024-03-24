@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
 
     //Hero
     public GameObject PlayerPrefab;
+    public GameObject PlayerPrefabDungeon;
+    public GameObject Hero;
+
 
     //Battlers
     //autobattle basic attacks
@@ -70,6 +73,10 @@ public class GameManager : MonoBehaviour
     public int enemyAmount;
     public int heroAmount;
     public GameStates gameState;
+
+    //testing dungeon set up
+    public bool isDungeonBattle;
+    public int battleExp;
 
     void OnEnable()
     {
@@ -109,16 +116,25 @@ public class GameManager : MonoBehaviour
 
         if (scene.name != "CharacterCreation" && scene.name != "MainScreen")
         {
-            if (!GameObject.Find("Player") && scene.name != "BattleScene" && scene.name != "DungeonNew")
+            if (Hero == null && scene.name != "BattleScene" && scene.name != "DungeonNew")
             {
-                var Hero = Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
+                Hero = Instantiate(PlayerPrefab, transform.position, Quaternion.identity);
                 Hero.name = "Player";
                 //Hero.GetComponent<ControllableCharacter>().heroID = Extensions.FindMainCharacterID();
                 Hero.SetActive(true);
                 OuterWorldUI.SetActive(true);
             }
+            if (Hero == null && scene.name != "BattleScene" && scene.name == "DungeonNew")
+            {
+                Hero = GameObject.FindWithTag("Player");
+                //Hero.name = "Player";
+                //Hero.GetComponent<ControllableCharacter>().heroID = Extensions.FindMainCharacterID();
+                //Hero.SetActive(true);
+                OuterWorldUI.SetActive(true);
+            }
             ChatCanvas.SetActive(true);
         }
+
         else
         {
             ChatCanvas.SetActive(false);
@@ -145,7 +161,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case (GameStates.TOWN_STATE):
-
+                //do the things that are meant for town
+                break;
+            case (GameStates.DUNGEON_STATE):
+                //do the things that are meant for dungeon
                 break;
 
             case (GameStates.BATTLE_STATE):
@@ -159,8 +178,6 @@ public class GameManager : MonoBehaviour
 
                 break;
         }
-
-
     }
 
     public void LoadNextScene()
@@ -191,8 +208,6 @@ public class GameManager : MonoBehaviour
 
     public void StartBattle()
     {
-        //set amount of heroes in party
-        //heroAmount = battleHeroes.Count;
         //set the amount of enemys we can encounter
         enemyAmount = Random.Range(1, Regions[curRegions].maxAmountEnemys + 1);
         //which enemys we can encounter
@@ -200,7 +215,7 @@ public class GameManager : MonoBehaviour
         {
             enemysToBattle.Add(Regions[curRegions].possibleEnemys[Random.Range(0, Regions[curRegions].possibleEnemys.Count)]);
         }
-        lastHeroPosition = GameObject.Find("Player").gameObject.transform.position;
+        lastHeroPosition = Hero.transform.position;
         nextHeroPosition = lastHeroPosition;
         lastScene = SceneManager.GetActiveScene().name;
         //Load level
@@ -210,6 +225,26 @@ public class GameManager : MonoBehaviour
         gotAttacked = false;
         canGetEncounter = false;
         //Hero.SetActive(false);
+        OuterWorldUI.SetActive(false);
+    }
+
+    public void StartDungeonBattle(BattleSetupSO battleSetup)
+    {
+        isDungeonBattle = true;
+        battleExp = battleSetup.Experience;
+        //set the amount of enemys we encounter
+        enemyAmount = battleSetup.EnemyUnits.Length;
+        //which enemys we can encounter
+        for (int i = 0; i < enemyAmount; i++)
+        {
+            enemysToBattle.Add(battleSetup.EnemyUnits[i].EnemyUnit);
+        }
+        lastHeroPosition = Hero.GetComponent<PlayerControls>().dest + new Vector3(0, 0.5f, 0);
+        nextHeroPosition = lastHeroPosition;
+        lastScene = SceneManager.GetActiveScene().name;
+        //Load level
+        SceneManager.LoadScene("BattleScene");
+        //reset player character
         OuterWorldUI.SetActive(false);
     }
 

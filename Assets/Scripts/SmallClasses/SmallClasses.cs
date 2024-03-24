@@ -161,17 +161,25 @@ public class EncounterTeam
 }
 
 [System.Serializable]
-public class DungeonLootChest
+public class CellData
 {
-    public Item Item;
-    public int DropChance;
+    public string ScenarioID;
+    public Vector3Int Index;
+    public bool isCleared;
 }
+
+//[System.Serializable]
+//public class LootTable
+//{
+//    public Item Item;
+//    public float DropChance;
+//}
 
 [System.Serializable]
 public class ItemDrops
 {
     public Item item;
-    public float dropChance;
+    [Range(0.01f, 100f)] public float dropChance;
 }
 
 [System.Serializable]

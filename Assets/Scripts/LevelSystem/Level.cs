@@ -156,7 +156,7 @@ public class Level
 
             if (levelsUpped > 0)
             {
-                GameManager.instance.Chat.AddToChatOutput("Hero " + unit.Stats.displayName + "leveled up from level " + curLvl + " to level " + currentlevel + "!");
+                GameManager.instance.Chat.AddToChatOutput("Hero " + unit.Stats.displayName + " leveled up from level " + curLvl + " to level " + currentlevel + "!");
 
                 var statPanel = GameManager.instance.heroInfoInterface;
                 for (int i = 0; i < levelsUpped; i++)

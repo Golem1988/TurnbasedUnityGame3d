@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Battle Scenario[Demon Sis]
   m_EditorClassIdentifier: 
   id: scenarioe569afc0-ea76-472d-ae16-6ff49e3d772f
-  battleTeam:
-  - EnemyUnit: {fileID: 11400000, guid: 8d918a46c34e291458a196ab66690a0e, type: 2}
-    EnemyLevel: 12
+  battleTeam: {fileID: 11400000, guid: 7c384e9e7f93500459314d36c7036ab2, type: 2}
   enemyModel: {fileID: 1000011994880008, guid: 805e6669cef7f4c459cc8431e415de06, type: 3}

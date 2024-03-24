@@ -8,10 +8,10 @@ using System;
 public class DungeonBattleScenario : DungeonScenario
 {
     [SerializeField]
-    protected List<EncounterTeam> battleTeam = new();
+    protected BattleSetupSO battleTeam;
     [SerializeField]
     protected GameObject enemyModel;
-    public List<EncounterTeam> BattleTeam { get => battleTeam; protected set => battleTeam = value; }
+    public BattleSetupSO BattleTeam { get => battleTeam; protected set => battleTeam = value; }
     
     
     private void OnValidate()
@@ -21,16 +21,17 @@ public class DungeonBattleScenario : DungeonScenario
             ID = "scenario" + Guid.NewGuid().ToString();
         }
 
-        if (BattleTeam.Count > 0 && BattleTeam[0].EnemyUnit)
+        if (BattleTeam.EnemyUnits.Length > 0 && BattleTeam.EnemyUnits[0].EnemyUnit)
         {
-            enemyModel = BattleTeam[0].EnemyUnit.ModelPrefab;
+            enemyModel = BattleTeam.EnemyUnits[0].EnemyUnit.ModelPrefab;
         }
 
     }
 
-    public override void Activate(Cell cell)
+    public override void Activate(DungeonCell cell)
     {
         var spot = cell.transform;
+        //cell.GetComponent<DungeonCell>().isCleared = true;
         Spawn(enemyModel, spot);
     }
 
@@ -46,5 +47,8 @@ public class DungeonBattleScenario : DungeonScenario
     public override void StepOn()
     {
         GameManager.instance.Chat.AddToChatOutput("Triggered battle encounter!");
+        GameManager.instance.StartDungeonBattle(BattleTeam);
+        //initialize battle start for game manager
+        //transmit all the data and also modify the battle state machine code if needed to be ready to accept this
     }
 }

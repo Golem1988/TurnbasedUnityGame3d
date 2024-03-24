@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Battle Scenario[Zombie]
   m_EditorClassIdentifier: 
   id: scenariocb90c2c8-e64b-47e7-aca4-00b8b54d3d05
-  battleTeam:
-  - EnemyUnit: {fileID: 11400000, guid: 4e224d623268a034186c3206f4ad7a5c, type: 2}
-    EnemyLevel: 10
+  battleTeam: {fileID: 11400000, guid: bd282715c881e6f4596ec8f84f350003, type: 2}
   enemyModel: {fileID: 1000010648684266, guid: 90255cd35b3393547b64c9f979d20227, type: 3}

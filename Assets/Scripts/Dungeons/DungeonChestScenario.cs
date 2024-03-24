@@ -8,10 +8,10 @@ using System;
 public class DungeonChestScenario : DungeonScenario
 {
     [SerializeField]
-    protected List<DungeonLootChest> loot = new();
+    protected ItemDrops[] loot;
     [SerializeField]
     protected GameObject chestModel;
-    public List<DungeonLootChest> Loot { get => loot; protected set => loot = value; }
+    public ItemDrops[] Loot { get => loot; protected set => loot = value; }
 
     private void OnValidate()
     {
@@ -21,7 +21,7 @@ public class DungeonChestScenario : DungeonScenario
         }
     }
 
-    public override void Activate(Cell cell)
+    public override void Activate(DungeonCell cell)
     {
         var spot = cell.transform;
         Spawn(chestModel, spot);
