@@ -70,14 +70,14 @@ public class MainAvatarUI : MonoBehaviour
 
     private void ChangeHeroBars(CharacterInformation hero)
     {
-        HeroHpText.text = hero.Stats.curHP.ToString() + "/" + hero.Stats.baseHP.ToString();
-        HeroMpText.text = hero.Stats.curMP.ToString() + "/" + hero.Stats.baseMP.ToString();
+        HeroHpText.text = hero.Stats.curHP.BaseValue.ToString() + "/" + hero.Stats.baseHP.BaseValue.ToString();
+        HeroMpText.text = hero.Stats.curMP.BaseValue.ToString() + "/" + hero.Stats.baseMP.BaseValue.ToString();
 
         HeroExpText.text = hero.Level.CUR_EXP.ToString() + "/" + hero.Level.NEXT_EXP.ToString();
         HeroLevelText.text = hero.Level.currentlevel.ToString();
 
-        heroHealthBar.SetSize(hero.Stats.curHP / hero.Stats.baseHP);
-        heroManaBar.SetSize(hero.Stats.curMP / hero.Stats.baseMP);
+        heroHealthBar.SetSize(hero.Stats.curHP.BaseValue / hero.Stats.baseHP.BaseValue);
+        heroManaBar.SetSize(hero.Stats.curMP.BaseValue / hero.Stats.baseMP.BaseValue);
         float curExp = hero.Level.CUR_EXP;
         if (curExp == 0)
             curExp = 0.01f;
@@ -96,12 +96,12 @@ public class MainAvatarUI : MonoBehaviour
                 if (!SummonBarObj.activeSelf)
                     SummonBarObj.SetActive(true);
                 SummonAvatar.sprite = Extensions.FindSprite(summon.BaseID, false);
-                SummonHpText.text = summon.Stats.curHP.ToString() + "/" + summon.Stats.baseHP.ToString();
-                SummonMpText.text = summon.Stats.curMP.ToString() + "/" + summon.Stats.baseMP.ToString();
+                SummonHpText.text = summon.Stats.curHP.BaseValue.ToString() + "/" + summon.Stats.baseHP.BaseValue.ToString();
+                SummonMpText.text = summon.Stats.curMP.BaseValue.ToString() + "/" + summon.Stats.baseMP.BaseValue.ToString();
                 //SummonExpText.text = summon.Level.experience.ToString() + "/" + summon.Level.requiredExp.ToString();
                 SummonLevelText.text = summon.Level.currentlevel.ToString();
-                summonHealthBar.SetSize(summon.Stats.curHP / summon.Stats.baseHP);
-                summonManaBar.SetSize(summon.Stats.curMP / summon.Stats.baseMP);
+                summonHealthBar.SetSize(summon.Stats.curHP.BaseValue / summon.Stats.baseHP.BaseValue);
+                summonManaBar.SetSize(summon.Stats.curMP.BaseValue / summon.Stats.baseMP.BaseValue);
             }
             else
             {

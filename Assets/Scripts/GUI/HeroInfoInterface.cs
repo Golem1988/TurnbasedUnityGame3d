@@ -306,17 +306,17 @@ public class HeroInfoInterface : MonoBehaviour
             heroName.text = HeroPrefab.Stats.theName;
             heroLevel.text = HeroPrefab.Level.currentlevel.ToString();
 
-            heroHP.text = HeroPrefab.Stats.curHP.ToString() + "/" + HeroPrefab.Stats.baseHP.ToString();
-            heroMP.text = HeroPrefab.Stats.curMP.ToString() + "/" + HeroPrefab.Stats.baseMP.ToString();
+            heroHP.text = HeroPrefab.Stats.curHP.BaseValue.ToString() + "/" + HeroPrefab.Stats.baseHP.BaseValue.ToString();
+            heroMP.text = HeroPrefab.Stats.curMP.BaseValue.ToString() + "/" + HeroPrefab.Stats.baseMP.BaseValue.ToString();
 
-            heroAtk.text = HeroPrefab.Stats.curATK.ToString();
-            heroMatk.text = HeroPrefab.Stats.curMATK.ToString();
-            heroDef.text = HeroPrefab.Stats.curDEF.ToString();
+            heroAtk.text = HeroPrefab.Stats.curATK.BaseValue.ToString();
+            heroMatk.text = HeroPrefab.Stats.curMATK.BaseValue.ToString();
+            heroDef.text = HeroPrefab.Stats.curDEF.BaseValue.ToString();
 
-            heroDodge.text = HeroPrefab.Stats.curDodge.ToString();
-            heroHit.text = HeroPrefab.Stats.curHit.ToString();
+            heroDodge.text = HeroPrefab.Stats.curDodge.BaseValue.ToString();
+            heroHit.text = HeroPrefab.Stats.curHit.BaseValue.ToString();
             heroCrit.text = HeroPrefab.Stats.curCRIT.ToString();
-            heroSpeed.text = HeroPrefab.Stats.curSpeed.ToString();
+            heroSpeed.text = HeroPrefab.Stats.curSpeed.BaseValue.ToString();
 
             heroStr.text = HeroPrefab.Stats.strength.BaseValue.ToString();
             heroInt.text = HeroPrefab.Stats.intellect.BaseValue.ToString();
@@ -427,27 +427,27 @@ public class HeroInfoInterface : MonoBehaviour
 
             HeroPrefab.Stats.unspentStatPoints -= addedStatpts;
 
-            HeroPrefab.Stats.baseHP += addedHP;
-            HeroPrefab.Stats.curHP = HeroPrefab.Stats.baseHP;
-            HeroPrefab.Stats.baseMP += addedMP;
-            HeroPrefab.Stats.curMP = HeroPrefab.Stats.baseMP;
+            HeroPrefab.Stats.baseHP.BaseValue += addedHP;
+            HeroPrefab.Stats.curHP.BaseValue = HeroPrefab.Stats.baseHP.BaseValue;
+            HeroPrefab.Stats.baseMP.BaseValue += addedMP;
+            HeroPrefab.Stats.curMP.BaseValue = HeroPrefab.Stats.baseMP.BaseValue;
 
-            HeroPrefab.Stats.baseATK += addedAtk;
-            HeroPrefab.Stats.curATK = HeroPrefab.Stats.baseATK;
-            HeroPrefab.Stats.baseMATK += addedMatk;
-            HeroPrefab.Stats.curMATK = HeroPrefab.Stats.baseMATK;
-            HeroPrefab.Stats.baseDEF += addedDef;
-            HeroPrefab.Stats.curDEF = HeroPrefab.Stats.baseDEF;
+            HeroPrefab.Stats.baseATK.BaseValue += addedAtk;
+            HeroPrefab.Stats.curATK.BaseValue = HeroPrefab.Stats.baseATK.BaseValue;
+            HeroPrefab.Stats.baseMATK.BaseValue += addedMatk;
+            HeroPrefab.Stats.curMATK.BaseValue = HeroPrefab.Stats.baseMATK.BaseValue;
+            HeroPrefab.Stats.baseDEF.BaseValue += addedDef;
+            HeroPrefab.Stats.curDEF.BaseValue = HeroPrefab.Stats.baseDEF.BaseValue;
 
             HeroPrefab.Stats.baseCRIT += addedCrit;
             HeroPrefab.Stats.curCRIT = HeroPrefab.Stats.baseCRIT;
-            HeroPrefab.Stats.baseDodge += addedDodge;
-            HeroPrefab.Stats.curDodge = HeroPrefab.Stats.baseDodge;
-            HeroPrefab.Stats.baseHit += addedHit;
-            HeroPrefab.Stats.curHit = HeroPrefab.Stats.baseHit;
-            HeroPrefab.Stats.baseSpeed += addedSpeed;
-            HeroPrefab.Stats.curSpeed = HeroPrefab.Stats.baseSpeed;
-            HeroPrefab.Stats.minATK = HeroPrefab.Stats.curATK;
+            HeroPrefab.Stats.baseDodge.BaseValue += addedDodge;
+            HeroPrefab.Stats.curDodge.BaseValue = HeroPrefab.Stats.baseDodge.BaseValue;
+            HeroPrefab.Stats.baseHit.BaseValue += addedHit;
+            HeroPrefab.Stats.curHit.BaseValue = HeroPrefab.Stats.baseHit.BaseValue;
+            HeroPrefab.Stats.baseSpeed.BaseValue += addedSpeed;
+            HeroPrefab.Stats.curSpeed.BaseValue = HeroPrefab.Stats.baseSpeed.BaseValue;
+            HeroPrefab.Stats.minATK = HeroPrefab.Stats.curATK.BaseValue;
             HeroPrefab.Stats.maxATK = (HeroPrefab.Stats.minATK / 100) * 120;
             //HeroData.instance.SaveCharData();
             Clean();
@@ -463,25 +463,25 @@ public class HeroInfoInterface : MonoBehaviour
             hero.Stats.dexterity.BaseValue += AddedDex;
             hero.Stats.agility.BaseValue += AddedAgi;
             hero.Stats.stamina.BaseValue += AddedSta;
-            hero.Stats.baseHP += addedHP;
-            hero.Stats.curHP = hero.Stats.baseHP;
-            hero.Stats.baseMP += addedMP;
-            hero.Stats.curMP = hero.Stats.baseMP;
-            hero.Stats.baseATK += addedAtk;
-            hero.Stats.curATK = hero.Stats.baseATK;
-            hero.Stats.baseMATK += addedMatk;
-            hero.Stats.curMATK = hero.Stats.baseMATK;
-            hero.Stats.baseDEF += addedDef;
-            hero.Stats.curDEF = hero.Stats.baseDEF;
+            hero.Stats.baseHP.BaseValue += addedHP;
+            hero.Stats.curHP.BaseValue = hero.Stats.baseHP.BaseValue;
+            hero.Stats.baseMP.BaseValue += addedMP;
+            hero.Stats.curMP.BaseValue = hero.Stats.baseMP.BaseValue;
+            hero.Stats.baseATK.BaseValue += addedAtk;
+            hero.Stats.curATK.BaseValue = hero.Stats.baseATK.BaseValue;
+            hero.Stats.baseMATK.BaseValue += addedMatk;
+            hero.Stats.curMATK.BaseValue = hero.Stats.baseMATK.BaseValue;
+            hero.Stats.baseDEF.BaseValue += addedDef;
+            hero.Stats.curDEF.BaseValue = hero.Stats.baseDEF.BaseValue;
             hero.Stats.baseCRIT += addedCrit;
             hero.Stats.curCRIT = hero.Stats.baseCRIT;
-            hero.Stats.baseDodge += addedDodge;
-            hero.Stats.curDodge = hero.Stats.baseDodge;
-            hero.Stats.baseHit += addedHit;
-            hero.Stats.curHit = hero.Stats.baseHit;
-            hero.Stats.baseSpeed += addedSpeed;
-            hero.Stats.curSpeed = hero.Stats.baseSpeed;
-            hero.Stats.minATK = hero.Stats.curATK;
+            hero.Stats.baseDodge.BaseValue += addedDodge;
+            hero.Stats.curDodge.BaseValue = hero.Stats.baseDodge.BaseValue;
+            hero.Stats.baseHit.BaseValue += addedHit;
+            hero.Stats.curHit.BaseValue = hero.Stats.baseHit.BaseValue;
+            hero.Stats.baseSpeed.BaseValue += addedSpeed;
+            hero.Stats.curSpeed.BaseValue = hero.Stats.baseSpeed.BaseValue;
+            hero.Stats.minATK = hero.Stats.curATK.BaseValue;
             hero.Stats.maxATK = Mathf.Round((hero.Stats.minATK / 100) * 120);
 
 
@@ -584,6 +584,7 @@ public class HeroInfoInterface : MonoBehaviour
 
         ExecuteStatIncrease(hero);
     }
+
 
 
 }

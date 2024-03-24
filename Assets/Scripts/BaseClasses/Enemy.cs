@@ -70,43 +70,43 @@ public class Enemy : MonoBehaviour
         unit.Stats.stamina.BaseValue = Random.Range(levelBasedStat, levelBasedStat + enemyLevel + Random.Range(0, 3));
 
         //Calculate HP based on Stats
-        unit.Stats.baseHP = Mathf.Round(unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerStr) + (unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerSta);
-        unit.Stats.curHP = unit.Stats.baseHP;
+        unit.Stats.baseHP.BaseValue = Mathf.Round(unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerStr) + (unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerSta);
+        unit.Stats.curHP.BaseValue = unit.Stats.baseHP.BaseValue;
 
         //Calculate MP based on stats
-        unit.Stats.baseMP = Mathf.Round(unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.mpPerInt);
-        unit.Stats.curMP = unit.Stats.baseMP;
+        unit.Stats.baseMP.BaseValue = Mathf.Round(unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.mpPerInt);
+        unit.Stats.curMP.BaseValue = unit.Stats.baseMP.BaseValue;
 
         //Calculate Attack based on stats
-        unit.Stats.baseATK = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
-        unit.Stats.curATK = unit.Stats.baseATK;
+        unit.Stats.baseATK.BaseValue = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
+        unit.Stats.curATK.BaseValue = unit.Stats.baseATK.BaseValue;
 
         //Calculate magic Attack based on stats
         //unit.Stats.baseMATK = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
         //unit.Stats.curMATK = unit.Stats.baseMATK;
 
-        unit.Stats.maxATK = unit.Stats.baseATK + Random.Range(10, 50);
-        unit.Stats.minATK = unit.Stats.baseATK;
+        unit.Stats.maxATK = unit.Stats.baseATK.BaseValue + Random.Range(10, 50);
+        unit.Stats.minATK = unit.Stats.baseATK.BaseValue;
 
         //Calculate HIT based on stats
-        unit.Stats.baseHit = Mathf.Round(unit.Stats.dexterity.BaseValue * HeroDataManager.instance.UnitDatabase.hitPerDex);
-        unit.Stats.curHit = unit.Stats.baseHit;
+        unit.Stats.baseHit.BaseValue = Mathf.Round(unit.Stats.dexterity.BaseValue * HeroDataManager.instance.UnitDatabase.hitPerDex);
+        unit.Stats.curHit.BaseValue = unit.Stats.baseHit.BaseValue;
 
         //Calculate dodge based on stats
-        unit.Stats.baseDodge = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.dodgePerAgi);
-        unit.Stats.curDodge = unit.Stats.baseDodge;
+        unit.Stats.baseDodge.BaseValue = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.dodgePerAgi);
+        unit.Stats.curDodge.BaseValue = unit.Stats.baseDodge.BaseValue;
 
         //calculate def based on stats
-        unit.Stats.baseDEF = Mathf.Round(unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.defPerSta);
-        unit.Stats.curDEF = unit.Stats.baseDEF;
+        unit.Stats.baseDEF.BaseValue = Mathf.Round(unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.defPerSta);
+        unit.Stats.curDEF.BaseValue = unit.Stats.baseDEF.BaseValue;
 
         //calculate critrate based on stats
         unit.Stats.baseCRIT = 25f;
         unit.Stats.curCRIT = unit.Stats.baseCRIT;
 
         //calculate speed based on stats
-        unit.Stats.baseSpeed = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.spdPerAgi);
-        unit.Stats.curSpeed = unit.Stats.baseSpeed;
+        unit.Stats.baseSpeed.BaseValue = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.spdPerAgi);
+        unit.Stats.curSpeed.BaseValue = unit.Stats.baseSpeed.BaseValue;
 
         expAmount = unit.Stats.strength.BaseValue + unit.Stats.intellect.BaseValue + unit.Stats.dexterity.BaseValue + unit.Stats.agility.BaseValue + unit.Stats.stamina.BaseValue;
     }

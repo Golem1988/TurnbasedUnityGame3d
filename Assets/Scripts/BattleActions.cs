@@ -107,24 +107,25 @@ public class BattleActions : MonoBehaviour
     public void RestoreHPMPRP(Transform target, float amount, AffectedStat affectedStat)
     {   
         DamagePopup(target, false, amount, true, affectedStat);
+        //Debug.Log("REstoreHPMPRP");
         var unit = target.GetComponent<UnitAttributes>().Stats;
         if (affectedStat == AffectedStat.HP)
         {
-            unit.curHP += amount;
-            if (unit.curHP > unit.baseHP)
+            unit.curHP.BaseValue += amount;
+            if (unit.curHP.BaseValue > unit.baseHP.BaseValue)
             {
                 unit.curHP = unit.baseHP;
             }
-            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP / unit.baseHP);
+            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP.BaseValue / unit.baseHP.BaseValue);
         }
         if (affectedStat == AffectedStat.MP)
         {
-            unit.curMP += amount;
-            if (unit.curMP > unit.baseMP)
+            unit.curMP.BaseValue += amount;
+            if (unit.curMP.BaseValue > unit.baseMP.BaseValue)
             {
                 unit.curMP = unit.baseMP;
             }
-            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP / unit.baseMP);
+            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP.BaseValue / unit.baseMP.BaseValue);
         }
     }
 
@@ -134,22 +135,22 @@ public class BattleActions : MonoBehaviour
         var unit = target.GetComponent<UnitAttributes>().Stats;
         if (affectedStat == AffectedStat.HP)
         {
-            unit.curHP -= amount;
-            if (unit.curHP < unit.baseHP)
+            unit.curHP.BaseValue -= amount;
+            if (unit.curHP.BaseValue < unit.baseHP.BaseValue)
             {
-                unit.curHP = 0;
+                unit.curHP.BaseValue = 0;
                 Actions.OnZeroHealth(target.GetComponent<UnitStateMachine>());
             }
-            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP / unit.baseHP);
+            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP.BaseValue / unit.baseHP.BaseValue);
         }
         if (affectedStat == AffectedStat.MP)
         {
-            unit.curMP -= amount;
-            if (unit.curMP < unit.baseMP)
+            unit.curMP.BaseValue -= amount;
+            if (unit.curMP.BaseValue < unit.baseMP.BaseValue)
             {
-                unit.curMP = 0;
+                unit.curMP.BaseValue = 0;
             }
-            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP / unit.baseMP);
+            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP.BaseValue / unit.baseMP.BaseValue);
         }
     }
 
@@ -322,9 +323,9 @@ public class BattleActions : MonoBehaviour
     public void SetBarSize(UnitStateMachine target, AffectedStat theBar)
     {
         if (theBar == AffectedStat.HP)
-            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.curHP / target.unit.Stats.baseHP);
+            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.curHP.BaseValue / target.unit.Stats.baseHP.BaseValue);
         if (theBar == AffectedStat.MP)
-            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.curMP / target.unit.Stats.baseMP);
+            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.curMP.BaseValue / target.unit.Stats.baseMP.BaseValue);
         if (target.gameObject.CompareTag("Hero") && theBar == AffectedStat.RP)
         {
             target.GetComponent<UnitUI>().rageBar.SetSize(target.unit.Stats.curRage / target.unit.Stats.maxRage);
@@ -405,7 +406,7 @@ public class BattleActions : MonoBehaviour
             string oldSummonID = oldSummon.name;
             var SummonList = owner.GetComponent<SummonHandler>().SummonList;
             int oldSummonIndex = SummonList.FindIndex(summons => summons.UniqueID == oldSummonID);
-            Debug.Log("Old summon ID: " + oldSummonID);
+            //Debug.Log("Old summon ID: " + oldSummonID);
             SummonList[oldSummonIndex].active = false;
             SummonList[oldSummonIndex].isDeployable = false;
 
@@ -437,8 +438,8 @@ public class BattleActions : MonoBehaviour
         NewSummon.GetComponent<UnitAttributes>().Stats = info[summonIndex].Stats;
         NewSummon.GetComponent<UnitAttributes>().Stats.theName = NewSummon.name;
         NewSummon.GetComponent<UnitStateMachine>().BSM = BSM;
-        NewSummon.GetComponent<UnitUI>().healthBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curHP / NewSummon.GetComponent<UnitAttributes>().Stats.baseHP);
-        NewSummon.GetComponent<UnitUI>().manaBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curMP / NewSummon.GetComponent<UnitAttributes>().Stats.baseMP);
+        NewSummon.GetComponent<UnitUI>().healthBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curHP.BaseValue / NewSummon.GetComponent<UnitAttributes>().Stats.baseHP.BaseValue);
+        NewSummon.GetComponent<UnitUI>().manaBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curMP.BaseValue / NewSummon.GetComponent<UnitAttributes>().Stats.baseMP.BaseValue);
         //NewSummon.GetComponent<UnitAttributes>().Stats.displayName = info[summonIndex].Stats.displayName;
         NewSummon.tag = "Summon";
         NewSummon.GetComponent<UnitLevel>().level = info[summonIndex].Level;

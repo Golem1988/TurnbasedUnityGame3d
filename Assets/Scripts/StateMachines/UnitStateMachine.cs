@@ -136,7 +136,7 @@ public class UnitStateMachine : MonoBehaviour
     {
         if (!gameObject.CompareTag("Hero"))
         {
-            if (unit.Stats.curHP <= 0)
+            if (unit.Stats.curHP.BaseValue <= 0)
             {
                 yield return new WaitForSeconds(1.5f);
             }
@@ -149,19 +149,19 @@ public class UnitStateMachine : MonoBehaviour
     {
         HandleTurn enemyChoice = new HandleTurn();
         enemyChoice.AttackersName = unit.Stats.theName;
-        enemyChoice.attackersSpeed = unit.Stats.curSpeed;
+        enemyChoice.attackersSpeed = unit.Stats.curSpeed.BaseValue;
         enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
         enemyChoice.Attacker = gameObject;
         BaseClass enemie = gameObject.GetComponent<UnitAttributes>().Stats;
 
         //determine which skills does enemy have:
-        if (enemie.curMP > 0 && abilities.MagicAttacks.Count > 0)
+        if (enemie.curMP.BaseValue > 0 && abilities.MagicAttacks.Count > 0)
         {
             //we have magic attacks
             List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
             //can we use them? check the manacost
             //remove all we can't use
-            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.curMP);
+            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.curMP.BaseValue);
             if (magicAttacks.Count > 1)
             {
                 int num = Random.Range(0, magicAttacks.Count);
@@ -170,19 +170,19 @@ public class UnitStateMachine : MonoBehaviour
             else if (magicAttacks.Count == 1)
             {
                 enemyChoice.choosenAttack = magicAttacks[0];
-                Debug.Log("Enemy chose " + enemyChoice.choosenAttack.SkillName);
+                //Debug.Log("Enemy chose " + enemyChoice.choosenAttack.SkillName);
             }
 
             if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Ally)
             {
-                Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
-                Debug.Log("Enemy chose ally ");
+                //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                //Debug.Log("Enemy chose ally ");
                 enemyChoice.AttackersTarget = BSM.EnemiesInBattle[Random.Range(0, BSM.EnemiesInBattle.Count)];
             }
             else if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Foe)
             {
-                Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
-                Debug.Log("Enemy chose hero ");
+                //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                //Debug.Log("Enemy chose hero ");
                 enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
             }
         }
@@ -212,7 +212,7 @@ public class UnitStateMachine : MonoBehaviour
         var choosenAttack = BSM.PerformList[0].choosenAttack;
         if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == "a0b4d18cb0e8c8f4791153f816e5336a")
         {
-            Debug.Log("if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == a0b4d18cb0e8c8f4791153f816e5336a triggered");
+            //Debug.Log("if (BSM.PerformList[0].choosenAttack && BSM.PerformList[0].choosenAttack.ID == a0b4d18cb0e8c8f4791153f816e5336a triggered");
             var effect = BSM.PerformList[0].choosenAttack.ApplyStatusEffects[0].effect;
             BSM.BuffManager.ApplyStatus(this, effect, 1);
         }
@@ -222,7 +222,7 @@ public class UnitStateMachine : MonoBehaviour
         {
             if (choosenAttack.CheckCost(this) == true)
             {
-                Debug.Log("BSM.PerformList[0].AttackersTarget = " + BSM.PerformList[0].AttackersTarget.name);
+                //Debug.Log("BSM.PerformList[0].AttackersTarget = " + BSM.PerformList[0].AttackersTarget.name);
                 ActionSettings actionSettings = choosenAttack.CalculateSkill(this, BSM.PerformList[0].AttackersTarget.GetComponent<UnitStateMachine>());
                 List<StatusEffectList> statusEffects = new(actionSettings.applyStatusEffects);
                 List<UnitStateMachine> endTargets = new(actionSettings.endTargetList);
@@ -254,7 +254,7 @@ public class UnitStateMachine : MonoBehaviour
                         targetPosition = new Vector3(ChosenAttackTarget.transform.position.x - 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z + 0.5f);
                     else
                         targetPosition = new Vector3(ChosenAttackTarget.transform.position.x + 0.6f, ChosenAttackTarget.transform.position.y, ChosenAttackTarget.transform.position.z - 0.5f);
-                    Debug.Log("ChosenAttackTarget name = " + ChosenAttackTarget.name);
+                    //Debug.Log("ChosenAttackTarget name = " + ChosenAttackTarget.name);
                     while (MoveToPosition(targetPosition))
                     {
                         yield return null;
@@ -262,10 +262,10 @@ public class UnitStateMachine : MonoBehaviour
                     yield return new WaitForSeconds(0.25f);
                     ui.scream.SetActive(false);
 
-                    Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
+                    //Debug.Log("actionSettings.endTargetList.Count = " + endTargets.Count.ToString());
                     for (int i = 0; i < endTargets.Count; i++)
                     {
-                        Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
+                        //Debug.Log("actionSettings.strikeCount = " + actionSettings.strikeCount.ToString());
                         for (int j = 0; j < actionSettings.strikeCount; j++)
                         {
                             ui.animator.Play("Attack");
@@ -293,7 +293,7 @@ public class UnitStateMachine : MonoBehaviour
                         }
                     }
 
-                    if (unit.Stats.curHP > 0)
+                    if (unit.Stats.curHP.BaseValue > 0)
                     {
                         while (MoveToPosition(startposition))
                         {
@@ -362,7 +362,7 @@ public class UnitStateMachine : MonoBehaviour
         }
 
         //remove this performer from the list in BSM
-        Debug.Log("BSM.PerformList [0] name = " + BSM.PerformList[0].AttackersName);
+        //Debug.Log("BSM.PerformList [0] name = " + BSM.PerformList[0].AttackersName);
         BSM.PerformList.RemoveAt(0);
 
         //end coroutine
@@ -371,7 +371,7 @@ public class UnitStateMachine : MonoBehaviour
         if (gameObject.CompareTag("Enemy"))
         {
             BSM.battleStates = PerformAction.START;
-            if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
             {
                 //reset this unit state
                 currentState = TurnState.PROCESSING;
@@ -406,7 +406,7 @@ public class UnitStateMachine : MonoBehaviour
         //Calculate if the attack hits
         if (!isHeal)
         {
-            hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+            hitChance = (actor.unit.Stats.curHit.BaseValue / unit.Stats.curDodge.BaseValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
             if (isDodgeable == false)
             {
                 hitChance = 100;
@@ -419,7 +419,7 @@ public class UnitStateMachine : MonoBehaviour
                 }
                 if (!ignoresDef)
                 {
-                    damageAmount = incomingTrueDamage - unit.Stats.curDEF;
+                    damageAmount = incomingTrueDamage - unit.Stats.curDEF.BaseValue;
                     if (damageAmount < 0)
                     {
                         damageAmount = 0;
@@ -428,26 +428,26 @@ public class UnitStateMachine : MonoBehaviour
                 if (affectedStat == AffectedStat.HP)
                 {
                     ui.animator.Play("Hurt");
-                    unit.Stats.curHP -= damageAmount;
+                    unit.Stats.curHP.BaseValue -= damageAmount;
                     //Actions.OnBarChange(this, AffectedStat.HP);
-                    if (unit.Stats.curHP <= 0)
+                    if (unit.Stats.curHP.BaseValue <= 0)
                     {
-                        unit.Stats.curHP = 0;
+                        unit.Stats.curHP.BaseValue = 0;
                         Actions.OnZeroHealth(this);
                     }
-                    ui.healthBar.SetSize(unit.Stats.curHP / unit.Stats.baseHP);
+                    ui.healthBar.SetSize(unit.Stats.curHP.BaseValue / unit.Stats.baseHP.BaseValue);
                 }
 
                 if (affectedStat == AffectedStat.MP)
                 {
                     ui.animator.Play("Hurt");
-                    unit.Stats.curMP -= damageAmount;
+                    unit.Stats.curMP.BaseValue -= damageAmount;
                     //Actions.OnBarChange(this, AffectedStat.MP);
-                    if (unit.Stats.curMP <= 0)
+                    if (unit.Stats.curMP.BaseValue <= 0)
                     {
-                        unit.Stats.curMP = 0;
+                        unit.Stats.curMP.BaseValue = 0;
                     }
-                    ui.manaBar.SetSize(unit.Stats.curMP / unit.Stats.baseMP);
+                    ui.manaBar.SetSize(unit.Stats.curMP.BaseValue / unit.Stats.baseMP.BaseValue);
                 }
 
                 //show popup damage
@@ -719,7 +719,7 @@ public class UnitStateMachine : MonoBehaviour
             //    Debug.Log("Kill Streak = " + killStreak);
             //}
 
-            if (isMelee && unit.Stats.curHP > 0)
+            if (isMelee && unit.Stats.curHP.BaseValue > 0)
             {
                 while (MoveToPosition(startposition))
                 {
@@ -746,7 +746,7 @@ public class UnitStateMachine : MonoBehaviour
         {
             BSM.battleStates = PerformAction.START;
 
-            if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
             {
                 currentState = TurnState.PROCESSING;
             }
@@ -905,7 +905,7 @@ public class UnitStateMachine : MonoBehaviour
             //    Debug.Log("Kill Streak = " + killStreak);
             //}
 
-            if (choosenAttack.SkillType == SkillType.Melee && unit.Stats.curHP > 0)
+            if (choosenAttack.SkillType == SkillType.Melee && unit.Stats.curHP.BaseValue > 0)
             {
                 while (MoveToPosition(startposition))
                 {
@@ -932,7 +932,7 @@ public class UnitStateMachine : MonoBehaviour
         {
             BSM.battleStates = PerformAction.START;
 
-            if (unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
             {
                 currentState = TurnState.PROCESSING;
             }

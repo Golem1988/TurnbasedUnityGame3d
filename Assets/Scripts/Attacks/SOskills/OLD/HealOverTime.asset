@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae7e5a44b38fe5641bd36dfbde7676ac, type: 3}
-  m_Name: Heal Over Time
+  m_Name: HealOverTime
   m_EditorClassIdentifier: 
   id: 947bae94dad8bae469048011b3d251c2
   SkillName: Heal over time
@@ -23,6 +23,6 @@ MonoBehaviour:
   isBuff: 1
   stat: 1
   modType: 100
-  value: 500
+  theValue: 250
   expirePoint: 1
   triggerEachTurn: 1

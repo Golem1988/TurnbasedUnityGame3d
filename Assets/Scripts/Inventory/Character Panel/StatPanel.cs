@@ -7,13 +7,13 @@ public class StatPanel : MonoBehaviour
     [SerializeField] StatDisplay[] statDisplays;
     [SerializeField] string[] statNames;
     public CharacterStat[] stats;
-	[SerializeField] GameObject characterX;
+	//public CharacterInformation characterX;
 
-    private void OnValidate()
-    {
-        statDisplays = GetComponentsInChildren<StatDisplay>();
-        UpdateStatNames();
-    }
+    //private void OnValidate()
+    //{
+    //    statDisplays = GetComponentsInChildren<StatDisplay>();
+    //    UpdateStatNames(); 
+    //}
 
 	public void SetStats(params CharacterStat[] charStats)
 	{
@@ -29,10 +29,10 @@ public class StatPanel : MonoBehaviour
 		{
 			statDisplays[i].gameObject.SetActive(i < stats.Length);
 
-			//if (i < stats.Length)
-			//{
-			//	statDisplays[i].Stat = stats[i];
-			//}
+			if (i < stats.Length)
+			{
+				statDisplays[i].Stat = stats[i];
+			}
 		}
 	}
 
@@ -40,25 +40,24 @@ public class StatPanel : MonoBehaviour
 	{
 		for (int i = 0; i < stats.Length; i++)
 		{
-			statDisplays[i].ValueText.text = stats[i].Value.ToString();
-			// = stats[i].Value;
+			statDisplays[i].UpdateStatValue();
 		}
 	}
 
-	public void UpdateStatValuesX()
+	public void UpdateStatValuesX(CharacterInformation characterX)
 	{
-			//characterX.GetComponent<Character>().strengthUpdated.BaseValue = stats[0].Value;
-			//characterX.GetComponent<Character>().agilityUpdated.BaseValue = stats[1].Value;
-			//characterX.GetComponent<Character>().intellectUpdated.BaseValue = stats[2].Value;
-			//characterX.GetComponent<Character>().dexterityUpdated.BaseValue = stats[3].Value;
-			//characterX.GetComponent<Character>().staminaUpdated.BaseValue = stats[4].Value;
+		characterX.Stats.strengthUpdated.BaseValue = stats[0].Value;
+		characterX.Stats.agilityUpdated.BaseValue = stats[1].Value;
+		characterX.Stats.intellectUpdated.BaseValue = stats[2].Value;
+		characterX.Stats.dexterityUpdated.BaseValue = stats[3].Value;
+		characterX.Stats.staminaUpdated.BaseValue = stats[4].Value;
 	}
 
 	public void UpdateStatNames()
 	{
 		for (int i = 0; i < statNames.Length; i++)
 		{
-			statDisplays[i].NameText.text = statNames[i];
+			statNames[i] = statDisplays[i].Name;
 		}
 	}
 

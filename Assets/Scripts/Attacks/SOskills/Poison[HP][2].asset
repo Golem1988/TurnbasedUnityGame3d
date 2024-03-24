@@ -23,6 +23,6 @@ MonoBehaviour:
   isBuff: 0
   stat: 1
   modType: 100
-  value: 150
+  theValue: 105
   expirePoint: 1
   triggerEachTurn: 1

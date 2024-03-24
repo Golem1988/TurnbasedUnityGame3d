@@ -29,12 +29,12 @@ MonoBehaviour:
   StaminaPercentBonus: 0
   HPBonus: 0
   MPBonus: 0
-  SpeedBonus: 0
-  ATKBonus: 0
-  MATKBonus: 0
+  SpeedBonus: 100
+  ATKBonus: 150
+  MATKBonus: 150
   DEFBonus: 0
   HitBonus: 0
-  DodgeBonus: 0
+  DodgeBonus: 100
   HPPercentBonus: 0
   MPPercentBonus: 0
   SpeedPercentBonus: 0

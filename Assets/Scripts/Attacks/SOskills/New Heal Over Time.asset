@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549770181a643594d8c27d9f45e90305, type: 3}
-  m_Name: Poison[HP][3]
+  m_Name: New Heal Over Time
   m_EditorClassIdentifier: 
-  id: aae9419e4c1891040b3ad36c9fe896f4
-  SkillName: Poison[HP]
+  id: cb7ab0a801b64434e92ce14d83a1c948
+  SkillName: New Heal Over Time
   SkillLevel: 0
-  SkillIcon: {fileID: -748991173, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  SkillIcon: {fileID: 1148322292, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
   Description: 
-  durableEffectVfx: {fileID: 4000014050693726, guid: c9b44f54421558a4393730c2417ba63b, type: 3}
+  durableEffectVfx: {fileID: 4000014101406242, guid: 2bcfb1fde11704345a1c09b41d6421a4, type: 3}
   isStackable: 0
   isRefillable: 1
-  isBuff: 0
+  isBuff: 1
   stat: 1
   modType: 100
-  theValue: 190
-  expirePoint: 1
+  theValue: 250
+  expirePoint: 0
   triggerEachTurn: 1

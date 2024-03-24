@@ -8,7 +8,7 @@ public class UsableItem : Item
 
 	public List<UsableItemEffect> Effects;
 
-	public virtual void Use(Character character)
+	public virtual void Use(CharacterInformation character)
 	{
 		foreach (UsableItemEffect effect in Effects)
 		{

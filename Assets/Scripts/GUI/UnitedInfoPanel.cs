@@ -23,6 +23,7 @@ public class UnitedInfoPanel : MonoBehaviour
     [SerializeField] Image draggableItem;
     [SerializeField] ItemSaveManager itemSaveManager;
     private BaseItemSlot dragItemSlot;
+    private CharacterInformation hero;
     //private List<CharacterInformation> HeroList = new ();
 
     private void Awake()
@@ -64,19 +65,22 @@ public class UnitedInfoPanel : MonoBehaviour
     private void Start()
     {
         heroStats.HeroList = HeroDataManager.instance.CharacterInfo;
+        
         string mainHeroName = heroStats.HeroList.FirstOrDefault(name => name.isMainCharacter)?.Name;
         //stats
         heroStats.HeroPrefab = Extensions.FindHeroEntry(mainHeroName);
+        hero = heroStats.HeroPrefab;
+        //sPanel.characterX = hero;
         heroStats.Clean();
         //summons
         //summonInterface.Start();
         summonInterface.Owner = Extensions.FindHeroEntry(mainHeroName);
-        if (heroStats.HeroPrefab.SummonList.Count > 0)
+        if (hero.SummonList.Count > 0)
         {
-            summonInterface.EditableSummon = heroStats.HeroPrefab.SummonList[0];
+            summonInterface.EditableSummon = hero.SummonList[0];
             ShowSummonButton.GetComponent<Button>().interactable = true;
         }
-        if (heroStats.HeroPrefab.SummonList.Count == 0)
+        if (hero.SummonList.Count == 0)
         {
             summonInterface.EditableSummon = null;
             ShowSummonButton.GetComponent<Button>().interactable = false;
@@ -95,6 +99,10 @@ public class UnitedInfoPanel : MonoBehaviour
             LoadCharacter();
             //gameManager.Chat.AddToChatOutput("Character items loaded...");
         }
+
+        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.UpdateStatValues();
+        //sPanel.UpdateStatValuesX(hero);
     }
 
     public void LoadCharacter()
@@ -130,8 +138,6 @@ public class UnitedInfoPanel : MonoBehaviour
             }    
         }
 
-
-
     }
 
     public void HealEveryone()
@@ -153,27 +159,30 @@ public class UnitedInfoPanel : MonoBehaviour
         }
         heroStats.UpdateStats();
         summonInterface.UpdateStats();
+        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.UpdateStatValues();
     }
 
     public void EnableHeroEditing(int a)
     {
         heroStats.HeroPrefab = heroStats.HeroList[a];
+        hero = heroStats.HeroPrefab;
         heroStats.Clean();
         //summons
-        summonInterface.Owner = heroStats.HeroPrefab;
-        if (heroStats.HeroPrefab.SummonList.Count > 0)
+        summonInterface.Owner = hero;
+        if (hero.SummonList.Count > 0)
         {
-            summonInterface.EditableSummon = heroStats.HeroPrefab.SummonList[0];
+            summonInterface.EditableSummon = hero.SummonList[0];
             ShowSummonButton.GetComponent<Button>().interactable = true;
         }
-        if (heroStats.HeroPrefab.SummonList.Count == 0)
+        if (hero.SummonList.Count == 0)
         {
             summonInterface.EditableSummon = null;
             ShowSummonButton.GetComponent<Button>().interactable = false;
         }
         summonInterface.Refresh();
         //skills
-        heroSkillPanel.ShowHeroSkills(heroStats.HeroPrefab);
+        heroSkillPanel.ShowHeroSkills(hero);
         //equip
         UpdateModel(a);
         for (int i = 0; i < avatarButtons.Length; i++)
@@ -181,6 +190,8 @@ public class UnitedInfoPanel : MonoBehaviour
             avatarButtons[i].GetComponent<HeroAvatarButton>().glowEffect.SetActive(false);
         }
         avatarButtons[a].GetComponent<HeroAvatarButton>().glowEffect.SetActive(true);
+        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.UpdateStatValues();
     }
 
     
@@ -236,7 +247,7 @@ public class UnitedInfoPanel : MonoBehaviour
         else if (itemSlot.Item is UsableItem)
         {
             UsableItem usableItem = (UsableItem)itemSlot.Item;
-            //usableItem.Use(this); this as this in THIS Character class. We need to change that
+            usableItem.Use(hero); //this as this in THIS Character class. We need to change that
 
             if (usableItem.IsConsumable)
             {
@@ -323,16 +334,17 @@ public class UnitedInfoPanel : MonoBehaviour
 
         if (dropItemSlot is EquipmentSlot)
         {
-            //if (dragEquipItem != null) dragEquipItem.Equip(this); this as this in THIS Character class. We need to change that
-            //if (dropEquipItem != null) dropEquipItem.Unequip(this); this as this in THIS Character class. We need to change that
+            if (dragEquipItem != null) dragEquipItem.Equip(hero); //this as this in THIS Character class. We need to change that
+            if (dropEquipItem != null) dropEquipItem.Unequip(hero); //this as this in THIS Character class. We need to change that
         }
         if (dragItemSlot is EquipmentSlot)
         {
-            //if (dragEquipItem != null) dragEquipItem.Unequip(this); this as this in THIS Character class. We need to change that
-            //if (dropEquipItem != null) dropEquipItem.Equip(this); this as this in THIS Character class. We need to change that
+            if (dragEquipItem != null) dragEquipItem.Unequip(hero); //this as this in THIS Character class. We need to change that
+            if (dropEquipItem != null) dropEquipItem.Equip(hero); //this as this in THIS Character class. We need to change that
         }
+        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
         sPanel.UpdateStatValues();
-        sPanel.UpdateStatValuesX();
+        sPanel.UpdateStatValuesX(hero);
 
         Item draggedItem = dragItemSlot.Item;
         int draggedItemAmount = dragItemSlot.Amount;
@@ -359,7 +371,7 @@ public class UnitedInfoPanel : MonoBehaviour
         if (itemSlot is EquipmentSlot)
         {
             EquippableItem equippableItem = (EquippableItem)itemSlot.Item;
-            //equippableItem.Unequip(this); this as this in THIS Character class. We need to change that
+            equippableItem.Unequip(hero);
         }
 
         itemSlot.Item.Destroy();
@@ -376,15 +388,15 @@ public class UnitedInfoPanel : MonoBehaviour
                 if (previousItem != null)
                 {
                     Inventory.AddItem(previousItem);
-                    //previousItem.Unequip(this); this as this in THIS Character class. We need to change that
-
+                    previousItem.Unequip(hero); //this as this in THIS Character class. We need to change that
+                    sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
                     sPanel.UpdateStatValues();
-                    sPanel.UpdateStatValuesX();
+                    sPanel.UpdateStatValuesX(hero);
                 }
-                //item.Equip(this); this as this in THIS Character class. We need to change that
-
+                item.Equip(hero); //this as this in THIS Character class. We need to change that
+                sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
                 sPanel.UpdateStatValues();
-                sPanel.UpdateStatValuesX();
+                sPanel.UpdateStatValuesX(hero);
             }
             else
             {
@@ -397,10 +409,10 @@ public class UnitedInfoPanel : MonoBehaviour
     {
         if (Inventory.CanAddItem(item) && EquipmentPanel.RemoveItem(item))
         {
-            //item.Unequip(this); this as this in THIS Character class. We need to change that
-
+            item.Unequip(hero); //this as this in THIS Character class. We need to change that
+            sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
             sPanel.UpdateStatValues();
-            sPanel.UpdateStatValuesX();
+            sPanel.UpdateStatValuesX(hero);
             Inventory.AddItem(item);
         }
     }

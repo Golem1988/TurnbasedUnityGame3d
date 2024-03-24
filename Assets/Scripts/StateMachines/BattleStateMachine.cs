@@ -403,8 +403,8 @@ public class BattleStateMachine : MonoBehaviour
                 NewHero.name = CharacterInfo[i].Stats.theName;
                 NewHero.GetComponent<UnitUI>().Avatar = Extensions.FindSprite(CharacterInfo[i].BaseID, true);
                 var Stats = NewHero.GetComponent<UnitAttributes>().Stats;
-                NewHero.GetComponent<UnitUI>().healthBar.SetSize(Stats.curHP / Stats.baseHP);
-                NewHero.GetComponent<UnitUI>().manaBar.SetSize(Stats.curMP / Stats.baseMP);
+                NewHero.GetComponent<UnitUI>().healthBar.SetSize(Stats.curHP.BaseValue / Stats.baseHP.BaseValue);
+                NewHero.GetComponent<UnitUI>().manaBar.SetSize(Stats.curMP.BaseValue / Stats.baseMP.BaseValue);
                 //NewHero.GetComponent<UnitUI>().InventoryEquipmentCanvas.gameObject.SetActive(false);
                 var holder = NewHero.GetComponent<ModelLoader>();
                 var model = Instantiate(heroModel, holder.ModelHolder.position, Quaternion.Euler(0, -45, 0), holder.ModelHolder);
@@ -697,7 +697,7 @@ public class BattleStateMachine : MonoBehaviour
     public void Input1() //attack button
     {
         HeroChoice.AttackersName = HeroesToManage[0].name; //might be changed
-        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed;
+        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed.BaseValue;
         HeroChoice.Attacker = HeroesToManage[0];
         HeroChoice.Type = "Hero";
         HeroChoice.choosenAttack = HeroesToManage[0].GetComponent<Abilities>().BasicActions[0];
@@ -721,7 +721,7 @@ public class BattleStateMachine : MonoBehaviour
     public void Input4(ActiveSkill choosenMagic) //chosen magic attack
     {
         HeroChoice.AttackersName = HeroesToManage[0].name; //might be changed
-        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed;
+        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed.BaseValue;
         HeroChoice.Attacker = HeroesToManage[0];
         HeroChoice.Type = "Hero";
         HeroChoice.choosenAttack = choosenMagic;
@@ -778,7 +778,7 @@ public class BattleStateMachine : MonoBehaviour
     public void Input8()
     {
         HeroChoice.AttackersName = HeroesToManage[0].name; //might be changed
-        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed;
+        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed.BaseValue;
         HeroChoice.Attacker = HeroesToManage[0];
         HeroChoice.Type = "Hero";
         HeroChoice.choosenAttack = HeroesToManage[0].GetComponent<Abilities>().BasicActions[1];
@@ -790,7 +790,7 @@ public class BattleStateMachine : MonoBehaviour
     public void Input9(GameObject player)
     {
         HeroChoice.AttackersName = HeroesToManage[0].name; //might be changed
-        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed;
+        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed.BaseValue;
         HeroChoice.Attacker = HeroesToManage[0];
         HeroChoice.Type = "Hero";
         HeroChoice.choosenAttack = null;
@@ -840,7 +840,7 @@ public class BattleStateMachine : MonoBehaviour
         BaseClass heroe = HeroesToManage[0].GetComponent<UnitAttributes>().Stats;
         Abilities abilities = HeroesToManage[0].GetComponent<Abilities>();
         HeroChoice.AttackersName = HeroesToManage[0].name; //might be changed
-        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed;
+        HeroChoice.attackersSpeed = HeroesToManage[0].GetComponent<UnitAttributes>().Stats.curSpeed.BaseValue;
         HeroChoice.Attacker = HeroesToManage[0];
         HeroChoice.Type = "Hero";
         if (countdownTrigger == true)
@@ -848,11 +848,11 @@ public class BattleStateMachine : MonoBehaviour
             HeroChoice.choosenAttack = abilities.BasicActions[0]; //0 is assigned to basic attack 1 is assigned to capture at this point
         }
 
-        if (countdownTrigger == false && heroe.curMP > 0 && abilities.MagicAttacks.Count > 0)
+        if (countdownTrigger == false && heroe.curMP.BaseValue > 0 && abilities.MagicAttacks.Count > 0)
         {
             List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
             //remove all we can't use
-            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > heroe.curMP);
+            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > heroe.curMP.BaseValue);
             //now select either attacking skill or healing skill based on information
             if (magicAttacks.Count > 1)
             {

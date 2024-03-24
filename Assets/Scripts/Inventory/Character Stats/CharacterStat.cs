@@ -8,7 +8,7 @@ namespace Kryz.CharacterStats
 	[Serializable]
 	public class CharacterStat
 	{
-		public int BaseValue;
+		public float BaseValue;
 
 		protected bool isDirty = true;
 		protected float lastBaseValue;
@@ -34,7 +34,7 @@ namespace Kryz.CharacterStats
 			StatModifiers = statModifiers.AsReadOnly();
 		}
 
-		public CharacterStat(int baseValue) : this()
+		public CharacterStat(float baseValue) : this()
 		{
 			BaseValue = baseValue;
 		}

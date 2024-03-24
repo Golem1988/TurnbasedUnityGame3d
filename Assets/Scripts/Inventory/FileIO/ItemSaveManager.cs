@@ -32,7 +32,7 @@ public class ItemSaveManager : MonoBehaviour
 		}
 	}
 
-	public void LoadEquipment(Character character)
+	public void LoadEquipment(CharacterInformation character)
 	{
 		ItemContainerSaveData savedSlots = ItemSaveIO.LoadItems(EquipmentFileName);
 		if (savedSlots == null) return;
@@ -44,8 +44,8 @@ public class ItemSaveManager : MonoBehaviour
 			}
 
 			Item item = itemDatabase.GetItemCopy(savedSlot.ItemID);
-			character.Inventory.AddItem(item);
-			character.Equip((EquippableItem)item);
+			//character.Inventory.AddItem(item);
+			//character.Equip((EquippableItem)item);
 		}
 	}
 

@@ -167,4 +167,19 @@ public class DungeonManager : MonoBehaviour
             return null;
         }
     }
+
+    public void DeleteDungeonProgressFile()
+    {
+        // Check if the file exists before attempting to delete it
+        if (File.Exists(filePath))
+        {
+            // Delete the file
+            File.Delete(filePath);
+            Debug.Log("File deleted: " + filePath);
+        }
+        else
+        {
+            Debug.LogWarning("File not found: " + filePath);
+        }
+    }
 }

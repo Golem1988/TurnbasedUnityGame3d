@@ -103,22 +103,22 @@ public class CharacterInformation
     public List<CapturedPets> SummonList = new();
     public int MaxSummonSlots;
     [Header("Equipment")]
-    public List<string> Equipment = new();
+    public EquippedItems Equipment;
 }
 
-//[System.Serializable]
-//public class EquippedItems
-//{
-//    [Header("ItemSlots")]
-//    public string HelmetID;
-//    public string ArmorID;
-//    public string WeaponID;
-//    public string BootsID;
-//    public string RingID;
-//    public string NecklaceID;
-//    public string BeltID;
-//    public string WingsID;
-//}
+[System.Serializable]
+public class EquippedItems
+{
+    [Header("ItemSlots")]
+    public string HelmetID;
+    public string ArmorID;
+    public string WeaponID;
+    public string BootsID;
+    public string RingID;
+    public string PendantID;
+    public string BeltID;
+    public string WingsID;
+}
 
 [System.Serializable]
 public class HeroPool

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec99d2835041e0446b4eaccf4c6eee99, type: 3}
-  m_Name: Healing Aura
+  m_Name: MassHeal
   m_EditorClassIdentifier: 
-  id: b0d5a4e9c8d743a4b90ffea4c1b7ef6a
-  SkillName: Healing Aura
+  id: ffc0af466636e704895b36336a728fb5
+  SkillName: Mass Heal
   SkillLevel: 0
-  SkillIcon: {fileID: 1148322292, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
-  Description: Magic attack that strikes 2 target(s) 1 times. It hits targets based
+  SkillIcon: {fileID: -379005777, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  Description: Magic attack that strikes 3 target(s) 1 times. It hits targets based
     on their HP and deals damage to their HP. Damage amount is affected by users
     Matk and also deals additional 0 fixed damage.
   attackVFX: {fileID: 4000014147679906, guid: eb2aeefeb108836408e91ec6984025f9, type: 3}
@@ -25,10 +25,10 @@ MonoBehaviour:
   isAttack: 0
   skillType: 2
   costType: 1
-  costValue: 35
+  costValue: 50
   selectionMode: 0
   canCrit: 1
-  targetCount: 2
+  targetCount: 3
   strikeCount: 1
   targetType: 3
   targetStat: 0
@@ -37,11 +37,8 @@ MonoBehaviour:
   PercentDamageAmount: 100
   sortBy: 1
   sortType: 1
-  applyStatusEffects:
-  - effect: {fileID: 11400000, guid: 947bae94dad8bae469048011b3d251c2, type: 2}
-    applicationChance: 100
-    duration: 4
+  applyStatusEffects: []
   onlyOnHit: 0
   removeStatusEffects: []
   isDodgeable: 0
-  ignoreDefense: 1
+  ignoreDefense: 0

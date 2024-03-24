@@ -36,10 +36,10 @@ public class ItemStash : ItemContainer
 			isOpen = !isOpen;
 			storage.SetActive(isOpen);
 
-			if (isOpen)
-				character.OpenItemContainer(this);
-			else
-				character.CloseItemContainer(this);
+			//if (isOpen)
+				//character.OpenItemContainer(this);
+			//else
+				//character.CloseItemContainer(this);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class ItemStash : ItemContainer
 			{
 				isOpen = false;
 				storage.SetActive(false);
-				character.CloseItemContainer(this);
+				//character.CloseItemContainer(this);
 			}
 
 			if (isInRange)

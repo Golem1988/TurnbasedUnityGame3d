@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec99d2835041e0446b4eaccf4c6eee99, type: 3}
-  m_Name: Mass Heal
+  m_Name: ManaRestore
   m_EditorClassIdentifier: 
-  id: ffc0af466636e704895b36336a728fb5
-  SkillName: Mass Heal
+  id: 0fb38bbbde0fb324e82a79be56db3681
+  SkillName: Mana Restore
   SkillLevel: 0
-  SkillIcon: {fileID: -379005777, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
+  SkillIcon: {fileID: 484914634, guid: 8385a8de9eef92a418543ae2df0e5e25, type: 3}
   Description: Magic attack that strikes 3 target(s) 1 times. It hits targets based
-    on their HP and deals damage to their HP. Damage amount is affected by users
-    Matk and also deals additional 0 fixed damage.
-  attackVFX: {fileID: 4000014147679906, guid: eb2aeefeb108836408e91ec6984025f9, type: 3}
+    on their Random and deals damage to their MP. Damage amount is affected by users
+    FixedDamage and also deals additional 150 fixed damage.
+  attackVFX: {fileID: 0}
   isMassVFX: 0
   selfVFX: {fileID: 0}
   isAttack: 0
   skillType: 2
   costType: 1
-  costValue: 50
+  costValue: 10
   selectionMode: 0
   canCrit: 1
   targetCount: 3
   strikeCount: 1
   targetType: 3
-  targetStat: 0
-  damageAffectedByStat: 1
-  FixedDamageAmount: 0
+  targetStat: 1
+  damageAffectedByStat: 2
+  FixedDamageAmount: 150
   PercentDamageAmount: 100
-  sortBy: 1
-  sortType: 1
+  sortBy: 0
+  sortType: 0
   applyStatusEffects: []
   onlyOnHit: 0
   removeStatusEffects: []
   isDodgeable: 0
-  ignoreDefense: 0
+  ignoreDefense: 1

@@ -9,11 +9,11 @@ public class HealOverTime : StatusEffect
     {
         if (isBuff)
         {
-            Actions.OnRestore(target.transform, value, AffectedStat.HP);  
+            Actions.OnRestore(target.transform, TheValue, AffectedStat.HP);
         }
         else
         {
-            Actions.OnBurn(target.transform, value, AffectedStat.HP);
+            Actions.OnBurn(target.transform, TheValue, AffectedStat.HP);
         }                                                                                                                                     
     }
 }

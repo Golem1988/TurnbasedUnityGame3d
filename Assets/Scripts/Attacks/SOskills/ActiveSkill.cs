@@ -82,7 +82,7 @@ public class ActiveSkill : BaseAttack
 
     public virtual ActionSettings CalculateSkill(UnitStateMachine actorSource, UnitStateMachine theTarget)
     {
-        Debug.Log("actorSource name: " + actorSource.gameObject.name + "theTarget =" + theTarget.gameObject.name);
+        //Debug.Log("actorSource name: " + actorSource.gameObject.name + "theTarget =" + theTarget.gameObject.name);
         source = actorSource;
         var target = theTarget;
         var gameManager = GameManager.instance;
@@ -103,19 +103,19 @@ public class ActiveSkill : BaseAttack
         if (source.gameObject.CompareTag("Enemy"))
         {
             isEnemy = true;
-            Debug.Log("Enemy name: " + source.gameObject.name);
+            //Debug.Log("Enemy name: " + source.gameObject.name);
         }
 
         //calculate the damage
         //we need to get unit stat that scales / affects the damage
         if (damageAffectedByStat == ScaleStat.Atk)
         {
-            trueDamage = Mathf.Round((unit.Stats.curATK * PercentDamageAmount) / 100) + FixedDamageAmount;
+            trueDamage = Mathf.Round((unit.Stats.curATK.BaseValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         }
 
         if (damageAffectedByStat == ScaleStat.Matk)
         {
-            trueDamage = Mathf.Round((unit.Stats.curMATK * PercentDamageAmount) / 100) + FixedDamageAmount;
+            trueDamage = Mathf.Round((unit.Stats.curMATK.BaseValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         }
 
         if (damageAffectedByStat == ScaleStat.FixedDamage)
@@ -134,59 +134,59 @@ public class ActiveSkill : BaseAttack
                 for (int i = 0; i < BSM.EnemiesInBattle.Count; i++)
                 {
                     potentialTargets.Add(BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
-                    Debug.Log("potentialTargets Added allies: " + BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
+                    //Debug.Log("potentialTargets Added allies: " + BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
                 }
-                Debug.Log("potentialTargets Added allies: " + potentialTargets.Count);
+                //Debug.Log("potentialTargets Added allies: " + potentialTargets.Count);
             }
             else if (isEnemy && targetType == TargetType.Foe)
             {
                 for (int i = 0; i < BSM.HeroesInBattle.Count; i++)
                 {
                     potentialTargets.Add(BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
-                    Debug.Log("potentialTargets Added foes: " + BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
+                    //Debug.Log("potentialTargets Added foes: " + BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
                 }
-                Debug.Log("potentialTargets Added foes: " + potentialTargets.Count);
+                //Debug.Log("potentialTargets Added foes: " + potentialTargets.Count);
             }
             else if (!isEnemy && targetType == TargetType.Ally)
             {
                 for (int i = 0; i < BSM.HeroesInBattle.Count; i++)
                 {
                     potentialTargets.Add(BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
-                    Debug.Log("potentialTargets Added allies: " + BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
+                    //Debug.Log("potentialTargets Added allies: " + BSM.HeroesInBattle[i].GetComponent<UnitStateMachine>());
                 }
-                Debug.Log("potentialTargets Added allies: " + potentialTargets.Count);
+                //Debug.Log("potentialTargets Added allies: " + potentialTargets.Count);
             }
             else
             {
                 for (int i = 0; i < BSM.EnemiesInBattle.Count; i++)
                 {
                     potentialTargets.Add(BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
-                    Debug.Log("potentialTargets Added enemies: " + BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
+                    //Debug.Log("potentialTargets Added enemies: " + BSM.EnemiesInBattle[i].GetComponent<UnitStateMachine>());
                 }
-                Debug.Log("potentialTargets Added enemies: " + potentialTargets.Count);
+                //Debug.Log("potentialTargets Added enemies: " + potentialTargets.Count);
             }
         //}
 
 
         //if target count is let's say 5 and we only have 1-2-3-4 potentialTargets, then make them equal
         //targets = targetCount;
-        Debug.Log("targets = " + targetCountX);
+        //Debug.Log("targets = " + targetCountX);
         if (targetCountX > potentialTargets.Count)
         {
             targetCountX = potentialTargets.Count;
-            Debug.Log("targets changed = " + targetCountX);
+            //Debug.Log("targets changed = " + targetCountX);
         }
 
         //remove enemy that were chosen to be the target
         potentialTargets.Remove(theTarget);
-        Debug.Log("potentialTargets removed: " + theTarget);
-        Debug.Log("potentialTargets after removing initial target: " + potentialTargets.Count);
+        //Debug.Log("potentialTargets removed: " + theTarget);
+        //Debug.Log("potentialTargets after removing initial target: " + potentialTargets.Count);
         if (targetCountX > 1)
         {
-            for (int i = 0; i < potentialTargets.Count; i++)
-            {
-                Debug.Log("Potential target [" + i + "] = " + potentialTargets[i]);
-            }
+            //for (int i = 0; i < potentialTargets.Count; i++)
+            //{
+            //    Debug.Log("Potential target [" + i + "] = " + potentialTargets[i]);
+            //}
             if (sortBy == SortBy.Random && potentialTargets.Count > 1)
             {
                 sortType = SortType.None; //we won't use any ascension / descension order since it's not relevant and will simply add random targets from the list
@@ -203,7 +203,7 @@ public class ActiveSkill : BaseAttack
                     //break;
                     //}
                 }
-                Debug.Log("endTargetList has targets: " + endTargetList.Count);
+               // Debug.Log("endTargetList has targets: " + endTargetList.Count);
             }
             else if (sortBy != SortBy.Random && potentialTargets.Count > 1)
             {
@@ -217,19 +217,19 @@ public class ActiveSkill : BaseAttack
                 //sort enemies in the list by the speed, then reverse, so we attack enemies with the highest speed
                 if (sortBy == SortBy.Speed)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curSpeed).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.curSpeed.BaseValue).ToList();
                 }
                 else if (sortBy == SortBy.HP)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curHP).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.curHP.BaseValue).ToList();
                 }
                 else if (sortBy == SortBy.Attack)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curATK).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.curATK.BaseValue).ToList();
                 }
                 else if (sortBy == SortBy.Defense)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curDEF).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.curDEF.BaseValue).ToList();
                 }
                 //if we want to target the highest, we do list reversal
                 if (sortType == SortType.HiLo)
@@ -242,21 +242,21 @@ public class ActiveSkill : BaseAttack
                     for (int i = 0; i < targetCountX - 1; i++)
                     {
                         endTargetList.Add(sortList[i]);
-                        Debug.Log("end target list Added " + sortList[i]);
+                        //Debug.Log("end target list Added " + sortList[i]);
                     }
                 }
             }
             else if (potentialTargets.Count == 1)
             {
                 endTargetList.Add(potentialTargets[0]);
-                Debug.Log("Added " + potentialTargets[0]);
+                //Debug.Log("Added " + potentialTargets[0]);
             }
             endTargetList.Add(theTarget);
-            Debug.Log("endTargetList has targets: " + endTargetList.Count);
-            for (int i = 0; i < endTargetList.Count; i++)
-            {
-                Debug.Log("endTarget [" + i + "] = " + endTargetList[i]);
-            }
+            //Debug.Log("endTargetList has targets: " + endTargetList.Count);
+            //for (int i = 0; i < endTargetList.Count; i++)
+            //{
+            //    Debug.Log("endTarget [" + i + "] = " + endTargetList[i]);
+            //}
 
         }
         else if (targetCountX == 1) //if there's only 1 target, just add it to the list and that's it, no sorting or anything
@@ -309,14 +309,14 @@ public class ActiveSkill : BaseAttack
     {
         var unit = actorSource.GetComponent<UnitAttributes>();
         //if (actorSource.gameObject.CompareTag("Hero"))
-        if (CostType == CostType.MP && unit.Stats.curMP >= costValue)
+        if (CostType == CostType.MP && unit.Stats.curMP.BaseValue >= costValue)
         {
-            unit.Stats.curMP -= costValue;
+            unit.Stats.curMP.BaseValue -= costValue;
             Actions.OnBarChange(source, AffectedStat.MP);
         }
-        if (CostType == CostType.HP && unit.Stats.curHP >= costValue)
+        if (CostType == CostType.HP && unit.Stats.curHP.BaseValue >= costValue)
         {
-            unit.Stats.curHP -= costValue;
+            unit.Stats.curHP.BaseValue -= costValue;
             Actions.OnBarChange(source, AffectedStat.HP);
         }
         if (CostType == CostType.RP && unit.Stats.curRage >= costValue)
@@ -331,9 +331,9 @@ public class ActiveSkill : BaseAttack
         var unit = actorSource.GetComponent<UnitAttributes>();
         if (CostType == CostType.None)
             return true;
-        if (CostType == CostType.MP && unit.Stats.curMP >= costValue)
+        if (CostType == CostType.MP && unit.Stats.curMP.BaseValue >= costValue)
             return true;
-        if (CostType == CostType.HP && unit.Stats.curHP >= costValue)
+        if (CostType == CostType.HP && unit.Stats.curHP.BaseValue >= costValue)
             return true;
         if (CostType == CostType.RP && unit.Stats.curRage >= costValue)
             return true;

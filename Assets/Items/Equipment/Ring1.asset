@@ -27,8 +27,8 @@ MonoBehaviour:
   AgilityPercentBonus: 0
   DexterityPercentBonus: 0
   StaminaPercentBonus: 0
-  HPBonus: 0
-  MPBonus: 0
+  HPBonus: 500
+  MPBonus: 500
   SpeedBonus: 0
   ATKBonus: 0
   MATKBonus: 0

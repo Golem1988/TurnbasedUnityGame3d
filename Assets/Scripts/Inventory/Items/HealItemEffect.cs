@@ -5,9 +5,9 @@ public class HealItemEffect : UsableItemEffect
 {
 	public int HealAmount;
 
-	public override void ExecuteEffect(UsableItem usableItem, Character character)
+	public override void ExecuteEffect(UsableItem usableItem, CharacterInformation character)
 	{
-		character.unit.Stats.curHP += HealAmount;
+		character.Stats.curHP.BaseValue += HealAmount;
 	}
 
 	public override string GetDescription()

@@ -14,11 +14,12 @@ public class StatusEffect : BaseAttack
     [SerializeField]
     protected StatModType modType;
     [SerializeField]
-    protected float value;
+    protected float theValue;
     public ExpirePoint expirePoint; //turn start / turn end / battle end
     //[SerializeField]
     public bool triggerEachTurn;
     
+    public float TheValue { get => theValue; protected set => theValue = value; }
 
     public virtual void Activate(UnitStateMachine target)
     {
@@ -28,7 +29,7 @@ public class StatusEffect : BaseAttack
         //at this point I still have no real idea how to implement that, something to think about
 
         //Heal each turn
-
+        //Debug.Log("virtual void triggered");
         //Poison / burn each turn hp / mp
 
         //Apply stat debuffs like decrease speed, decrease attack / magic attack, defense

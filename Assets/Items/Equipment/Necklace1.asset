@@ -28,10 +28,10 @@ MonoBehaviour:
   DexterityPercentBonus: 0
   StaminaPercentBonus: 0
   HPBonus: 0
-  MPBonus: 0
+  MPBonus: 250
   SpeedBonus: 0
   ATKBonus: 0
-  MATKBonus: 0
+  MATKBonus: 100
   DEFBonus: 0
   HitBonus: 0
   DodgeBonus: 0

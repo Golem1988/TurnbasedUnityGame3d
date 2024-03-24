@@ -7,7 +7,7 @@ using MapTileGridCreator.Core;
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField]
-    private Vector3Int location;
+    public Vector3Int location;
     [SerializeField]
     private Grid3D _grid;
     private Rigidbody rBody;
@@ -25,6 +25,8 @@ public class PlayerControls : MonoBehaviour
     private Animator animator;
     private Cell leftCell;
     private Cell rightCell;
+    [SerializeField]
+    GameObject recapWindow;
 
     public Vector3 dest;
 
@@ -150,7 +152,7 @@ public class PlayerControls : MonoBehaviour
 
         if (scenario.isBoss && scenario.Data.CellData.isCleared)
         {
-            Debug.Log("Dungeon cleared, we need to implement something...");
+            recapWindow.SetActive(true);
         }
 
         if (scenario.Scenario && !scenario.Data.CellData.isCleared)

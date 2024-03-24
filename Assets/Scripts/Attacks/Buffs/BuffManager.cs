@@ -65,7 +65,10 @@ public class BuffManager : MonoBehaviour
         var checkTarget = StatusList[i].target;
         //Trigger the effect
         if (StatusList[i].effect.triggerEachTurn)
+        {
             StatusList[i].effect.Activate(checkTarget);
+        }
+            
 
         if (checkTarget.currentState != UnitStateMachine.TurnState.DEAD)
         {

@@ -6776,27 +6776,59 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
+      baseHP:
+        BaseValue: 0
+      curHP:
+        BaseValue: 0
+      maxedHP:
+        BaseValue: 0
+      baseMP:
+        BaseValue: 0
+      curMP:
+        BaseValue: 0
+      maxedMP:
+        BaseValue: 0
+      baseATK:
+        BaseValue: 0
+      curATK:
+        BaseValue: 0
+      maxedATK:
+        BaseValue: 0
+      baseMATK:
+        BaseValue: 0
+      curMATK:
+        BaseValue: 0
+      maxedMATK:
+        BaseValue: 0
       maxATK: 0
       minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      baseDEF:
+        BaseValue: 0
+      curDEF:
+        BaseValue: 0
+      maxedDEF:
+        BaseValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
+      baseSpeed:
+        BaseValue: 0
+      curSpeed:
+        BaseValue: 0
+      maxedSpeed:
+        BaseValue: 0
+      curDodge:
+        BaseValue: 0
+      baseDodge:
+        BaseValue: 0
+      maxedDodge:
+        BaseValue: 0
+      baseHit:
+        BaseValue: 0
+      curHit:
+        BaseValue: 0
+      maxedHit:
+        BaseValue: 0
       strength:
         BaseValue: 0
       intellect:
@@ -6806,6 +6838,16 @@ MonoBehaviour:
       agility:
         BaseValue: 0
       stamina:
+        BaseValue: 0
+      strengthUpdated:
+        BaseValue: 0
+      intellectUpdated:
+        BaseValue: 0
+      dexterityUpdated:
+        BaseValue: 0
+      agilityUpdated:
+        BaseValue: 0
+      staminaUpdated:
         BaseValue: 0
       unspentStatPoints: 0
       maxRage: 150
@@ -6824,7 +6866,15 @@ MonoBehaviour:
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
-    Equipment: []
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
   curStatpts: 0
   heroName: {fileID: 738571283241952201}
   heroLevel: {fileID: 6117478827409102035}
@@ -17899,27 +17949,59 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
+      baseHP:
+        BaseValue: 0
+      curHP:
+        BaseValue: 0
+      maxedHP:
+        BaseValue: 0
+      baseMP:
+        BaseValue: 0
+      curMP:
+        BaseValue: 0
+      maxedMP:
+        BaseValue: 0
+      baseATK:
+        BaseValue: 0
+      curATK:
+        BaseValue: 0
+      maxedATK:
+        BaseValue: 0
+      baseMATK:
+        BaseValue: 0
+      curMATK:
+        BaseValue: 0
+      maxedMATK:
+        BaseValue: 0
       maxATK: 0
       minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      baseDEF:
+        BaseValue: 0
+      curDEF:
+        BaseValue: 0
+      maxedDEF:
+        BaseValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
+      baseSpeed:
+        BaseValue: 0
+      curSpeed:
+        BaseValue: 0
+      maxedSpeed:
+        BaseValue: 0
+      curDodge:
+        BaseValue: 0
+      baseDodge:
+        BaseValue: 0
+      maxedDodge:
+        BaseValue: 0
+      baseHit:
+        BaseValue: 0
+      curHit:
+        BaseValue: 0
+      maxedHit:
+        BaseValue: 0
       strength:
         BaseValue: 0
       intellect:
@@ -17929,6 +18011,16 @@ MonoBehaviour:
       agility:
         BaseValue: 0
       stamina:
+        BaseValue: 0
+      strengthUpdated:
+        BaseValue: 0
+      intellectUpdated:
+        BaseValue: 0
+      dexterityUpdated:
+        BaseValue: 0
+      agilityUpdated:
+        BaseValue: 0
+      staminaUpdated:
         BaseValue: 0
       unspentStatPoints: 0
       maxRage: 150
@@ -17947,7 +18039,15 @@ MonoBehaviour:
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
-    Equipment: []
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
   curStatpts: 0
   heroName: {fileID: 738571283241952201}
   heroLevel: {fileID: 6117478827409102035}

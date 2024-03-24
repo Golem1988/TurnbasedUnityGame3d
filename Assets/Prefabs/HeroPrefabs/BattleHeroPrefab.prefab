@@ -3076,8 +3076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 1957632689356386142}
-  ValueText: {fileID: 403362195389305945}
+  nameText: {fileID: 403362195389305945}
+  valueText: {fileID: 1957632689356386142}
 --- !u!1 &930588832004717153
 GameObject:
   m_ObjectHideFlags: 0
@@ -12673,8 +12673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 6966150923292529152}
-  ValueText: {fileID: 4128637591739757063}
+  nameText: {fileID: 4128637591739757063}
+  valueText: {fileID: 6966150923292529152}
 --- !u!1 &2863243692193796679
 GameObject:
   m_ObjectHideFlags: 0
@@ -19513,12 +19513,8 @@ MonoBehaviour:
   Inventory: {fileID: 6741102160785305781}
   EquipmentPanel: {fileID: 171579869455349684}
   statPanel: {fileID: 0}
-  sPanel: {fileID: 5429975497146204701}
-  itemTooltip: {fileID: 88920099748772607}
-  draggableItem: {fileID: 4059536797188292519}
   summonHandler: {fileID: 6326273922337472133}
   UnitLevel: {fileID: -9110761892144046591}
-  itemSaveManager: {fileID: 0}
   curLvl: 0
 --- !u!114 &-8162712379617339208
 MonoBehaviour:
@@ -19535,27 +19531,59 @@ MonoBehaviour:
   Stats:
     theName: BattleHeroPrefab
     displayName: BattleHeroPrefab
-    baseHP: 0
-    curHP: 0
-    baseMP: 0
-    curMP: 0
-    baseATK: 0
-    curATK: 0
-    baseMATK: 0
-    curMATK: 0
+    baseHP:
+      BaseValue: 0
+    curHP:
+      BaseValue: 0
+    maxedHP:
+      BaseValue: 0
+    baseMP:
+      BaseValue: 0
+    curMP:
+      BaseValue: 0
+    maxedMP:
+      BaseValue: 0
+    baseATK:
+      BaseValue: 0
+    curATK:
+      BaseValue: 0
+    maxedATK:
+      BaseValue: 0
+    baseMATK:
+      BaseValue: 0
+    curMATK:
+      BaseValue: 0
+    maxedMATK:
+      BaseValue: 0
     maxATK: 0
     minATK: 0
-    baseDEF: 0
-    curDEF: 0
+    baseDEF:
+      BaseValue: 0
+    curDEF:
+      BaseValue: 0
+    maxedDEF:
+      BaseValue: 0
     baseCRIT: 0.25
     curCRIT: 0.25
     critDamage: 1.5
-    baseSpeed: 0
-    curSpeed: 0
-    curDodge: 0
-    baseDodge: 0
-    baseHit: 0
-    curHit: 0
+    baseSpeed:
+      BaseValue: 0
+    curSpeed:
+      BaseValue: 0
+    maxedSpeed:
+      BaseValue: 0
+    curDodge:
+      BaseValue: 0
+    baseDodge:
+      BaseValue: 0
+    maxedDodge:
+      BaseValue: 0
+    baseHit:
+      BaseValue: 0
+    curHit:
+      BaseValue: 0
+    maxedHit:
+      BaseValue: 0
     strength:
       BaseValue: 0
     intellect:
@@ -19565,6 +19593,16 @@ MonoBehaviour:
     agility:
       BaseValue: 0
     stamina:
+      BaseValue: 0
+    strengthUpdated:
+      BaseValue: 0
+    intellectUpdated:
+      BaseValue: 0
+    dexterityUpdated:
+      BaseValue: 0
+    agilityUpdated:
+      BaseValue: 0
+    staminaUpdated:
       BaseValue: 0
     unspentStatPoints: 0
     maxRage: 150
@@ -21062,8 +21100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 7489472224301176639}
-  ValueText: {fileID: 8221973088769189047}
+  nameText: {fileID: 8221973088769189047}
+  valueText: {fileID: 7489472224301176639}
 --- !u!1 &4682711145826506361
 GameObject:
   m_ObjectHideFlags: 0
@@ -22488,7 +22526,6 @@ MonoBehaviour:
   - Dexterity
   - Stamina
   stats: []
-  characterX: {fileID: 0}
 --- !u!114 &561924613475576272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31618,8 +31655,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 3387079837782062114}
-  ValueText: {fileID: 854952578329810967}
+  nameText: {fileID: 854952578329810967}
+  valueText: {fileID: 3387079837782062114}
 --- !u!1 &7102463675161346370
 GameObject:
   m_ObjectHideFlags: 0
@@ -34503,27 +34540,59 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
+      baseHP:
+        BaseValue: 0
+      curHP:
+        BaseValue: 0
+      maxedHP:
+        BaseValue: 0
+      baseMP:
+        BaseValue: 0
+      curMP:
+        BaseValue: 0
+      maxedMP:
+        BaseValue: 0
+      baseATK:
+        BaseValue: 0
+      curATK:
+        BaseValue: 0
+      maxedATK:
+        BaseValue: 0
+      baseMATK:
+        BaseValue: 0
+      curMATK:
+        BaseValue: 0
+      maxedMATK:
+        BaseValue: 0
       maxATK: 0
       minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      baseDEF:
+        BaseValue: 0
+      curDEF:
+        BaseValue: 0
+      maxedDEF:
+        BaseValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
+      baseSpeed:
+        BaseValue: 0
+      curSpeed:
+        BaseValue: 0
+      maxedSpeed:
+        BaseValue: 0
+      curDodge:
+        BaseValue: 0
+      baseDodge:
+        BaseValue: 0
+      maxedDodge:
+        BaseValue: 0
+      baseHit:
+        BaseValue: 0
+      curHit:
+        BaseValue: 0
+      maxedHit:
+        BaseValue: 0
       strength:
         BaseValue: 0
       intellect:
@@ -34533,6 +34602,16 @@ MonoBehaviour:
       agility:
         BaseValue: 0
       stamina:
+        BaseValue: 0
+      strengthUpdated:
+        BaseValue: 0
+      intellectUpdated:
+        BaseValue: 0
+      dexterityUpdated:
+        BaseValue: 0
+      agilityUpdated:
+        BaseValue: 0
+      staminaUpdated:
         BaseValue: 0
       unspentStatPoints: 0
       maxRage: 150
@@ -34551,7 +34630,15 @@ MonoBehaviour:
     PassiveSkills: []
     SummonList: []
     MaxSummonSlots: 0
-    Equipment: []
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
   curStatpts: 0
   heroName: {fileID: 8867666425370540270}
   heroLevel: {fileID: 1674634285891966694}
@@ -36359,8 +36446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a7e903b84f61941b6f930825057f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NameText: {fileID: 6665914877348383825}
-  ValueText: {fileID: 4629084779563945143}
+  nameText: {fileID: 4629084779563945143}
+  valueText: {fileID: 6665914877348383825}
 --- !u!1 &8124920125420265363
 GameObject:
   m_ObjectHideFlags: 0

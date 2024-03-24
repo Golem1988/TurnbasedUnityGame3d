@@ -148,8 +148,8 @@ public class PartyManager : MonoBehaviour
         holder.avatar.sprite = avatar;
         holder.baseID = BaseID;
         var Stats = HeroDataManager.instance.CharacterInfo.FirstOrDefault(unit => unit.BaseID == BaseID).Stats;
-        holder.manaBar.SetSize(Stats.curMP / Stats.baseMP);
-        holder.healthBar.SetSize(Stats.curHP / Stats.baseHP);
+        holder.manaBar.SetSize(Stats.curMP.BaseValue / Stats.baseMP.BaseValue);
+        holder.healthBar.SetSize(Stats.curHP.BaseValue / Stats.baseHP.BaseValue);
         avatarHolders.Add(holder);
     }
 
