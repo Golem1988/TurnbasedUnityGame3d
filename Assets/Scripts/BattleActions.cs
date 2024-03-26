@@ -101,7 +101,7 @@ public class BattleActions : MonoBehaviour
 
         //SetBarSize(target.GetComponent<UnitStateMachine>(), AffectedStat.HP);
         //var unit = target.GetComponent<UnitStateMachine>().unit;
-        //target.GetComponent<UnitUI>().healthBar.SetSize(((unit.curHP * 100) / unit.baseHP) / 100);
+        //target.GetComponent<UnitUI>().healthBar.SetSize(((unit.HP.CurValue * 100) / unit.HP.BaseValue) / 100);
     }
 
     public void RestoreHPMPRP(Transform target, float amount, AffectedStat affectedStat)
@@ -111,21 +111,21 @@ public class BattleActions : MonoBehaviour
         var unit = target.GetComponent<UnitAttributes>().Stats;
         if (affectedStat == AffectedStat.HP)
         {
-            unit.curHP.BaseValue += amount;
-            if (unit.curHP.BaseValue > unit.baseHP.BaseValue)
+            unit.HP.CurValue += amount;
+            if (unit.HP.CurValue > unit.HP.MaxValue)
             {
-                unit.curHP = unit.baseHP;
+                unit.HP.CurValue = unit.HP.BaseValue;
             }
-            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP.BaseValue / unit.baseHP.BaseValue);
+            target.GetComponent<UnitUI>().healthBar.SetSize(unit.HP.CurValue / unit.HP.MaxValue);
         }
         if (affectedStat == AffectedStat.MP)
         {
-            unit.curMP.BaseValue += amount;
-            if (unit.curMP.BaseValue > unit.baseMP.BaseValue)
+            unit.MP.CurValue += amount;
+            if (unit.MP.CurValue > unit.MP.MaxValue)
             {
-                unit.curMP = unit.baseMP;
+                unit.MP.CurValue = unit.MP.BaseValue;
             }
-            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP.BaseValue / unit.baseMP.BaseValue);
+            target.GetComponent<UnitUI>().manaBar.SetSize(unit.MP.CurValue / unit.MP.MaxValue);
         }
     }
 
@@ -135,22 +135,22 @@ public class BattleActions : MonoBehaviour
         var unit = target.GetComponent<UnitAttributes>().Stats;
         if (affectedStat == AffectedStat.HP)
         {
-            unit.curHP.BaseValue -= amount;
-            if (unit.curHP.BaseValue < unit.baseHP.BaseValue)
+            unit.HP.CurValue -= amount;
+            if (unit.HP.CurValue < unit.HP.MaxValue)
             {
-                unit.curHP.BaseValue = 0;
+                unit.HP.CurValue = 0;
                 Actions.OnZeroHealth(target.GetComponent<UnitStateMachine>());
             }
-            target.GetComponent<UnitUI>().healthBar.SetSize(unit.curHP.BaseValue / unit.baseHP.BaseValue);
+            target.GetComponent<UnitUI>().healthBar.SetSize(unit.HP.CurValue / unit.HP.MaxValue);
         }
         if (affectedStat == AffectedStat.MP)
         {
-            unit.curMP.BaseValue -= amount;
-            if (unit.curMP.BaseValue < unit.baseMP.BaseValue)
+            unit.MP.CurValue -= amount;
+            if (unit.MP.CurValue < unit.MP.MaxValue)
             {
-                unit.curMP.BaseValue = 0;
+                unit.MP.CurValue = 0;
             }
-            target.GetComponent<UnitUI>().manaBar.SetSize(unit.curMP.BaseValue / unit.baseMP.BaseValue);
+            target.GetComponent<UnitUI>().manaBar.SetSize(unit.MP.CurValue / unit.MP.MaxValue);
         }
     }
 
@@ -240,7 +240,7 @@ public class BattleActions : MonoBehaviour
 
     //    }
 
-    //    ui.manaBar.SetSize(((unit.curMP * 100) / unit.baseMP) / 100);
+    //    ui.manaBar.SetSize(((unit.MP.CurValue * 100) / unit.MP.BaseValue) / 100);
 
     //}
 
@@ -303,8 +303,8 @@ public class BattleActions : MonoBehaviour
     {
         //if (Random.Range(0, 100) <= 25) //25 = res chance
         //{
-        //    target.unit.Stats.curHP = Mathf.Round((target.unit.Stats.baseHP / 100) * 50); //50 = %% HP when ressurected
-        //    Actions.OnDamageReceived(transform, false, target.unit.Stats.curHP, true);
+        //    target.unit.Stats.HP.CurValue = Mathf.Round((target.unit.Stats.HP.BaseValue / 100) * 50); //50 = %% HP when ressurected
+        //    Actions.OnDamageReceived(transform, false, target.unit.Stats.HP.CurValue, true);
         //    //Instantiate(ui.RessurectVFX, transform.position, Quaternion.identity, transform);
         //}
         //else
@@ -323,9 +323,9 @@ public class BattleActions : MonoBehaviour
     public void SetBarSize(UnitStateMachine target, AffectedStat theBar)
     {
         if (theBar == AffectedStat.HP)
-            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.curHP.BaseValue / target.unit.Stats.baseHP.BaseValue);
+            target.GetComponent<UnitUI>().healthBar.SetSize(target.unit.Stats.HP.CurValue / target.unit.Stats.HP.MaxValue);
         if (theBar == AffectedStat.MP)
-            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.curMP.BaseValue / target.unit.Stats.baseMP.BaseValue);
+            target.GetComponent<UnitUI>().manaBar.SetSize(target.unit.Stats.MP.CurValue / target.unit.Stats.MP.MaxValue);
         if (target.gameObject.CompareTag("Hero") && theBar == AffectedStat.RP)
         {
             target.GetComponent<UnitUI>().rageBar.SetSize(target.unit.Stats.curRage / target.unit.Stats.maxRage);
@@ -342,8 +342,8 @@ public class BattleActions : MonoBehaviour
             AddInfo.Type = target.GetComponent<Enemy>().enemyType;
             AddInfo.Rarity = target.GetComponent<Enemy>().enemyRarity;
             AddInfo.Stats = target.GetComponent<UnitAttributes>().Stats;
-            AddInfo.Stats.curHP = target.GetComponent<UnitAttributes>().Stats.baseHP;
-            AddInfo.Stats.curMP = target.GetComponent<UnitAttributes>().Stats.baseMP;
+            AddInfo.Stats.HP.CurValue = target.GetComponent<UnitAttributes>().Stats.HP.BaseValue;
+            AddInfo.Stats.MP.CurValue = target.GetComponent<UnitAttributes>().Stats.MP.BaseValue;
             AddInfo.Level = target.GetComponent<UnitLevel>().level;
             AddInfo.Level.NEXT_EXP = target.GetComponent<UnitLevel>().level.requiredExp;
 
@@ -438,8 +438,8 @@ public class BattleActions : MonoBehaviour
         NewSummon.GetComponent<UnitAttributes>().Stats = info[summonIndex].Stats;
         NewSummon.GetComponent<UnitAttributes>().Stats.theName = NewSummon.name;
         NewSummon.GetComponent<UnitStateMachine>().BSM = BSM;
-        NewSummon.GetComponent<UnitUI>().healthBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curHP.BaseValue / NewSummon.GetComponent<UnitAttributes>().Stats.baseHP.BaseValue);
-        NewSummon.GetComponent<UnitUI>().manaBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.curMP.BaseValue / NewSummon.GetComponent<UnitAttributes>().Stats.baseMP.BaseValue);
+        NewSummon.GetComponent<UnitUI>().healthBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.HP.CurValue / NewSummon.GetComponent<UnitAttributes>().Stats.HP.MaxValue);
+        NewSummon.GetComponent<UnitUI>().manaBar.SetSize(NewSummon.GetComponent<UnitAttributes>().Stats.MP.CurValue / NewSummon.GetComponent<UnitAttributes>().Stats.MP.MaxValue);
         //NewSummon.GetComponent<UnitAttributes>().Stats.displayName = info[summonIndex].Stats.displayName;
         NewSummon.tag = "Summon";
         NewSummon.GetComponent<UnitLevel>().level = info[summonIndex].Level;

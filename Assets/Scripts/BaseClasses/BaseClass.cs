@@ -12,40 +12,41 @@ public class BaseClass
     public string displayName;
 
     [Header("Main Attributes")]
-    public CharacterStat baseHP;
-    public CharacterStat curHP;
-    public CharacterStat maxedHP;
-    public CharacterStat baseMP;
-    public CharacterStat curMP;
-    public CharacterStat maxedMP;
-    public CharacterStat baseATK;
-    public CharacterStat curATK;
-    public CharacterStat maxedATK;
-    public CharacterStat baseMATK;
-    public CharacterStat curMATK;
-    public CharacterStat maxedMATK;
+    public CharacterStat HP;
+    //public CharacterStat HP.CurValue;
+    //public CharacterStat maxedHP;
+    public CharacterStat MP;
+    //public CharacterStat MP.CurValue;
+    //public CharacterStat maxedMP;
+    public CharacterStat ATK;
+    //public CharacterStat curATK;
+    //public CharacterStat maxedATK;
+    public CharacterStat MATK;
+    //public CharacterStat curMATK;
+    //public CharacterStat maxedMATK;
 
-    public float maxATK;
-    public float minATK;
+    //public float maxATK;
+    //public float minATK;
 
-    public CharacterStat baseDEF;
-    public CharacterStat curDEF;
-    public CharacterStat maxedDEF;
+    public CharacterStat DEF;
+    //public CharacterStat curDEF;
+    //public CharacterStat maxedDEF;
 
+    public CharacterStat Speed;
+    //public CharacterStat curSpeed;
+    //public CharacterStat maxedSpeed;
+    //public CharacterStat curDodge;
+    public CharacterStat Dodge;
+    //public CharacterStat maxedDodge;
+
+    public CharacterStat Hit;
+    //public CharacterStat curHit;
+    //public CharacterStat maxedHit;
+
+    [Header("CritThings")]
     public float baseCRIT = 25f;
     public float curCRIT = 25f;
-
     public float critDamage = 1.5f;
-
-    public CharacterStat baseSpeed;
-    public CharacterStat curSpeed;
-    public CharacterStat maxedSpeed;
-    public CharacterStat curDodge;
-    public CharacterStat baseDodge;
-    public CharacterStat maxedDodge;
-    public CharacterStat baseHit;
-    public CharacterStat curHit;
-    public CharacterStat maxedHit;
 
     [Header("Stats")]
     public CharacterStat strength;
@@ -53,12 +54,6 @@ public class BaseClass
     public CharacterStat dexterity;
     public CharacterStat agility;
     public CharacterStat stamina;
-
-    public CharacterStat strengthUpdated;
-    public CharacterStat intellectUpdated;
-    public CharacterStat dexterityUpdated;
-    public CharacterStat agilityUpdated;
-    public CharacterStat staminaUpdated;
 
     //[Header("Statpoint growth")]
     //public int statpointsPerLevel = 5;

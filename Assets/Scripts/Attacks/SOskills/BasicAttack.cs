@@ -13,7 +13,7 @@ public class BasicAttack : ActiveSkill
         //List<UnitStateMachine> endTargetList = new();
         //endTargetList.Add(theTarget);
         //calculate the damage
-        //float trueDamage = Mathf.Round(unit.Stats.curATK * PercentDamageAmount);
+        //float trueDamage = Mathf.Round(unit.Stats.ATK.CurValue * PercentDamageAmount);
         //Actions.OnDoDamage(actorSource, trueDamage, skillType, endTargetList, strikeCount, canCrit, isDodgeable, ignoreDefense, targetStat, !isAttack, applyStatusEffects);
     }
 }

@@ -100,7 +100,7 @@ public class UnitedInfoPanel : MonoBehaviour
             //gameManager.Chat.AddToChatOutput("Character items loaded...");
         }
 
-        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
         sPanel.UpdateStatValues();
         //sPanel.UpdateStatValuesX(hero);
     }
@@ -144,22 +144,22 @@ public class UnitedInfoPanel : MonoBehaviour
     {
         foreach (CharacterInformation hero in heroStats.HeroList)
         {
-            hero.Stats.curHP = hero.Stats.baseHP;
-            hero.Stats.curMP = hero.Stats.baseMP;
+            hero.Stats.HP.CurValue = hero.Stats.HP.Value;
+            hero.Stats.MP.CurValue = hero.Stats.MP.Value;
 
             if(hero.SummonList.Count > 0)
             {
                 foreach (CapturedPets summon in hero.SummonList)
                 {
-                    summon.Stats.curHP = summon.Stats.baseHP;
-                    summon.Stats.curMP = summon.Stats.baseMP;
+                    summon.Stats.HP.CurValue = summon.Stats.HP.Value;
+                    summon.Stats.MP.CurValue = summon.Stats.MP.Value;
                 }
             }
 
         }
         heroStats.UpdateStats();
         summonInterface.UpdateStats();
-        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
         sPanel.UpdateStatValues();
     }
 
@@ -190,7 +190,7 @@ public class UnitedInfoPanel : MonoBehaviour
             avatarButtons[i].GetComponent<HeroAvatarButton>().glowEffect.SetActive(false);
         }
         avatarButtons[a].GetComponent<HeroAvatarButton>().glowEffect.SetActive(true);
-        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
         sPanel.UpdateStatValues();
     }
 
@@ -342,7 +342,7 @@ public class UnitedInfoPanel : MonoBehaviour
             if (dragEquipItem != null) dragEquipItem.Unequip(hero); //this as this in THIS Character class. We need to change that
             if (dropEquipItem != null) dropEquipItem.Equip(hero); //this as this in THIS Character class. We need to change that
         }
-        sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+        sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
         sPanel.UpdateStatValues();
         sPanel.UpdateStatValuesX(hero);
 
@@ -389,12 +389,12 @@ public class UnitedInfoPanel : MonoBehaviour
                 {
                     Inventory.AddItem(previousItem);
                     previousItem.Unequip(hero); //this as this in THIS Character class. We need to change that
-                    sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+                    sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
                     sPanel.UpdateStatValues();
                     sPanel.UpdateStatValuesX(hero);
                 }
                 item.Equip(hero); //this as this in THIS Character class. We need to change that
-                sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+                sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
                 sPanel.UpdateStatValues();
                 sPanel.UpdateStatValuesX(hero);
             }
@@ -410,7 +410,7 @@ public class UnitedInfoPanel : MonoBehaviour
         if (Inventory.CanAddItem(item) && EquipmentPanel.RemoveItem(item))
         {
             item.Unequip(hero); //this as this in THIS Character class. We need to change that
-            sPanel.SetStats(hero.Stats.curHP, hero.Stats.curMP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.curATK, hero.Stats.curMATK, hero.Stats.curDEF, hero.Stats.curDodge, hero.Stats.curHit, hero.Stats.curSpeed);
+            sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
             sPanel.UpdateStatValues();
             sPanel.UpdateStatValuesX(hero);
             Inventory.AddItem(item);

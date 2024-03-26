@@ -136,7 +136,7 @@ public class UnitStateMachine : MonoBehaviour
     {
         if (!gameObject.CompareTag("Hero"))
         {
-            if (unit.Stats.curHP.BaseValue <= 0)
+            if (unit.Stats.HP.CurValue <= 0)
             {
                 yield return new WaitForSeconds(1.5f);
             }
@@ -149,19 +149,19 @@ public class UnitStateMachine : MonoBehaviour
     {
         HandleTurn enemyChoice = new HandleTurn();
         enemyChoice.AttackersName = unit.Stats.theName;
-        enemyChoice.attackersSpeed = unit.Stats.curSpeed.BaseValue;
+        enemyChoice.attackersSpeed = unit.Stats.Speed.CurValue;
         enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
         enemyChoice.Attacker = gameObject;
         BaseClass enemie = gameObject.GetComponent<UnitAttributes>().Stats;
 
         //determine which skills does enemy have:
-        if (enemie.curMP.BaseValue > 0 && abilities.MagicAttacks.Count > 0)
+        if (enemie.MP.CurValue > 0 && abilities.MagicAttacks.Count > 0)
         {
             //we have magic attacks
             List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
             //can we use them? check the manacost
             //remove all we can't use
-            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.curMP.BaseValue);
+            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.MP.CurValue);
             if (magicAttacks.Count > 1)
             {
                 int num = Random.Range(0, magicAttacks.Count);
@@ -293,7 +293,7 @@ public class UnitStateMachine : MonoBehaviour
                         }
                     }
 
-                    if (unit.Stats.curHP.BaseValue > 0)
+                    if (unit.Stats.HP.CurValue > 0)
                     {
                         while (MoveToPosition(startposition))
                         {
@@ -371,7 +371,7 @@ public class UnitStateMachine : MonoBehaviour
         if (gameObject.CompareTag("Enemy"))
         {
             BSM.battleStates = PerformAction.START;
-            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.HP.CurValue > 0 && currentState != TurnState.DEAD)
             {
                 //reset this unit state
                 currentState = TurnState.PROCESSING;
@@ -406,7 +406,7 @@ public class UnitStateMachine : MonoBehaviour
         //Calculate if the attack hits
         if (!isHeal)
         {
-            hitChance = (actor.unit.Stats.curHit.BaseValue / unit.Stats.curDodge.BaseValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+            hitChance = (actor.unit.Stats.Hit.CurValue / unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
             if (isDodgeable == false)
             {
                 hitChance = 100;
@@ -419,7 +419,7 @@ public class UnitStateMachine : MonoBehaviour
                 }
                 if (!ignoresDef)
                 {
-                    damageAmount = incomingTrueDamage - unit.Stats.curDEF.BaseValue;
+                    damageAmount = incomingTrueDamage - unit.Stats.DEF.CurValue;
                     if (damageAmount < 0)
                     {
                         damageAmount = 0;
@@ -428,26 +428,26 @@ public class UnitStateMachine : MonoBehaviour
                 if (affectedStat == AffectedStat.HP)
                 {
                     ui.animator.Play("Hurt");
-                    unit.Stats.curHP.BaseValue -= damageAmount;
+                    unit.Stats.HP.CurValue -= damageAmount;
                     //Actions.OnBarChange(this, AffectedStat.HP);
-                    if (unit.Stats.curHP.BaseValue <= 0)
+                    if (unit.Stats.HP.CurValue <= 0)
                     {
-                        unit.Stats.curHP.BaseValue = 0;
+                        unit.Stats.HP.CurValue = 0;
                         Actions.OnZeroHealth(this);
                     }
-                    ui.healthBar.SetSize(unit.Stats.curHP.BaseValue / unit.Stats.baseHP.BaseValue);
+                    ui.healthBar.SetSize(unit.Stats.HP.CurValue / unit.Stats.HP.MaxValue);
                 }
 
                 if (affectedStat == AffectedStat.MP)
                 {
                     ui.animator.Play("Hurt");
-                    unit.Stats.curMP.BaseValue -= damageAmount;
+                    unit.Stats.MP.CurValue -= damageAmount;
                     //Actions.OnBarChange(this, AffectedStat.MP);
-                    if (unit.Stats.curMP.BaseValue <= 0)
+                    if (unit.Stats.MP.CurValue <= 0)
                     {
-                        unit.Stats.curMP.BaseValue = 0;
+                        unit.Stats.MP.CurValue = 0;
                     }
-                    ui.manaBar.SetSize(unit.Stats.curMP.BaseValue / unit.Stats.baseMP.BaseValue);
+                    ui.manaBar.SetSize(unit.Stats.MP.CurValue / unit.Stats.MP.MaxValue);
                 }
 
                 //show popup damage
@@ -482,7 +482,7 @@ public class UnitStateMachine : MonoBehaviour
         }
 
 
-        //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
+        //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.HP.CurValue > 0)
         //{
         //    StartCoroutine(CounterAttack());
         //}
@@ -503,7 +503,7 @@ public class UnitStateMachine : MonoBehaviour
     //    takingDamage = true;
     //    float damageAmount = 0;
     //    //Calculate if the attack hits
-    //    hitChance = (actor.unit.Stats.curHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+    //    hitChance = (actor.unit.Stats.Hit.CurValue / unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
     //    if (isDodgeable == false)
     //    {
     //        hitChance = 100;
@@ -512,7 +512,7 @@ public class UnitStateMachine : MonoBehaviour
     //    {
     //        if (!ignoresDef)
     //        {
-    //            damageAmount = incomingTrueDamage - unit.Stats.curDEF;
+    //            damageAmount = incomingTrueDamage - unit.Stats.DEF.CurValue;
     //            if (damageAmount < 0)
     //            {
     //                damageAmount = 0;
@@ -521,15 +521,15 @@ public class UnitStateMachine : MonoBehaviour
     //        if (affectedStat == AffectedStat.HP)
     //        {
     //            ui.animator.Play("Hurt");
-    //            unit.Stats.curHP -= damageAmount;
+    //            unit.Stats.HP.CurValue -= damageAmount;
     //            Actions.OnBarChange(this, AffectedStat.HP);
-    //            if (unit.Stats.curHP <= 0)
+    //            if (unit.Stats.HP.CurValue <= 0)
     //            {
-    //                unit.Stats.curHP = 0;
+    //                unit.Stats.HP.CurValue = 0;
     //                Actions.OnZeroHealth(this);
     //            }
     //        }
-    //        ui.healthBar.SetSize(unit.Stats.curHP * 100 / unit.Stats.baseHP / 100);
+    //        ui.healthBar.SetSize(unit.Stats.HP.CurValue * 100 / unit.Stats.HP.BaseValue / 100);
     //        //show popup damage
     //        Actions.OnDamageReceived(transform, isCritical, damageAmount, false);
     //    }
@@ -540,7 +540,7 @@ public class UnitStateMachine : MonoBehaviour
     //    }
 
     //    takingDamage = false;
-    //    //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
+    //    //if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.HP.CurValue > 0)
     //    //{
     //    //    StartCoroutine(CounterAttack());
     //    //}
@@ -560,14 +560,14 @@ public class UnitStateMachine : MonoBehaviour
         ui.animator.Play("Attack");
         ui.audioSource.Play();
         yield return new WaitForSeconds(0.25f);
-        float minMaxAtk = Mathf.Round(Random.Range(unit.Stats.minATK, unit.Stats.maxATK));
+        float minMaxAtk = Mathf.Round(Random.Range(unit.Stats.ATK.MaxValue, unit.Stats.ATK.MaxValue * 0.25f));
 
         if (Random.Range(0, 100) <= unit.Stats.curCRIT)
         {
             //isCritical = true;
             minMaxAtk = Mathf.Round(minMaxAtk * unit.Stats.critDamage);
         }
-        //BSM.PerformList[0].AttackersGameObject.GetComponent<UnitStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.curHit, true, counterAttack);
+        //BSM.PerformList[0].AttackersGameObject.GetComponent<UnitStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.Hit.CurValue, true, counterAttack);
         yield return new WaitForSeconds(0.5f);
         counterAttack = false;
     }
@@ -694,12 +694,12 @@ public class UnitStateMachine : MonoBehaviour
             //Double Hit mechanic testing
             //If target died from first attack, do not attack for the second time
             //If we intend to attack, it has 35% chance to do so
-            //if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.curHP > 0)
+            //if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.HP.CurValue > 0)
             //{
             //    attackTwice = true;
             //}
 
-            //if (isMelee && doubleHit && ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP > 0 && attackTwice)
+            //if (isMelee && doubleHit && ChosenAttackTarget.GetComponent<Character>().unit.Stats.HP.CurValue > 0 && attackTwice)
             //{
             //    if (ChosenAttackTarget.GetComponent<UnitStateMachine>().dodgedAtt == false)
             //    {
@@ -713,13 +713,13 @@ public class UnitStateMachine : MonoBehaviour
 
             //testing kill streak mechanics
             //after killing one target the killer should choose next one and attack it and do it untill he can't kill the next target
-            //if (ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP <= 0)
+            //if (ChosenAttackTarget.GetComponent<Character>().unit.Stats.HP.CurValue <= 0)
             //{
             //    killStreak++;
             //    Debug.Log("Kill Streak = " + killStreak);
             //}
 
-            if (isMelee && unit.Stats.curHP.BaseValue > 0)
+            if (isMelee && unit.Stats.HP.CurValue > 0)
             {
                 while (MoveToPosition(startposition))
                 {
@@ -746,7 +746,7 @@ public class UnitStateMachine : MonoBehaviour
         {
             BSM.battleStates = PerformAction.START;
 
-            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.HP.CurValue > 0 && currentState != TurnState.DEAD)
             {
                 currentState = TurnState.PROCESSING;
             }
@@ -880,12 +880,12 @@ public class UnitStateMachine : MonoBehaviour
             //Double Hit mechanic testing
             //If target died from first attack, do not attack for the second time
             //If we intend to attack, it has 35% chance to do so
-            //if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.curHP > 0)
+            //if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.HP.CurValue > 0)
             //{
             //    attackTwice = true;
             //}
 
-            //if (isMelee && doubleHit && ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP > 0 && attackTwice)
+            //if (isMelee && doubleHit && ChosenAttackTarget.GetComponent<Character>().unit.Stats.HP.CurValue > 0 && attackTwice)
             //{
             //    if (ChosenAttackTarget.GetComponent<UnitStateMachine>().dodgedAtt == false)
             //    {
@@ -899,13 +899,13 @@ public class UnitStateMachine : MonoBehaviour
 
             //testing kill streak mechanics
             //after killing one target the killer should choose next one and attack it and do it untill he can't kill the next target
-            //if (ChosenAttackTarget.GetComponent<Character>().unit.Stats.curHP <= 0)
+            //if (ChosenAttackTarget.GetComponent<Character>().unit.Stats.HP.CurValue <= 0)
             //{
             //    killStreak++;
             //    Debug.Log("Kill Streak = " + killStreak);
             //}
 
-            if (choosenAttack.SkillType == SkillType.Melee && unit.Stats.curHP.BaseValue > 0)
+            if (choosenAttack.SkillType == SkillType.Melee && unit.Stats.HP.CurValue > 0)
             {
                 while (MoveToPosition(startposition))
                 {
@@ -932,7 +932,7 @@ public class UnitStateMachine : MonoBehaviour
         {
             BSM.battleStates = PerformAction.START;
 
-            if (unit.Stats.curHP.BaseValue > 0 && currentState != TurnState.DEAD)
+            if (unit.Stats.HP.CurValue > 0 && currentState != TurnState.DEAD)
             {
                 currentState = TurnState.PROCESSING;
             }

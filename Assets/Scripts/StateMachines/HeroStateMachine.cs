@@ -235,7 +235,7 @@
 //            //    }
 //            //}
 
-//            if (isMelee == true && BSM.EnemiesInBattle.Count > 0 && BSM.PerformList[0].AttackersTarget.GetComponent<UnitAttributes>().Stats.curHP <= 0)
+//            if (isMelee == true && BSM.EnemiesInBattle.Count > 0 && BSM.PerformList[0].AttackersTarget.GetComponent<UnitAttributes>().Stats.HP.CurValue <= 0)
 //            {
 //                StartCoroutine(AttackNextTarget());
 //                while (attackNext == true)
@@ -249,7 +249,7 @@
 //                yield return new WaitForSeconds(1f);
 //            }
 //            //animate back to start position
-//            if (isMelee && character.unit.Stats.curHP > 0)
+//            if (isMelee && character.unit.Stats.HP.CurValue > 0)
 //            {
 //                Vector3 initialPosition = startPosition;
 //                while (MoveToPosition(initialPosition))
@@ -284,7 +284,7 @@
 
 //    public void TakeDamage(float getDamageAmount, bool isCriticalE, float enemyHit, bool isDodgeable, bool isCounterAttack)
 //    {
-//        hitChance = (enemyHit / character.unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+//        hitChance = (enemyHit / character.unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
 //        if (isDodgeable == false)
 //        {
 //            hitChance = 100;
@@ -295,10 +295,10 @@
 //            //AttackEffectPlay();
 //            ui.animator.Play("Hurt");
 
-//            character.unit.Stats.curHP -= getDamageAmount;
-//            if (character.unit.Stats.curHP <= 0)
+//            character.unit.Stats.HP.CurValue -= getDamageAmount;
+//            if (character.unit.Stats.HP.CurValue <= 0)
 //            {
-//                character.unit.Stats.curHP = 0;
+//                character.unit.Stats.HP.CurValue = 0;
 //                currentState = TurnState.DEAD;
 //                ui.animator.Play("Die");
 //            }
@@ -306,7 +306,7 @@
 //            //show popup damage
 //            //Actions.OnDamageReceived(gameObject.transform, isCriticalE, getDamageAmount, false);
 //            //health bar
-//            ui.healthBar.SetSize(((character.unit.Stats.curHP * 100) / character.unit.Stats.baseHP) / 100);
+//            ui.healthBar.SetSize(((character.unit.Stats.HP.CurValue * 100) / character.unit.Stats.HP.BaseValue) / 100);
    
 //        }
 //        else
@@ -316,7 +316,7 @@
 //            AddRage(10);
 //        }
 
-//        if (!isCounterAttack && character.unit.Stats.curHP > 0 && isDodgeable == true && UnityEngine.Random.Range(0, 100) <= 100)
+//        if (!isCounterAttack && character.unit.Stats.HP.CurValue > 0 && isDodgeable == true && UnityEngine.Random.Range(0, 100) <= 100)
 //        {
 //            if (BSM.PerformList[0].Attacker.GetComponent<EnemyStateMachine>().secondAttackRunning == false)
 //            {
@@ -353,16 +353,16 @@
 //    //            calc_damage = Mathf.Round(calc_damage * character.unit.Stats.critDamage);
 //    //            AddRage(10);
 //    //        }
-//    //        BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.curHit, isMelee, false);
+//    //        BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.Hit.CurValue, isMelee, false);
 //    //    }
         
 //    //    //mana bar things
-//    //    character.unit.Stats.curMP -= BSM.PerformList[0].choosenAttack.attackCost;
-//    //    if (character.unit.Stats.curMP <= 0)
+//    //    character.unit.Stats.MP.CurValue -= BSM.PerformList[0].choosenAttack.attackCost;
+//    //    if (character.unit.Stats.MP.CurValue <= 0)
 //    //    {
-//    //        character.unit.Stats.curMP = 0;
+//    //        character.unit.Stats.MP.CurValue = 0;
 //    //    }
-//    //    ui.manaBar.SetSize(((character.unit.Stats.curMP * 100) / character.unit.Stats.baseMP) / 100);
+//    //    ui.manaBar.SetSize(((character.unit.Stats.MP.CurValue * 100) / character.unit.Stats.MP.BaseValue) / 100);
 
 //    //    AddRage(10);
 //    //    isCriticalH = false;
@@ -391,7 +391,7 @@
 //            minMaxAtk = Mathf.Round(minMaxAtk * character.unit.Stats.critDamage);
 //            AddRage(10);
 //        }
-//        BSM.PerformList[0].Attacker.GetComponent<EnemyStateMachine>().TakeDamage(minMaxAtk, isCriticalH, character.unit.Stats.curHit, true, counterAttack);
+//        BSM.PerformList[0].Attacker.GetComponent<EnemyStateMachine>().TakeDamage(minMaxAtk, isCriticalH, character.unit.Stats.Hit.CurValue, true, counterAttack);
 //        AddRage(10);
 //        yield return new WaitForSeconds(0.5f);
 //        counterAttack = false;
@@ -420,7 +420,7 @@
 //    //    //remove character that already is in the list by default
 //    //    sortByHP.Remove(BSM.PerformList[0].AttackersTarget);
 //    //    //sort heroes in the list by the HP, then reverse, so we heal allies with the lowest HP
-//    //    sortByHP = sortByHP.OrderBy(x => x.GetComponent<Character>().unit.Stats.curHP).ToList();
+//    //    sortByHP = sortByHP.OrderBy(x => x.GetComponent<Character>().unit.Stats.HP.CurValue).ToList();
 //    //    sortByHP.Reverse();
 
 //    //    BSM.PerformList[0].AttackersTarget.GetComponent<HeroStateMachine>().AcceptBuffsDebuffs(calc_buff, isHeal);
@@ -430,12 +430,12 @@
 //    //    }
 
 //    //    //mana bar things
-//    //    character.unit.Stats.curMP -= BSM.PerformList[0].choosenAttack.attackCost;
-//    //    if (character.unit.Stats.curMP <= 0)
+//    //    character.unit.Stats.MP.CurValue -= BSM.PerformList[0].choosenAttack.attackCost;
+//    //    if (character.unit.Stats.MP.CurValue <= 0)
 //    //    {
-//    //        character.unit.Stats.curMP = 0;
+//    //        character.unit.Stats.MP.CurValue = 0;
 //    //    }
-//    //    ui.manaBar.SetSize(((character.unit.Stats.curMP * 100) / character.unit.Stats.baseMP) / 100);
+//    //    ui.manaBar.SetSize(((character.unit.Stats.MP.CurValue * 100) / character.unit.Stats.MP.BaseValue) / 100);
 
 //    //    AddRage(10);
 //    //}
@@ -487,7 +487,7 @@
 //    //        //remove enemy that already is in the list by default
 //    //        sortBySpeed.Remove(BSM.PerformList[0].AttackersTarget);
 //    //        //sort enemies in the list by the speed, then reverse, so we attack enemies with the highest speed
-//    //        sortBySpeed = sortBySpeed.OrderBy(x => x.GetComponent<EnemyStateMachine>().unit.Stats.curSpeed).ToList();
+//    //        sortBySpeed = sortBySpeed.OrderBy(x => x.GetComponent<EnemyStateMachine>().unit.Stats.Speed.CurValue).ToList();
 //    //        sortBySpeed.Reverse();
 //    //        //add speedy enemies to the list
 //    //        for (int j = 0; j < (BSM.PerformList[0].choosenAttack.attackTargets - 1); j++)
@@ -498,15 +498,15 @@
 //    //                calc_damage = Mathf.Round(calc_damage * character.unit.Stats.critDamage);
 //    //                critHits++;
 //    //            }
-//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().unit.Stats.curDEF;
+//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().unit.Stats.DEF.CurValue;
 //    //            calc_damage -= opponentDef;
 //    //            if (calc_damage < 0)
 //    //            {
 //    //                calc_damage = 0;
 //    //            }
-//    //            sortBySpeed[j].GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.curHit, isMelee, false);
+//    //            sortBySpeed[j].GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.Hit.CurValue, isMelee, false);
 //    //        }
-//    //        BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.curHit, isMelee, false);
+//    //        BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.Hit.CurValue, isMelee, false);
 
 //    //    }
 //    //    else if (BSM.PerformList[0].choosenAttack.attackTargets > BSM.EnemiesInBattle.Count)
@@ -519,13 +519,13 @@
 //    //                calc_damage = Mathf.Round(calc_damage * character.unit.Stats.critDamage);
 //    //                critHits++;
 //    //            }
-//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().unit.Stats.curDEF;
+//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<EnemyStateMachine>().unit.Stats.DEF.CurValue;
 //    //            calc_damage -= opponentDef;
 //    //            if (calc_damage < 0)
 //    //            {
 //    //                calc_damage = 0;
 //    //            }
-//    //            BSM.EnemiesInBattle[j].GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.curHit, isMelee, false); ;
+//    //            BSM.EnemiesInBattle[j].GetComponent<EnemyStateMachine>().TakeDamage(calc_damage, isCriticalH, character.unit.Stats.Hit.CurValue, isMelee, false); ;
 //    //        }
 //    //    }
 //    //}

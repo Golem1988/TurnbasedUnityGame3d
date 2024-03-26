@@ -10,7 +10,7 @@ public class StatBuffItemEffect : UsableItemEffect
 
 	public override void ExecuteEffect(UsableItem parentItem, CharacterInformation character)
 	{
-		StatModifier statModifier = new StatModifier(AgilityBuff, StatModType.Flat, parentItem);
+		StatModifier statModifier = new StatModifier(AgilityBuff, StatModType.Flat, parentItem, StatSetType.MaxValue);
 		character.Stats.agility.AddModifier(statModifier);
 		//character.UpdateStatValues();
 		//character.StartCoroutine(RemoveBuff(character, statModifier, Duration));

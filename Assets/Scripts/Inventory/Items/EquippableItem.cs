@@ -64,60 +64,60 @@ public class EquippableItem : Item
     public void Equip(CharacterInformation c)
     {
         if (StrengthBonus != 0)
-            c.Stats.strengthUpdated.AddModifier(new StatModifier(StrengthBonus, StatModType.Flat, this));
+            c.Stats.strength.AddModifier(new StatModifier(StrengthBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (IntellectBonus != 0)
-            c.Stats.intellectUpdated.AddModifier(new StatModifier(IntellectBonus, StatModType.Flat, this));
+            c.Stats.intellect.AddModifier(new StatModifier(IntellectBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (AgilityBonus != 0)
-            c.Stats.agilityUpdated.AddModifier(new StatModifier(AgilityBonus, StatModType.Flat, this));
+            c.Stats.agility.AddModifier(new StatModifier(AgilityBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (DexterityBonus != 0)
-            c.Stats.dexterityUpdated.AddModifier(new StatModifier(DexterityBonus, StatModType.Flat, this));
+            c.Stats.dexterity.AddModifier(new StatModifier(DexterityBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (StaminaBonus != 0)
-            c.Stats.staminaUpdated.AddModifier(new StatModifier(StaminaBonus, StatModType.Flat, this));
+            c.Stats.stamina.AddModifier(new StatModifier(StaminaBonus, StatModType.Flat, this, StatSetType.MaxValue));
 
         if (StrengthPercentBonus != 0)
-            c.Stats.strengthUpdated.AddModifier(new StatModifier(StrengthPercentBonus, StatModType.PercentMult, this));
+            c.Stats.strength.AddModifier(new StatModifier(StrengthPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (IntellectPercentBonus != 0)
-            c.Stats.intellectUpdated.AddModifier(new StatModifier(IntellectPercentBonus, StatModType.PercentMult, this));
+            c.Stats.intellect.AddModifier(new StatModifier(IntellectPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (AgilityPercentBonus != 0)
-            c.Stats.agilityUpdated.AddModifier(new StatModifier(AgilityPercentBonus, StatModType.PercentMult, this));
+            c.Stats.agility.AddModifier(new StatModifier(AgilityPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (DexterityPercentBonus != 0)
-            c.Stats.dexterityUpdated.AddModifier(new StatModifier(DexterityPercentBonus, StatModType.PercentMult, this));
+            c.Stats.dexterity.AddModifier(new StatModifier(DexterityPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (StaminaPercentBonus != 0)
-            c.Stats.staminaUpdated.AddModifier(new StatModifier(StaminaPercentBonus, StatModType.PercentMult, this));
+            c.Stats.stamina.AddModifier(new StatModifier(StaminaPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
 
         if (HPBonus != 0)
-            c.Stats.maxedHP.AddModifier(new StatModifier(HPBonus, StatModType.Flat, this));
+            c.Stats.HP.AddModifier(new StatModifier(HPBonus, StatModType.Flat, this, StatSetType.None));
         if (MPBonus != 0)
-            c.Stats.maxedMP.AddModifier(new StatModifier(MPBonus, StatModType.Flat, this));
+            c.Stats.MP.AddModifier(new StatModifier(MPBonus, StatModType.Flat, this, StatSetType.None));
         if (SpeedBonus != 0)
-            c.Stats.maxedSpeed.AddModifier(new StatModifier(SpeedBonus, StatModType.Flat, this));
+            c.Stats.Speed.AddModifier(new StatModifier(SpeedBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (ATKBonus != 0)
-            c.Stats.maxedATK.AddModifier(new StatModifier(ATKBonus, StatModType.Flat, this));
+            c.Stats.ATK.AddModifier(new StatModifier(ATKBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (MATKBonus != 0)
-            c.Stats.maxedMATK.AddModifier(new StatModifier(MATKBonus, StatModType.Flat, this));
+            c.Stats.MATK.AddModifier(new StatModifier(MATKBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (DEFBonus != 0)
-            c.Stats.maxedDEF.AddModifier(new StatModifier(DEFBonus, StatModType.Flat, this));
+            c.Stats.DEF.AddModifier(new StatModifier(DEFBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (HitBonus != 0)
-            c.Stats.maxedHit.AddModifier(new StatModifier(HitBonus, StatModType.Flat, this));
+            c.Stats.Hit.AddModifier(new StatModifier(HitBonus, StatModType.Flat, this, StatSetType.MaxValue));
         if (DodgeBonus != 0)
-            c.Stats.maxedDodge.AddModifier(new StatModifier(DodgeBonus, StatModType.Flat, this));
+            c.Stats.Dodge.AddModifier(new StatModifier(DodgeBonus, StatModType.Flat, this, StatSetType.MaxValue));
 
         if (HPPercentBonus != 0)
-            c.Stats.maxedHP.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.HP.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.None));
         if (MPPercentBonus != 0)
-            c.Stats.maxedMP.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.MP.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.None));
         if (SpeedPercentBonus != 0)
-            c.Stats.maxedSpeed.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.Speed.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (ATKPercentBonus != 0)
-            c.Stats.maxedATK.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.ATK.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (MATKPercentBonus != 0)
-            c.Stats.maxedMATK.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.MATK.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (DEFPercentBonus != 0)
-            c.Stats.maxedDEF.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.DEF.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (HitPercentBonus != 0)
-            c.Stats.maxedHit.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.Hit.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
         if (DodgePercentBonus != 0)
-            c.Stats.maxedDodge.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this));
+            c.Stats.Dodge.AddModifier(new StatModifier(HPPercentBonus, StatModType.PercentMult, this, StatSetType.MaxValue));
 
         if (EquipmentType == EquipmentType.Helmet)
             c.Equipment.HelmetID = ID;
@@ -145,14 +145,14 @@ public class EquippableItem : Item
         c.Stats.dexterity.RemoveAllModifiersFromSource(this);
         c.Stats.stamina.RemoveAllModifiersFromSource(this);
 
-        c.Stats.maxedHP.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedMP.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedSpeed.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedATK.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedMATK.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedDEF.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedHit.RemoveAllModifiersFromSource(this);
-        c.Stats.maxedDodge.RemoveAllModifiersFromSource(this);
+        c.Stats.HP.RemoveAllModifiersFromSource(this);
+        c.Stats.MP.RemoveAllModifiersFromSource(this);
+        c.Stats.Speed.RemoveAllModifiersFromSource(this);
+        c.Stats.ATK.RemoveAllModifiersFromSource(this);
+        c.Stats.MATK.RemoveAllModifiersFromSource(this);
+        c.Stats.DEF.RemoveAllModifiersFromSource(this);
+        c.Stats.Hit.RemoveAllModifiersFromSource(this);
+        c.Stats.Dodge.RemoveAllModifiersFromSource(this);
 
         if (EquipmentType == EquipmentType.Helmet)
             c.Equipment.HelmetID = "";

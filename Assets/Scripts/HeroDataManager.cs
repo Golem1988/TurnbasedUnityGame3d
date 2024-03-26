@@ -9,6 +9,7 @@ public class HeroDataManager : MonoBehaviour
 {
     public static HeroDataManager instance;
     public List<CharacterInformation> CharacterInfo = new List<CharacterInformation>();
+    public List<HeroInventoryItems> HeroInventory = new List<HeroInventoryItems>();
     //public string MainCharacter;
     public UnitDatabase UnitDatabase;
     public string saveID;

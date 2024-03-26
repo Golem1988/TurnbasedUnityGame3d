@@ -447,17 +447,17 @@ public class SummonInfoInterface : MonoBehaviour
             SummonName.text = EditableSummon.Stats.displayName.ToString();
             summonLevel.text = EditableSummon.Level.currentlevel.ToString();
 
-            summonHP.text = EditableSummon.Stats.curHP.BaseValue.ToString() + "/" + EditableSummon.Stats.baseHP.BaseValue.ToString();
-            summonMP.text = EditableSummon.Stats.curMP.BaseValue.ToString() + "/" + EditableSummon.Stats.baseMP.BaseValue.ToString();
+            summonHP.text = EditableSummon.Stats.HP.CurValue.ToString() + "/" + EditableSummon.Stats.HP.MaxValue.ToString();
+            summonMP.text = EditableSummon.Stats.MP.CurValue.ToString() + "/" + EditableSummon.Stats.MP.MaxValue.ToString();
 
-            summonAtk.text = EditableSummon.Stats.curATK.BaseValue.ToString();
-            summonMatk.text = EditableSummon.Stats.curMATK.BaseValue.ToString();
-            summonDef.text = EditableSummon.Stats.curDEF.BaseValue.ToString();
+            summonAtk.text = EditableSummon.Stats.ATK.CurValue.ToString();
+            summonMatk.text = EditableSummon.Stats.MATK.CurValue.ToString();
+            summonDef.text = EditableSummon.Stats.DEF.CurValue.ToString();
 
-            summonDodge.text = EditableSummon.Stats.curDodge.BaseValue.ToString();
-            summonHit.text = EditableSummon.Stats.curHit.BaseValue.ToString();
+            summonDodge.text = EditableSummon.Stats.Dodge.CurValue.ToString();
+            summonHit.text = EditableSummon.Stats.Hit.CurValue.ToString();
             summonCrit.text = EditableSummon.Stats.curCRIT.ToString();
-            summonSpeed.text = EditableSummon.Stats.curSpeed.BaseValue.ToString();
+            summonSpeed.text = EditableSummon.Stats.Speed.CurValue.ToString();
 
             summonStr.text = EditableSummon.Stats.strength.BaseValue.ToString();
             summonInt.text = EditableSummon.Stats.intellect.BaseValue.ToString();
@@ -589,29 +589,75 @@ public class SummonInfoInterface : MonoBehaviour
 
             EditableSummon.Stats.unspentStatPoints -= addedStatpts;
 
-            EditableSummon.Stats.baseHP.BaseValue += addedHP;
-            EditableSummon.Stats.curHP.BaseValue = EditableSummon.Stats.baseHP.BaseValue;
-            EditableSummon.Stats.baseMP.BaseValue += addedMP;
-            EditableSummon.Stats.curMP.BaseValue = EditableSummon.Stats.baseMP.BaseValue;
+            EditableSummon.Stats.HP.MaxValue += addedHP;
+            EditableSummon.Stats.HP.BaseValue += addedHP;
+            EditableSummon.Stats.HP.CurValue = EditableSummon.Stats.HP.MaxValue;
 
+            EditableSummon.Stats.MP.MaxValue += addedMP;
+            EditableSummon.Stats.MP.BaseValue += addedMP;
+            EditableSummon.Stats.MP.CurValue = EditableSummon.Stats.MP.MaxValue;
 
-            EditableSummon.Stats.baseATK.BaseValue += addedAtk;
-            EditableSummon.Stats.curATK.BaseValue = EditableSummon.Stats.baseATK.BaseValue;
-            EditableSummon.Stats.baseMATK.BaseValue += addedMatk;
-            EditableSummon.Stats.curMATK.BaseValue = EditableSummon.Stats.baseMATK.BaseValue;
-            EditableSummon.Stats.baseDEF.BaseValue += addedDef;
-            EditableSummon.Stats.curDEF.BaseValue = EditableSummon.Stats.baseDEF.BaseValue;
+            EditableSummon.Stats.ATK.BaseValue += addedAtk;
+            EditableSummon.Stats.ATK.MaxValue += addedAtk;
+            EditableSummon.Stats.ATK.CurValue = EditableSummon.Stats.ATK.MaxValue;
+
+            EditableSummon.Stats.MATK.BaseValue += addedMatk;
+            EditableSummon.Stats.MATK.MaxValue += addedMatk;
+            EditableSummon.Stats.MATK.CurValue = EditableSummon.Stats.MATK.MaxValue;
+
+            EditableSummon.Stats.DEF.BaseValue += addedDef;
+            EditableSummon.Stats.DEF.MaxValue += addedDef;
+            EditableSummon.Stats.DEF.CurValue = EditableSummon.Stats.DEF.MaxValue;
 
             EditableSummon.Stats.baseCRIT += addedCrit;
             EditableSummon.Stats.curCRIT = EditableSummon.Stats.baseCRIT;
-            EditableSummon.Stats.baseDodge.BaseValue += addedDodge;
-            EditableSummon.Stats.curDodge.BaseValue = EditableSummon.Stats.baseDodge.BaseValue;
-            EditableSummon.Stats.baseHit.BaseValue += addedHit;
-            EditableSummon.Stats.curHit.BaseValue = EditableSummon.Stats.baseHit.BaseValue;
-            EditableSummon.Stats.baseSpeed.BaseValue += addedSpeed;
-            EditableSummon.Stats.curSpeed.BaseValue = EditableSummon.Stats.baseSpeed.BaseValue;
-            EditableSummon.Stats.minATK = EditableSummon.Stats.curATK.BaseValue;
-            EditableSummon.Stats.maxATK = (EditableSummon.Stats.minATK / 100) * 120;
+
+            EditableSummon.Stats.Dodge.BaseValue += addedDodge;
+            EditableSummon.Stats.Dodge.MaxValue += addedDodge;
+            EditableSummon.Stats.Dodge.CurValue = EditableSummon.Stats.Dodge.MaxValue;
+
+            EditableSummon.Stats.Hit.BaseValue += addedHit;
+            EditableSummon.Stats.Hit.MaxValue += addedHit;
+            EditableSummon.Stats.Hit.CurValue = EditableSummon.Stats.Hit.MaxValue;
+
+            EditableSummon.Stats.Speed.BaseValue += addedSpeed;
+            EditableSummon.Stats.Speed.MaxValue += addedSpeed;
+            EditableSummon.Stats.Speed.CurValue = EditableSummon.Stats.Speed.MaxValue;
+
+            //EditableSummon.Stats.minATK = EditableSummon.Stats.ATK.CurValue;
+            //EditableSummon.Stats.maxATK = Mathf.Round((EditableSummon.Stats.minATK / 100) * 120);
+
+            //EditableSummon.Stats.strength.BaseValue += AddedStr;
+            //EditableSummon.Stats.intellect.BaseValue += AddedInt;
+            //EditableSummon.Stats.dexterity.BaseValue += AddedDex;
+            //EditableSummon.Stats.agility.BaseValue += AddedAgi;
+            //EditableSummon.Stats.stamina.BaseValue += AddedSta;
+
+            //EditableSummon.Stats.unspentStatPoints -= addedStatpts;
+
+            //EditableSummon.Stats.HP.MaxValue += addedHP;
+            //EditableSummon.Stats.HP.CurValue = EditableSummon.Stats.HP.MaxValue;
+            //EditableSummon.Stats.MP.MaxValue += addedMP;
+            //EditableSummon.Stats.MP.CurValue = EditableSummon.Stats.MP.MaxValue;
+
+
+            //EditableSummon.Stats.ATK.BaseValue += addedAtk;
+            //EditableSummon.Stats.ATK.CurValue = EditableSummon.Stats.ATK.BaseValue;
+            //EditableSummon.Stats.MATK.BaseValue += addedMatk;
+            //EditableSummon.Stats.MATK.CurValue = EditableSummon.Stats.MATK.BaseValue;
+            //EditableSummon.Stats.DEF.BaseValue += addedDef;
+            //EditableSummon.Stats.DEF.CurValue = EditableSummon.Stats.DEF.BaseValue;
+
+            //EditableSummon.Stats.baseCRIT += addedCrit;
+            //EditableSummon.Stats.curCRIT = EditableSummon.Stats.baseCRIT;
+            //EditableSummon.Stats.Dodge.BaseValue += addedDodge;
+            //EditableSummon.Stats.Dodge.CurValue = EditableSummon.Stats.Dodge.BaseValue;
+            //EditableSummon.Stats.Hit.BaseValue += addedHit;
+            //EditableSummon.Stats.Hit.CurValue = EditableSummon.Stats.Hit.BaseValue;
+            //EditableSummon.Stats.Speed.BaseValue += addedSpeed;
+            //EditableSummon.Stats.Speed.CurValue = EditableSummon.Stats.Speed.BaseValue;
+            //EditableSummon.Stats.minATK = EditableSummon.Stats.ATK.CurValue;
+            //EditableSummon.Stats.maxATK = (EditableSummon.Stats.minATK / 100) * 120;
 
             Actions.OnMainHeroSummonChange(Owner, EditableSummon);
 
@@ -721,31 +767,75 @@ public class SummonInfoInterface : MonoBehaviour
     {
         if (summon != null)
         {
+            //summon.unit.Stats.strength.BaseValue += AddedStr;
+            //summon.unit.Stats.intellect.BaseValue += AddedInt;
+            //summon.unit.Stats.dexterity.BaseValue += AddedDex;
+            //summon.unit.Stats.agility.BaseValue += AddedAgi;
+            //summon.unit.Stats.stamina.BaseValue += AddedSta;
+            //summon.unit.Stats.HP.MaxValue += addedHP;
+            //summon.unit.Stats.HP.CurValue = summon.unit.Stats.HP.MaxValue;
+            //summon.unit.Stats.MP.MaxValue += addedMP;
+            //summon.unit.Stats.MP.CurValue = summon.unit.Stats.MP.MaxValue;
+            //summon.unit.Stats.ATK.BaseValue += addedAtk;
+            //summon.unit.Stats.ATK.CurValue = summon.unit.Stats.ATK.BaseValue;
+            //summon.unit.Stats.MATK.BaseValue += addedMatk;
+            //summon.unit.Stats.MATK.CurValue = summon.unit.Stats.MATK.BaseValue;
+            //summon.unit.Stats.DEF.BaseValue += addedDef;
+            //summon.unit.Stats.DEF.CurValue = summon.unit.Stats.DEF.BaseValue;
+            //summon.unit.Stats.baseCRIT += addedCrit;
+            //summon.unit.Stats.curCRIT = summon.unit.Stats.baseCRIT;
+            //summon.unit.Stats.Dodge.BaseValue += addedDodge;
+            //summon.unit.Stats.Dodge.CurValue = summon.unit.Stats.Dodge.BaseValue;
+            //summon.unit.Stats.Hit.BaseValue += addedHit;
+            //summon.unit.Stats.Hit.CurValue = summon.unit.Stats.Hit.BaseValue;
+            //summon.unit.Stats.Speed.BaseValue += addedSpeed;
+            //summon.unit.Stats.Speed.CurValue = summon.unit.Stats.Speed.BaseValue;
+            //summon.unit.Stats.minATK = summon.unit.Stats.ATK.CurValue;
+            //summon.unit.Stats.maxATK = Mathf.Round((summon.unit.Stats.minATK / 100) * 120);
+
             summon.unit.Stats.strength.BaseValue += AddedStr;
             summon.unit.Stats.intellect.BaseValue += AddedInt;
             summon.unit.Stats.dexterity.BaseValue += AddedDex;
             summon.unit.Stats.agility.BaseValue += AddedAgi;
             summon.unit.Stats.stamina.BaseValue += AddedSta;
-            summon.unit.Stats.baseHP.BaseValue += addedHP;
-            summon.unit.Stats.curHP.BaseValue = summon.unit.Stats.baseHP.BaseValue;
-            summon.unit.Stats.baseMP.BaseValue += addedMP;
-            summon.unit.Stats.curMP.BaseValue = summon.unit.Stats.baseMP.BaseValue;
-            summon.unit.Stats.baseATK.BaseValue += addedAtk;
-            summon.unit.Stats.curATK.BaseValue = summon.unit.Stats.baseATK.BaseValue;
-            summon.unit.Stats.baseMATK.BaseValue += addedMatk;
-            summon.unit.Stats.curMATK.BaseValue = summon.unit.Stats.baseMATK.BaseValue;
-            summon.unit.Stats.baseDEF.BaseValue += addedDef;
-            summon.unit.Stats.curDEF.BaseValue = summon.unit.Stats.baseDEF.BaseValue;
+
+            summon.unit.Stats.HP.MaxValue += addedHP;
+            summon.unit.Stats.HP.BaseValue += addedHP;
+            summon.unit.Stats.HP.CurValue = summon.unit.Stats.HP.MaxValue;
+
+            summon.unit.Stats.MP.MaxValue += addedMP;
+            summon.unit.Stats.MP.BaseValue += addedMP;
+            summon.unit.Stats.MP.CurValue = summon.unit.Stats.MP.MaxValue;
+
+            summon.unit.Stats.ATK.BaseValue += addedAtk;
+            summon.unit.Stats.ATK.MaxValue += addedAtk;
+            summon.unit.Stats.ATK.CurValue = summon.unit.Stats.ATK.MaxValue;
+
+            summon.unit.Stats.MATK.BaseValue += addedMatk;
+            summon.unit.Stats.MATK.MaxValue += addedMatk;
+            summon.unit.Stats.MATK.CurValue = summon.unit.Stats.MATK.MaxValue;
+
+            summon.unit.Stats.DEF.BaseValue += addedDef;
+            summon.unit.Stats.DEF.MaxValue += addedDef;
+            summon.unit.Stats.DEF.CurValue = summon.unit.Stats.DEF.MaxValue;
+
             summon.unit.Stats.baseCRIT += addedCrit;
             summon.unit.Stats.curCRIT = summon.unit.Stats.baseCRIT;
-            summon.unit.Stats.baseDodge.BaseValue += addedDodge;
-            summon.unit.Stats.curDodge.BaseValue = summon.unit.Stats.baseDodge.BaseValue;
-            summon.unit.Stats.baseHit.BaseValue += addedHit;
-            summon.unit.Stats.curHit.BaseValue = summon.unit.Stats.baseHit.BaseValue;
-            summon.unit.Stats.baseSpeed.BaseValue += addedSpeed;
-            summon.unit.Stats.curSpeed.BaseValue = summon.unit.Stats.baseSpeed.BaseValue;
-            summon.unit.Stats.minATK = summon.unit.Stats.curATK.BaseValue;
-            summon.unit.Stats.maxATK = Mathf.Round((summon.unit.Stats.minATK / 100) * 120);
+
+            summon.unit.Stats.Dodge.BaseValue += addedDodge;
+            summon.unit.Stats.Dodge.MaxValue += addedDodge;
+            summon.unit.Stats.Dodge.CurValue = summon.unit.Stats.Dodge.MaxValue;
+
+            summon.unit.Stats.Hit.BaseValue += addedHit;
+            summon.unit.Stats.Hit.MaxValue += addedHit;
+            summon.unit.Stats.Hit.CurValue = summon.unit.Stats.Hit.MaxValue;
+
+            summon.unit.Stats.Speed.BaseValue += addedSpeed;
+            summon.unit.Stats.Speed.MaxValue += addedSpeed;
+            summon.unit.Stats.Speed.CurValue = summon.unit.Stats.Speed.MaxValue;
+
+            //summon.unit.Stats.minATK = summon.unit.Stats.ATK.CurValue;
+            //summon.unit.Stats.maxATK = Mathf.Round((summon.unit.Stats.minATK / 100) * 120);
 
             //string mainHeroName = HeroDataManager.instance.CharacterInfo.FirstOrDefault(hero => hero.isMainCharacter)?.Name;
             //if (summon.ownerName == mainHeroName)

@@ -143,6 +143,12 @@ public enum StatModType
     PercentMult = 300,
 }
 
+public enum StatSetType
+{
+    None,
+    MaxValue, // Add more types as needed
+}
+
 public enum ActivateOn //event at which the ability is getting activated
 {
     TURN_START = 0,

@@ -18,17 +18,6 @@ public class StatDisplay : MonoBehaviour
 		}
 	}
 
-	private CharacterStat _maxStat;
-	public CharacterStat MaxStat
-	{
-		get { return _maxStat; }
-		set
-		{
-			_maxStat = value;
-			UpdateStatValue();
-		}
-	}
-
 	private string _name;
 	public string Name
 	{
@@ -42,7 +31,7 @@ public class StatDisplay : MonoBehaviour
 
 	[SerializeField] TextMeshProUGUI nameText;
 	[SerializeField] TextMeshProUGUI valueText;
-	//[SerializeField] TextMeshProUGUI maxValueText;
+	[SerializeField] TextMeshProUGUI maxValueText;
 
 	//private void OnValidate()
 	//{
@@ -53,15 +42,27 @@ public class StatDisplay : MonoBehaviour
 
 	public void UpdateStatValue()
 	{
-		valueText.text = _stat.Value.ToString();// + "/" + _maxStat.Value.ToString();
-
+		if (maxValueText != null)
+		{
+			maxValueText.text = _stat.Value.ToString();// + "/" + _maxStat.Value.ToString();
+		}
+		
+		valueText.text = _stat.CurValue.ToString();
 		//if (maxValueText != null)
-  //      {
-		//	maxValueText.text = _maxStat.Value.ToString();
+		//      {
+		//	maxValueText.text = _stat.MaxValue.ToString();
 		//}
 		//if (showingTooltip)
 		//{
 		//	tooltip.ShowTooltip(Stat, Name);
+		//}
+	}
+
+	public void UpdateStatCurValue()
+	{
+		//if (valueText != null)
+		//{
+		//	valueText.text = _stat.CurValue.ToString();
 		//}
 	}
 }

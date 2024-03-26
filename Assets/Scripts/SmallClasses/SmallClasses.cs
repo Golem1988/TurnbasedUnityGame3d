@@ -121,6 +121,13 @@ public class EquippedItems
 }
 
 [System.Serializable]
+public class HeroInventoryItems
+{
+    public string ItemID;
+    public int ItemAmount;
+}
+
+[System.Serializable]
 public class HeroPool
 {
     public GameObject thePrefab;

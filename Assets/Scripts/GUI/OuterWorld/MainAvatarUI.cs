@@ -70,14 +70,14 @@ public class MainAvatarUI : MonoBehaviour
 
     private void ChangeHeroBars(CharacterInformation hero)
     {
-        HeroHpText.text = hero.Stats.curHP.BaseValue.ToString() + "/" + hero.Stats.baseHP.BaseValue.ToString();
-        HeroMpText.text = hero.Stats.curMP.BaseValue.ToString() + "/" + hero.Stats.baseMP.BaseValue.ToString();
+        HeroHpText.text = hero.Stats.HP.CurValue.ToString() + "/" + hero.Stats.HP.MaxValue.ToString();
+        HeroMpText.text = hero.Stats.MP.CurValue.ToString() + "/" + hero.Stats.MP.MaxValue.ToString();
 
         HeroExpText.text = hero.Level.CUR_EXP.ToString() + "/" + hero.Level.NEXT_EXP.ToString();
         HeroLevelText.text = hero.Level.currentlevel.ToString();
 
-        heroHealthBar.SetSize(hero.Stats.curHP.BaseValue / hero.Stats.baseHP.BaseValue);
-        heroManaBar.SetSize(hero.Stats.curMP.BaseValue / hero.Stats.baseMP.BaseValue);
+        heroHealthBar.SetSize(hero.Stats.HP.CurValue / hero.Stats.HP.MaxValue);
+        heroManaBar.SetSize(hero.Stats.MP.CurValue / hero.Stats.MP.MaxValue);
         float curExp = hero.Level.CUR_EXP;
         if (curExp == 0)
             curExp = 0.01f;
@@ -96,12 +96,12 @@ public class MainAvatarUI : MonoBehaviour
                 if (!SummonBarObj.activeSelf)
                     SummonBarObj.SetActive(true);
                 SummonAvatar.sprite = Extensions.FindSprite(summon.BaseID, false);
-                SummonHpText.text = summon.Stats.curHP.BaseValue.ToString() + "/" + summon.Stats.baseHP.BaseValue.ToString();
-                SummonMpText.text = summon.Stats.curMP.BaseValue.ToString() + "/" + summon.Stats.baseMP.BaseValue.ToString();
+                SummonHpText.text = summon.Stats.HP.CurValue.ToString() + "/" + summon.Stats.HP.MaxValue.ToString();
+                SummonMpText.text = summon.Stats.MP.CurValue.ToString() + "/" + summon.Stats.MP.MaxValue.ToString();
                 //SummonExpText.text = summon.Level.experience.ToString() + "/" + summon.Level.requiredExp.ToString();
                 SummonLevelText.text = summon.Level.currentlevel.ToString();
-                summonHealthBar.SetSize(summon.Stats.curHP.BaseValue / summon.Stats.baseHP.BaseValue);
-                summonManaBar.SetSize(summon.Stats.curMP.BaseValue / summon.Stats.baseMP.BaseValue);
+                summonHealthBar.SetSize(summon.Stats.HP.CurValue / summon.Stats.HP.MaxValue);
+                summonManaBar.SetSize(summon.Stats.MP.CurValue / summon.Stats.MP.MaxValue);
             }
             else
             {

@@ -35,7 +35,7 @@ public class Character : MonoBehaviour
         gameManager = GameManager.instance;
 
     }
-    //    //sPanel.SetStats(unit.Stats.strength, unit.Stats.agility, unit.Stats.intellect, unit.Stats.dexterity, unit.Stats.stamina);
+    //    //sPanel.SetStats(unit.Stats.strength.BaseValue, unit.Stats.agility.BaseValue, unit.Stats.intellect.BaseValue, unit.Stats.dexterity.BaseValue, unit.Stats.stamina.BaseValue);
     //    //sPanel.UpdateStatValues();
     //    //sPanel.UpdateStatValuesX();
 

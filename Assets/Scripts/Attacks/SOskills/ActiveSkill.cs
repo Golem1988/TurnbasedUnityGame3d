@@ -110,12 +110,12 @@ public class ActiveSkill : BaseAttack
         //we need to get unit stat that scales / affects the damage
         if (damageAffectedByStat == ScaleStat.Atk)
         {
-            trueDamage = Mathf.Round((unit.Stats.curATK.BaseValue * PercentDamageAmount) / 100) + FixedDamageAmount;
+            trueDamage = Mathf.Round((unit.Stats.ATK.CurValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         }
 
         if (damageAffectedByStat == ScaleStat.Matk)
         {
-            trueDamage = Mathf.Round((unit.Stats.curMATK.BaseValue * PercentDamageAmount) / 100) + FixedDamageAmount;
+            trueDamage = Mathf.Round((unit.Stats.MATK.CurValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         }
 
         if (damageAffectedByStat == ScaleStat.FixedDamage)
@@ -217,19 +217,19 @@ public class ActiveSkill : BaseAttack
                 //sort enemies in the list by the speed, then reverse, so we attack enemies with the highest speed
                 if (sortBy == SortBy.Speed)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curSpeed.BaseValue).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.Speed.CurValue).ToList();
                 }
                 else if (sortBy == SortBy.HP)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curHP.BaseValue).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.HP.CurValue).ToList();
                 }
                 else if (sortBy == SortBy.Attack)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curATK.BaseValue).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.ATK.CurValue).ToList();
                 }
                 else if (sortBy == SortBy.Defense)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.curDEF.BaseValue).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.DEF.CurValue).ToList();
                 }
                 //if we want to target the highest, we do list reversal
                 if (sortType == SortType.HiLo)
@@ -309,14 +309,14 @@ public class ActiveSkill : BaseAttack
     {
         var unit = actorSource.GetComponent<UnitAttributes>();
         //if (actorSource.gameObject.CompareTag("Hero"))
-        if (CostType == CostType.MP && unit.Stats.curMP.BaseValue >= costValue)
+        if (CostType == CostType.MP && unit.Stats.MP.CurValue >= costValue)
         {
-            unit.Stats.curMP.BaseValue -= costValue;
+            unit.Stats.MP.CurValue -= costValue;
             Actions.OnBarChange(source, AffectedStat.MP);
         }
-        if (CostType == CostType.HP && unit.Stats.curHP.BaseValue >= costValue)
+        if (CostType == CostType.HP && unit.Stats.HP.CurValue >= costValue)
         {
-            unit.Stats.curHP.BaseValue -= costValue;
+            unit.Stats.HP.CurValue -= costValue;
             Actions.OnBarChange(source, AffectedStat.HP);
         }
         if (CostType == CostType.RP && unit.Stats.curRage >= costValue)
@@ -331,9 +331,9 @@ public class ActiveSkill : BaseAttack
         var unit = actorSource.GetComponent<UnitAttributes>();
         if (CostType == CostType.None)
             return true;
-        if (CostType == CostType.MP && unit.Stats.curMP.BaseValue >= costValue)
+        if (CostType == CostType.MP && unit.Stats.MP.CurValue >= costValue)
             return true;
-        if (CostType == CostType.HP && unit.Stats.curHP.BaseValue >= costValue)
+        if (CostType == CostType.HP && unit.Stats.HP.CurValue >= costValue)
             return true;
         if (CostType == CostType.RP && unit.Stats.curRage >= costValue)
             return true;
@@ -377,12 +377,12 @@ public class ActiveSkill : BaseAttack
         //    //we need to get unit stat that scales / affects the damage
         //    if (damageAffectedByStat == ScaleStat.Atk)
         //    {
-        //        trueDamage = Mathf.Round((unit.Stats.curATK * PercentDamageAmount) / 100) + FixedDamageAmount;
+        //        trueDamage = Mathf.Round((unit.Stats.ATK.CurValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         //    }
 
         //    if (damageAffectedByStat == ScaleStat.Matk)
         //    {
-        //        trueDamage = Mathf.Round((unit.Stats.curMATK * PercentDamageAmount) / 100) + FixedDamageAmount;
+        //        trueDamage = Mathf.Round((unit.Stats.MATK.CurValue * PercentDamageAmount) / 100) + FixedDamageAmount;
         //    }
 
         //    if (damageAffectedByStat == ScaleStat.FixedDamage)
@@ -462,19 +462,19 @@ public class ActiveSkill : BaseAttack
         //            //sort enemies in the list by the speed, then reverse, so we attack enemies with the highest speed
         //            if (sortBy == SortBy.Speed)
         //            {
-        //                sortList = sortList.OrderBy(x => x.unit.Stats.curSpeed).ToList();
+        //                sortList = sortList.OrderBy(x => x.unit.Stats.Speed.CurValue).ToList();
         //            }
         //            else if (sortBy == SortBy.HP)
         //            {
-        //                sortList = sortList.OrderBy(x => x.unit.Stats.curHP).ToList();
+        //                sortList = sortList.OrderBy(x => x.unit.Stats.HP.CurValue).ToList();
         //            }
         //            else if (sortBy == SortBy.Attack)
         //            {
-        //                sortList = sortList.OrderBy(x => x.unit.Stats.curATK).ToList();
+        //                sortList = sortList.OrderBy(x => x.unit.Stats.ATK.CurValue).ToList();
         //            }
         //            else if (sortBy == SortBy.Defense)
         //            {
-        //                sortList = sortList.OrderBy(x => x.unit.Stats.curDEF).ToList();
+        //                sortList = sortList.OrderBy(x => x.unit.Stats.DEF.CurValue).ToList();
         //            }
         //            //if we want to target the highest, we do list reversal
         //            if (sortType == SortType.HiLo)

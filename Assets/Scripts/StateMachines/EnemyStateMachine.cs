@@ -187,7 +187,7 @@
 //        //    rend.material.color = c;
 //        //    yield return new WaitForSeconds(0.02f);
 //        //}
-//        if(unit.Stats.curHP <= 0)
+//        if(unit.Stats.HP.CurValue <= 0)
 //        {
 //            yield return new WaitForSeconds(1.5f);
 //        }
@@ -199,7 +199,7 @@
 //    //{
 //    //    HandleTurn myAttack = new HandleTurn();
 //    //    myAttack.AttackersName = unit.Stats.theName;
-//    //    myAttack.attackersSpeed = unit.Stats.curSpeed;
+//    //    myAttack.attackersSpeed = unit.Stats.Speed.CurValue;
 //    //    myAttack.Type = "Enemy";
 //    //    myAttack.Attacker = gameObject;
 //    //    //Target choice: Randomly choose the target from list. Editable for later.
@@ -212,7 +212,7 @@
 //    //        //can we use them? check the manacost
 //    //        for (int i = 0; i < unit.Stats.MagicAttacks.Count; i++)
 //    //        {
-//    //            if (unit.Stats.MagicAttacks[i].costType == CostType.MP && unit.Stats.curMP >= unit.Stats.MagicAttacks[i].costValue)
+//    //            if (unit.Stats.MagicAttacks[i].costType == CostType.MP && unit.Stats.MP.CurValue >= unit.Stats.MagicAttacks[i].costValue)
 //    //            {
 //    //                int num = Random.Range(0, unit.Stats.MagicAttacks.Count-1);
 //    //                myAttack.choosenAttack = unit.Stats.MagicAttacks[num];
@@ -294,12 +294,12 @@
 //            //Double Hit mechanic testing
 //            //If target died from first attack, do not attack for the second time
 //            //If we intend to attack, it has 35% chance to do so
-//            if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.curHP > 0)
+//            if (Random.Range(0, 100) < GameManager.instance.doubleAttackChance && unit.Stats.HP.CurValue > 0)
 //            {
 //                attackTwice = true;
 //            }
 
-//            if (isMelee && doubleHit && HeroToAttack.GetComponent<Character>().unit.Stats.curHP > 0 && attackTwice)
+//            if (isMelee && doubleHit && HeroToAttack.GetComponent<Character>().unit.Stats.HP.CurValue > 0 && attackTwice)
 //            {
 //                if (HeroToAttack.GetComponent<HeroStateMachine>().dodgedAtt == false)
 //                {
@@ -313,13 +313,13 @@
 
 //            //testing kill streak mechanics
 //            //after killing one target the killer should choose next one and attack it and do it untill he can't kill the next target
-//            if (HeroToAttack.GetComponent<Character>().unit.Stats.curHP <= 0)
+//            if (HeroToAttack.GetComponent<Character>().unit.Stats.HP.CurValue <= 0)
 //            {
 //                killStreak++;
 //                Debug.Log("Kill Streak = " + killStreak);
 //            }
 
-//            if (isMelee && unit.Stats.curHP > 0)
+//            if (isMelee && unit.Stats.HP.CurValue > 0)
 //            {
 //                //animate back to start position
 //                Vector3 firstPosition = startposition;
@@ -338,7 +338,7 @@
 //        actionStarted = false;
 //        //reset this enemy state
 
-//        if(unit.Stats.curHP > 0 && currentState != TurnState.DEAD)
+//        if(unit.Stats.HP.CurValue > 0 && currentState != TurnState.DEAD)
 //        {
 //            currentState = TurnState.PROCESSING;
 //        }
@@ -365,7 +365,7 @@
 //  //      //
 //  //      //do damage
 //  //      float minMaxAtk = Mathf.Round(Random.Range(unit.Stats.minATK, unit.Stats.maxATK));
-//  //      //float calc_damage = unit.Stats.curATK + BSM.PerformList[0].choosenAttack.attackDamage;
+//  //      //float calc_damage = unit.Stats.ATK.CurValue + BSM.PerformList[0].choosenAttack.attackDamage;
 //  //      float calc_damage = minMaxAtk + BSM.PerformList[0].choosenAttack.attackDamage;
 //  //      //critical strikes
 
@@ -378,25 +378,25 @@
 //		//	}
 
 //		//	//add damage formula later on
-//		//	float opponentDef = HeroToAttack.GetComponent<Character>().unit.Stats.curDEF;
+//		//	float opponentDef = HeroToAttack.GetComponent<Character>().unit.Stats.DEF.CurValue;
 //		//	calc_damage -= opponentDef;
 //		//	if (calc_damage < 0) {
 //		//		calc_damage = 0;
 //		//	}
 
-//		//	HeroToAttack.GetComponent<HeroStateMachine>().TakeDamage (calc_damage, isCriticalE, unit.Stats.curHit, isMelee, false);
+//		//	HeroToAttack.GetComponent<HeroStateMachine>().TakeDamage (calc_damage, isCriticalE, unit.Stats.Hit.CurValue, isMelee, false);
 //		//	if (HeroToAttack.GetComponent<HeroStateMachine>().dodgedAtt == false) {
 //		//		calc_damage = Mathf.Round( calc_damage * 30 / 100); //testing vampirism and restore HP. How much we should heal and how much %% from this.
 //  //              Actions.OnRestoreHP(transform, calc_damage);
 //		//	}
 //		//}
 
-//		//unit.Stats.curMP -= BSM.PerformList[0].choosenAttack.attackCost;
-//		//if (unit.Stats.curMP <= 0)
+//		//unit.Stats.MP.CurValue -= BSM.PerformList[0].choosenAttack.attackCost;
+//		//if (unit.Stats.MP.CurValue <= 0)
 //		//{
-//		//	unit.Stats.curMP = 0;
+//		//	unit.Stats.MP.CurValue = 0;
 //		//}
-//  //      ui.manaBar.SetSize(((unit.Stats.curMP * 100) / unit.Stats.baseMP) / 100);
+//  //      ui.manaBar.SetSize(((unit.Stats.MP.CurValue * 100) / unit.Stats.MP.BaseValue) / 100);
     
 //  //      isCriticalE = false;
 //  //  }
@@ -404,7 +404,7 @@
 //    public void TakeDamage(float getDamageAmount, bool isCriticalH, float heroHit, bool isDodgeable, bool isCounterAttack)
 //    {
 //        //Calculate if the attack hits
-//        hitChance = (heroHit / unit.Stats.curDodge) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+//        hitChance = (heroHit / unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
 //        if (isDodgeable == false)
 //        {
 //            hitChance = 100;
@@ -414,10 +414,10 @@
 //            //AttackEffectPlay();
 //            ui.animator.Play("Hurt");
 
-//            unit.Stats.curHP -= getDamageAmount;
-//            if (unit.Stats.curHP <= 0)
+//            unit.Stats.HP.CurValue -= getDamageAmount;
+//            if (unit.Stats.HP.CurValue <= 0)
 //            {
-//                unit.Stats.curHP = 0;
+//                unit.Stats.HP.CurValue = 0;
 //                //passive ressurect skill
 //                SelfRessurect(GameManager.instance.selfRessurrectChance, 50);
 //            }
@@ -426,14 +426,14 @@
 //            //Actions.OnDamageReceived(transform, isCriticalE, getDamageAmount, false);
 
 //            //update health bar
-//            ui.healthBar.SetSize(((unit.Stats.curHP * 100) / unit.Stats.baseHP) / 100);
+//            ui.healthBar.SetSize(((unit.Stats.HP.CurValue * 100) / unit.Stats.HP.BaseValue) / 100);
 //        }
 //        else
 //        {
 //            Actions.OnDodge(transform);
 //        }
 
-//        if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.curHP > 0)
+//        if (isDodgeable == true && Random.Range(0, 100) <= 100 && !isCounterAttack && unit.Stats.HP.CurValue > 0)
 //        {
 //            StartCoroutine(CounterAttack());
 //        }
@@ -460,7 +460,7 @@
 //            isCriticalE = true;
 //            minMaxAtk = Mathf.Round(minMaxAtk * unit.Stats.critDamage);
 //        }
-//        BSM.PerformList[0].Attacker.GetComponent<HeroStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.curHit, true, counterAttack);
+//        BSM.PerformList[0].Attacker.GetComponent<HeroStateMachine>().TakeDamage(minMaxAtk, isCriticalE, unit.Stats.Hit.CurValue, true, counterAttack);
 //        yield return new WaitForSeconds(0.5f);
 //        counterAttack = false;
 //    }
@@ -488,38 +488,38 @@
 //        unit.Stats.stamina.BaseValue = Random.Range(levelBasedStat, levelBasedStat + enemyLevel + Random.Range(0, 3));
 
 //        //Calculate HP based on Stats
-//        unit.Stats.baseHP = Mathf.Round(unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerStr) + (unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerSta);
-//        unit.Stats.curHP = unit.Stats.baseHP;
+//        unit.Stats.HP.BaseValue = Mathf.Round(unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerStr) + (unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerSta);
+//        unit.Stats.HP.CurValue = unit.Stats.HP.BaseValue;
 
 //        //Calculate MP based on stats
-//        unit.Stats.baseMP = Mathf.Round(unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.mpPerInt);
-//        unit.Stats.curMP = unit.Stats.baseMP;
+//        unit.Stats.MP.BaseValue = Mathf.Round(unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.mpPerInt);
+//        unit.Stats.MP.CurValue = unit.Stats.MP.BaseValue;
 
 //        //Calculate Attack based on stats
 //        unit.Stats.baseATK = Mathf.Round((unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerStr) + (unit.Stats.intellect.BaseValue * HeroDataManager.instance.UnitDatabase.atkPerInt));
-//        unit.Stats.curATK = unit.Stats.baseATK;
+//        unit.Stats.ATK.CurValue = unit.Stats.baseATK;
 
 //        unit.Stats.maxATK = unit.Stats.baseATK + Random.Range(10, 50);
 //        unit.Stats.minATK = unit.Stats.baseATK;
 
 //        //Calculate HIT based on stats
 //        unit.Stats.baseHit = Mathf.Round(unit.Stats.dexterity.BaseValue * HeroDataManager.instance.UnitDatabase.hitPerDex);
-//        unit.Stats.curHit = unit.Stats.baseHit;
+//        unit.Stats.Hit.CurValue = unit.Stats.baseHit;
 
 //        //Calculate dodge based on stats
 //        unit.Stats.baseDodge = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.dodgePerAgi);
-//        unit.Stats.curDodge = unit.Stats.baseDodge;
+//        unit.Stats.Dodge.CurValue = unit.Stats.baseDodge;
 
 //        //calculate def based on stats
 //        unit.Stats.baseDEF = Mathf.Round(unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.defPerSta);
-//        unit.Stats.curDEF = unit.Stats.baseDEF;
+//        unit.Stats.DEF.CurValue = unit.Stats.baseDEF;
 
 //        //calculate critrate based on stats
 //        //unit.Stats.curCRIT = unit.Stats.baseCRIT;
 
 //        //calculate speed based on stats
 //        unit.Stats.baseSpeed = Mathf.Round(unit.Stats.agility.BaseValue * HeroDataManager.instance.UnitDatabase.spdPerAgi);
-//        unit.Stats.curSpeed = unit.Stats.baseSpeed;
+//        unit.Stats.Speed.CurValue = unit.Stats.baseSpeed;
 
 //        expAmount = unit.Stats.strength.BaseValue + unit.Stats.intellect.BaseValue + unit.Stats.dexterity.BaseValue + unit.Stats.agility.BaseValue + unit.Stats.stamina.BaseValue;
 //    }
@@ -528,8 +528,8 @@
 //    {
 //        if (Random.Range(0, 100) <= resChance)
 //        {
-//            unit.Stats.curHP = Mathf.Round((unit.Stats.baseHP / 100) * resHP);
-//            //Actions.OnDamageReceived(transform, false, unit.Stats.curHP, true);
+//            unit.Stats.HP.CurValue = Mathf.Round((unit.Stats.HP.BaseValue / 100) * resHP);
+//            //Actions.OnDamageReceived(transform, false, unit.Stats.HP.CurValue, true);
 //            //Instantiate(ui.RessurectVFX, transform.position, Quaternion.identity, transform);
 //        }
 //        else
@@ -575,7 +575,7 @@
 //    //        //remove enemy that already is in the list by default
 //    //        sortBySpeed.Remove(BSM.PerformList[0].AttackersTarget);
 //    //        //sort enemies in the list by the speed, then reverse, so we attack enemies with the highest speed
-//    //        sortBySpeed = sortBySpeed.OrderBy(x => x.GetComponent<Character>().unit.Stats.curSpeed).ToList();
+//    //        sortBySpeed = sortBySpeed.OrderBy(x => x.GetComponent<Character>().unit.Stats.Speed.CurValue).ToList();
 //    //        sortBySpeed.Reverse();
 //    //        //add speedy enemies to the list
 //    //        for (int j = 0; j < (BSM.PerformList[0].choosenAttack.attackTargets - 1); j++)
@@ -585,15 +585,15 @@
 //    //                isCriticalE = true;
 //    //                calc_damage = Mathf.Round(calc_damage * unit.Stats.critDamage);
 //    //            }
-//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<Character>().unit.Stats.curDEF;
+//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<Character>().unit.Stats.DEF.CurValue;
 //    //            calc_damage -= opponentDef;
 //    //            if (calc_damage < 0)
 //    //            {
 //    //                calc_damage = 0;
 //    //            }
-//    //            sortBySpeed[j].GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.curHit, isMelee, false);
+//    //            sortBySpeed[j].GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.Hit.CurValue, isMelee, false);
 //    //        }
-//    //        BSM.PerformList[0].AttackersTarget.GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.curHit, isMelee, false);
+//    //        BSM.PerformList[0].AttackersTarget.GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.Hit.CurValue, isMelee, false);
 
 //    //    }
 //    //    else if (BSM.PerformList[0].choosenAttack.attackTargets > BSM.HeroesInBattle.Count)
@@ -605,13 +605,13 @@
 //    //                isCriticalE = true;
 //    //                calc_damage = Mathf.Round(calc_damage * unit.Stats.critDamage);
 //    //            }
-//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<Character>().unit.Stats.curDEF;
+//    //            float opponentDef = BSM.PerformList[0].AttackersTarget.GetComponent<Character>().unit.Stats.DEF.CurValue;
 //    //            calc_damage -= opponentDef;
 //    //            if (calc_damage < 0)
 //    //            {
 //    //                calc_damage = 0;
 //    //            }
-//    //            BSM.HeroesInBattle[j].GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.curHit, isMelee, false); 
+//    //            BSM.HeroesInBattle[j].GetComponent<HeroStateMachine>().TakeDamage(calc_damage, isCriticalE, unit.Stats.Hit.CurValue, isMelee, false); 
 //    //        }
 //    //    }
 //    //}

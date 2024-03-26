@@ -44,19 +44,19 @@ public class MagicDamageSkill : ActiveSkill
 
     //    if (costType == CostType.MP)
     //    {
-    //        if (unit.curMP >= costValue)
+    //        if (unit.MP.CurValue >= costValue)
     //        {
     //            canActivate = true;
-    //            unit.curMP -= costValue;
+    //            unit.MP.CurValue -= costValue;
     //            Actions.OnBarChange(actorSource, AffectedStat.MP);
     //        }
     //    }
     //    if (costType == CostType.HP)
     //    {
-    //        if (unit.curHP >= costValue)
+    //        if (unit.HP.CurValue >= costValue)
     //        {
     //            canActivate = true;
-    //            unit.curHP -= costValue;
+    //            unit.HP.CurValue -= costValue;
     //            Actions.OnBarChange(actorSource, AffectedStat.HP);
     //        }
     //    }
@@ -173,7 +173,7 @@ public class MagicDamageSkill : ActiveSkill
     //                }
     //                else if (sortBy == SortBy.HP)
     //                {
-    //                    sortList = sortList.OrderBy(x => x.unit.curHP).ToList();
+    //                    sortList = sortList.OrderBy(x => x.unit.HP.CurValue).ToList();
     //                }
     //                else if (sortBy == SortBy.Attack)
     //                {

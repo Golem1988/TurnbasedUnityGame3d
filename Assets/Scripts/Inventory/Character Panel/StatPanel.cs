@@ -42,18 +42,35 @@ public class StatPanel : MonoBehaviour
 		{
 			statDisplays[i].UpdateStatValue();
 		}
+		//UpdateStatMaxValues();
+	}
+
+	public void UpdateStatMaxValues()
+	{
+		for (int i = 0; i < stats.Length; i++)
+		{
+			statDisplays[i].UpdateStatCurValue();
+		}
 	}
 
 	public void UpdateStatValuesX(CharacterInformation characterX)
 	{
-		characterX.Stats.strengthUpdated.BaseValue = stats[0].Value;
-		characterX.Stats.agilityUpdated.BaseValue = stats[1].Value;
-		characterX.Stats.intellectUpdated.BaseValue = stats[2].Value;
-		characterX.Stats.dexterityUpdated.BaseValue = stats[3].Value;
-		characterX.Stats.staminaUpdated.BaseValue = stats[4].Value;
+		characterX.Stats.HP = stats[0];
+		characterX.Stats.MP = stats[1];
+		characterX.Stats.strength = stats[2];
+		characterX.Stats.intellect = stats[3];
+		characterX.Stats.dexterity = stats[4];
+		characterX.Stats.agility = stats[5];
+        characterX.Stats.stamina = stats[6];
+		characterX.Stats.ATK = stats[7];
+		characterX.Stats.MATK = stats[8];
+		characterX.Stats.DEF = stats[9];
+		characterX.Stats.Dodge = stats[10];
+		characterX.Stats.Hit = stats[11];
+		characterX.Stats.Speed = stats[12];
 	}
 
-	public void UpdateStatNames()
+    public void UpdateStatNames()
 	{
 		for (int i = 0; i < statNames.Length; i++)
 		{
