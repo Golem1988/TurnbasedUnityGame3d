@@ -53,79 +53,61 @@ MonoBehaviour:
     Stats:
       theName: Medea
       displayName: Medea
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 90
-      minATK: 75
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 5
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -166,79 +148,61 @@ MonoBehaviour:
     Stats:
       theName: Aurelius
       displayName: Aurelius
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 90
-      minATK: 75
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 5
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -276,79 +240,61 @@ MonoBehaviour:
     Stats:
       theName: Aygar
       displayName: Aygar
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 90
-      minATK: 75
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 5
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -383,79 +329,61 @@ MonoBehaviour:
     Stats:
       theName: Ivy
       displayName: Ivy
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 199
-      minATK: 166
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 12
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 12
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 12
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 12
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 12
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 35
       maxRage: 150
       curRage: 0
@@ -485,79 +413,61 @@ MonoBehaviour:
       Stats:
         theName: c94e3972-c8c4-4aba-b43f-8749ec27331e
         displayName: Baby Bunny
-        baseHP:
+        HP:
           BaseValue: 0
-        curHP:
+          MaxValue: 0
+          CurValue: 0
+        MP:
           BaseValue: 0
-        maxedHP:
+          MaxValue: 0
+          CurValue: 0
+        ATK:
           BaseValue: 0
-        baseMP:
+          MaxValue: 0
+          CurValue: 0
+        MATK:
           BaseValue: 0
-        curMP:
+          MaxValue: 0
+          CurValue: 0
+        DEF:
           BaseValue: 0
-        maxedMP:
+          MaxValue: 0
+          CurValue: 0
+        Speed:
           BaseValue: 0
-        baseATK:
+          MaxValue: 0
+          CurValue: 0
+        Dodge:
           BaseValue: 0
-        curATK:
+          MaxValue: 0
+          CurValue: 0
+        Hit:
           BaseValue: 0
-        maxedATK:
-          BaseValue: 0
-        baseMATK:
-          BaseValue: 0
-        curMATK:
-          BaseValue: 0
-        maxedMATK:
-          BaseValue: 0
-        maxATK: 105
-        minATK: 88
-        baseDEF:
-          BaseValue: 0
-        curDEF:
-          BaseValue: 0
-        maxedDEF:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         baseCRIT: 0.25
         curCRIT: 0.25
         critDamage: 1.5
-        baseSpeed:
-          BaseValue: 0
-        curSpeed:
-          BaseValue: 0
-        maxedSpeed:
-          BaseValue: 0
-        curDodge:
-          BaseValue: 0
-        baseDodge:
-          BaseValue: 0
-        maxedDodge:
-          BaseValue: 0
-        baseHit:
-          BaseValue: 0
-        curHit:
-          BaseValue: 0
-        maxedHit:
-          BaseValue: 0
         strength:
           BaseValue: 7
+          MaxValue: 0
+          CurValue: 0
         intellect:
           BaseValue: 6
+          MaxValue: 0
+          CurValue: 0
         dexterity:
           BaseValue: 6
+          MaxValue: 0
+          CurValue: 0
         agility:
           BaseValue: 6
+          MaxValue: 0
+          CurValue: 0
         stamina:
           BaseValue: 6
-        strengthUpdated:
-          BaseValue: 0
-        intellectUpdated:
-          BaseValue: 0
-        dexterityUpdated:
-          BaseValue: 0
-        agilityUpdated:
-          BaseValue: 0
-        staminaUpdated:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         unspentStatPoints: 0
         maxRage: 150
         curRage: 0
@@ -585,79 +495,61 @@ MonoBehaviour:
       Stats:
         theName: 11a0a3e8-6ce2-4e06-b67a-44ebb7336e2b
         displayName: Baby Bunny
-        baseHP:
+        HP:
           BaseValue: 0
-        curHP:
+          MaxValue: 0
+          CurValue: 0
+        MP:
           BaseValue: 0
-        maxedHP:
+          MaxValue: 0
+          CurValue: 0
+        ATK:
           BaseValue: 0
-        baseMP:
+          MaxValue: 0
+          CurValue: 0
+        MATK:
           BaseValue: 0
-        curMP:
+          MaxValue: 0
+          CurValue: 0
+        DEF:
           BaseValue: 0
-        maxedMP:
+          MaxValue: 0
+          CurValue: 0
+        Speed:
           BaseValue: 0
-        baseATK:
+          MaxValue: 0
+          CurValue: 0
+        Dodge:
           BaseValue: 0
-        curATK:
+          MaxValue: 0
+          CurValue: 0
+        Hit:
           BaseValue: 0
-        maxedATK:
-          BaseValue: 0
-        baseMATK:
-          BaseValue: 0
-        curMATK:
-          BaseValue: 0
-        maxedMATK:
-          BaseValue: 0
-        maxATK: 145
-        minATK: 104
-        baseDEF:
-          BaseValue: 0
-        curDEF:
-          BaseValue: 0
-        maxedDEF:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         baseCRIT: 0.25
         curCRIT: 0.25
         critDamage: 1.5
-        baseSpeed:
-          BaseValue: 0
-        curSpeed:
-          BaseValue: 0
-        maxedSpeed:
-          BaseValue: 0
-        curDodge:
-          BaseValue: 0
-        baseDodge:
-          BaseValue: 0
-        maxedDodge:
-          BaseValue: 0
-        baseHit:
-          BaseValue: 0
-        curHit:
-          BaseValue: 0
-        maxedHit:
-          BaseValue: 0
         strength:
           BaseValue: 8
+          MaxValue: 0
+          CurValue: 0
         intellect:
           BaseValue: 8
+          MaxValue: 0
+          CurValue: 0
         dexterity:
           BaseValue: 8
+          MaxValue: 0
+          CurValue: 0
         agility:
           BaseValue: 7
+          MaxValue: 0
+          CurValue: 0
         stamina:
           BaseValue: 6
-        strengthUpdated:
-          BaseValue: 0
-        intellectUpdated:
-          BaseValue: 0
-        dexterityUpdated:
-          BaseValue: 0
-        agilityUpdated:
-          BaseValue: 0
-        staminaUpdated:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         unspentStatPoints: 0
         maxRage: 150
         curRage: 0
@@ -685,79 +577,61 @@ MonoBehaviour:
       Stats:
         theName: 8a0d8199-1227-4af6-a29f-0eb1f153f60d
         displayName: Baby Bunny
-        baseHP:
+        HP:
           BaseValue: 0
-        curHP:
+          MaxValue: 0
+          CurValue: 0
+        MP:
           BaseValue: 0
-        maxedHP:
+          MaxValue: 0
+          CurValue: 0
+        ATK:
           BaseValue: 0
-        baseMP:
+          MaxValue: 0
+          CurValue: 0
+        MATK:
           BaseValue: 0
-        curMP:
+          MaxValue: 0
+          CurValue: 0
+        DEF:
           BaseValue: 0
-        maxedMP:
+          MaxValue: 0
+          CurValue: 0
+        Speed:
           BaseValue: 0
-        baseATK:
+          MaxValue: 0
+          CurValue: 0
+        Dodge:
           BaseValue: 0
-        curATK:
+          MaxValue: 0
+          CurValue: 0
+        Hit:
           BaseValue: 0
-        maxedATK:
-          BaseValue: 0
-        baseMATK:
-          BaseValue: 0
-        curMATK:
-          BaseValue: 0
-        maxedMATK:
-          BaseValue: 0
-        maxATK: 184
-        minATK: 153
-        baseDEF:
-          BaseValue: 0
-        curDEF:
-          BaseValue: 0
-        maxedDEF:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         baseCRIT: 0.25
         curCRIT: 0.25
         critDamage: 1.5
-        baseSpeed:
-          BaseValue: 0
-        curSpeed:
-          BaseValue: 0
-        maxedSpeed:
-          BaseValue: 0
-        curDodge:
-          BaseValue: 0
-        baseDodge:
-          BaseValue: 0
-        maxedDodge:
-          BaseValue: 0
-        baseHit:
-          BaseValue: 0
-        curHit:
-          BaseValue: 0
-        maxedHit:
-          BaseValue: 0
         strength:
           BaseValue: 12
+          MaxValue: 0
+          CurValue: 0
         intellect:
           BaseValue: 11
+          MaxValue: 0
+          CurValue: 0
         dexterity:
           BaseValue: 11
+          MaxValue: 0
+          CurValue: 0
         agility:
           BaseValue: 11
+          MaxValue: 0
+          CurValue: 0
         stamina:
           BaseValue: 12
-        strengthUpdated:
-          BaseValue: 0
-        intellectUpdated:
-          BaseValue: 0
-        dexterityUpdated:
-          BaseValue: 0
-        agilityUpdated:
-          BaseValue: 0
-        staminaUpdated:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         unspentStatPoints: 25
         maxRage: 150
         curRage: 0
@@ -785,79 +659,61 @@ MonoBehaviour:
       Stats:
         theName: fea8c171-8551-4a1f-adc4-b39dc5b0dd79
         displayName: Baby Bunny
-        baseHP:
+        HP:
           BaseValue: 0
-        curHP:
+          MaxValue: 0
+          CurValue: 0
+        MP:
           BaseValue: 0
-        maxedHP:
+          MaxValue: 0
+          CurValue: 0
+        ATK:
           BaseValue: 0
-        baseMP:
+          MaxValue: 0
+          CurValue: 0
+        MATK:
           BaseValue: 0
-        curMP:
+          MaxValue: 0
+          CurValue: 0
+        DEF:
           BaseValue: 0
-        maxedMP:
+          MaxValue: 0
+          CurValue: 0
+        Speed:
           BaseValue: 0
-        baseATK:
+          MaxValue: 0
+          CurValue: 0
+        Dodge:
           BaseValue: 0
-        curATK:
+          MaxValue: 0
+          CurValue: 0
+        Hit:
           BaseValue: 0
-        maxedATK:
-          BaseValue: 0
-        baseMATK:
-          BaseValue: 0
-        curMATK:
-          BaseValue: 0
-        maxedMATK:
-          BaseValue: 0
-        maxATK: 116
-        minATK: 97
-        baseDEF:
-          BaseValue: 0
-        curDEF:
-          BaseValue: 0
-        maxedDEF:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         baseCRIT: 0.25
         curCRIT: 0.25
         critDamage: 1.5
-        baseSpeed:
-          BaseValue: 0
-        curSpeed:
-          BaseValue: 0
-        maxedSpeed:
-          BaseValue: 0
-        curDodge:
-          BaseValue: 0
-        baseDodge:
-          BaseValue: 0
-        maxedDodge:
-          BaseValue: 0
-        baseHit:
-          BaseValue: 0
-        curHit:
-          BaseValue: 0
-        maxedHit:
-          BaseValue: 0
         strength:
           BaseValue: 7
+          MaxValue: 0
+          CurValue: 0
         intellect:
           BaseValue: 9
+          MaxValue: 0
+          CurValue: 0
         dexterity:
           BaseValue: 7
+          MaxValue: 0
+          CurValue: 0
         agility:
           BaseValue: 7
+          MaxValue: 0
+          CurValue: 0
         stamina:
           BaseValue: 8
-        strengthUpdated:
-          BaseValue: 0
-        intellectUpdated:
-          BaseValue: 0
-        dexterityUpdated:
-          BaseValue: 0
-        agilityUpdated:
-          BaseValue: 0
-        staminaUpdated:
-          BaseValue: 0
+          MaxValue: 0
+          CurValue: 0
         unspentStatPoints: 5
         maxRage: 150
         curRage: 0
@@ -896,79 +752,61 @@ MonoBehaviour:
     Stats:
       theName: Nami
       displayName: Nami
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 90
-      minATK: 75
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 5
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -1003,79 +841,61 @@ MonoBehaviour:
     Stats:
       theName: Thorne
       displayName: Thorne
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 90
-      minATK: 75
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 5
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 5
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -1108,6 +928,7 @@ MonoBehaviour:
       PendantID: 
       BeltID: 
       WingsID: 
+  HeroInventory: []
   UnitDatabase:
     HeroPrefab: {fileID: 4288890165549320804, guid: 050232cb095f3b548994da313c043933, type: 3}
     EnemyPrefab: {fileID: 4381166770328033262, guid: b42c762d178623244afed973815cc531, type: 3}
@@ -1158,5 +979,5 @@ MonoBehaviour:
     EliteEnemyStatMultiplier: 2
     SkillLearnChance: 50
   saveID: 
-  BlankData: {fileID: 4900000, guid: efd2cce1adb01e7479865d0ee7af3ee7, type: 3}
+  BlankData: {fileID: 4900000, guid: 36b4dfba33c8477499a65f45d0028c26, type: 3}
   newGame: 0

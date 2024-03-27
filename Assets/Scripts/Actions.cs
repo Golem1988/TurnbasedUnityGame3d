@@ -13,6 +13,7 @@ public static class Actions
     public static Action<Transform, float> OnRessurect; //when we spawn an enemy into battle
     public static Action<UnitStateMachine> OnZeroHealth; //when target health becomes 0
     public static Action<UnitStateMachine> OnUnitDeath; //when target dies
+    public static Action<UnitStateMachine> OnKill; //when someone kills someone
     //public static Action<UnitStateMachine, float, SkillType, List<UnitStateMachine>, int, bool, bool, bool, AffectedStat, bool, List<StatusEffectList>> OnDoDamage;
     public static Action<UnitStateMachine, AffectedStat> OnBarChange; //rage bar mana bar hp bar
     public static Action<UnitStateMachine, UnitStateMachine> OnSummonCapture;

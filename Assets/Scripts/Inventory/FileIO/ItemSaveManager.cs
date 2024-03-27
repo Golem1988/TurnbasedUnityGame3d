@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ItemSaveManager : MonoBehaviour
 {
-	[SerializeField] ItemDatabase itemDatabase;
+	public ItemDatabase itemDatabase;
 
 	private const string InventoryFileName = "Inventory";
 	private const string EquipmentFileName = "Equipment";

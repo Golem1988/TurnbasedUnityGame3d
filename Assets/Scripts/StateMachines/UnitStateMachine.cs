@@ -37,7 +37,7 @@ public class UnitStateMachine : MonoBehaviour
     //For testing purpouses
     public bool doubleHit;
     //private bool attackTwice = false;
-    //private int killStreak = 0;
+    public int killStreak = 0;
 
     public bool dodgedAtt = false;
 
@@ -400,13 +400,13 @@ public class UnitStateMachine : MonoBehaviour
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
     }
 
-    public void TakeDamage(UnitStateMachine actor, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists)
+    public void TakeDamage(UnitStateMachine attacker, float incomingTrueDamage, bool isDodgeable, bool isCritical, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists)
     {
         float damageAmount = 0;
         //Calculate if the attack hits
         if (!isHeal)
         {
-            hitChance = (actor.unit.Stats.Hit.CurValue / unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
+            hitChance = (attacker.unit.Stats.Hit.CurValue / unit.Stats.Dodge.CurValue) * 100; //(80 / 100) * 100 = 80%    (200 / 100) * 100 = 200
             if (isDodgeable == false)
             {
                 hitChance = 100;
@@ -434,6 +434,7 @@ public class UnitStateMachine : MonoBehaviour
                     {
                         unit.Stats.HP.CurValue = 0;
                         Actions.OnZeroHealth(this);
+                        Actions.OnKill(attacker);
                     }
                     ui.healthBar.SetSize(unit.Stats.HP.CurValue / unit.Stats.HP.MaxValue);
                 }

@@ -582,10 +582,20 @@ public class SummonInfoInterface : MonoBehaviour
         if (EditableSummon != null)
         {
             EditableSummon.Stats.strength.BaseValue += AddedStr;
+            EditableSummon.Stats.strength.CurValue += AddedStr;
+            EditableSummon.Stats.strength.MaxValue += AddedStr;
             EditableSummon.Stats.intellect.BaseValue += AddedInt;
+            EditableSummon.Stats.intellect.CurValue += AddedInt;
+            EditableSummon.Stats.intellect.MaxValue += AddedInt;
             EditableSummon.Stats.dexterity.BaseValue += AddedDex;
+            EditableSummon.Stats.dexterity.CurValue += AddedDex;
+            EditableSummon.Stats.dexterity.MaxValue += AddedDex;
             EditableSummon.Stats.agility.BaseValue += AddedAgi;
+            EditableSummon.Stats.agility.CurValue += AddedAgi;
+            EditableSummon.Stats.agility.MaxValue += AddedAgi;
             EditableSummon.Stats.stamina.BaseValue += AddedSta;
+            EditableSummon.Stats.stamina.CurValue += AddedSta;
+            EditableSummon.Stats.stamina.MaxValue += AddedSta;
 
             EditableSummon.Stats.unspentStatPoints -= addedStatpts;
 
@@ -794,10 +804,22 @@ public class SummonInfoInterface : MonoBehaviour
             //summon.unit.Stats.maxATK = Mathf.Round((summon.unit.Stats.minATK / 100) * 120);
 
             summon.unit.Stats.strength.BaseValue += AddedStr;
+            summon.unit.Stats.strength.CurValue += AddedStr;
+            summon.unit.Stats.strength.MaxValue += AddedStr;
             summon.unit.Stats.intellect.BaseValue += AddedInt;
+            summon.unit.Stats.intellect.CurValue += AddedInt;
+            summon.unit.Stats.intellect.MaxValue += AddedInt;
             summon.unit.Stats.dexterity.BaseValue += AddedDex;
+            summon.unit.Stats.dexterity.CurValue += AddedDex;
+            summon.unit.Stats.dexterity.MaxValue += AddedDex;
             summon.unit.Stats.agility.BaseValue += AddedAgi;
+            summon.unit.Stats.agility.CurValue += AddedAgi;
+            summon.unit.Stats.agility.MaxValue += AddedAgi;
             summon.unit.Stats.stamina.BaseValue += AddedSta;
+            summon.unit.Stats.stamina.CurValue += AddedSta;
+            summon.unit.Stats.stamina.MaxValue += AddedSta;
+
+
 
             summon.unit.Stats.HP.MaxValue += addedHP;
             summon.unit.Stats.HP.BaseValue += addedHP;

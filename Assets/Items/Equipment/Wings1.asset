@@ -44,3 +44,4 @@ MonoBehaviour:
   HitPercentBonus: 0
   DodgePercentBonus: 0
   EquipmentType: 7
+  Model: {fileID: 1000012555711626, guid: 2a42fa005e8433040a0847a410b1c5d3, type: 3}

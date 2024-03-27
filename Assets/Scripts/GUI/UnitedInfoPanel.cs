@@ -12,10 +12,10 @@ public class UnitedInfoPanel : MonoBehaviour
     [SerializeField] Inventory Inventory;
     [SerializeField] SkillPanel heroSkillPanel;
     [SerializeField] GameObject[] avatarButtons;
-    [SerializeField] Transform modelPlaceholder;
+    [SerializeField] Transform heroModelPlace;
     public GameObject ShowSummonButton;
     public GameObject HideSummonButton;
-    private GameObject myAv;
+    public GameObject myAv;
 
     [Header ("Inventory and equipment things")]
     [SerializeField] StatPanel sPanel;
@@ -72,6 +72,9 @@ public class UnitedInfoPanel : MonoBehaviour
         hero = heroStats.HeroPrefab;
         //sPanel.characterX = hero;
         heroStats.Clean();
+        //equipment
+        EquipmentPanel.EditableHero = hero;
+        EquipmentPanel.DisplayItems();
         //summons
         //summonInterface.Start();
         summonInterface.Owner = Extensions.FindHeroEntry(mainHeroName);
@@ -167,6 +170,7 @@ public class UnitedInfoPanel : MonoBehaviour
     {
         heroStats.HeroPrefab = heroStats.HeroList[a];
         hero = heroStats.HeroPrefab;
+
         heroStats.Clean();
         //summons
         summonInterface.Owner = hero;
@@ -192,6 +196,8 @@ public class UnitedInfoPanel : MonoBehaviour
         avatarButtons[a].GetComponent<HeroAvatarButton>().glowEffect.SetActive(true);
         sPanel.SetStats(hero.Stats.HP, hero.Stats.MP, hero.Stats.strength, hero.Stats.intellect, hero.Stats.dexterity, hero.Stats.agility, hero.Stats.stamina, hero.Stats.ATK, hero.Stats.MATK, hero.Stats.DEF, hero.Stats.Dodge, hero.Stats.Hit, hero.Stats.Speed);
         sPanel.UpdateStatValues();
+        EquipmentPanel.EditableHero = hero;
+        EquipmentPanel.DisplayItems();
     }
 
     
@@ -202,8 +208,9 @@ public class UnitedInfoPanel : MonoBehaviour
         {
             Destroy(myAv);
         }
-        GameObject summonModel = Extensions.FindModelPrefab(heroStats.HeroList[index].BaseID, true);
-        myAv = Instantiate(summonModel, modelPlaceholder.position, Quaternion.Euler(15, 180, 0), modelPlaceholder);
+        GameObject heroModel = Extensions.FindModelPrefab(heroStats.HeroList[index].BaseID, true);
+        myAv = Instantiate(heroModel, heroModelPlace.position, Quaternion.Euler(15, 180, 0), heroModelPlace);
+        EquipmentPanel.heroModel = myAv.transform;
         //myAv.transform.rotation =  Quaternion.Euler(15, 0, 0);
         Extensions.SetLayer(myAv, 5);
     }

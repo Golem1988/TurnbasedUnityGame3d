@@ -40,12 +40,12 @@ public class DungeonHealScenario : DungeonScenario
         {
             if (hero.isActive)
             {
-                hero.Stats.HP.CurValue = hero.Stats.HP.BaseValue;
-                hero.Stats.MP.CurValue = hero.Stats.MP.BaseValue;
+                hero.Stats.HP.CurValue = hero.Stats.HP.MaxValue;
+                hero.Stats.MP.CurValue = hero.Stats.MP.MaxValue;
                 foreach (var summon in hero.SummonList)
                 {
-                    summon.Stats.HP.CurValue = summon.Stats.HP.BaseValue;
-                    summon.Stats.MP.CurValue = summon.Stats.MP.BaseValue;
+                    summon.Stats.HP.CurValue = summon.Stats.HP.MaxValue;
+                    summon.Stats.MP.CurValue = summon.Stats.MP.MaxValue;
                 }
             }
         }

@@ -50,6 +50,9 @@ public class EquippableItem : Item
     public float DodgePercentBonus;
     [Space]
     public EquipmentType EquipmentType;
+    [Space]
+    public GameObject Model;
+
 
     public override Item GetCopy()
     {

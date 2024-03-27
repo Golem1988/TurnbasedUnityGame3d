@@ -40,7 +40,7 @@ public class HeroInfoInterface : MonoBehaviour
 
     public TMP_Text heroStatpts;
 
-    public TMP_Text heroLoyalty;
+    public TMP_Text heroCritDamage;
     public TMP_Text heroExp;
 
     //Stat preview display upon pre-levelling stats
@@ -84,21 +84,6 @@ public class HeroInfoInterface : MonoBehaviour
     private float addedDodge;
     private float addedHit;
     private float addedSpeed;
-
-    //[Header("Attribute multipliers")]
-    //private float hpPerStr;
-    //private float atkPerStr;
-    //private float mpPerInt;
-    //private float atkPerInt;
-    //private float spdPerAgi;
-    //private float dodgePerAgi;
-    //private float hitPerDex;
-    //private float atkPerDex;
-    //private float hpPerSta;
-    //private float defPerSta;
-    //private float matkPerInt;
-    //private float matkPerStr;
-
 
     void OnDisable()
     {
@@ -324,6 +309,8 @@ public class HeroInfoInterface : MonoBehaviour
             heroAgi.text = HeroPrefab.Stats.agility.BaseValue.ToString();
             heroSta.text = HeroPrefab.Stats.stamina.BaseValue.ToString();
 
+            heroCritDamage.text = (HeroPrefab.Stats.critDamage * 100).ToString();
+
             heroStatpts.text = HeroPrefab.Stats.unspentStatPoints.ToString();
 
             heroExp.text = HeroPrefab.Level.CUR_EXP.ToString() + "/" + HeroPrefab.Level.NEXT_EXP.ToString();
@@ -420,10 +407,20 @@ public class HeroInfoInterface : MonoBehaviour
         if (HeroPrefab != null)
         {
             HeroPrefab.Stats.strength.BaseValue += AddedStr;
+            HeroPrefab.Stats.strength.CurValue += AddedStr;
+            HeroPrefab.Stats.strength.MaxValue += AddedStr;
             HeroPrefab.Stats.intellect.BaseValue += AddedInt;
+            HeroPrefab.Stats.intellect.CurValue += AddedInt;
+            HeroPrefab.Stats.intellect.MaxValue += AddedInt;
             HeroPrefab.Stats.dexterity.BaseValue += AddedDex;
+            HeroPrefab.Stats.dexterity.CurValue += AddedDex;
+            HeroPrefab.Stats.dexterity.MaxValue += AddedDex;
             HeroPrefab.Stats.agility.BaseValue += AddedAgi;
+            HeroPrefab.Stats.agility.CurValue += AddedAgi;
+            HeroPrefab.Stats.agility.MaxValue += AddedAgi;
             HeroPrefab.Stats.stamina.BaseValue += AddedSta;
+            HeroPrefab.Stats.stamina.CurValue += AddedSta;
+            HeroPrefab.Stats.stamina.MaxValue += AddedSta;
 
             HeroPrefab.Stats.unspentStatPoints -= addedStatpts;
 

@@ -7,10 +7,7 @@ using System.Linq;
 public class BattleActions : MonoBehaviour
 {
     [SerializeField] Transform FloatingText;
-    //[SerializeField] Transform HealVFX;
     [SerializeField] BattleStateMachine BSM;
-    //[SerializeField] GameManager gameManager;
-    //private bool actionStarted = false;
 
     private void OnValidate()
     {
@@ -37,6 +34,7 @@ public class BattleActions : MonoBehaviour
         Actions.OnSummonSpawn += SpawnSummon;
         Actions.OnZeroHealth += ZeroHP;
         Actions.OnUnitDeath += UnitDeath;
+        Actions.OnKill += KillAnnounce;
         //Actions.OnBattleEnd += BattleEnd;
     }
 
@@ -54,7 +52,13 @@ public class BattleActions : MonoBehaviour
         Actions.OnSummonSpawn -= SpawnSummon;
         Actions.OnZeroHealth -= ZeroHP;
         Actions.OnUnitDeath -= UnitDeath;
+        Actions.OnKill -= KillAnnounce;
         //Actions.OnBattleEnd -= BattleEnd;
+    }
+
+    private void KillAnnounce(UnitStateMachine killer)
+    {
+        
     }
 
     public void DamagePopup(Transform target, bool isCritical, float DamageAmount, bool isHeal, AffectedStat affectedStat)
@@ -78,7 +82,6 @@ public class BattleActions : MonoBehaviour
             if (affectedStat == AffectedStat.MP)
                 go.GetComponentInChildren<TextMeshPro>().color = Color.blue;
             go.GetComponentInChildren<TextMeshPro>().text = DamageAmount.ToString();
-            //Instantiate(HealVFX, target.position, Quaternion.identity, target);
         }
 
         else
@@ -99,9 +102,6 @@ public class BattleActions : MonoBehaviour
 
         }
 
-        //SetBarSize(target.GetComponent<UnitStateMachine>(), AffectedStat.HP);
-        //var unit = target.GetComponent<UnitStateMachine>().unit;
-        //target.GetComponent<UnitUI>().healthBar.SetSize(((unit.HP.CurValue * 100) / unit.HP.BaseValue) / 100);
     }
 
     public void RestoreHPMPRP(Transform target, float amount, AffectedStat affectedStat)
@@ -114,7 +114,7 @@ public class BattleActions : MonoBehaviour
             unit.HP.CurValue += amount;
             if (unit.HP.CurValue > unit.HP.MaxValue)
             {
-                unit.HP.CurValue = unit.HP.BaseValue;
+                unit.HP.CurValue = unit.HP.MaxValue;
             }
             target.GetComponent<UnitUI>().healthBar.SetSize(unit.HP.CurValue / unit.HP.MaxValue);
         }
@@ -123,7 +123,7 @@ public class BattleActions : MonoBehaviour
             unit.MP.CurValue += amount;
             if (unit.MP.CurValue > unit.MP.MaxValue)
             {
-                unit.MP.CurValue = unit.MP.BaseValue;
+                unit.MP.CurValue = unit.MP.MaxValue;
             }
             target.GetComponent<UnitUI>().manaBar.SetSize(unit.MP.CurValue / unit.MP.MaxValue);
         }
@@ -136,7 +136,7 @@ public class BattleActions : MonoBehaviour
         if (affectedStat == AffectedStat.HP)
         {
             unit.HP.CurValue -= amount;
-            if (unit.HP.CurValue < unit.HP.MaxValue)
+            if (unit.HP.CurValue < 0)
             {
                 unit.HP.CurValue = 0;
                 Actions.OnZeroHealth(target.GetComponent<UnitStateMachine>());
@@ -146,7 +146,7 @@ public class BattleActions : MonoBehaviour
         if (affectedStat == AffectedStat.MP)
         {
             unit.MP.CurValue -= amount;
-            if (unit.MP.CurValue < unit.MP.MaxValue)
+            if (unit.MP.CurValue < 0)
             {
                 unit.MP.CurValue = 0;
             }
@@ -166,26 +166,6 @@ public class BattleActions : MonoBehaviour
         go.GetComponentInChildren<TextMeshPro>().text = "DODGE";
     }
 
-    //public void PopulateSkilllist(GameObject enemyObj) //Take skills from the list of possible skills, calculate chances and spawn in according lists
-    //{
-    //    var PossibleSkills = enemyObj.GetComponent<Enemy>().PossibleSkills;
-    //    BaseEnemy enemyClass = enemyObj.GetComponent<Enemy>().enemy;
-    //    for (int i = 0; i < PossibleSkills.Count; i++)
-    //    {
-    //        if (Random.Range(0, 100) < PossibleSkills[i].skillSpawnChance)
-    //        {
-    //            BaseAttack NewSkill = PossibleSkills[i].possibleSkill;
-    //            if (NewSkill.attackType == "Spell")
-    //            {
-    //                enemyClass.MagicAttacks.Add(NewSkill);
-    //            }
-    //            else
-    //            {
-    //                enemyClass.attacks.Add(NewSkill);
-    //            }
-    //        }
-    //    }
-    //}
 
     public void ResPopup(Transform target, float ResHP)
     {
@@ -195,109 +175,6 @@ public class BattleActions : MonoBehaviour
         go2.GetComponentInChildren<TextMeshPro>().color = Color.green;
         go2.GetComponentInChildren<TextMeshPro>().text = ResHP.ToString();
     }
-
-    //public void DoDamage(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
-    //{
-    //    bool isCritical = false;
-    //    for (int i = 0; i < targetList.Count; i++)
-    //    {
-    //        for (int j = 0; j < strikeCount; j++)
-    //        {
-    //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-    //            {
-    //                isCritical = true;
-    //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-    //            }
-    //            stop striking the target if it's already dead
-    //            if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-
-    //            if (targetList[0].dodgedAtt == false)
-    //            {
-    //                float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
-    //                Actions.OnRestoreHP(actor.transform, HealAmount);
-    //            }
-    //        }
-    //    }
-    //    StartCoroutine(DoDamageCo(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal));
-    //    if (targetList.Count > 1)
-    //    {
-    //        CalcDamageForEachTarget(actor, trueDamage, targetList, strikeCount, canCrit, isDodgeable, ignoresDef, affectedStat, isHeal);
-    //    }
-
-    //    else //if we only have 1 target
-    //    {
-    //        if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-    //        {
-    //            isCritical = true;
-    //            trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-    //        }
-    //        for (int i = 0; i < strikeCount; i++)
-    //        {
-    //            targetList[0].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal);
-    //        }
-
-
-    //    }
-
-    //    ui.manaBar.SetSize(((unit.MP.CurValue * 100) / unit.MP.BaseValue) / 100);
-
-    //}
-
-    //public IEnumerator DoDamageCo(UnitStateMachine actor, float trueDamage, SkillType skillType, List<UnitStateMachine> targetList, int strikeCount, bool canCrit, bool isDodgeable, bool ignoresDef, AffectedStat affectedStat, bool isHeal, List<StatusEffectList> statusEffectLists) //we get the true damage calculated from SO attack script, same for targetCount
-    //{
-    //    Debug.Log("Coroutine running");
-    //    bool isCritical = false;
-    //    var ui = actor.GetComponent<UnitUI>();
-    //    //actor.isAttacking = true;
-    //    for (int i = 0; i < targetList.Count; i++)
-    //    {
-    //        for (int j = 0; j < strikeCount; j++)
-    //        {
-    //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-    //            {
-    //                isCritical = true;
-    //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-    //            }
-    //            //stop striking the target if it's already dead
-    //            if (targetList[i].currentState == UnitStateMachine.TurnState.DEAD)
-    //                break;
-    //            ui.animator.Play("Attack");
-    //            yield return new WaitForSeconds(0.5f);
-    //            targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-    //            yield return new WaitForSeconds(0.5f);
-    //        }
-    //    }
-    //    bool isCritical = false;
-    //    var ui = actor.GetComponent<UnitUI>();
-    //    for (int i = 0; i < targetList.Count; i++)
-    //    {
-    //        for (int j = 0; j < strikeCount; j++)
-    //        {
-    //            ui.animator.Play("Attack");
-    //            while (ui.animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
-    //            {
-    //                yield return null;
-    //            }
-    //            if (canCrit && Random.Range(0, 100) <= actor.unit.Stats.curCRIT)
-    //            {
-    //                isCritical = true;
-    //                trueDamage = Mathf.Round(trueDamage * actor.unit.Stats.critDamage);
-    //            }
-    //            stop striking the target if it's already dead
-    //            if (targetList[i].currentState != UnitStateMachine.TurnState.DEAD)
-    //                targetList[i].TakeDamage(actor, trueDamage, isDodgeable, isCritical, ignoresDef, affectedStat, isHeal, statusEffectLists);
-    //            else
-    //                break;
-    //            if (targetList[0].dodgedAtt == false)
-    //            {
-    //                float HealAmount = trueDamage * 30 / 100; //testing vampirism and restore HP. How much we should heal and how much %% from this.
-    //                Actions.OnRestoreHP(actor.transform, HealAmount);
-    //            }
-    //        }
-    //    }
-    //    actor.isAttacking = false;
-    //}
 
     public void ZeroHP(UnitStateMachine target)
     {
@@ -342,8 +219,8 @@ public class BattleActions : MonoBehaviour
             AddInfo.Type = target.GetComponent<Enemy>().enemyType;
             AddInfo.Rarity = target.GetComponent<Enemy>().enemyRarity;
             AddInfo.Stats = target.GetComponent<UnitAttributes>().Stats;
-            AddInfo.Stats.HP.CurValue = target.GetComponent<UnitAttributes>().Stats.HP.BaseValue;
-            AddInfo.Stats.MP.CurValue = target.GetComponent<UnitAttributes>().Stats.MP.BaseValue;
+            AddInfo.Stats.HP.CurValue = target.GetComponent<UnitAttributes>().Stats.HP.MaxValue;
+            AddInfo.Stats.MP.CurValue = target.GetComponent<UnitAttributes>().Stats.MP.MaxValue;
             AddInfo.Level = target.GetComponent<UnitLevel>().level;
             AddInfo.Level.NEXT_EXP = target.GetComponent<UnitLevel>().level.requiredExp;
 
@@ -366,7 +243,6 @@ public class BattleActions : MonoBehaviour
 
             //RemoveFromLists(target);
             target.currentState = UnitStateMachine.TurnState.DEAD;
-            //target.gameObject.SetActive(false);
         }
         else
         {

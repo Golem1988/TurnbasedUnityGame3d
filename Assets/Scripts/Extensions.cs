@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class Extensions
@@ -70,6 +71,51 @@ public static class Extensions
             }
         }
         // Return null if no unit with the specified id is found
+        return null;
+    }
+
+    public static Sprite FindItemSprite(string itemID)
+    {
+        var itemList = GameManager.instance.ItemSaveManager.itemDatabase.items;
+        foreach (EquippableItem item in itemList)
+        {
+            // Check if the current unitID matches the desired ID
+            if (item.ID == itemID)
+            {
+                // Return the Sprite if a match is found
+                return item.Icon;
+            }
+        }
+        // Return null if no unit with the specified id is found
+        return null;
+    }
+
+    public static EquippableItem FindItemByID(string itemID)
+    {
+        var itemList = GameManager.instance.ItemSaveManager.itemDatabase.items;
+        foreach (EquippableItem item in itemList)
+        {
+            // Check if the current unitID matches the desired ID
+            if (item.ID == itemID)
+            {
+                // Return the Sprite if a match is found
+                return item;
+            }
+        }
+        // Return null if no unit with the specified id is found
+        return null;
+    }
+
+    public static List<GameObject> FindHeroWeapons(string heroID)
+    {
+        var heroList = HeroDataManager.instance.UnitDatabase.HeroList;
+        foreach (var hero in heroList)
+        {
+            if (hero.ID == heroID)
+            {
+                return hero.HeroWeapons;
+            }
+        }
         return null;
     }
 

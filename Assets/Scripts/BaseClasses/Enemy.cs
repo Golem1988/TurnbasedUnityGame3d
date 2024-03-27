@@ -69,6 +69,18 @@ public class Enemy : MonoBehaviour
         unit.Stats.agility.BaseValue = Random.Range(levelBasedStat, levelBasedStat + enemyLevel + Random.Range(0, 3));
         unit.Stats.stamina.BaseValue = Random.Range(levelBasedStat, levelBasedStat + enemyLevel + Random.Range(0, 3));
 
+        unit.Stats.strength.CurValue = unit.Stats.strength.BaseValue;
+        unit.Stats.intellect.CurValue = unit.Stats.intellect.BaseValue;
+        unit.Stats.dexterity.CurValue = unit.Stats.dexterity.BaseValue;
+        unit.Stats.agility.CurValue = unit.Stats.agility.BaseValue;
+        unit.Stats.stamina.CurValue = unit.Stats.stamina.BaseValue;
+
+        unit.Stats.strength.MaxValue = unit.Stats.strength.BaseValue;
+        unit.Stats.intellect.MaxValue = unit.Stats.intellect.BaseValue;
+        unit.Stats.dexterity.MaxValue = unit.Stats.dexterity.BaseValue;
+        unit.Stats.agility.MaxValue = unit.Stats.agility.BaseValue;
+        unit.Stats.stamina.MaxValue = unit.Stats.stamina.BaseValue;
+
         //Calculate HP based on Stats
         unit.Stats.HP.BaseValue = Mathf.Round(unit.Stats.strength.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerStr) + (unit.Stats.stamina.BaseValue * HeroDataManager.instance.UnitDatabase.hpPerSta);
         unit.Stats.HP.MaxValue = unit.Stats.HP.BaseValue;

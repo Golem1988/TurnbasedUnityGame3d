@@ -3078,6 +3078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 403362195389305945}
   valueText: {fileID: 1957632689356386142}
+  maxValueText: {fileID: 0}
 --- !u!1 &930588832004717153
 GameObject:
   m_ObjectHideFlags: 0
@@ -12675,6 +12676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 4128637591739757063}
   valueText: {fileID: 6966150923292529152}
+  maxValueText: {fileID: 0}
 --- !u!1 &2863243692193796679
 GameObject:
   m_ObjectHideFlags: 0
@@ -19496,6 +19498,7 @@ MonoBehaviour:
   secondAttackRunning: 0
   counterAttack: 0
   doubleHit: 0
+  killStreak: 0
   dodgedAtt: 0
 --- !u!114 &4917959305510628754
 MonoBehaviour:
@@ -19531,79 +19534,61 @@ MonoBehaviour:
   Stats:
     theName: BattleHeroPrefab
     displayName: BattleHeroPrefab
-    baseHP:
+    HP:
       BaseValue: 0
-    curHP:
+      MaxValue: 0
+      CurValue: 0
+    MP:
       BaseValue: 0
-    maxedHP:
+      MaxValue: 0
+      CurValue: 0
+    ATK:
       BaseValue: 0
-    baseMP:
+      MaxValue: 0
+      CurValue: 0
+    MATK:
       BaseValue: 0
-    curMP:
+      MaxValue: 0
+      CurValue: 0
+    DEF:
       BaseValue: 0
-    maxedMP:
+      MaxValue: 0
+      CurValue: 0
+    Speed:
       BaseValue: 0
-    baseATK:
+      MaxValue: 0
+      CurValue: 0
+    Dodge:
       BaseValue: 0
-    curATK:
+      MaxValue: 0
+      CurValue: 0
+    Hit:
       BaseValue: 0
-    maxedATK:
-      BaseValue: 0
-    baseMATK:
-      BaseValue: 0
-    curMATK:
-      BaseValue: 0
-    maxedMATK:
-      BaseValue: 0
-    maxATK: 0
-    minATK: 0
-    baseDEF:
-      BaseValue: 0
-    curDEF:
-      BaseValue: 0
-    maxedDEF:
-      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     baseCRIT: 0.25
     curCRIT: 0.25
     critDamage: 1.5
-    baseSpeed:
-      BaseValue: 0
-    curSpeed:
-      BaseValue: 0
-    maxedSpeed:
-      BaseValue: 0
-    curDodge:
-      BaseValue: 0
-    baseDodge:
-      BaseValue: 0
-    maxedDodge:
-      BaseValue: 0
-    baseHit:
-      BaseValue: 0
-    curHit:
-      BaseValue: 0
-    maxedHit:
-      BaseValue: 0
     strength:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     intellect:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     dexterity:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     agility:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     stamina:
       BaseValue: 0
-    strengthUpdated:
-      BaseValue: 0
-    intellectUpdated:
-      BaseValue: 0
-    dexterityUpdated:
-      BaseValue: 0
-    agilityUpdated:
-      BaseValue: 0
-    staminaUpdated:
-      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     unspentStatPoints: 0
     maxRage: 150
     curRage: 0
@@ -19706,6 +19691,8 @@ MonoBehaviour:
   Model: {fileID: 0}
   ModelHolder: {fileID: 2178464071449035660}
   ObjectParent: {fileID: 2396454532892597848}
+  WeaponModel: {fileID: 0}
+  WingsModel: {fileID: 0}
 --- !u!82 &5858414077603201514
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21102,6 +21089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 8221973088769189047}
   valueText: {fileID: 7489472224301176639}
+  maxValueText: {fileID: 0}
 --- !u!1 &4682711145826506361
 GameObject:
   m_ObjectHideFlags: 0
@@ -24391,7 +24379,98 @@ MonoBehaviour:
   - {fileID: 4991852200846018067}
   - {fileID: 8997296672066115624}
   - {fileID: 3614500139552263009}
+  heroModel: {fileID: 0}
   equipmentSlotsParent: {fileID: 4208164588403258442}
+  EditableHero:
+    Name: 
+    BaseID: 
+    isUnlocked: 0
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: 
+      displayName: 
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      baseCRIT: 25
+      curCRIT: 25
+      critDamage: 1.5
+      strength:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      intellect:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      dexterity:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      agility:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      stamina:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      totalExperience: 0
+      currentlevel: 0
+      requiredExp: 0
+      MAX_EXP: 0
+      NEXT_EXP: 0
+      CUR_EXP: 0
+      MAX_LEVEL: 0
+      lastLevExp: 0
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 0
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
 --- !u!1 &5283543796540111031
 GameObject:
   m_ObjectHideFlags: 0
@@ -31657,6 +31736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 854952578329810967}
   valueText: {fileID: 3387079837782062114}
+  maxValueText: {fileID: 0}
 --- !u!1 &7102463675161346370
 GameObject:
   m_ObjectHideFlags: 0
@@ -34540,79 +34620,61 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP:
+      HP:
         BaseValue: 0
-      curHP:
+        MaxValue: 0
+        CurValue: 0
+      MP:
         BaseValue: 0
-      maxedHP:
+        MaxValue: 0
+        CurValue: 0
+      ATK:
         BaseValue: 0
-      baseMP:
+        MaxValue: 0
+        CurValue: 0
+      MATK:
         BaseValue: 0
-      curMP:
+        MaxValue: 0
+        CurValue: 0
+      DEF:
         BaseValue: 0
-      maxedMP:
+        MaxValue: 0
+        CurValue: 0
+      Speed:
         BaseValue: 0
-      baseATK:
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
         BaseValue: 0
-      curATK:
+        MaxValue: 0
+        CurValue: 0
+      Hit:
         BaseValue: 0
-      maxedATK:
-        BaseValue: 0
-      baseMATK:
-        BaseValue: 0
-      curMATK:
-        BaseValue: 0
-      maxedMATK:
-        BaseValue: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF:
-        BaseValue: 0
-      curDEF:
-        BaseValue: 0
-      maxedDEF:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed:
-        BaseValue: 0
-      curSpeed:
-        BaseValue: 0
-      maxedSpeed:
-        BaseValue: 0
-      curDodge:
-        BaseValue: 0
-      baseDodge:
-        BaseValue: 0
-      maxedDodge:
-        BaseValue: 0
-      baseHit:
-        BaseValue: 0
-      curHit:
-        BaseValue: 0
-      maxedHit:
-        BaseValue: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -34657,7 +34719,7 @@ MonoBehaviour:
   heroAgi: {fileID: 9181147342377155526}
   heroSta: {fileID: 8403994189836981853}
   heroStatpts: {fileID: 2293187352885370106}
-  heroLoyalty: {fileID: 3559112794856265207}
+  heroCritDamage: {fileID: 0}
   heroExp: {fileID: 2404848119741757893}
   heroHPpre: {fileID: 7883060060575372824}
   heroMPpre: {fileID: 5105548589394550479}
@@ -36448,6 +36510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 4629084779563945143}
   valueText: {fileID: 6665914877348383825}
+  maxValueText: {fileID: 0}
 --- !u!1 &8124920125420265363
 GameObject:
   m_ObjectHideFlags: 0

@@ -5170,6 +5170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 0}
   valueText: {fileID: 0}
+  maxValueText: {fileID: 0}
 --- !u!1 &930588832004717153
 GameObject:
   m_ObjectHideFlags: 0
@@ -18969,6 +18970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 0}
   valueText: {fileID: 0}
+  maxValueText: {fileID: 0}
 --- !u!1 &2863243692193796679
 GameObject:
   m_ObjectHideFlags: 0
@@ -27100,9 +27102,6 @@ MonoBehaviour:
   Inventory: {fileID: 6741102160785305781}
   EquipmentPanel: {fileID: 171579869455349684}
   statPanel: {fileID: 0}
-  sPanel: {fileID: 0}
-  itemTooltip: {fileID: 88920099748772607}
-  draggableItem: {fileID: 4059536797188292519}
   summonHandler: {fileID: 6326273922337472133}
   UnitLevel: {fileID: -9110761892144046591}
   curLvl: 0
@@ -27121,47 +27120,61 @@ MonoBehaviour:
   Stats:
     theName: Medea
     displayName: Medea
-    baseHP: 0
-    curHP: 0
-    baseMP: 0
-    curMP: 0
-    baseATK: 0
-    curATK: 0
-    baseMATK: 0
-    curMATK: 0
-    maxATK: 0
-    minATK: 0
-    baseDEF: 0
-    curDEF: 0
+    HP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    ATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    DEF:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Speed:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Dodge:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Hit:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     baseCRIT: 0.25
     curCRIT: 0.25
     critDamage: 1.5
-    baseSpeed: 0
-    curSpeed: 0
-    curDodge: 0
-    baseDodge: 0
-    baseHit: 0
-    curHit: 0
     strength:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     intellect:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     dexterity:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     agility:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     stamina:
       BaseValue: 0
-    strengthUpdated:
-      BaseValue: 0
-    intellectUpdated:
-      BaseValue: 0
-    dexterityUpdated:
-      BaseValue: 0
-    agilityUpdated:
-      BaseValue: 0
-    staminaUpdated:
-      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     unspentStatPoints: 0
     maxRage: 150
     curRage: 0
@@ -27259,47 +27272,61 @@ MonoBehaviour:
     Stats:
       theName: GremlinSu
       displayName: Gre2
-      baseHP: 100
-      curHP: 99
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 0
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -27325,47 +27352,61 @@ MonoBehaviour:
     Stats:
       theName: GremlinSu
       displayName: Gre29
-      baseHP: 100
-      curHP: 99
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 0
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -27390,47 +27431,61 @@ MonoBehaviour:
     Stats:
       theName: BSu
       displayName: s1
-      baseHP: 1000
-      curHP: 999
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0
       curCRIT: 0
       critDamage: 0
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -27465,6 +27520,8 @@ MonoBehaviour:
   Model: {fileID: 3699464196597425843}
   ModelHolder: {fileID: 2178464071449035660}
   ObjectParent: {fileID: 2396454532892597848}
+  WeaponModel: {fileID: 0}
+  WingsModel: {fileID: 0}
 --- !u!82 &5858414077603201514
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29429,6 +29486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 0}
   valueText: {fileID: 0}
+  maxValueText: {fileID: 0}
 --- !u!1 &4682711145826506361
 GameObject:
   m_ObjectHideFlags: 0
@@ -34211,6 +34269,96 @@ MonoBehaviour:
   - {fileID: 8997296672066115624}
   - {fileID: 3614500139552263009}
   equipmentSlotsParent: {fileID: 4208164588403258442}
+  EditableHero:
+    Name: 
+    BaseID: 
+    isUnlocked: 0
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: 
+      displayName: 
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      baseCRIT: 25
+      curCRIT: 25
+      critDamage: 1.5
+      strength:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      intellect:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      dexterity:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      agility:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      stamina:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      totalExperience: 0
+      currentlevel: 0
+      requiredExp: 0
+      MAX_EXP: 0
+      NEXT_EXP: 0
+      CUR_EXP: 0
+      MAX_LEVEL: 0
+      lastLevExp: 0
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 0
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
 --- !u!1 &5280144334873951759
 GameObject:
   m_ObjectHideFlags: 0
@@ -40329,47 +40477,61 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -40412,47 +40574,61 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -45263,6 +45439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 0}
   valueText: {fileID: 0}
+  maxValueText: {fileID: 0}
 --- !u!1 &7087041718286458918
 GameObject:
   m_ObjectHideFlags: 0
@@ -49002,47 +49179,61 @@ MonoBehaviour:
     Stats:
       theName: 
       displayName: 
-      baseHP: 0
-      curHP: 0
-      baseMP: 0
-      curMP: 0
-      baseATK: 0
-      curATK: 0
-      baseMATK: 0
-      curMATK: 0
-      maxATK: 0
-      minATK: 0
-      baseDEF: 0
-      curDEF: 0
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       baseCRIT: 0.25
       curCRIT: 0.25
       critDamage: 1.5
-      baseSpeed: 0
-      curSpeed: 0
-      curDodge: 0
-      baseDodge: 0
-      baseHit: 0
-      curHit: 0
       strength:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       intellect:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       dexterity:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       agility:
         BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       stamina:
         BaseValue: 0
-      strengthUpdated:
-        BaseValue: 0
-      intellectUpdated:
-        BaseValue: 0
-      dexterityUpdated:
-        BaseValue: 0
-      agilityUpdated:
-        BaseValue: 0
-      staminaUpdated:
-        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
       unspentStatPoints: 0
       maxRage: 150
       curRage: 0
@@ -51530,6 +51721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 0}
   valueText: {fileID: 0}
+  maxValueText: {fileID: 0}
 --- !u!1 &8124920125420265363
 GameObject:
   m_ObjectHideFlags: 0

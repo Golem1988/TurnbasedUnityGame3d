@@ -681,7 +681,7 @@ public class BattleStateMachine : MonoBehaviour
                     sButton.typeText.color = Color.magenta;
                 if (SummonList[i].Type == EnemyType.MUTANT)
                     sButton.typeText.color = new Color32(124, 0, 124, 255);
-                sButton.hpText.text = (SummonList[i].Stats.HP.CurValue.ToString() + "/" + SummonList[i].Stats.HP.BaseValue.ToString());
+                sButton.hpText.text = (SummonList[i].Stats.HP.CurValue.ToString() + "/" + SummonList[i].Stats.HP.MaxValue.ToString());
                 sButton.index = i;
                 button.GetComponent<Button>().onClick.AddListener(() => Input10(sButton.index));
                 button.GetComponent<Button>().interactable = true;

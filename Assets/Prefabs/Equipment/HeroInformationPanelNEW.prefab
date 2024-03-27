@@ -3065,7 +3065,98 @@ MonoBehaviour:
   - {fileID: 7580191793685031715}
   - {fileID: 4031056792262765504}
   - {fileID: 7006589215564207840}
+  heroModel: {fileID: 0}
   equipmentSlotsParent: {fileID: 707091283038730202}
+  EditableHero:
+    Name: 
+    BaseID: 
+    isUnlocked: 0
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: 
+      displayName: 
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      baseCRIT: 25
+      curCRIT: 25
+      critDamage: 1.5
+      strength:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      intellect:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      dexterity:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      agility:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      stamina:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      totalExperience: 0
+      currentlevel: 0
+      requiredExp: 0
+      MAX_EXP: 0
+      NEXT_EXP: 0
+      CUR_EXP: 0
+      MAX_LEVEL: 0
+      lastLevExp: 0
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 0
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
 --- !u!1 &1057271121476679768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6875,7 +6966,7 @@ MonoBehaviour:
   heroAgi: {fileID: 5274659621788975716}
   heroSta: {fileID: 4776536174954967707}
   heroStatpts: {fileID: 2822309354381124266}
-  heroLoyalty: {fileID: 119174138592270}
+  heroCritDamage: {fileID: 0}
   heroExp: {fileID: 605844959938023721}
   heroHPpre: {fileID: 177045685440891701}
   heroMPpre: {fileID: 90553204892239017}
@@ -18030,7 +18121,7 @@ MonoBehaviour:
   heroAgi: {fileID: 5274659621788975716}
   heroSta: {fileID: 4776536174954967707}
   heroStatpts: {fileID: 2822309354381124266}
-  heroLoyalty: {fileID: 119174138592270}
+  heroCritDamage: {fileID: 0}
   heroExp: {fileID: 605844959938023721}
   heroHPpre: {fileID: 177045685440891701}
   heroMPpre: {fileID: 90553204892239017}

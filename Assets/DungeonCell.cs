@@ -42,12 +42,12 @@ public class DungeonCell : MonoBehaviour
 
     public void Run()
     {
-        Debug.Log("DungeonCell loaded");
+        //Debug.Log("DungeonCell loaded");
         if (!Data.CellData.isCleared && Scenario)
         {
             Scenario.Activate(this);
         }
-        Debug.Log("DungeonCell isCleared = " + Data.CellData.isCleared.ToString());
+        //Debug.Log("DungeonCell isCleared = " + Data.CellData.isCleared.ToString());
     }
 
 }

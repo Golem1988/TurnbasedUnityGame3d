@@ -6,7 +6,7 @@ using UnityEditor;
 [CreateAssetMenu]
 public class ItemDatabase : ScriptableObject
 {
-	[SerializeField] Item[] items;
+	public Item[] items;
 
 	public Item GetItemReference(string itemID)
 	{

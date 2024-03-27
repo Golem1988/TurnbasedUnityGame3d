@@ -1,10 +1,14 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class EquipmentPanel : MonoBehaviour
 {
 	public EquipmentSlot[] EquipmentSlots;
+	public Transform heroModel;
 	[SerializeField] Transform equipmentSlotsParent;
+	[Header("Current hero")]
+	public CharacterInformation EditableHero;
 
 	public event Action<BaseItemSlot> OnPointerEnterEvent;
 	public event Action<BaseItemSlot> OnPointerExitEvent;
@@ -62,5 +66,61 @@ public class EquipmentPanel : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public void DisplayItems()
+    {
+		EquippableItem item;
+
+		var itemList = EditableHero.Equipment;
+		List<string> equippedItemsX = new List<string>();
+		equippedItemsX.Add(itemList.WeaponID);
+		equippedItemsX.Add(itemList.WingsID);
+		equippedItemsX.Add(itemList.BootsID);
+		equippedItemsX.Add(itemList.BeltID);
+		equippedItemsX.Add(itemList.HelmetID);
+		equippedItemsX.Add(itemList.RingID);
+		equippedItemsX.Add(itemList.PendantID);
+		equippedItemsX.Add(itemList.ArmorID);
+
+
+		foreach (EquipmentSlot slot in EquipmentSlots)
+		{
+			slot.Item = null;
+			slot.Amount = 0;
+		}
+
+		foreach (var itemID in equippedItemsX)
+        {
+			if (itemID != "")
+			{
+				item = Extensions.FindItemByID(itemID);
+
+				foreach (EquipmentSlot slot in EquipmentSlots)
+                {
+					if (item.EquipmentType == slot.EquipmentType)
+                    {
+						slot.Item = item;
+						slot.Amount = 1;
+                    }
+
+                }
+
+				if (item.EquipmentType == EquipmentType.Wings)
+				{
+					if (item.Model)
+						ShowWings(item.Model);
+				}
+			}
+		}
+
+	}
+
+	void ShowWings(GameObject wings)
+    {
+		//var heroId = EditableHero.BaseID;
+		Transform wingSpot = heroModel.GetComponent<GameObjectContainer>().objectArray[5].gameObject.transform;
+		var wingInstance = Instantiate(wings, wingSpot.position, Quaternion.identity, wingSpot);
+		Extensions.SetLayer(wingInstance, 5);
 	}
 }

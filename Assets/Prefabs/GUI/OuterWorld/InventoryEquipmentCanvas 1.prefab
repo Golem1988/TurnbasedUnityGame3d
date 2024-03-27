@@ -22273,7 +22273,98 @@ MonoBehaviour:
   - {fileID: 1685946030243679074}
   - {fileID: 5983870726935527899}
   - {fileID: 5234402406583195364}
+  heroModel: {fileID: 0}
   equipmentSlotsParent: {fileID: 5748642207546958369}
+  EditableHero:
+    Name: 
+    BaseID: 
+    isUnlocked: 0
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: 
+      displayName: 
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      baseCRIT: 25
+      curCRIT: 25
+      critDamage: 1.5
+      strength:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      intellect:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      dexterity:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      agility:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      stamina:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      totalExperience: 0
+      currentlevel: 0
+      requiredExp: 0
+      MAX_EXP: 0
+      NEXT_EXP: 0
+      CUR_EXP: 0
+      MAX_LEVEL: 0
+      lastLevExp: 0
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 0
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
 --- !u!1 &6788365547298260872
 GameObject:
   m_ObjectHideFlags: 0
@@ -28141,7 +28232,98 @@ MonoBehaviour:
   - {fileID: 1301477551472198580}
   - {fileID: 1250989816283578533}
   - {fileID: 9207972501344582955}
+  heroModel: {fileID: 0}
   equipmentSlotsParent: {fileID: 8567820274198923028}
+  EditableHero:
+    Name: 
+    BaseID: 
+    isUnlocked: 0
+    isActive: 0
+    isMainCharacter: 0
+    Stats:
+      theName: 
+      displayName: 
+      HP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MP:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      ATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      MATK:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      DEF:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Speed:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Dodge:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      Hit:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      baseCRIT: 25
+      curCRIT: 25
+      critDamage: 1.5
+      strength:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      intellect:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      dexterity:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      agility:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      stamina:
+        BaseValue: 0
+        MaxValue: 0
+        CurValue: 0
+      unspentStatPoints: 0
+      maxRage: 150
+      curRage: 0
+    Level:
+      experience: 0
+      totalExperience: 0
+      currentlevel: 0
+      requiredExp: 0
+      MAX_EXP: 0
+      NEXT_EXP: 0
+      CUR_EXP: 0
+      MAX_LEVEL: 0
+      lastLevExp: 0
+    MagicAttacks: []
+    PassiveSkills: []
+    SummonList: []
+    MaxSummonSlots: 0
+    Equipment:
+      HelmetID: 
+      ArmorID: 
+      WeaponID: 
+      BootsID: 
+      RingID: 
+      PendantID: 
+      BeltID: 
+      WingsID: 
 --- !u!1 &8521631463241631111
 GameObject:
   m_ObjectHideFlags: 0
@@ -35178,6 +35360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 9172797754006448214}
   valueText: {fileID: 4218462656208994262}
+  maxValueText: {fileID: 0}
 --- !u!114 &455869719804300144 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5471399065375002248, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
@@ -35242,10 +35425,20 @@ MonoBehaviour:
   - Sta.
   stats:
   - BaseValue: 0
+    MaxValue: 0
+    CurValue: 0
   - BaseValue: 0
+    MaxValue: 0
+    CurValue: 0
   - BaseValue: 0
+    MaxValue: 0
+    CurValue: 0
   - BaseValue: 0
+    MaxValue: 0
+    CurValue: 0
   - BaseValue: 0
+    MaxValue: 0
+    CurValue: 0
 --- !u!114 &1149659486879774563 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4776536174954967707, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
@@ -35281,6 +35474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 488155178454496324}
   valueText: {fileID: 2466243369122874848}
+  maxValueText: {fileID: 0}
 --- !u!114 &2466243369122874848 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8035574200966397976, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
@@ -35333,6 +35527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 6215873769172571223}
   valueText: {fileID: 1149659486879774563}
+  maxValueText: {fileID: 0}
 --- !u!114 &3236637487471483407 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7014105504010821623, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
@@ -35442,6 +35637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 4299072523072227296}
   valueText: {fileID: 1149659486879774563}
+  maxValueText: {fileID: 0}
 --- !u!1 &6201137963628444731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1995971431721941443, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}
@@ -35471,9 +35667,10 @@ MonoBehaviour:
   - {fileID: 4996469507540121988}
   - {fileID: 3703140302895399469}
   - {fileID: 5137902535154710558}
-  modelPlaceholder: {fileID: 476792858664318878}
+  heroModelPlace: {fileID: 0}
   ShowSummonButton: {fileID: 4343377310762930487}
   HideSummonButton: {fileID: 869755927081836831}
+  myAv: {fileID: 0}
   sPanel: {fileID: 5400566812335017068}
   itemTooltip: {fileID: 3937203422937924162}
   draggableItem: {fileID: 0}
@@ -35621,6 +35818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 6910575089171576759}
   valueText: {fileID: 3236637487471483407}
+  maxValueText: {fileID: 0}
 --- !u!224 &8073045249259340202 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4446447631385494610, guid: fd301ab8c45e34349bb28299965dcd3b, type: 3}

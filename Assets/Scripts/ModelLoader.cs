@@ -8,6 +8,31 @@ public class ModelLoader : MonoBehaviour
     public Transform ModelHolder;
     public Transform ObjectParent;
 
+    public GameObject WeaponModel;
+    public GameObject WingsModel;
+
+    private Transform weaponSpot;
+    private Transform wingSpot;
+
+    private void Awake()
+    {
+        if (gameObject.CompareTag("Hero"))
+        {
+            weaponSpot = Model.GetComponent<GameObjectContainer>().objectArray[3].gameObject.transform;
+            wingSpot = Model.GetComponent<GameObjectContainer>().objectArray[5].gameObject.transform;
+        }
+    }
+
+    public void ShowWeapon(string heroID, int weaponIndex)
+    {
+        var weaponList = Extensions.FindHeroWeapons(heroID);
+        WeaponModel = Instantiate(weaponList[weaponIndex], weaponSpot.position, Quaternion.identity, weaponSpot);
+    }
+
+    public void ShowWings(GameObject wingModel)
+    {
+        WingsModel = Instantiate(wingModel, wingSpot.position, Quaternion.identity, wingSpot);
+    }
     //private void OnValidate()
     //{
     //    if (gameObject.CompareTag("Hero") || gameObject.CompareTag("Summon"))
