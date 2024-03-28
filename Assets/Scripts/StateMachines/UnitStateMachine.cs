@@ -152,46 +152,53 @@ public class UnitStateMachine : MonoBehaviour
         enemyChoice.attackersSpeed = unit.Stats.Speed.CurValue;
         enemyChoice.Type = "Enemy"; //Why the hell do we need this at all? Check and remove later if not needed
         enemyChoice.Attacker = gameObject;
-        BaseClass enemie = gameObject.GetComponent<UnitAttributes>().Stats;
+        BaseClass enemyStats = gameObject.GetComponent<UnitAttributes>().Stats;
 
-        //determine which skills does enemy have:
-        if (enemie.MP.CurValue > 0 && abilities.MagicAttacks.Count > 0)
+        if(Random.Range(0, 100) <= GameManager.instance.skillUseChance)
         {
-            //we have magic attacks
-            List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
-            //can we use them? check the manacost
-            //remove all we can't use
-            magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemie.MP.CurValue);
-            if (magicAttacks.Count > 1)
+            //determine if enemy has mana and active skills to use
+            if (enemyStats.MP.CurValue > 0 && abilities.MagicAttacks.Count > 0)
             {
-                int num = Random.Range(0, magicAttacks.Count);
-                enemyChoice.choosenAttack = magicAttacks[num];
-            }
-            else if (magicAttacks.Count == 1)
-            {
-                enemyChoice.choosenAttack = magicAttacks[0];
-                //Debug.Log("Enemy chose " + enemyChoice.choosenAttack.SkillName);
-            }
+                //we have magic attacks
+                List<ActiveSkill> magicAttacks = new(abilities.MagicAttacks);
+                //can we use them? check the manacost
+                //remove all we can't use
+                magicAttacks.RemoveAll(attack => attack.CostType != CostType.MP || attack.CostValue > enemyStats.MP.CurValue);
+                if (magicAttacks.Count > 1)
+                {
+                    int num = Random.Range(0, magicAttacks.Count);
+                    enemyChoice.choosenAttack = magicAttacks[num];
+                }
+                else if (magicAttacks.Count == 1)
+                {
+                    enemyChoice.choosenAttack = magicAttacks[0];
+                    //Debug.Log("Enemy chose " + enemyChoice.choosenAttack.SkillName);
+                }
+                //else
+                //{
+                //    enemyChoice.choosenAttack = abilities.BasicActions[0];
+                //    enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+                //}
 
-            if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Ally)
-            {
-                //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
-                //Debug.Log("Enemy chose ally ");
-                enemyChoice.AttackersTarget = BSM.EnemiesInBattle[Random.Range(0, BSM.EnemiesInBattle.Count)];
-            }
-            else if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Foe)
-            {
-                //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
-                //Debug.Log("Enemy chose hero ");
-                enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+                //with choosen attack determine who shall we target with it based on it's target type
+                if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Ally)
+                {
+                    //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                    //Debug.Log("Enemy chose ally ");
+                    enemyChoice.AttackersTarget = BSM.EnemiesInBattle[Random.Range(0, BSM.EnemiesInBattle.Count)];
+                }
+                else if (enemyChoice.choosenAttack != null && enemyChoice.choosenAttack.TargetType == TargetType.Foe)
+                {
+                    //Debug.Log("Enemy choosenAttack.TargetType " + enemyChoice.choosenAttack.TargetType.ToString());
+                    //Debug.Log("Enemy chose hero ");
+                    enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
+                }
+
             }
         }
-        else if (abilities.MagicAttacks.Count <= 0)
-        {
-            enemyChoice.choosenAttack = abilities.BasicActions[0];
-            enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];
-        }
-        else// (enemyChoice.choosenAttack == null)
+
+        //if for some reason we still don't have any attack, select basic attack and random hero
+        if (enemyChoice.choosenAttack == null)
         {
             enemyChoice.choosenAttack = abilities.BasicActions[0];
             enemyChoice.AttackersTarget = BSM.HeroesInBattle[Random.Range(0, BSM.HeroesInBattle.Count)];

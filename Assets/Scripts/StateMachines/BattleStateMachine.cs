@@ -144,6 +144,7 @@ public class BattleStateMachine : MonoBehaviour
 
     void Awake()
     {
+        expMultiplier = GameManager.instance.battleExpMultiplier;
         timeModifier = GameManager.instance.fightSpeed;
         isDungeonBattle = GameManager.instance.isDungeonBattle;
         DisableSpeedButton(timeModifier);

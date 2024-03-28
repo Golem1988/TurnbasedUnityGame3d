@@ -50,5 +50,9 @@ public class DungeonHealScenario : DungeonScenario
             }
         }
         GameManager.instance.Chat.AddToChatOutput("Triggered heal encounter!");
+        if (Actions.OnDungeonHealTrigger != null)
+        {
+            Actions.OnDungeonHealTrigger.Invoke();
+        }
     }
 }

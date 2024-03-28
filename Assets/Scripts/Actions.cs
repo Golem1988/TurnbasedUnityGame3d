@@ -26,5 +26,7 @@ public static class Actions
     public static Action<BattleStateMachine> OnTurnStart; //do all the actions on the battle end
     public static Action<int> OnHeroEdit; //switch hero interface UI
     public static Action<CharacterInformation, CapturedPets> OnMainHeroSummonChange;
+    public static Action OnDungeonChestTrigger;
+    public static Action OnDungeonHealTrigger;
     //public static Action<UnitAttributes> OnLevellUp;
 }

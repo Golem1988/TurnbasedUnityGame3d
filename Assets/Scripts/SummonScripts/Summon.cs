@@ -127,14 +127,29 @@ public class Summon : MonoBehaviour
                     }
                     else
                     {
-                        //and if not, we increase the level
-                        //basically delete old skill of lower level
-                            thisSummon.PassiveSkills.Remove(summonDB.PassiveSkills[newRandomNumber].posPassive.ID);
-                        // and add new one of 1 level higher
-                            thisSummon.PassiveSkills.Add(summonDB.PassiveSkills[newRandomNumber].posPassive.NextLevelSkill.ID);
-                        GameManager.instance.Chat.AddToChatOutput("<" + typeColorCode + ">" + unit.Stats.displayName + "</color> upgraded the skill <#00FF00>[" + summonDB.PassiveSkills[newRandomNumber].posPassive.SkillName + "]</color> to level <#00FF00>" + summonDB.PassiveSkills[newRandomNumber].posPassive.NextLevelSkill.SkillLevel.ToString() + "</color>!");
-                    }
+                        string id = summonDB.PassiveSkills[newRandomNumber].posPassive.NextLevelSkill.ID;
+                        string newId = GameManager.instance.SkillDatabase.PassiveSkills.FirstOrDefault(skill => skill.ID == id).NextLevelSkill.ID;
+                        //and if not, we check if summon already has next level skill before we increase the level
+                        if (thisSummon.PassiveSkills.Any(skillId => skillId == id))
+                        {
+                            //basically delete old skill of presumingly level 2
+                            thisSummon.PassiveSkills.Remove(id);
 
+                            // and add new one of 1 level higher
+                            
+                            thisSummon.PassiveSkills.Add(newId);
+
+                            GameManager.instance.Chat.AddToChatOutput("<" + typeColorCode + ">" + unit.Stats.displayName + "</color> upgraded the skill <#00FF00>[" + summonDB.PassiveSkills[newRandomNumber].posPassive.SkillName + "]</color> to level <#00FF00>" + 3 + "</color>!");
+                        }
+                        else
+                        {
+                            //basically delete old skill of lower level
+                            thisSummon.PassiveSkills.Remove(summonDB.PassiveSkills[newRandomNumber].posPassive.ID);
+                            // and add new one of 1 level higher
+                            thisSummon.PassiveSkills.Add(id);
+                            GameManager.instance.Chat.AddToChatOutput("<" + typeColorCode + ">" + unit.Stats.displayName + "</color> upgraded the skill <#00FF00>[" + summonDB.PassiveSkills[newRandomNumber].posPassive.SkillName + "]</color> to level <#00FF00>" + summonDB.PassiveSkills[newRandomNumber].posPassive.NextLevelSkill.SkillLevel.ToString() + "</color>!");
+                        } 
+                    }
                 }
                 else //if we don't have that skill yet
                 {

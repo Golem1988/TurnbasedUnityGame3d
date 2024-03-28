@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MapTileGridCreator.Core;
+using System;
+using System.Linq;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -26,7 +28,14 @@ public class PlayerControls : MonoBehaviour
     private Cell leftCell;
     private Cell rightCell;
     [SerializeField]
+    GameObject buttonHolder;
+    [SerializeField]
     GameObject recapWindow;
+    [SerializeField]
+    GameObject lootWindow;
+    [SerializeField]
+    GameObject healWindow;
+
 
     public Vector3 dest;
 
@@ -48,8 +57,41 @@ public class PlayerControls : MonoBehaviour
     }
     public PlayerStates PlayerState;
 
+    private void OnEnable()
+    {
+        Actions.OnDungeonChestTrigger += ShowChestUI;
+        Actions.OnDungeonHealTrigger += ShowHealUI;
+    }
+
+    private void ShowHealUI()
+    {
+        buttonHolder.SetActive(false);
+        healWindow.SetActive(true);
+    }
+
+    private void ShowChestUI()
+    {
+        buttonHolder.SetActive(false);
+        lootWindow.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        FilteredOut.Clear();
+        NeighbourCells.Clear();
+        canLeft = false;
+        canRight = false;
+        Actions.OnDungeonChestTrigger -= ShowChestUI;
+        Actions.OnDungeonHealTrigger -= ShowHealUI;
+    }
+
+
     void Start()
     {
+        var mainHeroID = HeroDataManager.instance.CharacterInfo.FirstOrDefault(hero => hero.isMainCharacter).BaseID;
+        GameObject heroModel = Extensions.FindModelPrefab(mainHeroID, true);
+        GameObject myAv = Instantiate(heroModel, modelHolder.position, Quaternion.Euler(0, 0, 0), modelHolder);
+
         rBody = GetComponent<Rigidbody>();
         Vector3 dest = _grid.GetPositionCell(location) + new Vector3 (0, 0.5f, 0);
         rBody.MovePosition(dest);
@@ -164,14 +206,7 @@ public class PlayerControls : MonoBehaviour
             scenario.Scenario.StepOn();
         }
 
-            //trigger saving of this data:
-
-            //and we want to set the position
-
-            //and we want gamemanager to remember this position so after let's say battle we will be spawned back where we need to be
-
-            //detect neighbours to the left and to the right
-            NeighbourCells = new(_grid.GetNeighboursCell(ref location)); //checks for all neighbour cells
+        NeighbourCells = new(_grid.GetNeighboursCell(ref location)); //checks for all neighbour cells
         FilteredOut = new();
 
         //filter out the ones in front
@@ -206,13 +241,6 @@ public class PlayerControls : MonoBehaviour
 
         ControlButtons();
 
-        if (other.CompareTag("EnterTown"))
-        {
-            CollisionHandler col = other.gameObject.GetComponent<CollisionHandler>();
-            GameManager.instance.nextHeroPosition = col.spawnPoint.transform.position;
-            GameManager.instance.sceneToLoad = col.sceneToLoad;
-            GameManager.instance.LoadNextScene();
-        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -224,11 +252,5 @@ public class PlayerControls : MonoBehaviour
         ControlButtons();
     }
 
-    private void OnDisable()
-    {
-        FilteredOut.Clear();
-        NeighbourCells.Clear();
-        canLeft = false;
-        canRight = false;
-    }
+
 }

@@ -40,5 +40,10 @@ public class DungeonChestScenario : DungeonScenario
     public override void StepOn()
     {
         GameManager.instance.Chat.AddToChatOutput("Triggered chest encounter!");
+        if (Actions.OnDungeonChestTrigger != null)
+        {
+            Actions.OnDungeonChestTrigger.Invoke();
+        }
+        
     }
 }

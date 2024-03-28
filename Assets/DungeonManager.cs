@@ -64,7 +64,6 @@ public class DungeonManager : MonoBehaviour
         //cellDataFiltered = new(cellDatas);
         //if(cellDataFiltered.Count > 0)
         //    FilterData();
-
         //set the data for each cell in grid
         LoadDungeonData();
         //LoadDataToCells(grid);
@@ -77,32 +76,6 @@ public class DungeonManager : MonoBehaviour
         cellDataFiltered.Add(cell);
         SaveDungeonData();
     }
-
-
-
-    //public void LoadDataToCells(GameObject grid)
-    //{
-    //    // Loop through each child of the parent transform
-    //    foreach (Transform child in grid.transform)
-    //    {
-    //        // set layer for each child
-    //        var CellData = child.gameObject.GetComponent<CellDataData>().CellData;
-    //        if(CellData == null)
-    //            continue;
-    //        var index = CellData.Index;
-    //        Debug.Log(index.ToString());
-    //        var inaaa = cellDataFiltered.FirstOrDefault(cell => cell.Index == index);
-    //        if (inaaa != null)
-    //        {
-    //            Debug.Log(inaaa.ToString());
-    //            CellData.isCleared = inaaa.isCleared;
-    //            child.gameObject.GetComponent<DungeonCell>().Run();
-    //            continue;
-    //        }
-    //        if (inaaa == null)
-    //            continue;
-    //    }
-    //}
 
     [System.Serializable]
     public class DungeonDataListWrapper

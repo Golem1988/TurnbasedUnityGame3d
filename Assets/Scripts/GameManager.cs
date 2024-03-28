@@ -35,10 +35,12 @@ public class GameManager : MonoBehaviour
     [Range(0, 100)] public float doubleAttackChance = 35;
     [Range(0, 10)] public float preFightCooldown = 2.5f;
     [Range(0, 10)] public float postFightCooldown = 1.5f;
+    [Range(0, 100)] public int battleExpMultiplier = 1;
     [Header("Enemy settings")]
     [Range(0.1f, 100)] public float babyChance = 50f;
     [Range(0.1f, 100)] public float mutantChance = 50f;
     [Range(0.1f, 100)] public float eliteChance = 80f;
+    [Range(0.1f, 100)] public float skillUseChance = 35f;
 
     //Hero
     public GameObject PlayerPrefab;

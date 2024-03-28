@@ -63,7 +63,7 @@ public class PassiveSkill : BaseAttack
             NewEffects.Add(status);
         }
 
-        Debug.Log("ActionSettings updated with new information");
+        //Debug.Log("ActionSettings updated with new information");
         return NewEffects;
     }
 

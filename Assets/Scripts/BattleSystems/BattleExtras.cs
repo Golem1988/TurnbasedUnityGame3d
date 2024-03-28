@@ -44,5 +44,20 @@ public class BattleExtras : MonoBehaviour
             audioSource.clip = audioClips[2];
             audioSource.Play();
         }
+        if (killer.killStreak == 4)
+        {
+            audioSource.clip = audioClips[3];
+            audioSource.Play();
+        }
+        if (killer.killStreak == 5)
+        {
+            audioSource.clip = audioClips[4];
+            audioSource.Play();
+        }
+        if (killer.killStreak == 6)
+        {
+            audioSource.clip = audioClips[5];
+            audioSource.Play();
+        }
     }
 }
