@@ -16,6 +16,8 @@ TagManager:
   - DeadSummon
   - WayPoints
   - LeaveTown
+  - UnitEffect
+  - SceneEffect
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - UICamera
   - NonWalkable
   - NPC
-  - 
+  - Post-Processing
   - 
   - 
   - 

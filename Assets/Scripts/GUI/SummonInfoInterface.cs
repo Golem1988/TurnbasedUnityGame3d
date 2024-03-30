@@ -483,13 +483,8 @@ public class SummonInfoInterface : MonoBehaviour
             Destroy(myAv);
         }
         GameObject summonModel = Extensions.FindModelPrefab(EditableSummon.BaseID, false);
-        //Vector3 pos = new Vector3(2f, -91.7f, -45f);
-        //GameObject avatar = EditableSummon.GetComponent<UnitUI>().heroAvatar;
-        myAv = Instantiate(summonModel, SummonPicture.position, Quaternion.Euler(0, 180, 0), SummonPicture);
+        myAv = Instantiate(summonModel, SummonPicture.position, Quaternion.Euler(0, 160, 0), SummonPicture);
         Extensions.SetLayer(myAv, 5);
-        //myAv.transform.localScale = new Vector3(150f, 150f, 150f);
-        //myAv.transform.SetParent(SummonPicture, false);
-        //myAv.transform.
     }
 
     void DestroyAvatar()
