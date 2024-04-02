@@ -12,6 +12,7 @@ public class ControllableCharacter : MonoBehaviour
     public Animator animator;
     public float speed;
     private NavMeshAgent agent;
+    [SerializeField] Transform followCamera;
 
     private void Awake()
     {

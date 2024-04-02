@@ -25,6 +25,8 @@ public class ForceBattle : MonoBehaviour
 
     public void EnterDungeon()
     {
+        GameManager.instance.lastHeroPosition = new Vector3(0f, 0.5f, 0f);
+        GameManager.instance.nextHeroPosition = GameManager.instance.lastHeroPosition;
         SceneManager.LoadScene("DungeonNew");
     }
 

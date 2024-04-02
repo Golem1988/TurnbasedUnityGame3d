@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Cutedrop
+  m_EditorClassIdentifier: 
+  id: unit_b7c6d2a7ddb131d4dad528eae0bd56a5
+  ModelId: 1753
+  DisplayName: Cutedrop
+  ModelPrefab: {fileID: 1000014281109242, guid: 52157af2d06590a47a178d6a3eb5781d, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 76b97eb3f275cc541850227640f60a1a, type: 3}
+  ActiveSkills: []
+  PassiveSkills: []
+  canBeBaby: 1
+  canBeMutant: 1

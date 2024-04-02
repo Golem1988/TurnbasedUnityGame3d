@@ -48,7 +48,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8355326768811524894}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -166,6 +166,7 @@ MonoBehaviour:
   player: {fileID: 6323972510258235013}
   animator: {fileID: 0}
   speed: 0
+  followCamera: {fileID: 0}
 --- !u!114 &4688234338150642005
 MonoBehaviour:
   m_ObjectHideFlags: 0

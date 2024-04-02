@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: BB Brand
+  m_EditorClassIdentifier: 
+  id: unit_2a941d81abd487448af21a541d2f77b6
+  ModelId: 1650
+  DisplayName: BB Brand
+  ModelPrefab: {fileID: 1000013175260246, guid: 0da9980b341c0434c99213f713340caa, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 999e9dc866ecc434abea044cb8887c5c, type: 3}
+  ActiveSkills: []
+  PassiveSkills: []
+  canBeBaby: 0
+  canBeMutant: 0

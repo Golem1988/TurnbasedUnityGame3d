@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Ghost
+  m_EditorClassIdentifier: 
+  id: unit_68d65ffeb55564f44a2d4abc94d01faa
+  ModelId: 1002
+  DisplayName: Ghost
+  ModelPrefab: {fileID: 1000013868963938, guid: a30afe58d0af0d445a662a2efb0a747b, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 0ce38e2d1eafad64b993ab1100b2cbe1, type: 3}
+  ActiveSkills:
+  - possibleSkill: {fileID: 11400000, guid: cbbb2aa0247088b45aa1af775b61f0ea, type: 2}
+    skillSpawnChance: 50
+  - possibleSkill: {fileID: 11400000, guid: ffc0af466636e704895b36336a728fb5, type: 2}
+    skillSpawnChance: 50
+  PassiveSkills: []
+  canBeBaby: 1
+  canBeMutant: 1

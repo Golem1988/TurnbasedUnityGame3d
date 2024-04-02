@@ -65,7 +65,7 @@ public class MapTileGridCreatorWindow : EditorWindow
 	[SerializeField]
 	private bool _collide_with_plane = true;
 	[SerializeField]
-	private string _path_pallet = "Assets/MapTileGridCreator/Pallets/Cubes";
+	private string _path_pallet = "Assets/ImportedAssets/MapTileGridCreator/Pallets/Cubes";
 	private int _pallet_index;
 	private List<GameObject> _pallet = new List<GameObject>();
 

@@ -951,6 +951,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 89acbb76af29e974d9fd80c019f9f67d, type: 2}
     - {fileID: 11400000, guid: 8d918a46c34e291458a196ab66690a0e, type: 2}
     - {fileID: 11400000, guid: e0cc59b72ab649742a70d22e26ee9231, type: 2}
+    - {fileID: 11400000, guid: c076ab7586f862343aa3e9466f2c90d0, type: 2}
+    - {fileID: 11400000, guid: 229124258b39b0649afcf556de8be2fb, type: 2}
+    - {fileID: 11400000, guid: 97858a39db7941f4393d707ec34315da, type: 2}
+    - {fileID: 11400000, guid: 60823d8d60a980c4684ec5fe1454ba12, type: 2}
+    - {fileID: 11400000, guid: b7c6d2a7ddb131d4dad528eae0bd56a5, type: 2}
+    - {fileID: 11400000, guid: 30fb89c79516d63439535eb1d90ca471, type: 2}
+    - {fileID: 11400000, guid: 8b774b8c7dc78a8498fe9f9ca015149d, type: 2}
     HeroList:
     - {fileID: 11400000, guid: f784ca5cb61e87f47aa1bcfc6f6d773a, type: 2}
     - {fileID: 11400000, guid: 8f5420fb9f3b6624fbc1be1f996b5b26, type: 2}

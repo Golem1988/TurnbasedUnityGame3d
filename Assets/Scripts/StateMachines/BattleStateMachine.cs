@@ -151,7 +151,7 @@ public class BattleStateMachine : MonoBehaviour
         SpawnActors();
         AutobattleSetup();
         fixedDeltaTime = Time.fixedDeltaTime;
-        Debug.Log("Awake ended");
+        //Debug.Log("Awake ended");
     }
 
     void Start()
@@ -194,7 +194,7 @@ public class BattleStateMachine : MonoBehaviour
                 {
                     currentCount -= 1 * Time.deltaTime;
                     countdownText.text = currentCount.ToString("0");
-                    turnText.text = "Upcoming Turn: " + CurrentTurn;
+                    turnText.text = "Upcoming turn: " + CurrentTurn;
                 }
                 else
                 {
@@ -236,7 +236,7 @@ public class BattleStateMachine : MonoBehaviour
 
                 if (PerformList.Count >= 1)
                 {
-                    turnText.text = "Current Turn: " + CurrentTurn;
+                    turnText.text = "Current turn: " + CurrentTurn;
                     countdownText.text = "";
                     battleStates = PerformAction.TAKEACTION;
                 }
@@ -450,6 +450,8 @@ public class BattleStateMachine : MonoBehaviour
                     //typeTxt = "Mutant";
                     typeType = EnemyType.MUTANT;
                     NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(155, 0, 155, 255); // purple
+                    Color newColor = new Color(1f, 0.5f, 0f, 1f);
+                    NewEnemy.GetComponent<MaterialControl>().UpdateAlpha(newColor);
                 }
                 else
                 {
@@ -464,6 +466,8 @@ public class BattleStateMachine : MonoBehaviour
                 typeTxt = "Elite";
                 typeType = EnemyType.ELITE;
                 NewEnemy.GetComponent<UnitUI>().displayNameText.color = new Color32(255, 90, 0, 255); // orange
+                Color newColor = new Color(0.5f, 0.5f, 0f, 1f);
+                NewEnemy.GetComponent<MaterialControl>().UpdateAlpha(newColor);
                 eLvl = GameManager.instance.Regions[curRegions].EnemyLevel + 5;
             }
             else

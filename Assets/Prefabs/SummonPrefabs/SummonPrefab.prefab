@@ -747,14 +747,14 @@ RectTransform:
   m_GameObject: {fileID: 4164643474821375133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.25, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.25, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6366220114336772358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9009918659088019192
@@ -812,8 +812,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.7
-  m_fontSizeBase: 0.7
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -822,8 +822,8 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -10
-  m_wordSpacing: -13.47
+  m_characterSpacing: -5
+  m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 9071118455453383721}
   - component: {fileID: -1742455764904012963}
   - component: {fileID: -1572989348591515935}
+  - component: {fileID: 7674069266630682232}
   m_Layer: 0
   m_Name: SummonPrefab
   m_TagString: Summon
@@ -922,6 +923,7 @@ MonoBehaviour:
   secondAttackRunning: 0
   counterAttack: 0
   doubleHit: 0
+  killStreak: 0
   dodgedAtt: 0
 --- !u!114 &-8162712379617339208
 MonoBehaviour:
@@ -938,37 +940,61 @@ MonoBehaviour:
   Stats:
     theName: SummonPrefab
     displayName: SummonPrefab
-    baseHP: 0
-    curHP: 0
-    baseMP: 0
-    curMP: 0
-    baseATK: 0
-    curATK: 0
-    baseMATK: 0
-    curMATK: 0
-    maxATK: 0
-    minATK: 0
-    baseDEF: 0
-    curDEF: 0
+    HP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    ATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    DEF:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Speed:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Dodge:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Hit:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     baseCRIT: 0.25
     curCRIT: 0.25
     critDamage: 1.5
-    baseSpeed: 0
-    curSpeed: 0
-    curDodge: 0
-    baseDodge: 0
-    baseHit: 0
-    curHit: 0
     strength:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     intellect:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     dexterity:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     agility:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     stamina:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     unspentStatPoints: 0
     maxRage: 150
     curRage: 0
@@ -985,36 +1011,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level:
-    currentlevel: 0
+    experience: 0
     totalExperience: 0
-    previousLevelsExperience: 0
-    nextLevelsExperience: 0
-    start: 0
-    end: 0
-  experienceCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+    currentlevel: 0
+    requiredExp: 0
+    MAX_EXP: 0
+    NEXT_EXP: 0
+    CUR_EXP: 0
+    MAX_LEVEL: 0
+    lastLevExp: 0
 --- !u!114 &69261077976619044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1056,7 @@ AudioSource:
   m_GameObject: {fileID: 4288890165549320804}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c84facd66ffc7d24f96c24ebc9062c7f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3736d8c6c8508134e9a735a57c8aeb79, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.15
@@ -1153,6 +1158,7 @@ MonoBehaviour:
   statPanel: {fileID: 0}
   unit: {fileID: -8162712379617339208}
   UnitLevel: {fileID: -9110761892144046591}
+  curLvl: 0
   OwnerName: 
   UniqueID: 
   BaseID: 
@@ -1192,6 +1198,22 @@ MonoBehaviour:
   Model: {fileID: 0}
   ModelHolder: {fileID: 2178464071449035660}
   ObjectParent: {fileID: 0}
+  WeaponModel: {fileID: 0}
+  WingsModel: {fileID: 0}
+--- !u!114 &7674069266630682232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4288890165549320804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113df470c84e5704a95a5fdb3afcf721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 0}
+  material: {fileID: 0}
 --- !u!1 &4391071244193066081
 GameObject:
   m_ObjectHideFlags: 0

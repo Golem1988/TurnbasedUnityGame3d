@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35935348a6ab284ca31a88d122d6d7f, type: 3}
+  m_Name: Bon
+  m_EditorClassIdentifier: 
+  id: unit_229124258b39b0649afcf556de8be2fb
+  ModelId: 811
+  DisplayName: Bon
+  ModelPrefab: {fileID: 1000013379634860, guid: 8f136bfa60d91a44db31ade9b3f245b2, type: 3}
+  UnitAvatar: {fileID: 21300000, guid: 9b8536899d815b84bb1c8acc9bdccc98, type: 3}
+  ActiveSkills:
+  - possibleSkill: {fileID: 11400000, guid: d3d69f4dec816c04c931336afe9779d7, type: 2}
+    skillSpawnChance: 50
+  - possibleSkill: {fileID: 11400000, guid: cbbb2aa0247088b45aa1af775b61f0ea, type: 2}
+    skillSpawnChance: 50
+  PassiveSkills:
+  - posPassive: {fileID: 11400000, guid: 51a408d84aa3dfe46a5b1ab244382063, type: 2}
+    skillSpawnChance: 50
+  canBeBaby: 1
+  canBeMutant: 1

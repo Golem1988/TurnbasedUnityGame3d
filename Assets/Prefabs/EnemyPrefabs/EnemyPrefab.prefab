@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: -1221385628326941057}
   - component: {fileID: 7945054661109413477}
   - component: {fileID: -4239942601923318760}
+  - component: {fileID: 234306354105237003}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -758,6 +759,8 @@ MonoBehaviour:
   Model: {fileID: 0}
   ModelHolder: {fileID: 4307990576564541539}
   ObjectParent: {fileID: 0}
+  WeaponModel: {fileID: 0}
+  WingsModel: {fileID: 0}
 --- !u!82 &8315414566465328244
 AudioSource:
   m_ObjectHideFlags: 0
@@ -767,7 +770,7 @@ AudioSource:
   m_GameObject: {fileID: 4381166770328033262}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c84facd66ffc7d24f96c24ebc9062c7f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 3736d8c6c8508134e9a735a57c8aeb79, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.15
@@ -881,6 +884,7 @@ MonoBehaviour:
   secondAttackRunning: 0
   counterAttack: 0
   doubleHit: 0
+  killStreak: 0
   dodgedAtt: 0
 --- !u!114 &-8989013547958029824
 MonoBehaviour:
@@ -897,37 +901,61 @@ MonoBehaviour:
   Stats:
     theName: EnemyPrefab
     displayName: EnemyPrefab
-    baseHP: 0
-    curHP: 0
-    baseMP: 0
-    curMP: 0
-    baseATK: 0
-    curATK: 0
-    baseMATK: 0
-    curMATK: 0
-    maxATK: 0
-    minATK: 0
-    baseDEF: 0
-    curDEF: 0
+    HP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MP:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    ATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    MATK:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    DEF:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Speed:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Dodge:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
+    Hit:
+      BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     baseCRIT: 0.25
     curCRIT: 0.25
     critDamage: 1.5
-    baseSpeed: 0
-    curSpeed: 0
-    curDodge: 0
-    baseDodge: 0
-    baseHit: 0
-    curHit: 0
     strength:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     intellect:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     dexterity:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     agility:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     stamina:
       BaseValue: 0
+      MaxValue: 0
+      CurValue: 0
     unspentStatPoints: 0
     maxRage: 150
     curRage: 0
@@ -945,11 +973,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level:
     experience: 0
+    totalExperience: 0
     currentlevel: 0
     requiredExp: 0
     MAX_EXP: 0
     NEXT_EXP: 0
+    CUR_EXP: 0
     MAX_LEVEL: 0
+    lastLevExp: 0
 --- !u!114 &7945054661109413477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,6 +1016,20 @@ MonoBehaviour:
   BasicActs: []
   MagicAttacks: []
   PassiveSkills: []
+--- !u!114 &234306354105237003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381166770328033262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 113df470c84e5704a95a5fdb3afcf721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 0}
+  material: {fileID: 0}
 --- !u!1 &6754954857447064081
 GameObject:
   m_ObjectHideFlags: 0

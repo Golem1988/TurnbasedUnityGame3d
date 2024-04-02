@@ -14,14 +14,14 @@ public class ModelLoader : MonoBehaviour
     private Transform weaponSpot;
     private Transform wingSpot;
 
-    private void Awake()
-    {
-        if (gameObject.CompareTag("Hero"))
-        {
-            weaponSpot = Model.GetComponent<GameObjectContainer>().objectArray[3].gameObject.transform;
-            wingSpot = Model.GetComponent<GameObjectContainer>().objectArray[5].gameObject.transform;
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (gameObject.CompareTag("Hero"))
+    //    {
+    //        weaponSpot = Model.GetComponent<GameObjectContainer>().objectArray[3].gameObject.transform;
+    //        wingSpot = Model.GetComponent<GameObjectContainer>().objectArray[5].gameObject.transform;
+    //    }
+    //}
 
     public void ShowWeapon(string heroID, int weaponIndex)
     {

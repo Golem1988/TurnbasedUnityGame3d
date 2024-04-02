@@ -84,16 +84,16 @@ public class Character : MonoBehaviour
         UnitLevel.level = unitLevel;
 
         curLvl = UnitLevel.level.currentlevel;
-        Debug.Log("curLvl = " + curLvl.ToString());
-        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
+        //Debug.Log("curLvl = " + curLvl.ToString());
+        //Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         UnitLevel.level = new Level(curLvl);
-        Debug.Log("curLvl = " + curLvl.ToString());
-        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
+        //Debug.Log("curLvl = " + curLvl.ToString());
+        //Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         UnitLevel.level.experience = unitLevel.totalExperience;
         UnitLevel.level.totalExperience = unitLevel.totalExperience;
         UnitLevel.level.CUR_EXP = unitLevel.CUR_EXP;
         UnitLevel.level.NEXT_EXP = unitLevel.NEXT_EXP;
-        Debug.Log("experience = " + UnitLevel.level.experience.ToString());
+        //Debug.Log("experience = " + UnitLevel.level.experience.ToString());
         //hero.Stats.displayNameText.text = hero.Stats.theName.ToString();
     }
 

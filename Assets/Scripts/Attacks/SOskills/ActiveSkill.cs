@@ -221,7 +221,7 @@ public class ActiveSkill : BaseAttack
                 }
                 else if (sortBy == SortBy.HP)
                 {
-                    sortList = sortList.OrderBy(x => x.unit.Stats.HP.CurValue).ToList();
+                    sortList = sortList.OrderBy(x => x.unit.Stats.HP.CurValue / x.unit.Stats.HP.MaxValue).ToList();
                 }
                 else if (sortBy == SortBy.Attack)
                 {
