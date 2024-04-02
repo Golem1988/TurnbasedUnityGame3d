@@ -1124,7 +1124,7 @@ public class BattleStateMachine : MonoBehaviour
         var unitAttributes = HeroesInBattle[i].GetComponent<UnitAttributes>();
         //Debug.Log("unit attributes belong to = " + unitAttributes.gameObject.name);
         unitLevel.level.AddExp(getExp, unitAttributes);
-        Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
+        //Debug.Log("Unit " + HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
         GameManager.instance.Chat.AddToChatOutput(HeroesInBattle[i].GetComponent<UnitAttributes>().Stats.displayName + " gained " + getExp + "EXP.");
 
         if (HeroesInBattle[i].CompareTag("Hero"))
@@ -1136,11 +1136,11 @@ public class BattleStateMachine : MonoBehaviour
         else if (HeroesInBattle[i].CompareTag("Summon"))
         {
             var ownerName = HeroesInBattle[i].GetComponent<Summon>().OwnerName;
-            Debug.Log("ownerName = " + ownerName);
+            //Debug.Log("ownerName = " + ownerName);
             int index = HeroDataManager.instance.CharacterInfo.FindIndex(hero => hero.Name == ownerName);
-            Debug.Log("ownerindex = " + index.ToString());
+            //Debug.Log("ownerindex = " + index.ToString());
             int summonIndex = HeroDataManager.instance.CharacterInfo[index].SummonList.FindIndex(summon => summon.UniqueID == HeroesInBattle[i].GetComponent<Summon>().UniqueID);
-            Debug.Log("summonIndex = " + summonIndex.ToString());
+            //Debug.Log("summonIndex = " + summonIndex.ToString());
             HeroDataManager.instance.CharacterInfo[index].SummonList[summonIndex].Level = unitLevel.level;
         }
     }
@@ -1154,7 +1154,7 @@ public class BattleStateMachine : MonoBehaviour
 
     void CalculateExp(int yLevel)
     {
-        Debug.Log("Average level: " + averageEnemyLvl + "expTotal: " + expTotal);
+        //Debug.Log("Average level: " + averageEnemyLvl + "expTotal: " + expTotal);
         getExp = (int)Mathf.Round((expTotal * averageEnemyLvl) / (HeroesInBattle.Count * yLevel) * expMultiplier);
     }
 
